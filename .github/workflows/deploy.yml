@@ -21,4 +21,4 @@ jobs:
 
     - name: SSH into DigitalOcean droplet and pull changes
       run: |
-        ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.USER }}@${{ secrets.HOST }} 'cd /home/unluckytech/htdocs/www.unluckytech.com/wp-content && git pull'
+        ssh -vvv -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.USER }}@${{ secrets.HOST }} 'cd /home/unluckytech/htdocs/www.unluckytech.com/wp-content && git pull'
