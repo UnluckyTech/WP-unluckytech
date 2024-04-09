@@ -15,7 +15,6 @@ jobs:
             REMOTE_USER: ${{ secrets.REMOTE_USER }}
             REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
             ARGS: "-rlgoDzvc -i"
-            SOURCE: ${{ secrets.REMOTE_SOURCE }}
             TARGET: ${{ secrets.REMOTE_TARGET }}
         steps:
             - uses: actions/checkout@v3
