@@ -14,7 +14,7 @@ jobs:
             REMOTE_HOST: 'REMOTE_HOST'
             REMOTE_USER: 'REMOTE_USER'
             REMOTE_PORT: 'REMOTE_PORT'
-            ARGS: '-avzr --delete'
+            ARGS: "-avzr --delete -e 'ssh -p $REMOTE_PORT -i /home/runner/.ssh/deploy_key_$REMOTE_USER'"
             SOURCE: 'dist/'
             TARGET: 'REMOTE_PATH'
         steps:
