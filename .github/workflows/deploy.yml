@@ -1,0 +1,27 @@
+name: Deploy to Droplet
+
+on:
+    push:
+      branches:
+        - main
+
+jobs:
+    deploy:
+        name: 'Deploying'
+        runs-on: 'ubuntu-latest'
+        env:
+            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+            REMOTE_USER: ${{ secrets.REMOTE_USER }}
+            REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+            ARGS: "-rlgoDzvc -i"
+            TARGET: ${{ secrets.REMOTE_TARGET }}
+        steps:
+            - uses: actions/checkout@v3
+            # - uses: actions/setup-node@v3.6.0
+            #   with:
+            #       node-version: '20.3.0'
+            # - run: 'npm ci'
+            # - run: 'composer install'
+            # - run: 'npm run dist'
+            - uses: easingthemes/ssh-deploy@main
