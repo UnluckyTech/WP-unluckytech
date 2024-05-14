@@ -24,7 +24,59 @@
                   "name": "White"
                 }
               ]
+        },
+        "typography": {
+          "fontFamilies": [{
+            "fontFamily": "'Inter', sans-serif",
+            "slug": "inter",
+            "name": "Body - Inter",
+            "fontFace": [{
+              "fontFamily": "'Inter', sans-serif",
+              "fontWeight": "300",
+              "fontStyle": "normal",
+              "fontStretch": "normal",
+              "src": ["file:./assets/fonts/inter/Inter-Light.ttf"]
+            },
+            {
+              "fontFamily": "'Inter', sans-serif",
+              "fontWeight": "400",
+              "fontStyle": "normal",
+              "fontStretch": "normal",
+              "src": ["file:./assets/fonts/inter/Inter-Regular.ttf"]
+            }
+          ]
+          },
+          {
+            "fontFamily": "Stolzl, Arial, sans-serif",
+            "slug": "stolzl",
+            "name": "Headings - Stolzl"
+          }
+        ]
+        },
+        "custom": {
+          "typography": {
+            "font-size": {
+              "heading-1": "52px"
+            }
+          }
         }
         
+    },
+    "styles": {
+      "typography": {
+        "fontFamily": "var(--wp--preset--font-family--inter)",
+        "lineHeight": "1.75",
+        "fontSize": "1rem"
+      },
+      "elements": {
+        "h1": {
+          "typography": {
+            "fontFamily": "var(--wp--preset--font-family--stolzl)",
+            "fontWeight": "800",
+            "lineHeight": "1.3",
+            "fontSize": "var(--wp--custom--typography--font-size--heading-1)"
+          }
+        }
+      }
     }
 }
