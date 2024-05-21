@@ -1,48 +1,62 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
-<head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="profile" href="https://gmpg.org/xfn/11">
-    <?php wp_head(); ?>
-    <style>
-        .particle-network-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -1; /* Ensure it's behind other elements */
-        }
-        #particle-canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-        .navigation-wrapper {
-            background-color: white; /* Set the background color to white */
-            padding: 10px; /* Add padding if needed */
-            z-index: 1; /* Ensure it is above the particle animation */
-            position: relative; /* Ensure it doesn't get affected by absolute positioning */
-        }
-    </style>
-</head>
-<body <?php body_class(); ?>>
-    <!-- Existing header content with particle animation -->
-    <div class="wp-block-group" style="padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px">
-        <!-- Add the particle animation HTML here -->
-        <div class="particle-network-animation">
-            <div class="glow glow-1"></div>
-            <div class="glow glow-2"></div>
-            <div class="glow glow-3"></div>
-            <canvas id="particle-canvas"></canvas>
+    <!DOCTYPE html>
+    <html <?php language_attributes(); ?>>
+    <head>
+        <meta charset="<?php bloginfo('charset'); ?>">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="profile" href="https://gmpg.org/xfn/11">
+        <?php wp_head(); ?>
+        <style>
+            .particle-network-animation {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: -1; /* Ensure it's behind other elements */
+            }
+            #particle-canvas {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body <?php body_class(); ?>>
+        <!-- Header content -->
+        <div class="header-wrapper">
+            <!-- Add your header content here -->
+            <div class="wp-block-group" style="padding: 0;">
+                <!-- Add the particle animation HTML here -->
+                <div class="particle-network-animation">
+                    <div class="glow glow-1"></div>
+                    <div class="glow glow-2"></div>
+                    <div class="glow glow-3"></div>
+                    <canvas id="particle-canvas"></canvas>
+                </div>
+                <!-- wp:navigation {"ref":9,"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} /-->
+            </div>
         </div>
-        <div class="navigation-wrapper">
-            <!-- wp:navigation {"ref":9,"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} /-->
+    
+        <!-- Main content area -->
+        <div class="entry-content wp-block-post-content">
+            <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained" style="border-style:none;border-width:0px;border-radius:0px;margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0">
+                <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
+                    <!-- Your content here -->
+                    <h1 class="wp-block-heading">Heading 1</h1>
+                    <h2 class="wp-block-heading">Heading 2</h2>
+                    <h3 class="wp-block-heading">Heading 3</h3>
+                    <h4 class="wp-block-heading">Heading 4</h4>
+                    <h5 class="wp-block-heading">Heading 5</h5>
+                    <h6 class="wp-block-heading">Heading 6</h6>
+                    <p>This is an example page...</p>
+                </div>
+            </div>
         </div>
-    </div>
-    <!-- The rest of your theme's structure -->
-    <?php wp_footer(); ?>
-    <script src="<?php echo get_template_directory_uri(); ?>/js/particle-network.js"></script>
-</body>
-</html>
+        
+        <?php wp_footer(); ?>
+        <script src="<?php echo get_template_directory_uri(); ?>/js/particle-network.js"></script>
+    </body>
+    </html>
+    

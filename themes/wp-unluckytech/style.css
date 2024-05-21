@@ -15,3 +15,36 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 /* Adobe Font */
 @import url("https://use.typekit.net/imp2jke.css");
 
+/* Ensure the header retains its original padding and margin */
+.header-wrapper {
+    padding-top: 40px; /* Adjust as needed */
+    padding-bottom: 40px; /* Adjust as needed */
+    padding-left: 20px; /* Keep the left padding as it is */
+    padding-right: 20px; /* Keep the right padding as it is */
+    background-color: white; /* Ensure background color is applied */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+/* Apply custom styles to the main content area */
+.entry-content.wp-block-post-content {
+    max-width: 60%; /* Set a maximum width for the content area */
+    margin: 0 auto; /* Center the content area */
+    padding: 20px; /* Adjust padding as needed */
+    background-color: white; /* Ensure background color is applied */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+/* Style the inner wp-block-group */
+.entry-content.wp-block-post-content .wp-block-group.is-layout-constrained {
+    max-width: 100%; /* Ensure inner group takes full width of the parent */
+    padding: 20px; /* Adjust padding as needed */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+/* Adjust other inner elements as necessary */
+.entry-content.wp-block-post-content .wp-block-group.is-layout-constrained .wp-block-group {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var particleCount = 100;
     var maxDistance = 100;
     var speedFactor = 0.5; // Adjust this value to control the speed
+    var mouse = { x: null, y: null, radius: 150 };
 
     function Particle(x, y) {
         this.x = x || Math.random() * canvas.width;
@@ -56,6 +57,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function connectParticlesToMouse() {
+        for (var i = 0; i < particles.length; i++) {
+            var distance = Math.hypot(particles[i].x - mouse.x, particles[i].y - mouse.y);
+            if (distance < maxDistance) {
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(mouse.x, mouse.y);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.stroke();
+                ctx.closePath();
+            }
+        }
+    }
+
     function animateParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         particles.forEach(function (particle) {
@@ -63,12 +78,25 @@ document.addEventListener('DOMContentLoaded', function () {
             particle.draw();
         });
         connectParticles();
+        if (mouse.x !== null && mouse.y !== null) {
+            connectParticlesToMouse();
+        }
         requestAnimationFrame(animateParticles);
     }
 
     window.addEventListener('resize', function () {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+    });
+
+    canvas.addEventListener('mousemove', function (event) {
+        mouse.x = event.clientX;
+        mouse.y = event.clientY;
+    });
+
+    canvas.addEventListener('mouseout', function () {
+        mouse.x = null;
+        mouse.y = null;
     });
 
     initParticles();
