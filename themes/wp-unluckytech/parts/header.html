@@ -1,62 +1,39 @@
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-    <!DOCTYPE html>
-    <html <?php language_attributes(); ?>>
-    <head>
-        <meta charset="<?php bloginfo('charset'); ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="profile" href="https://gmpg.org/xfn/11">
-        <?php wp_head(); ?>
-        <style>
-            .particle-network-animation {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                z-index: -1; /* Ensure it's behind other elements */
-            }
-            #particle-canvas {
-                display: block;
-                width: 100%;
-                height: 100%;
-            }
-        </style>
-    </head>
-    <body <?php body_class(); ?>>
-        <!-- Header content -->
-        <div class="header-wrapper">
-            <!-- Add your header content here -->
-            <div class="wp-block-group" style="padding: 0;">
-                <!-- Add the particle animation HTML here -->
-                <div class="particle-network-animation">
-                    <div class="glow glow-1"></div>
-                    <div class="glow glow-2"></div>
-                    <div class="glow glow-3"></div>
-                    <canvas id="particle-canvas"></canvas>
-                </div>
-                <!-- wp:navigation {"ref":9,"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} /-->
-            </div>
+<head>
+    <style>
+        .particle-network-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1; /* Ensure it's behind other elements */
+        }
+        #particle-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .wp-block-navigation__responsive-container-open  {
+            padding-top: 0; /* Adjust as needed */
+            padding-bottom: 0; /* Adjust as needed */
+            padding-left: 20px; /* Keep the left padding as it is */
+            padding-right: 20px; /* Keep the right padding as it is */
+            background-color: white; /* Ensure background color is applied */
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
+
+    </style>
+</head>
+
+<!-- Header content -->
+<div class="header-wrapper">
+    <!-- Add your header content here -->
+    <div class="wp-block-group" style="padding: 0;">
+        <!-- Add the particle animation HTML here -->
+        <div class="particle-network-animation">
+            <div class="glow glow-1"></div>
+            <div class="glow glow-2"></div>
+            <div class="glow glow-3"></div>
+            <canvas id="particle-canvas"></canvas>
         </div>
-    
-        <!-- Main content area -->
-        <div class="entry-content wp-block-post-content">
-            <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained" style="border-style:none;border-width:0px;border-radius:0px;margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0">
-                <div class="wp-block-group is-layout-constrained wp-block-group-is-layout-constrained">
-                    <!-- Your content here -->
-                    <h1 class="wp-block-heading">Heading 1</h1>
-                    <h2 class="wp-block-heading">Heading 2</h2>
-                    <h3 class="wp-block-heading">Heading 3</h3>
-                    <h4 class="wp-block-heading">Heading 4</h4>
-                    <h5 class="wp-block-heading">Heading 5</h5>
-                    <h6 class="wp-block-heading">Heading 6</h6>
-                    <p>This is an example page...</p>
-                </div>
-            </div>
-        </div>
-        
-        <?php wp_footer(); ?>
-        <script src="<?php echo get_template_directory_uri(); ?>/js/particle-network.js"></script>
-    </body>
-    </html>
-    
+        <!-- wp:navigation {"ref":9,"icon":"menu","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} /-->

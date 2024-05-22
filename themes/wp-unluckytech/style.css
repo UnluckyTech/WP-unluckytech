@@ -17,17 +17,15 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 
 /* Ensure the header retains its original padding and margin */
 .header-wrapper {
-    padding-top: 40px; /* Adjust as needed */
-    padding-bottom: 40px; /* Adjust as needed */
-    padding-left: 20px; /* Keep the left padding as it is */
-    padding-right: 20px; /* Keep the right padding as it is */
-    background-color: white; /* Ensure background color is applied */
-    box-sizing: border-box; /* Ensure padding is included in the width */
+    padding: 0;
+    margin: 0;
+    background-color: white; /* Adjust as needed */
 }
+
 
 /* Apply custom styles to the main content area */
 .entry-content.wp-block-post-content {
-    max-width: 60%; /* Set a maximum width for the content area */
+    max-width: 80%; /* Set a maximum width for the content area */
     margin: 0 auto; /* Center the content area */
     padding: 20px; /* Adjust padding as needed */
     background-color: white; /* Ensure background color is applied */
@@ -48,3 +46,21 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
     padding: 20px;
     box-sizing: border-box;
 }
+
+/* Make the main content area full width */
+.wp-block-group.is-layout-constrained.wp-block-group-is-layout-constrained {
+    max-width: 80%; /* Set a maximum width for the content area */
+    margin: 0 auto; /* Center the content area */
+    padding: 20px; /* Adjust padding as needed */
+    background-color: white; /* Ensure background color is applied */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+/* Ensure the header content aligns correctly */
+body.home .wp-block-group {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
