@@ -1,22 +1,104 @@
-<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"20px","bottom":"20px"}}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide has-base-background-color has-background"
-	style="padding-top:20px;padding-bottom:20px">
-	<!-- wp:group {"align":"wide","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
-	<div class="wp-block-group alignwide">
-		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"},"layout":{"selfStretch":"fit","flexSize":null}},"layout":{"type":"flex"}} -->
-		<div class="wp-block-group">
-			<!-- wp:site-logo {"width":60 } /-->
+<head>
+    <style>
+        .particle-network-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1; /* Ensure it's behind other elements */
+        }
+        #particle-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .wp-block-navigation__responsive-container-open  {
+            padding-top: 0; /* Adjust as needed */
+            padding-bottom: 0; /* Adjust as needed */
+            padding-left: 20px; /* Keep the left padding as it is */
+            padding-right: 20px; /* Keep the right padding as it is */
+            background-color: white; /* Ensure background color is applied */
+            box-sizing: border-box; /* Ensure padding is included in the width */
+        }
 
-			<!-- wp:group {"style":{"spacing":{"blockGap":"0px"}}} -->
-			<div class="wp-block-group">
-				<!-- wp:site-title {"level":0} /-->
-			</div>
-			<!-- /wp:group -->
-		</div>
-		<!-- /wp:group -->
+        .navigation-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 10px 30px; /* Adjust padding */
+            z-index: 1; /* Ensure it is above the particle animation */
+            position: relative;
+            width: 100%;
+            height: 60px; /* Ensure height is similar to reference */
+            box-sizing: border-box; /* Include padding in the width */
+            border-bottom: 1px solid #e0e0e0; /* Optional: add a border for a cleaner look */
+        }
+        .navigation-wrapper .logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .wp-block-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .wp-block-navigation a {
+            margin: 0 15px;
+            font-size: 14px; /* Adjust font size */
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+        .search-icon {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .search-icon i {
+            font-size: 18px; /* Adjust the size of the icon */
+            cursor: pointer;
+            color: black; /* Match the color of the navigation items */
+        }
+    </style>
+</head>
 
-		<!-- wp:navigation {"layout":{"type":"flex","justifyContent":"right","orientation":"horizontal"},"style":{"spacing":{"margin":{"top":"0"},"blockGap":"var:preset|spacing|20"},"layout":{"selfStretch":"fit","flexSize":null}}} /-->
-	</div>
-	<!-- /wp:group -->
+<!-- Header content -->
+<div class="header-wrapper">
+    <!-- Add your header content here -->
+    <div class="wp-block-group" style="padding: 0;">
+        <!-- Add the particle animation HTML here -->
+        <div class="particle-network-animation">
+            <div class="glow glow-1"></div>
+            <div class="glow glow-2"></div>
+            <div class="glow glow-3"></div>
+            <canvas id="particle-canvas"></canvas>
+        </div>
+
+        <!-- Navigation wrapper -->
+        <div class="navigation-wrapper">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="" alt="UnluckyTECH" />
+            </div>
+
+            <!-- Navigation -->
+            <div class="wp-block-navigation">
+                <a href="https://unluckytech.com/about">About</a>
+                <a href="https://docs.unluckytech.com/">Docs</a>
+                <a href="https://forums.unluckytech.com/">Forum</a>
+                <a href="https://store.unluckytech.com/">Store</a>
+                <a href="https://youtube.com/@UnluckyTechs">Videos</a>
+            </div>
+
+            <!-- Search Icon -->
+            <div class="search-icon">
+                <i class="fas fa-search"></i> <!-- Font Awesome search icon -->
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /wp:group -->
