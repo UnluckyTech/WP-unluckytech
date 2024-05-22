@@ -22,6 +22,48 @@
             box-sizing: border-box; /* Ensure padding is included in the width */
         }
 
+        .navigation-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 10px 30px; /* Adjust padding */
+            z-index: 1; /* Ensure it is above the particle animation */
+            position: relative;
+            width: 100%;
+            height: 60px; /* Ensure height is similar to reference */
+            box-sizing: border-box; /* Include padding in the width */
+            border-bottom: 1px solid #e0e0e0; /* Optional: add a border for a cleaner look */
+        }
+        .navigation-wrapper .logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .wp-block-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .wp-block-navigation a {
+            margin: 0 15px;
+            font-size: 14px; /* Adjust font size */
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+        .search-icon {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .search-icon i {
+            font-size: 18px; /* Adjust the size of the icon */
+            cursor: pointer;
+            color: black; /* Match the color of the navigation items */
+        }
     </style>
 </head>
 
@@ -36,4 +78,27 @@
             <div class="glow glow-3"></div>
             <canvas id="particle-canvas"></canvas>
         </div>
-        <!-- wp:navigation {"ref":9,"icon":"menu","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"}} /-->
+
+        <!-- Navigation wrapper -->
+        <div class="navigation-wrapper">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="" alt="UnluckyTECH" />
+            </div>
+
+            <!-- Navigation -->
+            <div class="wp-block-navigation">
+                <a href="https://unluckytech.com/about">About</a>
+                <a href="https://docs.unluckytech.com/">Docs</a>
+                <a href="https://forums.unluckytech.com/">Forum</a>
+                <a href="https://store.unluckytech.com/">Store</a>
+                <a href="https://youtube.com/@UnluckyTechs">Videos</a>
+            </div>
+
+            <!-- Search Icon -->
+            <div class="search-icon">
+                <i class="fas fa-search"></i> <!-- Font Awesome search icon -->
+            </div>
+        </div>
+    </div>
+</div>
