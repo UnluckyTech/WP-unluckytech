@@ -1,3 +1,11 @@
+<?php
+/*
+Template Name: Frontpage
+*/
+?>
+
+
+
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>
 <head>
