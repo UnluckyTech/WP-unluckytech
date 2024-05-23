@@ -13,19 +13,10 @@
             width: 100%;
             height: 100%;
         }
-        .wp-block-navigation__responsive-container-open  {
-            padding-top: 0; /* Adjust as needed */
-            padding-bottom: 0; /* Adjust as needed */
-            padding-left: 20px; /* Keep the left padding as it is */
-            padding-right: 20px; /* Keep the right padding as it is */
-            background-color: white; /* Ensure background color is applied */
-            box-sizing: border-box; /* Ensure padding is included in the width */
-        }
-
         .navigation-wrapper {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             background-color: white;
             padding: 10px 30px; /* Adjust padding */
             z-index: 1; /* Ensure it is above the particle animation */
@@ -40,6 +31,9 @@
             align-items: center;
             height: 100%;
         }
+        .navigation-wrapper .logo img {
+            max-height: 100%; /* Ensure logo fits within the container */
+        }
         .wp-block-navigation {
             display: flex;
             align-items: center;
@@ -49,7 +43,7 @@
         }
         .wp-block-navigation a {
             margin: 0 15px;
-            font-size: 14px; /* Adjust font size */
+            font-size: 16px; /* Adjust font size */
             font-weight: bold;
             text-decoration: none;
             color: black;
@@ -64,14 +58,48 @@
             cursor: pointer;
             color: black; /* Match the color of the navigation items */
         }
+        @media (max-width: 768px) {
+            .navigation-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 15px;
+            }
+            .wp-block-navigation {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .wp-block-navigation a {
+                margin: 5px 0;
+            }
+        }
+        .logo {
+            position: absolute;
+            left: 10%;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            max-height: 60%;
+            max-width: 60%; /* Adjust the maximum width */
+            height: auto; /* Ensure aspect ratio is maintained */
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 10%;
+            display: flex;
+            align-items: center;
+        }
     </style>
+    <!-- Font Awesome CDN for search icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dyKZQb9heJepObODhUFBQQ2q+NSiVR0YtCk1vs9zAwneAK1/aDB6bZLbaGRt7aP3nM+T7qVh4Zxq3lyBD6K1Hg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <!-- Header content -->
 <div class="header-wrapper">
-    <!-- Add your header content here -->
     <div class="wp-block-group" style="padding: 0;">
-        <!-- Add the particle animation HTML here -->
+        <!-- Particle animation HTML -->
         <div class="particle-network-animation">
             <div class="glow glow-1"></div>
             <div class="glow glow-2"></div>
@@ -83,7 +111,7 @@
         <div class="navigation-wrapper">
             <!-- Logo -->
             <div class="logo">
-                <img src="" alt="UnluckyTECH" />
+                <img src="/wp-content/themes/wp-unluckytech/assets/images/BizTitleOfficial.webp" alt="UnluckyTECH" />
             </div>
 
             <!-- Navigation -->
