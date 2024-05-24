@@ -17,14 +17,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: white;
-            padding: 10px 30px; /* Adjust padding */
+            background-color: #1d1f21;
+            color: white;
+            padding: 0px 30px; /* Adjust padding */
             z-index: 1; /* Ensure it is above the particle animation */
             position: relative;
             width: 100%;
             height: 60px; /* Ensure height is similar to reference */
             box-sizing: border-box; /* Include padding in the width */
-            border-bottom: 1px solid #e0e0e0; /* Optional: add a border for a cleaner look */
+            border-bottom: 1px solid #27292c; /* Optional: add a border for a cleaner look */
         }
         .navigation-wrapper .logo {
             display: flex;
@@ -38,28 +39,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto;
-            padding: 0;
+            flex-grow: 1;
         }
         .wp-block-navigation a {
             margin: 0 15px;
-            font-size: 16px; /* Adjust font size */
+            font-size: 16px;
             font-weight: bold;
             text-decoration: none;
-            color: black;
+            color: white;
         }
-        .search-icon {
+        .search-icon, .theme-toggle {
             display: flex;
             align-items: center;
-            height: 100%;
-        }
-        .search-icon i {
-            font-size: 18px; /* Adjust the size of the icon */
             cursor: pointer;
-            color: black; /* Match the color of the navigation items */
         }
+        .search-icon i, .theme-toggle i {
+            font-size: 18px;
+            color: white;
+        }
+        .search-icon {
+            position: absolute;
+            right: 5%;
+        }
+        .theme-toggle {
+            position: absolute;
+            right: 10%;
+        }
+        /* Responsive styles */
         @media (max-width: 768px) {
-            .navigation-wrapper {
+            .header-wrapper {
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 10px 15px;
@@ -67,9 +75,14 @@
             .wp-block-navigation {
                 flex-direction: column;
                 align-items: flex-start;
+                margin-top: 10px;
             }
             .wp-block-navigation a {
                 margin: 5px 0;
+            }
+            .logo, .search-icon, .theme-toggle {
+                position: static;
+                margin-bottom: 10px;
             }
         }
         .logo {
@@ -80,19 +93,13 @@
         }
 
         .logo img {
-            max-height: 60%;
+            max-height: 50%;
             max-width: 60%; /* Adjust the maximum width */
             height: auto; /* Ensure aspect ratio is maintained */
         }
 
-        .search-icon {
-            position: absolute;
-            right: 10%;
-            display: flex;
-            align-items: center;
-        }
     </style>
-    <!-- Font Awesome CDN for search icon -->
+    <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dyKZQb9heJepObODhUFBQQ2q+NSiVR0YtCk1vs9zAwneAK1/aDB6bZLbaGRt7aP3nM+T7qVh4Zxq3lyBD6K1Hg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
@@ -111,7 +118,7 @@
         <div class="navigation-wrapper">
             <!-- Logo -->
             <div class="logo">
-                <img src="/wp-content/themes/wp-unluckytech/assets/images/BizTitleOfficial.webp" alt="UnluckyTECH" />
+                <img src="/wp-content/themes/wp-unluckytech/assets/images/BizTitleLite.webp" alt="UnluckyTECH" />
                 </div>
 
             <!-- Navigation -->
@@ -125,13 +132,38 @@
 
             <!-- Search Icon -->
             <div class="search-icon">
-                <i class="fas fa-search"></i> <!-- Font Awesome search icon -->
+                <i class="fas fa-search"></i>
             </div>
-            <!-- Day/Night Icon -->
+
+            <!-- Theme Toggle Icon -->
             <div class="theme-toggle" onclick="toggleTheme()">
                 <i class="fas fa-sun"></i>
             </div>
+            </div>
 
+            
         </div>
     </div>
 </div>
+
+<script>
+    function toggleTheme() {
+        document.body.classList.toggle('dark-theme');
+        let icon = document.querySelector('.theme-toggle i');
+        if (document.body.classList.contains('dark-theme')) {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        } else {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
+
+    // Apply dark theme by default
+    document.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('dark-theme');
+        let icon = document.querySelector('.theme-toggle i');
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    });
+</script>
