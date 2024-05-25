@@ -14,3 +14,8 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 
 /* Adobe Font */
 @import url("https://use.typekit.net/imp2jke.css");
+
+.wp-block-group {
+    max-width: 100%; /* Set the max-width to 100% */
+    padding: 0; /* Remove any padding to ensure full width */
+}
