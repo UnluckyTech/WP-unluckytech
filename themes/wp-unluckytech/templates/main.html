@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #131313; /* Set to paperless-black from theme */
+            color: #F7F7F7; /* Set to paperless-white from theme */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1; /* Allow the content wrapper to grow and fill the available space */
+        }
+        .content-inner {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            backdrop-filter: blur(10px); /* Blur effect */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 40px; /* Increased padding */
+            margin: 140px 0; /* Space above and below */
+        }
+        .video-wrapper iframe {
+            width: 640px; /* Increased width */
+            height: 360px; /* Increased height */
+            border: none;
+        }
+        .text-wrapper {
+            margin-left: 20px;
+            max-width: 400px;
+        }
+        .wp-block-heading, .wp-block-paragraph {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
+
+    <!-- Content wrapper -->
+    <div class="content-wrapper">
+        <div class="content-inner">
+            <!-- Video Section -->
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video" allowfullscreen></iframe>
+            </div>
+
+            <!-- Text Section -->
+            <div class="text-wrapper">
+                <!-- Main content -->
+                <div class="wp-block-group">
+                    <!-- wp:heading {"level":1} -->
+                    <h1 class="wp-block-heading">Welcome!</h1>
+                    <!-- /wp:heading -->
+
+                    <!-- wp:paragraph -->
+                    <p>This website is a work in progress. Anything you may be looking for is at the top in navigation. Any issues, you can select Contact Us at the very bottom to get any help!</p>
+                    <!-- /wp:paragraph -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->
+</body>
+</html>
