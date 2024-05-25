@@ -19,6 +19,7 @@
             justify-content: center;
             align-items: center;
             flex: 1; /* Allow the content wrapper to grow and fill the available space */
+            flex-direction: column;
         }
         .content-inner {
             display: flex;
@@ -28,7 +29,8 @@
             border-radius: 10px; /* Rounded corners */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             padding: 40px; /* Increased padding */
-            margin: 140px 0; /* Space above and below */
+            margin: 40px 0; /* Space above and below */
+            width: fit-content; /* Make the width fit the content */
         }
         .video-wrapper iframe {
             width: 640px; /* Increased width */
@@ -46,6 +48,28 @@
         .wp-block-heading, .wp-block-paragraph {
             margin: 10px 0;
         }
+        .news-section {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            backdrop-filter: blur(10px); /* Blur effect */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px; /* Increased padding */
+            margin: 40px 0; /* Space above and below */
+            width: fit-content; /* Make the width fit the content */
+        }
+        .news-wrapper {
+            max-width: 640px; /* Match the video width */
+        }
+        .news-title {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .news-content {
+            font-size: 1em;
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -54,6 +78,7 @@
 
     <!-- Content wrapper -->
     <div class="content-wrapper">
+        <!-- Top Content -->
         <div class="content-inner">
             <!-- Video Section -->
             <div class="video-wrapper">
@@ -71,6 +96,26 @@
                     <!-- wp:paragraph -->
                     <p>This website is a work in progress. Anything you may be looking for is at the top in navigation. Any issues, you can select Contact Us at the very bottom to get any help!</p>
                     <!-- /wp:paragraph -->
+                </div>
+            </div>
+        </div>
+
+        <!-- News Section -->
+        <div class="news-section">
+            <div class="news-wrapper">
+                <!-- News Content -->
+                <div class="wp-block-group">
+                    <!-- News Title 1 -->
+                    <div class="news-title">News Title 1</div>
+                    <div class="news-content">This is a short excerpt from the first news item. It gives a brief overview of the content.</div>
+
+                    <!-- News Title 2 -->
+                    <div class="news-title">News Title 2</div>
+                    <div class="news-content">This is a short excerpt from the second news item. It gives a brief overview of the content.</div>
+
+                    <!-- News Title 3 -->
+                    <div class="news-title">News Title 3</div>
+                    <div class="news-content">This is a short excerpt from the third news item. It gives a brief overview of the content.</div>
                 </div>
             </div>
         </div>
