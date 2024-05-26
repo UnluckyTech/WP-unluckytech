@@ -28,7 +28,9 @@
         box-sizing: border-box;
         border-bottom: 1px solid #27292c;
     }
-
+    .header-wrapper {
+        background-color: #1d1f21;
+    }
     .logo {
         display: flex;
         align-items: center;
@@ -51,8 +53,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-left: auto; /* Push it to the center */
-        margin-right: auto; /* Push it to the center */
+        flex-grow: 1;
     }
 
     .wp-block-navigation a {
@@ -112,10 +113,6 @@
         .logo img {
             max-height: 30px;  /* Adjust for mobile view if needed */
         }
-    }
-
-    .navigation-wrapper.open .wp-block-navigation {
-        display: flex;
     }
 </style>
 
