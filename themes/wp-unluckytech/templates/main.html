@@ -14,7 +14,7 @@
             flex-direction: column;
             min-height: 100vh;
         }
-        
+
         .content-wrapper {
             display: flex;
             justify-content: center; /* Center content horizontally */
@@ -23,11 +23,14 @@
             padding: 20px;
             gap: 20px; /* Add gap between columns */
         }
+
         .left-column {
             display: flex;
             flex-direction: column;
             gap: 20px; /* Add gap between sections */
+            align-items: center; /* Center the column content */
         }
+
         .content-inner, .news-section {
             display: flex;
             background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
@@ -35,30 +38,50 @@
             border-radius: 10px; /* Rounded corners */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             padding: 20px;
-            width: 700px; /* Fixed width */
+            width: 900px; /* Fixed width */
+            justify-content: center; /* Center content horizontally */
         }
+
+        .video-wrapper {
+            display: flex;
+            justify-content: center; /* Center the video */
+            margin-right: 20px; /* Space between video and text */
+        }
+
         .video-wrapper iframe {
-            width: 460px; /* Adjusted width */
-            height: 259px;
+            width: 560px; /* Adjusted width */
+            height: 315px; /* Adjusted height */
             border: none;
         }
+
         .text-wrapper {
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 300px; /* Limit width of text section */
         }
+
         .news-section {
             height: auto; /* Let height be determined by content */
+            width: 900px; /* Fixed width */
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 20px;
         }
+
         .news-wrapper {
             width: 100%;
         }
+
         .news-title {
             font-size: 1.2em;
             margin: 10px 0;
         }
+
         .news-content {
             font-size: 1em;
             margin: 5px 0;
         }
+
         .feed-section {
             display: flex;
             flex-direction: column;
@@ -67,8 +90,10 @@
             border-radius: 10px; /* Rounded corners */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             padding: 20px;
-            width: 200px; /* Fixed width for the feed */
-            height: 930px; /* Fixed height */
+            width: 300px; /* Fixed width for the feed */
+            flex-grow: 1; /* Allow the feed section to grow */
+            align-self: stretch; /* Make the feed section stretch to match the height of the tallest sibling */
+            max-width: 300px; /* Ensures the width does not exceed 300px */
         }
     </style>
 </head>
