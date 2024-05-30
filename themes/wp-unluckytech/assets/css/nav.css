@@ -1,0 +1,116 @@
+.particle-network-animation {
+    position: fixed; /* Use fixed positioning to cover the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Keep it behind other content */
+    overflow: hidden; /* Hide any overflow content */
+}
+
+#particle-canvas {
+    display: block;
+    width: 100%;
+    height: 100vh; /* Make sure it covers the entire height */
+}
+
+.navigation-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1d1f21;
+    color: white;
+    padding: 0 30px;
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #27292c;
+}
+.header-wrapper {
+    background-color: #1d1f21;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.logo img {
+    max-height: 40px;  /* Adjust the height as needed */
+    max-width: auto;   /* Automatically scale the width */
+    height: auto;
+}
+
+.wp-block-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.wp-block-navigation a {
+    margin: 0 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.search-icon, .theme-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.search-icon i, .theme-toggle i {
+    font-size: 18px;
+    color: white;
+}
+
+.search-icon {
+    margin-left: 15px;
+}
+
+.theme-toggle {
+    margin-left: 15px;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .wp-block-navigation {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 10px;
+    }
+
+    .wp-block-navigation a {
+        margin: 5px 0;
+    }
+
+    .search-icon, .theme-toggle {
+        display: none;
+    }
+
+    .logo img {
+        max-height: 30px;  /* Adjust for mobile view if needed */
+    }
+}
