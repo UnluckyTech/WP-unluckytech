@@ -28,9 +28,11 @@
     box-sizing: border-box;
     border-bottom: 1px solid #27292c;
 }
+
 .header-wrapper {
     background-color: #1d1f21;
 }
+
 .logo {
     display: flex;
     align-items: center;
@@ -49,11 +51,19 @@
     height: auto;
 }
 
+.nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .wp-block-navigation {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-grow: 1;
 }
 
 .wp-block-navigation a {
@@ -62,6 +72,11 @@
     font-weight: bold;
     text-decoration: none;
     color: white;
+}
+
+.right-icons {
+    display: flex;
+    align-items: center;
 }
 
 .search-icon, .theme-toggle {
