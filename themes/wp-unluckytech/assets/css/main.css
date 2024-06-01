@@ -19,7 +19,7 @@ body {
 }
 
 body.home .wp-block-group {
-    background-color: #151618;
+    background-color: #151618 !important;
 }
 
 .left-column {

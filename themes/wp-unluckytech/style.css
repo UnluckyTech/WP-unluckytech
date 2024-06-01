@@ -15,11 +15,3 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 /* Adobe Font */
 @import url("https://use.typekit.net/imp2jke.css");
 
-/* Ensure the header content aligns correctly */
-body.home .wp-block-group {
-    max-width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: 151618;
-    box-sizing: border-box;
-}
