@@ -36,7 +36,7 @@
                 </a>
 
                 <!-- Centered Navigation -->
-                <div class="nav-center">
+                <div class="nav-center" id="navCenter">
                     <!-- Navigation -->
                     <div class="wp-block-navigation">
                         <a href="https://unluckytech.com/about" target="_blank">About</a>
@@ -87,7 +87,7 @@
         // Menu toggle for mobile
         document.getElementById('menuIcon').addEventListener('click', (event) => {
             event.preventDefault();
-            document.getElementById('navWrapper').classList.toggle('open');
+            document.getElementById('navCenter').classList.toggle('open');
         });
     </script>
 </body>

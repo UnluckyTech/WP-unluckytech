@@ -102,6 +102,7 @@
     display: none;
     font-size: 24px;
     cursor: pointer;
+    color: white; /* Change menu icon color */
 }
 
 /* Responsive styles */
@@ -110,19 +111,29 @@
         display: block;
     }
 
+    .nav-center, .right-icons {
+        display: none;
+    }
+
     .wp-block-navigation {
         display: none;
         flex-direction: column;
         align-items: flex-start;
         margin-top: 10px;
+        background-color: #1d1f21;
+        padding: 10px;
+        border-top: 1px solid #27292c;
+        width: 100%;
     }
 
     .wp-block-navigation a {
-        margin: 5px 0;
+        margin: 10px 0;
+        font-size: 18px;
+        color: white;
     }
 
-    .search-icon, .theme-toggle {
-        display: none;
+    .navigation-wrapper.open .wp-block-navigation {
+        display: flex;
     }
 
     .logo img {

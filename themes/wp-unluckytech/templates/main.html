@@ -77,7 +77,8 @@
                 <div class="wp-block-group">
                     <!-- Feed Title -->
                     <div class="feed-title">Feed</div>
-                    <div class="feed-content">This section will contain the feed content. It will be updated regularly with the latest information.</div>
+                    <div class="feed-content" id='discourse-comments'></div>
+                    <meta name='discourse-username' content='UnluckyTech'>
                 </div>
             </div>
         </div>
@@ -92,5 +93,19 @@
 
     <!-- Footer -->
     <!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->
+
+    <script type="text/javascript">
+        DiscourseEmbed = {
+            discourseUrl: 'https://forums.unluckytech.com/',
+            discourseEmbedUrl: window.location.href,
+            // className: 'CLASS_NAME',
+        };
+
+        (function() {
+            var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+            d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+        })();
+    </script>
 </body>
 </html>
