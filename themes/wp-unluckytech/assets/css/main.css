@@ -18,8 +18,8 @@ body {
     flex-grow: 1; /* Make sure it takes up the available space */
 }
 
-.wp-block-group {
-    background: #151618;
+body.home .wp-block-group {
+    background-color: #151618;
 }
 
 .left-column {
