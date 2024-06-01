@@ -15,7 +15,7 @@ if ( ! function_exists( 'unlucky_theme_support' ) ) :
         add_theme_support( 'wp-block-styles' );
 
         // Enqueue editor styles.
-        add_editor_style( 'style.css' );
+        // add_editor_style( 'style.css' ); 
 
     }
 
