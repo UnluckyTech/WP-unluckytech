@@ -9,6 +9,15 @@ if ( ! function_exists( 'unlucky_theme_support' ) ) :
      *
      * @return void
      */
+    function unlucky_theme_support() {
+
+        // Add support for block styles.
+        add_theme_support( 'wp-block-styles' );
+
+        // Enqueue editor styles.
+        add_editor_style( 'style.css' );
+
+    }
 
 endif;
 add_action( 'after_setup_theme', 'unlucky_theme_support' );
