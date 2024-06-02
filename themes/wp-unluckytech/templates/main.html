@@ -95,16 +95,21 @@
 
     <script type="text/javascript">
         DiscourseEmbed = {
-            discourseUrl: 'https://forums.unluckytech.com/',
-            discourseEmbedUrl: window.location.href,
-            // className: 'CLASS_NAME',
+          discourseUrl: 'https://forums.unluckytech.com/',
+          discourseEmbedUrl: window.location.href,
+          // className: 'CLASS_NAME',
+          topicListStyle: 'list',       // Display topics as a list
+          topicListSortOrder: 'created', // Sort topics by creation date
+          topicListSortAscending: false, // Show latest topics first
+          topicListLoadLimit: 5,         // Number of topics to display
+          topicListLoadMore: true        // Enable "Load More" button
         };
-
+      
         (function() {
-            var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
-            d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+          var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+          d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
         })();
-    </script>
+      </script>
 </body>
 </html>
