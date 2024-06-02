@@ -77,8 +77,7 @@
                 <div class="wp-block-group">
                     <!-- Feed Title -->
                     <div class="feed-title">Feed</div>
-                    <div id='discourse-comments'></div>
-                    <meta name='discourse-username' content='UnluckyTech'>
+                    <d-topics-list discourse-url="https://forums.unluckytech.com" category="UnluckyTech" per-page="5"></d-topics-list>
                 </div>
             </div>
         </div>
@@ -94,23 +93,6 @@
     <!-- Footer -->
     <!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->
 
-    <script type="text/javascript">
-        DiscourseEmbed = {
-          discourseUrl: 'https://forums.unluckytech.com/',
-          discourseEmbedUrl: window.location.href,
-          // className: 'CLASS_NAME',
-          topicListStyle: 'list',       // Display topics as a list
-          topicListSortOrder: 'created', // Sort topics by creation date
-          topicListSortAscending: false, // Show latest topics first
-          topicListLoadLimit: 5,         // Number of topics to display
-          topicListLoadMore: true        // Enable "Load More" button
-        };
-      
-        (function() {
-          var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
-          d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
-        })();
-      </script>
+    <script type="text/javascript" src="https://forums.unluckytech.com/javascripts/embed-topics.js"></script>
 </body>
 </html>
