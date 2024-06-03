@@ -18,10 +18,6 @@ body {
     flex-grow: 1; /* Make sure it takes up the available space */
 }
 
-body.home .wp-block-group {
-    background-color: #151618 !important;
-}
-
 .left-column {
     display: flex;
     flex-direction: column;
@@ -120,26 +116,4 @@ body.home .wp-block-group {
 
 .footer-content {
     text-align: center;
-}
-
-/* Ensure the feed-wrapper takes full height */
-.feed-section {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.feed-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.wp-block-group .feed-title {
-    flex-shrink: 0; /* Prevents the title from shrinking */
-}
-
-d-topics-list {
-    flex: 1; /* Takes the remaining space */
-    overflow-y: auto; /* Adds scroll if content overflows */
 }
