@@ -55,6 +55,51 @@ body {
     max-width: 300px; /* Limit width of text section */
 }
 
+.latest-videos-section {
+    width: 900px !important; /* Fixed width */
+    background: rgba(0, 0, 0, 0.5) !important; /* Semi-transparent background */
+    backdrop-filter: blur(10px) !important; /* Blur effect */
+    border-radius: 10px !important; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+    padding: 20px !important;
+    margin-top: 20px !important; /* Margin to separate from previous sections */
+}
+
+.latest-videos-wrapper {
+    width: 100%;
+}
+
+.latest-videos-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.latest-videos-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between video items */
+}
+
+.video-item {
+    flex: 1 1 30%; /* Responsive width for video items */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-item img {
+    width: 100%; /* Make thumbnail responsive */
+    border-radius: 10px; /* Rounded corners for thumbnails */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thumbnail shadow */
+}
+
+.video-title {
+    margin-top: 10px;
+    font-size: 1em;
+    text-align: center;
+}
+
 .news-section {
     height: auto; /* Let height be determined by content */
     width: 900px; /* Fixed width */
@@ -118,47 +163,3 @@ body {
     text-align: center;
 }
 
-.latest-videos-section {
-    width: 900px !important; /* Fixed width */
-    background: rgba(0, 0, 0, 0.5) !important; /* Semi-transparent background */
-    backdrop-filter: blur(10px) !important; /* Blur effect */
-    border-radius: 10px !important; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
-    padding: 20px !important;
-    margin-top: 20px !important; /* Margin to separate from previous sections */
-}
-
-.latest-videos-wrapper {
-    width: 100%;
-}
-
-.latest-videos-title {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.latest-videos-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* Space between video items */
-}
-
-.video-item {
-    flex: 1 1 30%; /* Responsive width for video items */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.video-item img {
-    width: 100%; /* Make thumbnail responsive */
-    border-radius: 10px; /* Rounded corners for thumbnails */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thumbnail shadow */
-}
-
-.video-title {
-    margin-top: 10px;
-    font-size: 1em;
-    text-align: center;
-}
