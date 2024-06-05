@@ -132,7 +132,7 @@
         color: white;
     }
 
-    .navigation-wrapper.open .wp-block-navigation {
+    .wp-block-navigation.open {
         display: flex;
     }
 

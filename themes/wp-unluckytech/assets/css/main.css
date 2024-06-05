@@ -117,3 +117,43 @@ body {
 .footer-content {
     text-align: center;
 }
+<<<<<<< Updated upstream
+=======
+
+/* Media Queries for Mobile Layout */
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column; /* Stack columns vertically */
+        padding: 10px;
+    }
+
+    .left-column, .content-inner, .latest-videos-section, .news-section, .feed-section, .footer-section {
+        width: 100%; /* Make elements take full width */
+        max-width: 100%; /* Ensure they don't exceed viewport width */
+        padding: 10px; /* Add padding for mobile */
+    }
+
+    .video-wrapper iframe {
+        width: 100%; /* Full width on mobile */
+        height: auto; /* Adjust height automatically */
+    }
+
+    .text-wrapper {
+        max-width: 100%; /* Full width on mobile */
+    }
+
+    .latest-videos-content {
+        flex-direction: column; /* Stack video items vertically */
+        gap: 10px; /* Reduce gap for mobile */
+    }
+
+    .video-item {
+        flex: 1 1 100%; /* Full width for each video item */
+    }
+
+    .footer-section {
+        height: auto; /* Let height be determined by content */
+        padding: 20px;
+    }
+}
+>>>>>>> Stashed changes

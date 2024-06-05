@@ -38,7 +38,7 @@
                 <!-- Centered Navigation -->
                 <div class="nav-center" id="navCenter">
                     <!-- Navigation -->
-                    <div class="wp-block-navigation">
+                    <div class="wp-block-navigation" id="navMenu">
                         <a href="https://unluckytech.com/about" target="_blank">About</a>
                         <a href="https://docs.unluckytech.com/" target="_blank">Docs</a>
                         <a href="https://forums.unluckytech.com/" target="_blank">Forum</a>
@@ -63,32 +63,7 @@
         </div>
     </div>
 
-    <script>
-        function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
-            let icon = document.querySelector('.theme-toggle i');
-            if (document.body.classList.contains('dark-theme')) {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            } else {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
-        }
-
-        // Apply dark theme by default
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.classList.add('dark-theme');
-            let icon = document.querySelector('.theme-toggle i');
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        });
-
-        // Menu toggle for mobile
-        document.getElementById('menuIcon').addEventListener('click', (event) => {
-            event.preventDefault();
-            document.getElementById('navCenter').classList.toggle('open');
-        });
-    </script>
+    <!-- Link to external JavaScript file -->
+    <script src="/wp-content/themes/wp-unluckytech/assets/js/nav.js"></script>
 </body>
 </html>
