@@ -101,24 +101,63 @@ body {
 }
 
 .news-section {
-    height: auto; /* Let height be determined by content */
+    display: flex;
+    flex-direction: column;
     width: 900px; /* Fixed width */
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
 }
 
 .news-wrapper {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .news-title {
-    font-size: 1.2em;
-    margin: 10px 0;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .news-content {
-    font-size: 1em;
-    margin: 5px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.news-item {
+    background: #333; /* Dark background for news items */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 270px; /* Adjust width of news items */
+}
+
+.news-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.news-article-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.news-article-description {
+    font-size: 14px;
+    text-align: center;
 }
 
 .feed-section {
