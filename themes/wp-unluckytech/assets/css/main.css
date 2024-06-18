@@ -184,7 +184,8 @@ body {
     margin-top: 20px; /* Margin to separate from previous sections */
 }
 
-.footer-section {
+/* Services Section */
+.services-section {
     width: 1250px; /* Fixed width */
     height: 400px; /* Fixed height */
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
@@ -194,11 +195,78 @@ body {
     padding: 20px;
     margin: 20px auto; /* Center horizontally */
     display: flex;
-    justify-content: center; /* Center content horizontally */
+    justify-content: space-between; /* Space between text and slideshow */
     align-items: center; /* Center content vertically */
 }
 
-.footer-content {
-    text-align: center;
+.services-title {
+    position: absolute; /* Position absolutely within the section */
+    top: 20px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    font-size: 24px; /* Increase title size */
+    font-weight: bold;
+    color: white;
+    margin: 0; /* Remove default margin */
 }
 
+
+.services-list {
+    font-size: 20px; /* Increase text size */
+    color: white;
+    columns: 2; /* Split into two columns */
+    column-gap: 40px; /* Add gap between columns */
+    align-items: center; /* Center the list vertically */
+    justify-content: center; /* Center the list horizontally */
+}
+
+.services-list ul {
+    margin-top: 0px;
+}
+
+.services-list li {
+    margin-bottom: 10px;
+}
+
+.services-slideshow {
+    flex: 1;
+    max-width: 400px;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+}
+
+.mySlides {
+    display: none;
+}
+
+.mySlides img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.dot-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dot.active {
+    background-color: #717171;
+}
+
+/* Show first slide by default */
+.mySlides:first-child {
+    display: block;
+}
