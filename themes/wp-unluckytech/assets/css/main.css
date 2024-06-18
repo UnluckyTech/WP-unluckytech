@@ -55,6 +55,51 @@ body {
     max-width: 300px; /* Limit width of text section */
 }
 
+.latest-videos-section {
+    width: 900px !important; /* Fixed width */
+    background: rgba(0, 0, 0, 0.5) !important; /* Semi-transparent background */
+    backdrop-filter: blur(10px) !important; /* Blur effect */
+    border-radius: 10px !important; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+    padding: 20px !important;
+    margin-top: 20px !important; /* Margin to separate from previous sections */
+}
+
+.latest-videos-wrapper {
+    width: 100%;
+}
+
+.latest-videos-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.latest-videos-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between video items */
+}
+
+.video-item {
+    flex: 1 1 30%; /* Responsive width for video items */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-item img {
+    width: 100%; /* Make thumbnail responsive */
+    border-radius: 10px; /* Rounded corners for thumbnails */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thumbnail shadow */
+}
+
+.video-title {
+    margin-top: 10px;
+    font-size: 1em;
+    text-align: center;
+}
+
 .news-section {
     height: auto; /* Let height be determined by content */
     width: 900px; /* Fixed width */
@@ -117,43 +162,4 @@ body {
 .footer-content {
     text-align: center;
 }
-<<<<<<< Updated upstream
-=======
 
-/* Media Queries for Mobile Layout */
-@media (max-width: 768px) {
-    .content-wrapper {
-        flex-direction: column; /* Stack columns vertically */
-        padding: 10px;
-    }
-
-    .left-column, .content-inner, .latest-videos-section, .news-section, .feed-section, .footer-section {
-        width: 100%; /* Make elements take full width */
-        max-width: 100%; /* Ensure they don't exceed viewport width */
-        padding: 10px; /* Add padding for mobile */
-    }
-
-    .video-wrapper iframe {
-        width: 100%; /* Full width on mobile */
-        height: auto; /* Adjust height automatically */
-    }
-
-    .text-wrapper {
-        max-width: 100%; /* Full width on mobile */
-    }
-
-    .latest-videos-content {
-        flex-direction: column; /* Stack video items vertically */
-        gap: 10px; /* Reduce gap for mobile */
-    }
-
-    .video-item {
-        flex: 1 1 100%; /* Full width for each video item */
-    }
-
-    .footer-section {
-        height: auto; /* Let height be determined by content */
-        padding: 20px;
-    }
-}
->>>>>>> Stashed changes
