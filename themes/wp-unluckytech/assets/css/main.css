@@ -1,272 +1,226 @@
 body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #131313; /* Set to paperless-black from theme */
-    color: #F7F7F7; /* Set to paperless-white from theme */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+	margin: 0;
+	font-family: Inter, sans-serif;
+	background-color: #131313;
+	color: #f7f7f7;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh
 }
 
 .content-wrapper {
-    display: flex;
-    justify-content: center; /* Center content horizontally */
-    align-items: flex-start; /* Align items to the top */
-    flex-direction: row;
-    padding: 20px;
-    gap: 20px; /* Add gap between columns */
-    flex-grow: 1; /* Make sure it takes up the available space */
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: row;
+	padding: 20px;
+	gap: 20px;
+	flex-grow: 1
 }
 
 .left-column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Add gap between sections */
-    align-items: center; /* Center the column content */
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	align-items: center
 }
 
-.content-inner, .news-section {
-    display: flex;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Blur effect */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    width: 900px; /* Fixed width */
-    justify-content: center; /* Center content horizontally */
+.content-inner,
+.news-section {
+	display: flex;
+	background: rgba(0, 0, 0, .5);
+	backdrop-filter: blur(10px);
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+	padding: 20px;
+	width: 900px;
+	justify-content: center
 }
 
 .video-wrapper {
-    display: flex;
-    justify-content: center; /* Center the video */
-    margin-right: 20px; /* Space between video and text */
+	display: flex;
+	justify-content: center;
+	margin-right: 20px
 }
 
 .video-wrapper iframe {
-    width: 560px; /* Adjusted width */
-    height: 315px; /* Adjusted height */
-    border: none;
+	width: 560px;
+	height: 315px;
+	border: none
 }
 
 .text-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 300px; /* Limit width of text section */
-}
-
-.latest-videos-section {
-    width: 900px !important; /* Fixed width */
-    background: rgba(0, 0, 0, 0.5) !important; /* Semi-transparent background */
-    backdrop-filter: blur(10px) !important; /* Blur effect */
-    border-radius: 10px !important; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
-    padding: 20px !important;
-    margin-top: 20px !important; /* Margin to separate from previous sections */
-}
-
-.latest-videos-wrapper {
-    width: 100%;
-}
-
-.latest-videos-title {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.latest-videos-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; /* Space between video items */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 300px
 }
 
 .video-item {
-    flex: 1 1 30%; /* Responsive width for video items */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	flex: 1 1 30%;
+	display: flex;
+	flex-direction: column;
+	align-items: center
 }
 
 .video-item img {
-    width: 100%; /* Make thumbnail responsive */
-    border-radius: 10px; /* Rounded corners for thumbnails */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thumbnail shadow */
+	width: 100%;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, .2)
 }
 
 .video-title {
-    margin-top: 10px;
-    font-size: 1em;
-    text-align: center;
+	margin-top: 10px;
+	font-size: 1em;
+	text-align: center
 }
 
 .news-section {
-    display: flex;
-    flex-direction: column;
-    width: 900px; /* Fixed width */
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Blur effect */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+	display: flex;
+	flex-direction: column;
+	width: 900px;
+	background: rgba(0, 0, 0, .5);
+	backdrop-filter: blur(10px);
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+	padding: 20px
 }
 
 .news-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px
 }
 
 .news-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
+	font-size: 24px;
+	font-weight: 700;
+	margin-bottom: 10px
 }
 
 .news-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center
 }
 
 .news-item {
-    background: #333; /* Dark background for news items */
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 270px; /* Adjust width of news items */
+	background: #333;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 270px
 }
 
 .news-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 5px;
+	width: 100%;
+	height: auto;
+	border-radius: 5px;
+	margin-bottom: 5px
 }
 
 .news-article-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    text-align: center;
+	font-size: 16px;
+	font-weight: 700;
+	margin-bottom: 5px;
+	text-align: center
 }
 
 .news-article-description {
-    font-size: 14px;
-    text-align: center;
-}
-
-.feed-section {
-    display: flex;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Blur effect */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    width: 300px; /* Fixed width for the feed */
-    flex-grow: 1; /* Allow the feed section to grow */
-    align-self: stretch; /* Make the feed section stretch to match the height of the tallest sibling */
-    max-width: 300px; /* Ensures the width does not exceed 300px */
+	font-size: 14px;
+	text-align: center
 }
 
 .fourth-section {
-    width: 900px; /* Fixed width */
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Blur effect */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    margin-top: 20px; /* Margin to separate from previous sections */
+	width: 900px;
+	background: rgba(0, 0, 0, .5);
+	backdrop-filter: blur(10px);
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+	padding: 20px;
+	margin-top: 20px
 }
 
-/* Services Section */
 .services-section {
-    width: 1250px; /* Fixed width */
-    height: 400px; /* Fixed height */
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Blur effect */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    margin: 20px auto; /* Center horizontally */
-    display: flex;
-    justify-content: space-between; /* Space between text and slideshow */
-    align-items: center; /* Center content vertically */
+	width: 1250px;
+	height: 400px;
+	background: rgba(0, 0, 0, .5);
+	backdrop-filter: blur(10px);
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+	padding: 20px;
+	margin: 20px auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center
 }
 
 .services-title {
-    position: absolute; /* Position absolutely within the section */
-    top: 20px; /* Distance from the top */
-    left: 20px; /* Distance from the left */
-    font-size: 24px; /* Increase title size */
-    font-weight: bold;
-    color: white;
-    margin: 0; /* Remove default margin */
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	font-size: 24px;
+	font-weight: 700;
+	color: #fff;
+	margin: 0
 }
 
-
 .services-list {
-    font-size: 20px; /* Increase text size */
-    color: white;
-    columns: 2; /* Split into two columns */
-    column-gap: 40px; /* Add gap between columns */
-    align-items: center; /* Center the list vertically */
-    justify-content: center; /* Center the list horizontally */
+	font-size: 20px;
+	color: #fff;
+	columns: 2;
+	column-gap: 40px;
+	align-items: center;
+	justify-content: center
 }
 
 .services-list ul {
-    margin-top: 0px;
+	margin-top: 0
 }
 
 .services-list li {
-    margin-bottom: 10px;
+	margin-bottom: 10px
 }
 
 .services-slideshow {
-    flex: 1;
-    max-width: 400px;
+	flex: 1;
+	max-width: 400px
 }
 
 .slideshow-container {
-    position: relative;
-    max-width: 100%;
-    margin: auto;
+	position: relative;
+	max-width: 100%;
+	margin: auto
 }
 
 .mySlides {
-    display: none;
+	display: none
 }
 
 .mySlides img {
-    width: 100%;
-    border-radius: 10px;
+	width: 100%;
+	border-radius: 10px
 }
 
 .dot-container {
-    text-align: center;
-    margin-top: 10px;
+	text-align: center;
+	margin-top: 10px
 }
 
 .dot {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color .6s ease
 }
 
-.dot.active {
-    background-color: #717171;
-}
-
-/* Show first slide by default */
 .mySlides:first-child {
-    display: block;
+	display: block
 }
