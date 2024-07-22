@@ -18,6 +18,7 @@
                 </div>
                 <div class="text-wrapper">
                     <h2 class="welcome-heading">Welcome to UnluckyTech</h2>
+                    <hr class="welcome-divider"> <!-- Added line -->
                     <p class="welcome-description">Still a work in progress!</p>
                 </div>
             </div>
