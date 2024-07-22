@@ -34,6 +34,7 @@
                 <div class="post-title">
                     <h2><?php the_title(); ?></h2>
                 </div>
+                <hr class="post-divider"> <!-- Added line -->
                 <div class="post-description">
                     <?php the_excerpt(); ?>
                 </div>
