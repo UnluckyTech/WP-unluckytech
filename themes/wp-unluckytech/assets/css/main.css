@@ -1,149 +1,142 @@
-body {
-	margin: 0;
-	font-family: Inter, sans-serif;
-	background-color: #131313;
-	color: #f7f7f7;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh
+/* Welcome Section */
+.content-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1050px; /* Decrease max-width to make it slightly smaller */
+    margin: auto; /* Center the content-inner */
+    padding: 20px;
+    height: 30vh; /* Increase height to make it taller */
 }
 
-.content-wrapper {
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	flex-direction: row;
-	padding: 20px;
-	gap: 20px;
-	flex-grow: 1
-}
-
-.left-column {
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	align-items: center
-}
-
-.content-inner,
-.news-section {
-	display: flex;
-	background: rgba(0, 0, 0, .5);
-	backdrop-filter: blur(10px);
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
-	padding: 20px;
-	width: 900px;
-	justify-content: center
+.welcome-container {
+    display: flex;
+    align-items: center; /* Center content vertically */
+    gap: 20px; /* Space between video and text */
+    max-width: 1200px; /* Adjust as needed */
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .video-wrapper {
-	display: flex;
-	justify-content: center;
-	margin-right: 20px
+    flex: 1;
+    max-width: 50%; /* Adjust as needed */
+    position: relative;
+    overflow: hidden;
+}
+
+.video-wrapper::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
 }
 
 .video-wrapper iframe {
-	width: 560px;
-	height: 315px;
-	border: none
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .text-wrapper {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	max-width: 300px
+    flex: 1;
+    max-width: 50%; /* Adjust as needed */
+    color: #f7f7f7; /* Text color */
+    padding: 20px; /* Space around text */
 }
 
-.video-item {
-	flex: 1 1 30%;
-	display: flex;
-	flex-direction: column;
-	align-items: center
+.welcome-heading {
+    font-size: 2.5em; /* Adjust font size */
+    margin-bottom: 20px; /* Space below heading */
+    color: #ffffff; /* Set text color to white */
+    font-family: Arial, sans-serif; /* Match the font family */
 }
 
-.video-item img {
-	width: 100%;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, .2)
+.welcome-description {
+    font-size: 1.2em; /* Adjust font size */
+    line-height: 1.5; /* Improve readability */
+    font-family: Arial, sans-serif; /* Match the font family */
 }
 
-.video-title {
-	margin-top: 10px;
-	font-size: 1em;
-	text-align: center
+.custom-cover-height {
+    height: 53vh; /* Keep this value unchanged */
 }
 
-.news-section {
-	display: flex;
-	flex-direction: column;
-	width: 900px;
-	background: rgba(0, 0, 0, .5);
-	backdrop-filter: blur(10px);
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
-	padding: 20px
+@media (max-width: 768px) {
+    .welcome-container {
+        flex-direction: column;
+    }
+
+    .video-wrapper,
+    .text-wrapper {
+        max-width: 100%;
+    }
 }
 
-.news-wrapper {
-	display: flex;
-	flex-direction: column;
-	gap: 10px
+/* POSTS.PHP SECTION */
+
+.posts-wrapper {
+    margin: 20px 0; /* Add margin if needed */
 }
 
-.news-title {
-	font-size: 24px;
-	font-weight: 700;
-	margin-bottom: 10px
+.posts-title {
+    font-size: 2em; /* Adjust font size */
+    font-weight: bold; /* Make the title bold */
+    margin-bottom: 20px; /* Space below the title */
+    color: #ffffff; /* Set the title color */
+    text-align: left; /* Align the title to the left */
 }
 
-.news-content {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-	justify-content: center
+.posts-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 60px;
 }
 
-.news-item {
-	background: #333;
-	padding: 10px;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 270px
+.post-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 250px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.news-item img {
-	width: 100%;
-	height: auto;
-	border-radius: 5px;
-	margin-bottom: 5px
+.post-date {
+    font-size: 14px;
+    color: #555;
 }
 
-.news-article-title {
-	font-size: 16px;
-	font-weight: 700;
-	margin-bottom: 5px;
-	text-align: center
+.post-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.news-article-description {
-	font-size: 14px;
-	text-align: center
+.post-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
 }
 
-.fourth-section {
-	width: 900px;
-	background: rgba(0, 0, 0, .5);
-	backdrop-filter: blur(10px);
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
-	padding: 20px;
-	margin-top: 20px
+.post-title h2 {
+    font-size: 20px;
+    margin: 10px 0;
 }
+
+.post-description {
+    font-size: 16px;
+    color: #333;
+}
+
+/* SERVICES.PHP */
 
 .services-section {
 	width: 1250px;
@@ -223,4 +216,32 @@ body {
 
 .mySlides:first-child {
 	display: block
+}
+
+/* footer */
+
+.footer-title {
+    color: #ffffff; /* Set the title color to white */
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+.footer-link {
+    color: #ffffff; /* Set the link color to white */
+    text-decoration: none;
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+.footer-link:hover {
+    text-decoration: underline; /* Add underline on hover for better UX */
+}
+
+.footer-social-icons a {
+    color: #ffffff; /* Set social media icon color to white */
+    text-decoration: none;
+}
+
+.footer-social-icons a:hover {
+    color: #cccccc; /* Optional: change color on hover for better visibility */
 }
