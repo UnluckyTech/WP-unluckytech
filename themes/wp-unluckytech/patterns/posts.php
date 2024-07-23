@@ -31,7 +31,7 @@
                             </div>
                             <div class="post-image">
                                 <?php if ( has_post_thumbnail() ) : ?>
-                                    <?php the_post_thumbnail(); ?>
+                                    <?php the_post_thumbnail('medium'); ?>
                                 <?php else: ?>
                                     <img src="https://via.placeholder.com/200" alt="Placeholder Image" />
                                 <?php endif; ?>
@@ -39,7 +39,6 @@
                             <div class="post-title">
                                 <h2><?php the_title(); ?></h2>
                             </div>
-                            <hr class="post-divider">
                             <div class="post-description">
                                 <?php the_excerpt(); ?>
                             </div>
@@ -53,6 +52,6 @@
             endif;
             ?>
         </div>
-        <hr class="posts-divider"> <!-- Add this line -->
+        <hr class="posts-divider">
     </div>
 </div>

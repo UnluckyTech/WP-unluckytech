@@ -1,0 +1,68 @@
+/* Define CSS variables for both themes */
+body[data-theme="dark"] {
+    --background-color: #131313;
+    --text-color: #f7f7f7;
+    --header-background-color: #1f1f1f;
+    --navigation-background-color: rgba(29, 31, 33, 0.8);
+    --link-color: white;
+    --post-card-background: rgba(0, 0, 0, 0.5);
+    --post-card-border: #444;
+    --post-card-text-color: #ccc;
+}
+
+body[data-theme="light"] {
+    --background-color: #f7f7f7;
+    --text-color: #131313;
+    --header-background-color: #ffffff;
+    --navigation-background-color: rgba(255, 255, 255, 0.8);
+    --link-color: #131313;
+    --post-card-background: rgba(255, 255, 255, 0.9);
+    --post-card-border: #ddd;
+    --post-card-text-color: #131313;
+}
+
+/* Apply variables to CSS properties */
+body {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navigation-wrapper {
+    background-color: var(--navigation-background-color);
+    color: var(--link-color);
+}
+
+.header-wrapper {
+    background-color: var(--header-background-color);
+}
+
+.wp-block-navigation a {
+    color: var(--link-color);
+}
+
+.post-card {
+    background: var(--post-card-background);
+    border: 1px solid var(--post-card-border);
+    color: var(--post-card-text-color);
+}
+
+/* Ensure specific light mode styles */
+body.light-mode .footer {
+    background-color: #f0f0f0;
+    color: #131313;
+}
+
+body.light-mode .footer-description {
+    background-color: #d0d0d0;
+}
+
+body.light-mode .footer-links a {
+    color: #131313;
+}
+
+/* Other light mode styles as needed */

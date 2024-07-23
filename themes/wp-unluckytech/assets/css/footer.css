@@ -1,0 +1,75 @@
+/* Footer styles */
+.footer {
+    background-color: #1d1f21; /* Dark background for footer */
+    color: white; /* White text color for contrast */
+    padding: 50px 0; /* Padding around the footer */
+}
+
+.footer-content {
+    max-width: 1200px; /* Maximum width of the content area */
+    margin: 0 auto; /* Center the content horizontally */
+    padding: 0 20px; /* Horizontal padding */
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space between sections */
+    flex-wrap: wrap; /* Wrap sections on smaller screens */
+    gap: 20px; /* Space between sections */
+}
+
+.footer-section {
+    flex: 1; /* Flex item to take up available space */
+}
+
+.footer-title {
+    font-size: 18px; /* Font size for section titles */
+    margin-bottom: 10px; /* Space below the title */
+}
+
+.footer-description {
+    background-color: #27292c; /* Darker background for description */
+    padding: 15px; /* Padding around description */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 14px; /* Font size for description */
+    margin: 0; /* Remove default margin */
+}
+
+.footer-links {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.footer-links li {
+    margin-bottom: 10px; /* Space between links */
+}
+
+.footer-links a {
+    color: white; /* White color for links */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 14px; /* Font size for links */
+}
+
+.footer-social-icons {
+    display: flex; /* Flexbox layout for social icons */
+    gap: 10px; /* Space between icons */
+}
+
+.footer-bottom {
+    text-align: center; /* Center-align text */
+    padding: 20px 0; /* Padding around the bottom text */
+    border-top: 1px solid #27292c; /* Top border */
+    margin-top: 20px; /* Space above the bottom text */
+}
+
+/* Light mode footer styles */
+body.light-mode .footer {
+    background-color: #f0f0f0; /* Light background for light mode */
+    color: #131313; /* Dark text color for contrast */
+}
+
+body.light-mode .footer-description {
+    background-color: #d0d0d0; /* Light background for description in light mode */
+}
+
+body.light-mode .footer-links a {
+    color: #131313; /* Dark color for links in light mode */
+}

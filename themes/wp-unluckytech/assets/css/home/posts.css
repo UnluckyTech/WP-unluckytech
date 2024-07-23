@@ -1,0 +1,135 @@
+/* POSTS.PHP SECTION */
+
+/* Posts Wrapper */
+.posts-wrapper {
+    margin: 20px 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Posts Title */
+.posts-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 100%;
+    max-width: 1200px;
+    padding-left: 20px;
+}
+
+/* Posts Divider */
+.posts-divider {
+    width: 100%;
+    max-width: 1200px;
+    border: 0;
+    height: 1px;
+    background: #444;
+    margin: 10px 0 20px;
+}
+
+/* Posts Inner Container */
+.posts-inner-container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Posts Container */
+.posts-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 0;
+}
+
+/* Post Link */
+.post-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Post Card */
+.post-card {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.post-card:hover {
+    transform: scale(1.02);
+}
+
+/* Post Date */
+.post-date {
+    font-size: 14px;
+    color: #ddd;
+}
+
+/* Post Image */
+.post-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.post-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Post Title */
+.post-title h2 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+/* Post Divider */
+.post-title::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: #444;
+    margin: 10px 0;
+}
+
+/* Post Description */
+.post-description {
+    font-size: 16px;
+    color: #ccc;
+    font-family: Arial, sans-serif;
+}
+
+/* Custom Cover Height */
+.custom-cover-height {
+    height: 53vh;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .posts-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .post-card {
+        max-width: 100%;
+    }
+}

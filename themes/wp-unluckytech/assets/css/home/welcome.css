@@ -1,0 +1,102 @@
+/* WELCOME.PHP SECTION */
+
+/* Cover Container */
+.wp-block-cover.custom-cover-height {
+    height: 53vh; /* Keep this value unchanged */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Cover Background Image */
+.wp-block-cover__image-background {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* Content Inner Container */
+.content-inner {
+    display: flex;
+    justify-content: center;
+}
+
+/* Welcome Container */
+.welcome-container {
+    display: flex;
+    align-items: center; /* Center content vertically */
+    gap: 20px; /* Space between video and text */
+    max-width: 1200px; /* Adjust as needed */
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+/* Video Wrapper */
+.video-wrapper {
+    flex: 1;
+    max-width: 50%; /* Adjust as needed */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Aspect Ratio for Video */
+.video-wrapper::before {
+    content: "";
+    display: block;
+    padding-top: 75%; /* 16:9 Aspect Ratio */
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Text Wrapper */
+.text-wrapper {
+    flex: 1;
+    max-width: 100%; /* Adjust as needed */
+    color: #f7f7f7; /* Text color */
+    padding: 20px; /* Space around text */
+}
+
+/* Welcome Heading */
+.welcome-heading {
+    font-size: 2.5em; /* Adjust font size */
+    margin-bottom: 20px; /* Space below heading */
+    color: #ffffff; /* Set text color to white */
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+/* Welcome Divider */
+.welcome-divider {
+    border: 0;
+    height: 1px;
+    background: #444; /* Darker line color */
+    margin: 10px 0; /* Space above and below the line */
+}
+
+/* Welcome Description */
+.welcome-description {
+    font-size: 1.2em; /* Adjust font size */
+    line-height: 1.5; /* Improve readability */
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .welcome-container {
+        flex-direction: column;
+    }
+
+    .video-wrapper,
+    .text-wrapper {
+        max-width: 100%;
+    }
+}

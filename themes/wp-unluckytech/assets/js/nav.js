@@ -1,29 +1,28 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const menuIcon = document.getElementById('menuIcon');
-    const navMenu = document.getElementById('navMenu');
-
-    menuIcon.addEventListener('click', (event) => {
-        event.preventDefault();
-        navMenu.classList.toggle('open');
-    });
-});
+// nav.js
 
 function toggleTheme() {
-    document.body.classList.toggle('dark-theme');
-    let icon = document.querySelector('.theme-toggle i');
-    if (document.body.classList.contains('dark-theme')) {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
+    // Check current theme
+    const currentTheme = document.body.getAttribute('data-theme');
+    
+    // Toggle theme between dark and light
+    if (currentTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'light');
     } else {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+        document.body.setAttribute('data-theme', 'dark');
     }
 }
 
-// Apply dark theme by default
+// Initialize theme on page load based on saved preference or default to dark mode
 document.addEventListener('DOMContentLoaded', () => {
-    document.body.classList.add('dark-theme');
-    let icon = document.querySelector('.theme-toggle i');
-    icon.classList.remove('fa-sun');
-    icon.classList.add('fa-moon');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.body.setAttribute('data-theme', savedTheme);
+    } else {
+        document.body.setAttribute('data-theme', 'dark'); // Default to dark mode
+    }
+});
+
+// Save theme preference to localStorage
+document.body.addEventListener('change', () => {
+    localStorage.setItem('theme', document.body.getAttribute('data-theme'));
 });

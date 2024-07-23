@@ -38,6 +38,12 @@ add_filter('excerpt_length', 'custom_excerpt_length');
 function wp_unluckytech_scripts() {
     wp_enqueue_style('wp-unluckytech-style', get_stylesheet_uri());
     wp_enqueue_style('wp-unluckytech-main', get_template_directory_uri() . '/assets/css/main.css', array('wp-unluckytech-style'));
+    wp_enqueue_style('wp-unluckytech-home-posts', get_template_directory_uri() . '/assets/css/home/posts.css', array('wp-unluckytech-main'));
+    wp_enqueue_style('wp-unluckytech-home-services', get_template_directory_uri() . '/assets/css/home/services.css', array('wp-unluckytech-main'));
+    wp_enqueue_style('wp-unluckytech-home-welcome', get_template_directory_uri() . '/assets/css/home/welcome.css', array('wp-unluckytech-main'));
+    wp_enqueue_style('wp-unluckytech-footer', get_template_directory_uri() . '/assets/css/footer.css', array('wp-unluckytech-main'));
+    wp_enqueue_style('wp-unluckytech-toggle', get_template_directory_uri() . '/assets/css/toggle.css', array('wp-unluckytech-main'));
+
     wp_enqueue_script('wp-unluckytech-script', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), null, true);
 }
 add_action('wp_enqueue_scripts', 'wp_unluckytech_scripts');
