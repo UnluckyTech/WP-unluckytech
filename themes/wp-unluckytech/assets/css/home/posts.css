@@ -133,3 +133,29 @@
         max-width: 100%;
     }
 }
+
+/* More Button Container */
+.more-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1200px;
+
+}
+
+/* More Button */
+.more-button {
+    background: rgba(0, 0, 0, 0.5); /* Adjust the color to match your theme */
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.more-button:hover {
+    background: #0056b3; /* Darker shade for hover effect */
+}

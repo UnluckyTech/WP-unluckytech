@@ -53,5 +53,9 @@
             ?>
         </div>
         <hr class="posts-divider">
+        <!-- More Button -->
+        <div class="more-button-container">
+            <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" class="more-button">More Projects</a>
+        </div>
     </div>
 </div>

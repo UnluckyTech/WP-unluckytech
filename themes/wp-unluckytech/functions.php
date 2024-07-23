@@ -85,7 +85,8 @@ function custom_admin_bar_menu( $wp_admin_bar ) {
 }
 add_action( 'admin_bar_menu', 'custom_admin_bar_menu', 999 );
 
-function enqueue_services_script() {
-    wp_enqueue_script('services-slideshow', get_template_directory_uri() . '/js/slideshow.js', array(), null, true);
+function enqueue_slideshow_script() {
+    wp_enqueue_script('slideshow-js', get_template_directory_uri() . '/assets/js/slideshow.js', array(), null, true);
 }
-add_action('wp_enqueue_scripts', 'enqueue_services_script');
+add_action('wp_enqueue_scripts', 'enqueue_slideshow_script');
+

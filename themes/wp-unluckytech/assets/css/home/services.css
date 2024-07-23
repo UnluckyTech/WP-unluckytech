@@ -58,6 +58,13 @@
 
 .mySlides {
     display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Transition effect */
+}
+
+.mySlides.active {
+    display: block;
+    opacity: 1;
 }
 
 .mySlides img {
@@ -78,8 +85,4 @@
     border-radius: 50%;
     display: inline-block;
     transition: background-color .6s ease;
-}
-
-.mySlides:first-child {
-    display: block;
 }

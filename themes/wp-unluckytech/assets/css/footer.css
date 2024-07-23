@@ -60,16 +60,10 @@
     margin-top: 20px; /* Space above the bottom text */
 }
 
-/* Light mode footer styles */
-body.light-mode .footer {
-    background-color: #f0f0f0; /* Light background for light mode */
-    color: #131313; /* Dark text color for contrast */
-}
-
-body.light-mode .footer-description {
-    background-color: #d0d0d0; /* Light background for description in light mode */
-}
-
-body.light-mode .footer-links a {
-    color: #131313; /* Dark color for links in light mode */
+/* Common Title Style for Footer */
+.footer-common-title {
+    font-size: 18px; /* Match font size of .services-title */
+    color: #fff;     /* White color */
+    font-weight: normal; /* Not bold */
+    font-family: Arial, sans-serif; /* Use the same font-family */
 }
