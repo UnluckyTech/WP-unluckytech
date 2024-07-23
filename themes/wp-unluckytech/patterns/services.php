@@ -11,7 +11,7 @@
 <div class="services-section">
     <div class="services-wrapper">
         <div class="wp-block-group">
-            <div class="services-title">Services</div>
+            <div class="services-title">SERVICES</div>
             <div class="services-list">
                 <ul>
                     <li><?php _e('Web Development', 'wp-unluckytech'); ?></li>
@@ -43,6 +43,7 @@
                     <span class="dot" onclick="currentSlide(<?php echo $index + 1; ?>)"></span>
                 <?php endforeach; ?>
             </div>
+            <div class="services-title-2">SERVICES</div>
         </div>
     </div>
 </div>

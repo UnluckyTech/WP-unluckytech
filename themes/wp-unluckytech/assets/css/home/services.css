@@ -2,7 +2,7 @@
 
 /* Services Section */
 .services-section {
-    width: 1250px;
+    width: 1150px;
     height: 400px;
     background: rgba(0, 0, 0, .5);
     backdrop-filter: blur(10px);
@@ -19,7 +19,7 @@
 .services-title {
     position: absolute;
     top: 20px;
-    left: 20px;
+    left: 30px;
     font-size: 24px;
     font-weight: 700;
     color: #fff;
@@ -45,6 +45,7 @@
 }
 
 /* Services Slideshow */
+
 .services-slideshow {
     flex: 1;
     max-width: 400px;
@@ -85,4 +86,86 @@
     border-radius: 50%;
     display: inline-block;
     transition: background-color .6s ease;
+}
+
+.services-title-2 {
+    display: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+
+    .services-section {
+        width: 90%;
+        background: rgba(0, 0, 0, .5);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+        padding: 10px;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .services-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .services-title {
+        display: none;
+    }
+
+    /* Services Title */
+    .services-title-2 {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+    }
+    
+    /* Services List */
+    .services-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .services-list ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        columns: 2; /* Add this to create two columns */
+        column-gap: 20px; /* Adjust the gap between columns */
+    }
+
+    .services-list li {
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    /* Services Slideshow */
+    .services-slideshow {
+        order: -1;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .slideshow-container {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        margin: auto;
+    }
+
+    /* Hide dots on mobile */
+    .dot-container {
+        display: none;
+    }
 }

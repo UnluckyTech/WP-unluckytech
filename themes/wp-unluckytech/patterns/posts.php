@@ -10,7 +10,7 @@
 <!-- patterns/posts.php -->
 <div class="posts-wrapper">
     <div class="posts-inner-container">
-        <div class="posts-title">Projects</div>
+        <div class="posts-title">PROJECTS</div>
         <hr class="posts-divider">
         <div class="posts-container">
             <?php
@@ -26,9 +26,6 @@
                     ?>
                     <a href="<?php the_permalink(); ?>" class="post-link">
                         <div class="post-card">
-                            <div class="post-date">
-                                <?php echo get_the_date(); ?>
-                            </div>
                             <div class="post-image">
                                 <?php if ( has_post_thumbnail() ) : ?>
                                     <?php the_post_thumbnail('medium'); ?>
@@ -36,11 +33,16 @@
                                     <img src="https://via.placeholder.com/200" alt="Placeholder Image" />
                                 <?php endif; ?>
                             </div>
-                            <div class="post-title">
-                                <h2><?php the_title(); ?></h2>
-                            </div>
-                            <div class="post-description">
-                                <?php the_excerpt(); ?>
+                            <div class="post-content">
+                                <div class="post-date">
+                                    <?php echo get_the_date(); ?>
+                                </div>
+                                <div class="post-title">
+                                    <h2><?php the_title(); ?></h2>
+                                </div>
+                                <div class="post-description">
+                                    <?php the_excerpt(); ?>
+                                </div>
                             </div>
                         </div>
                     </a>
@@ -55,7 +57,7 @@
         <hr class="posts-divider">
         <!-- More Button -->
         <div class="more-button-container">
-            <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" class="more-button">More Projects</a>
+            <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" class="more-button">MORE PROJECTS</a>
         </div>
     </div>
 </div>

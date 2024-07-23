@@ -1,4 +1,11 @@
-<!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
+<?php
+/**
+ * Title: Single Post
+ * Slug: unluckytech/singlepost
+ * Categories: text
+ * Description: Displays a single post.
+ */
+?>
 
 <?php
 
@@ -19,5 +26,3 @@ if ( have_posts() ) :
 endif;
 
 ?>
-
-<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->

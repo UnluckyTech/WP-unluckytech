@@ -1,5 +1,26 @@
 /* WELCOME.PHP SECTION */
 
+/* Container Fluid */
+.container-fluid {
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Row */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+/* Column */
+[class*="col-"] {
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
 /* Cover Container */
 .wp-block-cover.custom-cover-height {
     height: 53vh; /* Keep this value unchanged */
