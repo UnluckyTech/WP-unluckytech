@@ -8,6 +8,10 @@ body {
     min-height: 100vh;
 }
 
+.off-screen-menu {
+    display: none;
+}
+
 .background {
     width: 100%;
     height: auto;
@@ -125,42 +129,6 @@ body {
     color: white; /* Change menu icon color */
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-    .menu-icon {
-        display: block;
-    }
-
-    .nav-center, .right-icons {
-        display: none;
-    }
-
-    .wp-block-navigation {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 10px;
-        background-color: rgba(29, 31, 33, 0.8);
-        padding: 10px;
-        border-top: 1px solid #27292c;
-        width: 100%;
-    }
-
-    .wp-block-navigation a {
-        margin: 10px 0;
-        font-size: 18px;
-        color: white;
-    }
-
-    .wp-block-navigation.open {
-        display: flex;
-    }
-
-    .logo img {
-        max-height: 30px;  /* Adjust for mobile view if needed */
-    }
-}
-
 /* Define CSS variables for both themes */
 body[data-theme="dark"] {
     --background-color: #131313;
@@ -215,3 +183,150 @@ body {
     color: var(--post-card-text-color);
 }
 
+/* Mobile styles */
+@media (max-width: 768px) {
+
+    /* Navigation Wrapper */
+    .navigation-wrapper {
+        background-color: var(--header-background-color);
+        position: fixed; /* Keep the header fixed at the top */
+        top: 0;
+        left: 0;
+        width: 100%; /* Full width of the viewport */
+        z-index: 1000; /* Ensure it is on top of other content */
+        transition: top 0.3s ease; /* Smooth transition if needed */
+    }
+
+    /* Ensure the navigation is not obscured by other content */
+    body {
+        padding-top: 60px; /* Adjust based on header height */
+    }
+
+    /* Style for the navigation bar */
+    nav {
+        padding: 1rem;
+        display: flex;
+    }
+
+    /* ham-menu */
+    .ham-menu {
+        height: 40px; /* Slightly smaller */
+        width: 30px;  /* Slightly smaller */
+        margin-left: auto;
+        position: relative;
+    }
+
+    .ham-menu span {
+        height: 4px; /* Slightly smaller */
+        width: 100%;
+        background-color: white; /* Make it white */
+        border-radius: 25px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: .3s ease;
+    }
+
+    .ham-menu span:nth-child(1) {
+        top: 25%;
+    }
+
+    .ham-menu span:nth-child(3) {
+        top: 75%;
+    }
+
+    .ham-menu.active span {
+        background-color: white; /* Ensure active state is also white */
+    }
+
+    .ham-menu.active span:nth-child(1) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .ham-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .ham-menu.active span:nth-child(3) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    .nav-center, .right-icons {
+        display: none;
+    }
+
+    .wp-block-navigation {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 10px;
+        background-color: rgba(29, 31, 33, 0.8);
+        padding: 10px;
+        border-top: 1px solid #27292c;
+        width: 100%;
+    }
+
+    .wp-block-navigation.open {
+        display: flex;
+    }
+
+    .wp-block-navigation a {
+        margin: 10px 0;
+        font-size: 18px;
+        color: white; /* White text color for navigation links */
+    }
+
+    .logo img {
+        max-height: 30px;  /* Adjust for mobile view if needed */
+    }
+
+    /* Off-Screen Menu */
+    .off-screen-menu {
+        background-color: #131313;
+        height: 30vh;
+        width: 100%;
+        max-width: 450px;
+        position: fixed;
+        top: -100vh; /* Start from above the viewport */
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the left */
+        justify-content: flex-start; /* Align items to the top */
+        text-align: left; /* Align text to the left */
+        font-size: 1.5rem; /* Make the text smaller */
+        padding: 1rem; /* Add padding for spacing */
+        transition: top 0.3s ease; /* Animate the top property */
+    }
+
+    .off-screen-menu.active {
+        top: 0; /* Slide down into view */
+    }
+
+    .off-screen-menu ul {
+        list-style: none; /* Remove default list styling */
+        padding: 0; /* Remove default padding */
+        margin: 0; /* Remove default margin */
+        width: 100%; /* Ensure the list takes full width */
+    }
+
+    .off-screen-menu li {
+        margin: 10px 0; /* Space between menu items */
+    }
+
+    .off-screen-menu a {
+        color: white; /* White text color for menu links */
+        text-decoration: none; /* Remove underline from links */
+        font-size: 1.2rem; /* Make the link text smaller */
+    }
+
+    .off-screen-menu a:hover {
+        text-decoration: underline; /* Optional: underline on hover for better UX */
+    }
+
+
+    
+}
