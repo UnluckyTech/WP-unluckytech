@@ -109,7 +109,6 @@
     font-family: Arial, sans-serif; /* Match the font family */
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
     .welcome-container {
         flex-direction: column;
@@ -118,5 +117,18 @@
     .video-wrapper,
     .text-wrapper {
         max-width: 100%;
+    }
+
+    .video-wrapper {
+        order: -1; /* Move video to the top */
+    }
+
+    .welcome-heading {
+        font-size: 1.2em; /* Smaller font size for mobile */
+        margin-bottom: 10px; /* Reduce space below heading */
+    }
+
+    .welcome-description {
+        font-size: 1em; /* Adjust font size */
     }
 }

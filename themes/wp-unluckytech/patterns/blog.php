@@ -7,8 +7,6 @@
  */
 ?>
 
-<?php
-
 <div class="archive-wrapper">
     <div class="archive-inner-container">
         <?php if ( have_posts() ) : ?>
@@ -22,7 +20,7 @@
                     elseif ( is_author() ) :
                         global $author;
                         $author_info = get_userdata( $author );
-                        echo 'Author: ' . $author_info->display_name;
+                        echo 'Author: ' . esc_html( $author_info->display_name );
                     elseif ( is_date() ) :
                         echo 'Date Archive';
                     else :

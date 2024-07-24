@@ -211,13 +211,14 @@
         transition: transform 0.3s ease;
         width: 90%; /* Adjust width */
         max-width: none; /* Remove any max-width restrictions */
-        height: 150px; /* Fixed height for the card */
+        height: 100px; /* Fixed height for the card */
         overflow: hidden; /* Hide overflow content */
+        margin-bottom: 10px; /* Add space between posts */
     }
     
     /* Post Image */
     .post-image {
-        width: 40%;
+        width: 30%;
         height: 100%; /* Ensure the image container takes full height */
         margin-right: 10px;
         overflow: hidden; /* Hide overflow content */
@@ -239,23 +240,23 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 60%;
+        width: 70%;
         height: 100%; /* Ensure content takes full height */
     }
     
     /* Post Date */
     .post-date {
-        font-size: 14px;
+        font-size: 12px;
         color: #ddd;
         margin-bottom: 5px;
     }
     
     /* Post Title */
     .post-title h2 {
-        font-size: 18px;
+        font-size: 16px;
         color: #ffffff;
         font-family: Arial, sans-serif;
-        margin: 5px 0;
+        margin: 0;
     }
     
     /* Post Description */
@@ -286,5 +287,5 @@
     .more-button:hover {
         background: #0056b3; /* Darker shade for hover effect */
     }
-
 }
+

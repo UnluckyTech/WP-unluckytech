@@ -43,6 +43,12 @@ function wp_unluckytech_scripts() {
     wp_enqueue_style('wp-unluckytech-home-welcome', get_template_directory_uri() . '/assets/css/home/welcome.css', array('wp-unluckytech-main'));
     wp_enqueue_style('wp-unluckytech-footer', get_template_directory_uri() . '/assets/css/footer.css', array('wp-unluckytech-main'));
     wp_enqueue_style('wp-unluckytech-toggle', get_template_directory_uri() . '/assets/css/toggle.css', array('wp-unluckytech-main'));
+    wp_enqueue_style('wp-unluckytech-about', get_template_directory_uri() . '/assets/css/extras/about.css', array('wp-unluckytech-main'));
+    wp_enqueue_style('wp-unluckytech-post', get_template_directory_uri() . '/assets/css/extras/single.css', array('wp-unluckytech-main'));
+    wp_enqueue_style('wp-unluckytech-blog', get_template_directory_uri() . '/assets/css/extras/blog.css', array('wp-unluckytech-main'));
+
+
+
 
     wp_enqueue_script('wp-unluckytech-script', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), null, true);
 }
