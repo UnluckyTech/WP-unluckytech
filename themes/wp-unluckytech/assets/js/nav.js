@@ -4,12 +4,36 @@ function toggleTheme() {
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.body.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
+
+    // Toggle icons
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+
+    if (newTheme === 'dark') {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'inline';
+    } else {
+        sunIcon.style.display = 'inline';
+        moonIcon.style.display = 'none';
+    }
 }
 
 // Initialize theme on page load
 document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme');
-    document.body.setAttribute('data-theme', savedTheme || 'dark');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.body.setAttribute('data-theme', savedTheme);
+
+    // Set the initial state of the icons
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+
+    if (savedTheme === 'dark') {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'inline';
+    } else {
+        sunIcon.style.display = 'inline';
+        moonIcon.style.display = 'none';
+    }
 
     // Add event listener for hamburger menu click
     const hamMenu = document.querySelector(".ham-menu");
@@ -21,9 +45,4 @@ document.addEventListener('DOMContentLoaded', () => {
             offScreenMenu.classList.toggle("active");
         });
     }
-});
-
-// Save theme preference to localStorage
-document.body.addEventListener('change', () => {
-    localStorage.setItem('theme', document.body.getAttribute('data-theme'));
 });

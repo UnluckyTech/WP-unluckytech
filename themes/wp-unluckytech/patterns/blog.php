@@ -7,43 +7,39 @@
  */
 ?>
 
-<div class="archive-wrapper">
-    <div class="archive-inner-container">
+<div class="blog-wrapper">
+    <div class="blog-banner">
+        <h1>All Projects</h1>
+    </div>
+    <div class="blog-inner-container">
         <?php if ( have_posts() ) : ?>
-            <header class="archive-header">
-                <h1 class="archive-title">
-                    <?php
-                    if ( is_category() ) :
-                        single_cat_title( 'Category: ' );
-                    elseif ( is_tag() ) :
-                        single_tag_title( 'Tag: ' );
-                    elseif ( is_author() ) :
-                        global $author;
-                        $author_info = get_userdata( $author );
-                        echo 'Author: ' . esc_html( $author_info->display_name );
-                    elseif ( is_date() ) :
-                        echo 'Date Archive';
-                    else :
-                        echo 'Archives';
-                    endif;
-                    ?>
-                </h1>
-            </header><!-- .archive-header -->
-
-            <div class="archive-posts">
+            <div class="blog-posts">
                 <?php
                 // Start the loop
                 while ( have_posts() ) : the_post();
                     ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                        <h2 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                        <div class="post-meta">
-                            <span class="post-date"><?php the_date(); ?></span>
+                    <a href="<?php the_permalink(); ?>" class="blog-post-link">
+                        <div class="blog-post-card">
+                            <div class="blog-post-image">
+                                <?php if ( has_post_thumbnail() ) : ?>
+                                    <?php the_post_thumbnail('medium'); ?>
+                                <?php else: ?>
+                                    <img src="https://via.placeholder.com/200" alt="Placeholder Image" />
+                                <?php endif; ?>
+                            </div>
+                            <div class="blog-post-content">
+                                <div class="blog-post-date">
+                                    <?php echo get_the_date(); ?>
+                                </div>
+                                <div class="blog-post-title">
+                                    <h2><?php the_title(); ?></h2>
+                                </div>
+                                <div class="blog-post-excerpt">
+                                    <?php the_excerpt(); ?>
+                                </div>
+                            </div>
                         </div>
-                        <div class="post-excerpt">
-                            <?php the_excerpt(); ?>
-                        </div>
-                    </article><!-- #post-<?php the_ID(); ?> -->
+                    </a>
                     <?php
                 endwhile;
 
@@ -53,10 +49,10 @@
                     'next_text' => __( 'Next page', 'textdomain' ),
                 ) );
                 ?>
-            </div><!-- .archive-posts -->
+            </div><!-- .blog-posts -->
 
         <?php else : ?>
             <p><?php _e( 'No posts found.', 'textdomain' ); ?></p>
         <?php endif; ?>
-    </div><!-- .archive-inner-container -->
-</div><!-- .archive-wrapper -->
+    </div><!-- .blog-inner-container -->
+</div><!-- .blog-wrapper -->
