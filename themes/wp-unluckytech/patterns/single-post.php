@@ -10,22 +10,49 @@
 <main class="wp-block-group" style="margin-top:0">
     <div class="single-post-container">
         <!-- Left Side: Post Content -->
-        <div class="single-post-content">
-            <!-- wp:post-title /--> <!-- Displays the post title -->
-            <!-- wp:post-meta /--> <!-- Displays the post meta (e.g., date, author) -->
-            <!-- wp:post-content /--> <!-- Displays the post content -->
+        <div class="main-post-content">
+            <?php if ( has_post_thumbnail() ) : ?>
+                <div class="single-post-banner" style="background-image: url('<?php echo esc_url( get_the_post_thumbnail_url() ); ?>');"></div>
+            <?php endif; ?>
+
+            <div class="single-post-title">
+                <!-- wp:post-title /--> <!-- Displays the post title -->
+            </div>
+
+            <div class="main-single-post-date">
+                <!-- Custom date display -->
+                <?php echo get_the_date(); ?>
+            </div>
+
+            <div class="single-post-meta">
+                <!-- wp:post-meta /--> <!-- Displays the post meta (e.g., date, author) -->
+            </div>
+
+            <div class="single-post-content">
+                <!-- wp:post-content /--> <!-- Displays the post content -->
+            </div>
         </div>
 
         <!-- Right Side: Sidebar -->
         <div class="single-post-sidebar">
             <div class="user-box">
-                <img src="https://via.placeholder.com/80" alt="User Logo">
-                <div class="user-name">User Name</div>
+                <div class="user-box-inner">
+                    <img src="/wp-content/themes/wp-unluckytech/assets/images/termicon.png" alt="User Logo">
+                    <div class="user-name">UnluckyTech</div>
+                    <div class="user-box-divider"></div>
+                    <div class="user-box-social">
+                        <a href="https://x.com/UnluckyTech" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.youtube.com/@UnluckyTechs" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.twitch.tv/unluckytech" target="_blank"><i class="fab fa-twitch"></i></a>
+                    </div>
+                </div>
             </div>
 
             <div class="latest-posts">
-                <div class="latest-posts-title">Latest Posts</div>
+                <div class="latest-posts-title">LATEST</div>
                 <div class="latest-posts-container">
+                    <hr class="latest-posts-top-divider"> <!-- Top Divider -->
+                    
                     <?php
                     // Query to get the latest posts
                     $args = array(
@@ -47,7 +74,7 @@
                                             <img src="https://via.placeholder.com/200" alt="Placeholder Image" />
                                         <?php endif; ?>
                                     </div>
-                                    <div class="single-post-content">
+                                    <div class="latest-post-content">
                                         <div class="single-post-date"><?php echo get_the_date(); ?></div>
                                         <div class="single-post-title">
                                             <h2><?php the_title(); ?></h2>
@@ -62,6 +89,8 @@
                         echo '<p>No posts found</p>';
                     endif;
                     ?>
+
+                    <hr class="latest-posts-bottom-divider"> <!-- Bottom Divider -->
                 </div>
             </div>
         </div>

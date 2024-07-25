@@ -1,4 +1,4 @@
-/* Add this CSS to your theme's stylesheet or within a <style> tag for styling */
+/* Single Post Styling */
 .single-post-container {
     display: flex;
     max-width: 1200px;
@@ -7,12 +7,58 @@
     gap: 20px; /* Space between the left and right sides */
 }
 
-.single-post-content {
-    flex: 3; /* Takes up more space on the left */
+/* Main content area adjustments */
+.main-post-content {
+    flex: 2; /* Takes up more space on the left */
     background: #fff; /* White background for the post content */
-    padding: 20px;
+    padding: 0; /* No padding for the main content */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+}
+
+/* Banner for the featured image */
+.single-post-banner {
+    width: 100%;
+    height: 300px; /* Adjust as needed */
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 20px; /* Space below the banner */
+}
+
+/* Title styling */
+.wp-block-post-title {
+    font-size: 2em !important; /* Adjust font size as needed */
+    color: #000 !important; /* Ensure the title color is black */
+    text-align: center; /* Center the text */
+    margin-bottom: 10px; /* Adjust spacing below the title */
+    padding: 0 20px; /* Adjust padding if needed */
+    font-family: 'Lora', sans-serif !important; /* Apply Montserrat font */
+}
+
+/* Date styling */
+.main-single-post-date {
+    font-size: 1em; /* Adjust size as needed */
+    color: #666; /* Change color if needed */
+    text-align: center; /* Center the text */
+    margin-bottom: 20px; /* Space below the date */
+    padding: 0 20px; /* Adjust padding if needed */
+}
+
+/* Meta styling */
+.single-post-meta {
+    padding: 0 20px 20px 20px; /* Adjust padding */
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px; /* Space below meta */
+}
+
+/* Content styling */
+.single-post-content {
+    padding: 0 20px 20px 20px; /* Adjust padding */
+    background: #fff; /* White background for content */
 }
 
 /* Link styling for latest posts */
@@ -21,56 +67,132 @@
     color: inherit; /* Inherit color from parent */
 }
 
-.single-post-banner {
-    width: 100%;
-    height: 300px; /* Adjust as needed */
-    background: url('<?php echo esc_url( get_the_post_thumbnail_url() ); ?>') no-repeat center center;
-    background-size: cover;
-    border-radius: 8px 8px 0 0;
-    margin-bottom: 20px;
-}
-
-.single-post-title {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-
-.single-post-meta {
-    font-size: 0.9em;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.single-post-sidebar {
-    flex: 1; /* Takes up less space on the right */
-    padding: 20px;
-}
-
+/* User Box Styling */
 .user-box {
     background: #f4f4f4;
     border-radius: 8px;
-    padding: 20px;
+    padding: 10px; /* Adjust padding for content inside */
     text-align: center;
-    margin-bottom: 20px;
+    width: 100%; /* Width to match the parent container */
+    height: auto; /* Adjust height to fit content */
+    position: relative;
+    margin: 20px 0; /* Centering with margin */
+    box-sizing: border-box; /* Include padding in width and height */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center content horizontally */
+    justify-content: start; /* Align content to the top */
 }
 
+/* Inner Content */
+.user-box-inner {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+}
+
+/* User Box Image */
 .user-box img {
-    width: 80px; /* Adjust size as needed */
-    height: 80px;
+    width: 100px; /* Increased size */
+    height: 100px; /* Increased size */
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 10px;
 }
 
-.latest-posts {
-    background: #f4f4f4;
-    border-radius: 8px;
-    padding: 20px;
+/* User Name */
+.user-name {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
+/* Divider */
+.user-box-divider {
+    width: 80%;
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0; /* Spacing around the divider */
+}
+
+/* Social Media Icons */
+.user-box-social {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.user-box-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Icon size */
+    height: 30px; /* Icon size */
+    background: none; /* Remove background */
+    border-radius: 0; /* Remove border radius */
+    box-shadow: none; /* Remove box shadow */
+    transition: background 0.3s;
+}
+
+.user-box-social a:hover {
+    background: #e0e0e0;
+}
+
+.user-box-social a img {
+    width: 16px; /* Icon image size */
+    height: 16px;
+}
+
+/* Job Title */
+.user-box-job-title {
+    font-size: 1em;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Sidebar adjustments */
+.single-post-sidebar {
+    flex: 1; /* Takes up less space on the right */
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center sidebar content horizontally */
+    gap: 20px; /* Add gap between sidebar elements */
+}
+
+/* Latest Posts Styling */
+.latest-posts {
+    background: transparent;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%; /* Width to match the parent container */
+}
+
+/* Title for Latest Posts */
 .latest-posts-title {
     font-size: 1.5em;
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Top Divider for Latest Posts section */
+.latest-posts-top-divider {
+    width: 100%;
+    height: 1px;
+    background: #444;
+    margin-bottom: 10px; /* Space below the title */
+}
+
+/* Bottom Divider for Latest Posts section */
+.latest-posts-bottom-divider {
+    width: 100%;
+    height: 1px;
+    background: #444;
+    margin: 20px 0; /* Adjust spacing if needed */
 }
 
 /* Card for each post */
@@ -84,11 +206,12 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow */
     backdrop-filter: blur(10px); /* Blur effect for background */
     transition: transform 0.3s ease; /* Smooth transition for hover effect */
-    width: 90%; /* Width of the card */
+    width: 100%; /* Width to match the parent container */
     max-width: none; /* Remove max-width restrictions */
-    height: 100px; /* Fixed height for the card */
+    height: 80px; /* Fixed height for the card */
     overflow: hidden; /* Hide content overflow */
-    margin-bottom: 10px; /* Space below each card */
+    margin-bottom: 5px; /* Space below each card */
+    position: relative; /* Ensure the image and content can be positioned correctly */
 }
 
 /* Post Image */
@@ -97,15 +220,17 @@
     height: 100%; /* Ensure the image container takes full height */
     margin-right: 10px;
     overflow: hidden; /* Hide overflow content */
+    border: none;
     position: relative; /* Position relative for absolute children */
 }
 
 /* Post Content */
-.single-post-content {
+.latest-post-content {
     display: flex;
+    background: transparent;
     flex-direction: column;
     justify-content: center;
-    width: 70%;
+    width: 70%; /* Ensure content takes up remaining space */
     height: 100%; /* Ensure content takes full height */
 }
 
@@ -125,7 +250,6 @@
 }
 
 @media (max-width: 767.98px) {
-
     /* Hide sidebar elements on mobile */
     .user-box,
     .latest-posts,
@@ -143,7 +267,7 @@
         box-sizing: border-box; /* Include padding in the width calculation */
     }
 
-    .single-post-content {
+    .main-post-content {
         display: flex;
         flex-direction: column;
         justify-content: center; /* Center content vertically */
@@ -158,12 +282,81 @@
     .single-post-banner {
         width: 100%; /* Ensure banner takes up full width */
         height: auto; /* Adjust height automatically */
-        background-size: cover; /* Ensure background image covers the area */
-        background-position: center; /* Center the background image */
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 20px; /* Add margin if needed */
+        box-sizing: border-box; /* Include padding in the width calculation */
     }
 
-    /* Prevent horizontal overflow */
-    body {
-        overflow-x: hidden; /* Hide horizontal overflow */
+    /* Optionally, adjust the styling for .wp-block-post-title */
+    .wp-block-post-title {
+        font-size: 1.5em; /* Adjust font size if needed */
+        text-align: center; /* Center the title */
+        margin-bottom: 10px; /* Add margin if needed */
+        padding: 0 20px; /* Add padding if needed */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+
+    /* Optionally, adjust the styling for .main-single-post-date */
+    .main-single-post-date {
+        font-size: 1em; /* Adjust font size if needed */
+        text-align: center; /* Center the date */
+        margin-bottom: 20px; /* Add margin if needed */
+        padding: 0 20px; /* Add padding if needed */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+
+    /* Optionally, adjust the styling for .single-post-meta */
+    .single-post-meta {
+        padding: 0 20px 20px 20px; /* Adjust padding if needed */
+        font-size: 0.9em; /* Adjust font size if needed */
+        color: #666; /* Adjust color if needed */
+        margin-bottom: 20px; /* Add margin if needed */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+
+    /* Optionally, adjust the styling for .single-post-content */
+    .single-post-content {
+        padding: 0 20px 20px 20px; /* Adjust padding if needed */
+        background: #fff; /* Ensure background color */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+
+    /* Optionally, adjust the styling for .single-post-card */
+    .single-post-card {
+        width: 100%; /* Ensure card takes up full width */
+        height: auto; /* Adjust height automatically */
+        padding: 10px; /* Adjust padding if needed */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+
+    /* Optionally, adjust the styling for .single-post-image */
+    .single-post-image {
+        width: 100%; /* Ensure image takes up full width */
+        height: auto; /* Adjust height automatically */
+        margin-right: 0; /* Remove right margin */
+        border-radius: 0; /* Ensure no rounded corners */
+        position: relative; /* Ensure position relative for absolute children */
+    }
+
+    /* Optionally, adjust the styling for .latest-post-content */
+    .latest-post-content {
+        width: 100%; /* Ensure content takes up full width */
+        height: auto; /* Adjust height automatically */
+    }
+
+    /* Optionally, adjust the styling for .single-post-date */
+    .single-post-date {
+        font-size: 12px; /* Adjust font size if needed */
+        color: #ddd; /* Adjust color if needed */
+        margin-bottom: 5px; /* Add margin if needed */
+    }
+
+    /* Optionally, adjust the styling for .single-post-title h2 */
+    .single-post-title h2 {
+        font-size: 16px; /* Adjust font size if needed */
+        color: #ffffff; /* Ensure font color */
+        font-family: Arial, sans-serif; /* Ensure font family */
+        margin: 0; /* Remove margin */
     }
 }
