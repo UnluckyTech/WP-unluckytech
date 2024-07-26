@@ -44,11 +44,11 @@
 
                 <!-- Off-Screen Menu -->
                 <div class="off-screen-menu">
-                        <a href="https://unluckytech.com/about" target="_blank">About</a>
-                        <a href="https://docs.unluckytech.com/" target="_blank">Docs</a>
-                        <a href="https://forums.unluckytech.com/" target="_blank">Forum</a>
-                        <a href="https://store.unluckytech.com/" target="_blank">Store</a>
-                        <a href="https://youtube.com/@UnluckyTechs" target="_blank">Videos</a>
+                    <a href="https://unluckytech.com/about" target="_blank">About</a>
+                    <a href="https://docs.unluckytech.com/" target="_blank">Docs</a>
+                    <a href="https://forums.unluckytech.com/" target="_blank">Forum</a>
+                    <a href="https://store.unluckytech.com/" target="_blank">Store</a>
+                    <a href="https://youtube.com/@UnluckyTechs" target="_blank">Videos</a>
                 </div>
 
                 <!-- Hamburger Menu -->
@@ -63,7 +63,7 @@
                 <!-- Right Icons -->
                 <div class="right-icons">
                     <!-- Search Icon -->
-                    <div class="search-icon">
+                    <div class="search-icon" onclick="toggleSearchBar()">
                         <i class="fas fa-search"></i>
                     </div>
 
@@ -72,6 +72,14 @@
                         <i class="fas fa-sun" id="sun-icon"></i>
                         <i class="fas fa-moon" id="moon-icon" style="display: none;"></i>
                     </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-bar" id="searchBar">
+                    <form id="searchForm" method="get">
+                        <input type="text" id="searchInput" name="s" placeholder="Search posts..." />
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
                 </div>
             </div>
         </div>

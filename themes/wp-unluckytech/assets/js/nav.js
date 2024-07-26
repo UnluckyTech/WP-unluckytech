@@ -45,4 +45,27 @@ document.addEventListener('DOMContentLoaded', () => {
             offScreenMenu.classList.toggle("active");
         });
     }
+
+    // Add event listener for search form submission
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+
+    if (searchForm && searchInput) {
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const query = encodeURIComponent(searchInput.value.trim()); // Get the search query and encode it
+            const searchURL = '/?s=' + query; // Build the search URL
+            window.location.href = searchURL; // Redirect to the search results page
+        });
+    }
 });
+
+// Function to toggle the search bar
+function toggleSearchBar() {
+    const searchBar = document.getElementById("searchBar");
+    if (searchBar.style.display === "block") {
+        searchBar.style.display = "none";
+    } else {
+        searchBar.style.display = "block";
+    }
+}
