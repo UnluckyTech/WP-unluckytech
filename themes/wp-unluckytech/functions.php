@@ -107,3 +107,7 @@ function register_my_menus() {
 }
 add_action( 'init', 'register_my_menus' );
 
+function enqueue_google_fonts() {
+    wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap', false);
+}
+add_action('wp_enqueue_scripts', 'enqueue_google_fonts');

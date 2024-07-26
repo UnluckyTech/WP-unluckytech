@@ -9,27 +9,31 @@
     align-items: center;
 }
 
-/* Blog Banner */
-.blog-banner {
-    width: 100%;
-    max-width: 1200px;
-    background: #333;
-    padding: 20px;
-    margin-bottom: 20px;
-    color: #fff;
-    text-align: left;
-}
-
-.blog-banner h1 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: 700;
-}
-
 /* Blog Inner Container */
 .blog-inner-container {
     width: 100%;
     max-width: 1200px;
+}
+
+/* Blog Title */
+.blog-title {
+    color: #fff !important; /* White text */
+    text-align: left;
+    margin: 20px 0;
+}
+
+.blog-title h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Blog Divider */
+.blog-divider {
+    width: 100%;
+    height: 2px; /* Adjust height for the divider */
+    background: #fff; /* White divider */
+    margin: 10px auto; /* Center the divider */
 }
 
 /* Blog Posts */

@@ -18,12 +18,11 @@
             <div class="single-post-title">
                 <!-- wp:post-title /--> <!-- Displays the post title -->
             </div>
-
+            <hr class="date-top-divider"> <!-- Bottom Divider -->
             <div class="main-single-post-date">
-                <!-- Custom date display -->
-                <?php echo get_the_date(); ?>
+                Updated on <?php the_modified_date(); ?>
             </div>
-
+            <hr class="date-bottom-divider"> <!-- Bottom Divider -->
             <div class="single-post-meta">
                 <!-- wp:post-meta /--> <!-- Displays the post meta (e.g., date, author) -->
             </div>

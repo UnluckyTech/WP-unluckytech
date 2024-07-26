@@ -8,10 +8,11 @@
 ?>
 
 <div class="blog-wrapper">
-    <div class="blog-banner">
-        <h1>All Projects</h1>
-    </div>
     <div class="blog-inner-container">
+        <div class="blog-title">
+            <h1>All Projects</h1>
+            <div class="blog-divider"></div>
+        </div>
         <?php if ( have_posts() ) : ?>
             <div class="blog-posts">
                 <?php
@@ -50,7 +51,7 @@
                 ) );
                 ?>
             </div><!-- .blog-posts -->
-
+            <div class="blog-divider"></div>
         <?php else : ?>
             <p><?php _e( 'No posts found.', 'textdomain' ); ?></p>
         <?php endif; ?>
