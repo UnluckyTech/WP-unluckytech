@@ -14,8 +14,7 @@
         <div class="content-inner container-fluid">
             <div class="row welcome-container">
                 <div class="col-12 col-md-6 video-wrapper">
-                    <iframe class="background-video" src="https://www.youtube.com/embed/dQw4w9WgXcQ?mute=1&loop=1&playlist=dQw4w9WgXcQ" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
-                </div>
+                    <iframe class="background-video" src="https://www.youtube.com/embed/dQw4w9WgXcQ?mute=1&loop=1&playlist=dQw4w9WgXcQ" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>                </div>
                 <div class="col-12 col-md-6 text-wrapper">
                     <h2 class="welcome-heading">Welcome to UnluckyTech</h2>
                     <hr class="welcome-divider">
