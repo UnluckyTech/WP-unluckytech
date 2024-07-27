@@ -26,13 +26,15 @@
     font-size: 24px;
     font-weight: 700;
     margin: 0;
+    color: #fff ;
+    font-family: Arial, sans-serif;
 }
 
 /* Blog Divider */
 .blog-divider {
     width: 100%;
     height: 2px; /* Adjust height for the divider */
-    background: #fff; /* White divider */
+    background: #444; /* White divider */
     margin: 10px auto; /* Center the divider */
 }
 

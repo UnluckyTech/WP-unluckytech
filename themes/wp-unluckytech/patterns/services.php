@@ -24,7 +24,7 @@
             <div class="mySlides active">
                 <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/serv1.jpg' ) ); ?>" alt="Service 1">
             </div>
-            <div class="mySlides">
+            <div class="mySlides active">
                 <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/serv2.jpg' ) ); ?>" alt="Service 2">
             </div>
             <!-- Add more slides as needed -->
@@ -35,3 +35,6 @@
         </div>
     </div>
 </div>
+
+<!-- Include the slideshow JavaScript -->
+<script src="<?php echo esc_url( get_theme_file_uri( 'assets/js/slideshow.js' ) ); ?>"></script>

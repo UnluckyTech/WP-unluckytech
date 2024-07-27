@@ -1,8 +1,23 @@
 /* Footer styles */
+body {
+    position: relative;
+  }
+  
+  body::after {
+    content: '';
+    display: block;
+    min-height: 350px;
+    margin-bottom: 100px;
+    /* Set same as footer's height */
+  }
+
 .footer {
+    position: absolute;
+    bottom: 0;
     background-color: #1d1f21; /* Dark background for footer */
     color: white; /* White text color for contrast */
     padding: 50px 0; /* Padding around the footer */
+    width: 100%;
 }
 
 .footer-content {
@@ -88,6 +103,7 @@
 /* Adjustments for the original Connect with Us section */
 .footer-connect {
     margin-top: 20px; /* Space above the Connect with Us section */
+    margin-top: 0; /* Remove additional margin */
 }
 
 .footer-bottom {
