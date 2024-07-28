@@ -44,7 +44,7 @@
     display: flex;
     gap: 20px;
     justify-content: space-between;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     padding: 0;
 }
 
