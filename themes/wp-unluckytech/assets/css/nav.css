@@ -1,8 +1,8 @@
 body {
     margin: 0;
     font-family: Inter, sans-serif;
-    background-color: #131313;
-    color: #f7f7f7;
+    background-color: var(--background-color);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -10,17 +10,6 @@ body {
 
 .off-screen-menu {
     display: none;
-}
-
-.background {
-    width: 100%;
-    height: auto;
-    text-align: center;
-}
-
-.background img {
-    width: 100%;
-    height: auto;
 }
 
 .particle-network-animation {
@@ -43,19 +32,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(29, 31, 33, 0.8); /* Semi-transparent background */
-    color: white;
+    background-color: var(--navigation-background-color); /* Semi-transparent background */
+    color: var(--link-color);
     padding: 0 30px;
     z-index: 1;
     position: relative;
     width: 100%;
     height: 60px;
     box-sizing: border-box;
-    z-index: 1;
 }
 
 .header {
-    background-color: #1f1f1f;
+    background-color: var(--header-background-color);
 }
 
 .header-wrapper {
@@ -102,7 +90,7 @@ body {
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
-    color: white;
+    color: var(--link-color);
 }
 
 .right-icons {
@@ -118,7 +106,7 @@ body {
 
 .search-icon i, .theme-toggle i {
     font-size: 18px;
-    color: white;
+    color: var(--link-color);
 }
 
 .search-icon {
@@ -130,28 +118,73 @@ body {
     margin-left: 15px;
 }
 
-.menu-icon {
+.search-bar {
     display: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: white; /* Change menu icon color */
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    position: absolute;
+    top: 100%;
+    right: 50px;
+    width: 300px;
+    margin-top: 10px; /* Add the desired gap here */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.search-bar {
-    display: none; /* Initially hidden */
-    position: absolute;
-    top: 60px; /* Adjust based on header height */
-    right: 30px; /* Align with right icons */
-    background-color: var(--background-color);
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
+.search-bar.visible {
+    display: block; /* Make it visible */
+    top: calc(100% + 20px); /* Adjusted for the gap at the top */
+    opacity: 1; /* Fully visible */
 }
 
 .search-bar form {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.category-select, .tag-select {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.category-select label, .tag-select label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.category-select select, .tag-select select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background: #222;
+    color: #fff;
+}
+
+button[type="submit"] {
+    background: #444;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+button[type="submit"] i {
+    margin-right: 5px;
+}
+
+button[type="submit"]:hover {
+    background: #555;
 }
 
 .search-bar input[type="text"] {
@@ -179,16 +212,6 @@ body {
     font-size: 18px;
 }
 
-/* Example styles */
-#searchBar {
-    display: none; /* Hide search bar by default */
-}
-
-/* Additional styles for when the search bar is visible */
-.search-bar.active {
-    display: block;
-}
-
 /* Define CSS variables for both themes */
 body[data-theme="dark"] {
     --background-color: #131313;
@@ -212,36 +235,12 @@ body[data-theme="light"] {
     --post-card-text-color: #131313;
 }
 
-/* Apply variables to CSS properties */
-body {
-    margin: 0;
-    font-family: Inter, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.navigation-wrapper {
-    background-color: var(--navigation-background-color);
-    color: var(--link-color);
-}
-
-/* Other CSS rules */
-.header-wrapper {
-    background-color: var(--header-background-color);
-}
-
-.wp-block-navigation a {
-    color: var(--link-color);
-}
-
 .post-card {
     background: var(--post-card-background);
     border: 1px solid var(--post-card-border);
     color: var(--post-card-text-color);
 }
+
 
 /* Mobile styles */
 @media (max-width: 768px) {

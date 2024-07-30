@@ -1,9 +1,9 @@
 <?php
 /**
- * Title: Blog
- * Slug: unluckytech/blog
- * Categories: text, featured
- * Description: This would be used for the blog of the website.
+ * Title: Tags
+ * Slug: unluckytech/tags
+ * Categories: text
+ * Description: Displays list of posts for a specific tag.
  */
 ?>
 
@@ -11,9 +11,9 @@
     <div class="blog-inner-container">
         <div class="blog-top">
             <div class="blog-title">
-                <h1>All Projects</h1>
+                <h1><?php single_tag_title(); ?></h1>
             </div>
-            <!-- Sort Form -->
+            <!-- Sort and Filter Form -->
             <form method="get" class="sort-form" action="">
                 <label for="sort-by">Sort by:</label>
                 <select name="sort" id="sort-by" onchange="this.form.submit()">
@@ -52,21 +52,18 @@
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
         $sort = isset($_GET['sort']) ? $_GET['sort'] : 'date_desc';
         $category = isset($_GET['category']) ? $_GET['category'] : '';
-        $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
+        $tag = single_tag_title('', false);
         $posts_per_page = isset($_GET['posts_per_page']) && $_GET['posts_per_page'] != 'all' ? intval($_GET['posts_per_page']) : 5; // Default to 5 posts per page
 
         // Preserve other query parameters
         $query_args = array(
             'posts_per_page' => $posts_per_page,
             'paged' => $paged,
+            'tag' => $tag,
         );
 
         if ($category != '' && $category != 'all') {
             $query_args['category_name'] = $category;
-        }
-
-        if ($tag != '' && $tag != 'all') {
-            $query_args['tag'] = $tag;
         }
 
         switch ($sort) {
@@ -124,9 +121,9 @@
                             <div class="meta-inner-container">
                                 <div class="blog-post-category">
                                     <?php
-                                    $category = get_the_category();
-                                    if (!empty($category)) {
-                                        echo esc_html($category[0]->name);
+                                    $categories = get_the_category();
+                                    if (!empty($categories)) {
+                                        echo esc_html($categories[0]->name);
                                     }
                                     ?>
                                 </div>
@@ -157,17 +154,12 @@
                 <div class="pagination">
                     <?php
                     // Pagination
-                    if ($posts_per_page == -1) {
-                        // Show "All" button
-                        echo '<span class="pagination-all-button">All</span>';
-                    } else {
-                        echo paginate_links(array(
-                            'total' => $custom_query->max_num_pages,
-                            'current' => $paged,
-                            'prev_text' => __('« Previous', 'textdomain'),
-                            'next_text' => __('Next »', 'textdomain'),
-                        ));
-                    }
+                    echo paginate_links(array(
+                        'total' => $custom_query->max_num_pages,
+                        'current' => $paged,
+                        'prev_text' => __('« Previous', 'textdomain'),
+                        'next_text' => __('Next »', 'textdomain'),
+                    ));
                     ?>
                 </div>
                 <!-- Posts Per Page Dropdown -->
@@ -185,7 +177,7 @@
                 </div>
             </div> <!-- End of pagination-container -->
         <?php else : ?>
-            <p><?php _e('No posts found.', 'textdomain'); ?></p>
+            <p><?php _e('No posts found for this tag.', 'textdomain'); ?></p>
         <?php endif; ?>
         <?php
         // Reset post data

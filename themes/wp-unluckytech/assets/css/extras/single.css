@@ -7,7 +7,6 @@
     gap: 20px; /* Space between the left and right sides */
 }
 
-/* Main content area adjustments */
 .main-post-content {
     flex: 2; /* Takes up more space on the left */
     background: #fff; /* White background for the post content */
@@ -16,6 +15,12 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column; /* Stack children vertically */
+    min-width: 800px; /* Set a fixed width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.main-discussion {
+    margin-top: auto; /* Pushes .main-discussion to the bottom */
 }
 
 /* Banner for the featured image */
@@ -26,6 +31,13 @@
     background-position: center;
     border-radius: 8px 8px 0 0;
     margin-bottom: 20px; /* Space below the banner */
+}
+
+/* Sidebar sticky box */
+.single-post-box {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 80px; /* Adjust this value as needed */
 }
 
 /* Title styling */
@@ -93,8 +105,8 @@
     background: #f4f4f4;
     border-radius: 8px;
     padding: 20px; /* Adjust padding for content inside */
-    width: 80%; /* Width to match the parent container */
-    height: auto; /* Adjust height to fit content */
+    width: 344px; /* Width to match the parent container */
+    height: 251px; /* Adjust height to fit content */
     margin: 10px 0; /* Space above and below */
     box-sizing: border-box; /* Include padding in width and height */
     margin-right: 80px;
@@ -134,140 +146,164 @@
     width: 80%;
     height: 1px;
     background: #ccc;
-    margin: 10px 0; /* Spacing around the divider */
+    margin: 10px 0;
 }
 
-/* Social Media Icons */
-.user-box-social {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
+/* Social Links */
 .user-box-social a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px; /* Icon size */
-    height: 30px; /* Icon size */
-    background: none; /* Remove background */
-    border-radius: 0; /* Remove border radius */
-    box-shadow: none; /* Remove box shadow */
-    transition: background 0.3s;
-}
-
-.user-box-social a:hover {
-    background: #e0e0e0;
-}
-
-.user-box-social a img {
-    width: 16px; /* Icon image size */
-    height: 16px;
-}
-
-/* Job Title */
-.user-box-job-title {
-    font-size: 1em;
-    color: #666;
-    margin-top: 10px;
-}
-
-/* Sidebar adjustments */
-.single-post-sidebar {
-    flex: 1; /* Takes up less space on the right */
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center sidebar content horizontally */
-    gap: 20px; /* Add gap between sidebar elements */
+    color: #000;
+    font-size: 1.5em; /* Adjust size */
+    margin: 0 10px;
+    text-decoration: none;
 }
 
 /* Latest Posts Styling */
 .latest-posts {
-    background: transparent;
+    width: 344px; /* Set width to 344px */
+    height: 532px; /* Set height to 532px */
+    background: #f4f4f4;
     border-radius: 8px;
-    padding: 20px;
-    width: 100%; /* Width to match the parent container */
+    padding: 20px; /* Add padding */
+    margin-right: 80px;
+    box-sizing: border-box; /* Include padding in the width and height */
 }
 
-/* Title for Latest Posts */
+/* Latest Posts Title */
 .latest-posts-title {
     font-size: 1.5em;
-    margin-bottom: 0;
-    color: #fff;
     font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Latest Posts Container */
+.latest-posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between each post */
 }
 
 /* Top Divider for Latest Posts section */
 .latest-posts-top-divider {
-    width: 81%;
-    height: 1px;
+    width: 30%;
+    height: 2px;
     background: #444;
-    margin-bottom: 10px; /* Space below the title */
-    margin-left: 0; /* Center the divider from the right */
-
+    margin-top: 0; /* Adjust this value to move the divider up */
+    margin-bottom: -8px; /* Adjust this value to move the divider up */
+    margin-left: auto; /* Center the divider horizontally */
+    margin-right: auto; /* Center the divider horizontally */
 }
 
 /* Bottom Divider for Latest Posts section */
 .latest-posts-bottom-divider {
-    width: 81%;
-    height: 1px;
+    width: 30%;
+    height: 2px;
     background: #444;
-    margin: 10px 0; /* Adjust spacing if needed */
+    margin-top: -15px; /* Adjust this value to move the divider up */
+    margin-bottom: 5px; /* Adjust this value to move the divider up */
+    margin-left: auto; /* Center the divider horizontally */
+    margin-right: auto; /* Center the divider horizontally */
 }
 
-/* Card for each post */
+/* Single Post Card */
 .single-post-card {
     display: flex;
-    flex-direction: row;
-    background: rgba(0, 0, 0, 0.5); /* Background color with transparency */
-    border: 1px solid #444; /* Border color */
-    border-radius: 0; /* No rounded corners */
-    padding: 10px; /* Padding inside the card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow */
-    backdrop-filter: blur(10px); /* Blur effect for background */
-    transition: transform 0.3s ease; /* Smooth transition for hover effect */
-    width: 76%; /* Width to match the parent container */
-    max-width: none; /* Remove max-width restrictions */
-    height: 80px; /* Fixed height for the card */
-    overflow: hidden; /* Hide content overflow */
-    margin-bottom: 5px; /* Space below each card */
-    position: relative; /* Ensure the image and content can be positioned correctly */
+    gap: 20px; /* Space between image and content */
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
 }
 
-/* Post Image */
-.single-post-image {
-    width: 30%;
-    height: 100%; /* Ensure the image container takes full height */
-    margin-right: 10px;
-    overflow: hidden; /* Hide overflow content */
-    border: none;
-    position: relative; /* Position relative for absolute children */
+.single-post-card:hover {
+    transform: translateY(-10px); /* Move the card up on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Darker and larger shadow on hover */
 }
 
-/* Post Content */
+/* Single Post Image */
+.single-post-image img {
+    width: 100px; /* Adjust size */
+    height: 100px; /* Adjust size */
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Latest Post Content */
 .latest-post-content {
+    flex: 1;
     display: flex;
-    background: transparent;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+}
+
+/* Latest Post Date */
+.single-post-date {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Latest Post Title */
+.single-post-title h2 {
+    font-size: 1.2em;
+    margin: 5px 0 0; /* Adjust spacing */
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Show ellipsis (...) for overflowing text */
+    display: -webkit-box; /* Display as a box element for clamping */
+    -webkit-line-clamp: 2; /* Show up to 2 lines */
+    -webkit-box-orient: vertical; /* Vertical box orientation for clamping */
+    line-height: 1.5em; /* Adjust line height if necessary */
+    height: 3em; /* Set height to match two lines */
+}
+
+/* Discussion Section */
+.discussion-link {
+    display: block; /* Make the link a block element */
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit; /* Inherit color from parent */
+}
+
+.discussion-section {
+    background-size: cover;
+    background-position: center;
+    padding: 50px 20px; /* Adjust padding */
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+    margin-top: 20px; /* Space above the section */
+    position: relative;
+    overflow: hidden;
+    margin-top: auto; /* Push the discussion section to the bottom */
+}
+
+.discussion-overlay {
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    color: #fff;
+    padding: 40px 20px; /* Adjust padding */
+    border-radius: 0 0 8px 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 70%; /* Ensure content takes up remaining space */
-    height: 100%; /* Ensure content takes full height */
+    align-items: center;
+    box-sizing: border-box; /* Include padding in width and height */
+    backdrop-filter: blur(4px); /* Add blur effect */
+    -webkit-backdrop-filter: blur(4px); /* Add blur effect for Safari */
 }
 
-/* Post Date */
-.single-post-date {
-    font-size: 12px;
-    color: #ddd;
-    margin-bottom: 5px;
-}
 
-/* Post Title */
-.single-post-title h2 {
-    font-size: 16px;
-    color: #ffffff;
-    font-family: Arial, sans-serif;
-    margin: 0;
+.discussion-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px; /* Adjust size as needed */
+
+    text-transform: uppercase; /* Optional: transform text to uppercase */
+    letter-spacing: 2px; /* Optional: add letter spacing */
 }
 
 @media (max-width: 767.98px) {

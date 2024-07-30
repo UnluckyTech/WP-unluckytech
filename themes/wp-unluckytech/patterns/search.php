@@ -13,15 +13,26 @@
 if (isset($_GET['s'])) {
     $search_query = sanitize_text_field($_GET['s']);
     $sort = isset($_GET['sort']) ? $_GET['sort'] : 'date';
+    $category = isset($_GET['category']) ? $_GET['category'] : '';
+    $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-    
+    $posts_per_page = isset($_GET['posts_per_page']) && $_GET['posts_per_page'] != 'all' ? intval($_GET['posts_per_page']) : 20;
+
     $args = array(
-        'post_type' => 'post', // Adjust if using custom post types
+        'post_type' => 'post',
         's' => $search_query,
-        'posts_per_page' => 20,
+        'posts_per_page' => $posts_per_page,
         'paged' => $paged,
     );
-    
+
+    if ($category != '' && $category != 'all') {
+        $args['category_name'] = $category;
+    }
+
+    if ($tag != '' && $tag != 'all') {
+        $args['tag'] = $tag;
+    }
+
     switch ($sort) {
         case 'title':
             $args['orderby'] = 'title';
@@ -41,75 +52,158 @@ if (isset($_GET['s'])) {
 
     $search_results = new WP_Query($args);
 
-    if ($search_results->have_posts()) {
-        echo '<div class="search-wrapper">';
-        echo '<div class="search-inner-container">';
-        echo '<div class="search-top">';
-        echo '<div class="search-title">';
-        echo '<h1>Search Results for: ' . esc_html($search_query) . '</h1>';
-        echo '</div>';
-        // Sort Form
-        echo '<form method="get" class="sort-form" action="">';
-        echo '<input type="hidden" name="s" value="' . esc_attr($search_query) . '">';
-        echo '<label for="sort-by">Sort by:</label>';
-        echo '<select name="sort" id="sort-by" onchange="this.form.submit()">';
-        echo '<option value="date" ' . (isset($_GET['sort']) && $_GET['sort'] == 'date' ? 'selected' : '') . '>Date</option>';
-        echo '<option value="title" ' . (isset($_GET['sort']) && $_GET['sort'] == 'title' ? 'selected' : '') . '>Title</option>';
-        echo '<option value="popularity" ' . (isset($_GET['sort']) && $_GET['sort'] == 'popularity' ? 'selected' : '') . '>Popularity</option>';
-        echo '</select>';
-        echo '</form>';
-        echo '</div>';
-        echo '<div class="search-divider"></div>';
-        echo '<div class="search-posts">';
-        while ($search_results->have_posts()) {
-            $search_results->the_post();
-            echo '<a href="' . get_permalink() . '" class="search-post-link">';
-            echo '<div class="search-post-card">';
-            echo '<div class="search-post-image">';
-            if (has_post_thumbnail()) {
-                the_post_thumbnail('medium');
-            } else {
-                echo '<img src="https://via.placeholder.com/200" alt="Placeholder Image" />';
-            }
-            echo '</div>';
-            echo '<div class="search-post-content">';
-            echo '<div class="search-post-date">' . get_the_date() . '</div>';
-            echo '<div class="search-post-title"><h2>' . get_the_title() . '</h2></div>';
-            echo '<div class="search-post-excerpt">' . get_the_excerpt() . '</div>';
-            echo '</div>';
-            echo '</div>';
-            echo '</a>';
-        }
-        echo '</div>'; // .search-posts
-        echo '<div class="search-divider"></div>'; // Divider after search results
-        echo '<div class="pagination">';
-        // Pagination
-        echo paginate_links(array(
-            'total' => $search_results->max_num_pages,
-            'current' => $paged,
-            'prev_text' => __('« Previous', 'textdomain'),
-            'next_text' => __('Next »', 'textdomain'),
-        ));
-        echo '</div>';
-        echo '</div>'; // .search-inner-container
-        echo '</div>'; // .search-wrapper
-    } else {
-        echo '<div class="search-wrapper">';
-        echo '<div class="search-inner-container">';
-        echo '<div class="search-title">';
-        echo '<h1>No results found for: ' . esc_html($search_query) . '</h1>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-    }
-    wp_reset_postdata();
+    ?>
+    <div class="search-wrapper">
+        <div class="search-inner-container">
+            <div class="search-top">
+                <div class="search-title">
+                    <h1>Search Results for: <?php echo esc_html($search_query); ?></h1>
+                </div>
+                <!-- Sort Form -->
+                <form method="get" class="sort-form" action="">
+                    <input type="hidden" name="s" value="<?php echo esc_attr($search_query); ?>">
+                    <label for="sort-by">Sort by:</label>
+                    <select name="sort" id="sort-by" onchange="this.form.submit()">
+                        <option value="date" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date' ? 'selected' : ''); ?>>Date</option>
+                        <option value="title" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title' ? 'selected' : ''); ?>>Title</option>
+                        <option value="popularity" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'popularity' ? 'selected' : ''); ?>>Popularity</option>
+                    </select>
+
+                    <label for="category"> </label>
+                    <select name="category" id="category" onchange="this.form.submit()">
+                        <option value="all"><?php _e('All Categories', 'textdomain'); ?></option>
+                        <?php
+                        $categories = get_categories();
+                        foreach ($categories as $category) {
+                            echo '<option value="' . esc_attr($category->slug) . '"' . (isset($_GET['category']) && $_GET['category'] == $category->slug ? ' selected' : '') . '>' . esc_html($category->name) . '</option>';
+                        }
+                        ?>
+                    </select>
+
+                    <label for="tag"> </label>
+                    <select name="tag" id="tag" onchange="this.form.submit()">
+                        <option value="all"><?php _e('All Tags', 'textdomain'); ?></option>
+                        <?php
+                        $tags = get_tags();
+                        foreach ($tags as $tag) {
+                            echo '<option value="' . esc_attr($tag->slug) . '"' . (isset($_GET['tag']) && $_GET['tag'] == $tag->slug ? ' selected' : '') . '>' . esc_html($tag->name) . '</option>';
+                        }
+                        ?>
+                    </select>
+                </form>
+            </div>
+            <div class="search-divider"></div>
+            <?php
+            if ($search_results->have_posts()) :
+            ?>
+                <div class="search-posts">
+                    <?php
+                    while ($search_results->have_posts()) : $search_results->the_post();
+                    ?>
+                        <div class="blog-post-card">
+                            <a href="<?php the_permalink(); ?>" class="blog-post-image-link">
+                                <div class="blog-post-image">
+                                    <?php if (has_post_thumbnail()) : ?>
+                                        <?php the_post_thumbnail('medium'); ?>
+                                    <?php else : ?>
+                                        <img src="https://via.placeholder.com/200" alt="Placeholder Image" />
+                                    <?php endif; ?>
+                                </div>
+                            </a>
+                            <a href="<?php the_permalink(); ?>" class="mainblog-post-link">
+                                <div class="blog-post-content">
+                                    <div class="blog-post-title-container">
+                                        <div class="blog-post-title">
+                                            <h2><?php the_title(); ?></h2>
+                                        </div>
+                                        <div class="title-divider"></div> <!-- Divider element -->
+                                    </div>
+                                    <div class="blog-post-excerpt">
+                                        <?php the_excerpt(); ?>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="blog-post-meta-content">
+                                <div class="meta-inner-container">
+                                    <div class="blog-post-category">
+                                        <?php
+                                        $category = get_the_category();
+                                        if (!empty($category)) {
+                                            echo esc_html($category[0]->name);
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="meta-divider"></div> <!-- Divider after category -->
+                                    <div class="blog-post-tags">
+                                        <?php
+                                        $tags = get_the_tags();
+                                        if ($tags) {
+                                            foreach ($tags as $tag) {
+                                                echo '<a href="' . esc_url(get_tag_link($tag->term_id)) . '">' . esc_html($tag->name) . '</a>';
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="meta-divider"></div> <!-- Divider before date -->
+                                    <div class="blog-post-date">
+                                        <?php echo get_the_date(); ?>
+                                    </div>
+                                </div>
+                            </div><!-- .blog-post-meta-content -->
+                        </div>
+                    <?php
+                    endwhile;
+                    ?>
+                </div><!-- .blog-posts -->
+                <div class="search-divider"></div>
+                <div class="pagination-container">
+                    <div class="pagination">
+                        <?php
+                        echo paginate_links(array(
+                            'total' => $search_results->max_num_pages,
+                            'current' => $paged,
+                            'prev_text' => __('« Previous', 'textdomain'),
+                            'next_text' => __('Next »', 'textdomain'),
+                        ));
+                        ?>
+                    </div>
+                    <!-- Posts Per Page Dropdown -->
+                    <div class="posts-per-page">
+                        <form method="get" class="posts-per-page-form" action="">
+                            <input type="hidden" name="s" value="<?php echo esc_attr($search_query); ?>">
+                            <label for="posts-per-page">Posts per page:</label>
+                            <select name="posts_per_page" id="posts-per-page" onchange="this.form.submit()">
+                                <option value="5" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == '5') ? 'selected' : ''; ?>>5</option>
+                                <option value="10" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == '10') ? 'selected' : ''; ?>>10</option>
+                                <option value="20" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == '20') ? 'selected' : ''; ?>>20</option>
+                                <option value="50" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == '50') ? 'selected' : ''; ?>>50</option>
+                                <option value="all" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == 'all') ? 'selected' : ''; ?>>All</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            <?php
+            else :
+            ?>
+                <div class="search-title">
+                    <h1>No results found for: <?php echo esc_html($search_query); ?></h1>
+                </div>
+            <?php
+            endif;
+            wp_reset_postdata();
+            ?>
+        </div>
+    </div>
+    <?php
 } else {
-    echo '<div class="search-wrapper">';
-    echo '<div class="search-inner-container">';
-    echo '<div class="search-title">';
-    echo '<h1>Please enter a search query.</h1>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
+    ?>
+    <div class="search-wrapper">
+        <div class="search-inner-container">
+            <div class="search-title">
+                <h1>Please enter a search query.</h1>
+            </div>
+        </div>
+    </div>
+    <?php
 }
 ?>

@@ -69,3 +69,40 @@ function toggleSearchBar() {
         searchBar.style.display = "block";
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to populate the category dropdown
+    function populateCategories() {
+        fetch('/wp-admin/admin-ajax.php?action=get_categories')
+            .then(response => response.json())
+            .then(data => {
+                const categorySelect = document.getElementById('category');
+                data.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.id;
+                    option.textContent = category.name;
+                    categorySelect.appendChild(option);
+                });
+            });
+    }
+
+    // Function to populate the tags dropdown
+    function populateTags() {
+        fetch('/wp-admin/admin-ajax.php?action=get_tags')
+            .then(response => response.json())
+            .then(data => {
+                const tagsSelect = document.getElementById('tags');
+                data.forEach(tag => {
+                    const option = document.createElement('option');
+                    option.value = tag.id;
+                    option.textContent = tag.name;
+                    tagsSelect.appendChild(option);
+                });
+            });
+    }
+
+    // Populate dropdowns on page load
+    populateCategories();
+    populateTags();
+});
+

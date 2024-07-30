@@ -111,3 +111,35 @@ function enqueue_google_fonts() {
     wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap', false);
 }
 add_action('wp_enqueue_scripts', 'enqueue_google_fonts');
+
+// Add AJAX action for categories
+add_action('wp_ajax_get_categories', 'get_categories_callback');
+add_action('wp_ajax_nopriv_get_categories', 'get_categories_callback');
+
+// Add AJAX action for tags
+add_action('wp_ajax_get_tags', 'get_tags_callback');
+add_action('wp_ajax_nopriv_get_tags', 'get_tags_callback');
+
+function get_categories_callback() {
+    $categories = get_categories();
+    $response = array();
+    foreach ($categories as $category) {
+        $response[] = array(
+            'id' => $category->term_id,
+            'name' => $category->name
+        );
+    }
+    wp_send_json($response);
+}
+
+function get_tags_callback() {
+    $tags = get_tags();
+    $response = array();
+    foreach ($tags as $tag) {
+        $response[] = array(
+            'id' => $tag->term_id,
+            'name' => $tag->name
+        );
+    }
+    wp_send_json($response);
+}

@@ -78,7 +78,21 @@
                 <div class="search-bar" id="searchBar">
                     <form id="searchForm" method="get">
                         <input type="text" id="searchInput" name="s" placeholder="Search projects..." />
-                        <button type="submit"><i class="fas fa-search"></i></button>
+                        <div class="search-options">
+                            <div class="category-select">
+                                <label for="category">Category:</label>
+                                <select id="category" name="category" class="styled-select" multiple>
+                                    <option value="all">All</option>
+                                </select>
+                            </div>
+                            <div class="tag-select">
+                                <label for="tags">Tags:</label>
+                                <select id="tags" name="tags[]" class="styled-select" multiple>
+                                    <!-- Options will be populated dynamically -->
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit"><i class="fas fa-search"></i> Search</button>
                     </form>
                 </div>
             </div>
