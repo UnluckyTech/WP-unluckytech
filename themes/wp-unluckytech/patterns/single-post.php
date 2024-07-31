@@ -17,8 +17,8 @@
 
             <div class="single-post-title">
                 <!-- wp:post-title /--> <!-- Displays the post title -->
+                <hr class="date-top-divider"> <!-- Bottom Divider -->
             </div>
-            <hr class="date-top-divider"> <!-- Bottom Divider -->
             <div class="main-single-post-date">
                 Updated on <?php the_modified_date(); ?>
             </div>

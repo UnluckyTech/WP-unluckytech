@@ -15,7 +15,6 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column; /* Stack children vertically */
-    min-width: 800px; /* Set a fixed width */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
@@ -52,16 +51,12 @@
 
 /* Date styling */
 .main-single-post-date {
-    font-size: 1em; /* Adjust size as needed */
-    color: #666; /* Change color if needed */
-    text-align: center; /* Center the text */
-    margin-bottom: 20px; /* Space below the date */
-    padding: 0 20px; /* Adjust padding if needed */
+    display: none;
 }
 
 /* Top Divider for Latest Posts section */
 .date-top-divider {
-    width: 30%;
+    width: 90%;
     height: 0.1px;
     background: #444;
     margin-bottom: 5px; /* Space below the title */
@@ -71,13 +66,7 @@
 
 /* Bottom Divider for Latest Posts section */
 .date-bottom-divider {
-    width: 30%;
-    height: 0.1px;
-    background: #444;
-    margin-top: -15px; /* Adjust this value to move the divider up */
-    margin-bottom: 5px; /* Adjust this value to move the divider up */
-    margin-left: auto; /* Center the divider horizontally */
-    margin-right: auto; /* Center the divider horizontally */
+    display: none;
 }
 
 /* Meta styling */
@@ -374,6 +363,16 @@
         display: none;
     }
 
+    /* Date styling */
+    .main-single-post-date {
+        display: flex;
+        font-size: 1em; /* Adjust size as needed */
+        color: #666; /* Change color if needed */
+        text-align: center; /* Center the text */
+        margin-bottom: 20px; /* Space below the date */
+        padding: 0 20px; /* Adjust padding if needed */
+    }
+
     /* Adjust the content area */
     .single-post-container {
         display: flex;
@@ -464,22 +463,31 @@
 
     /* Optionally, adjust the styling for .single-post-date */
     .single-post-date {
-        font-size: 12px; /* Adjust font size if needed */
+        font-size: 10px; /* Adjust font size if needed */
         color: #ddd; /* Adjust color if needed */
         margin-bottom: 5px; /* Add margin if needed */
     }
 
-    /* Optionally, adjust the styling for .single-post-title h2 */
+    /* Latest Post Title */
     .single-post-title h2 {
-        font-size: 16px; /* Adjust font size if needed */
-        color: #ffffff; /* Ensure font color */
-        font-family: Arial, sans-serif; /* Ensure font family */
-        margin: 0; /* Remove margin */
+        font-size: 18px !important; /* Increase font size for prominence */
+        margin: 10px 0; /* Add more spacing above and below */
+        font-family: 'Montserrat', sans-serif;
+        text-overflow: clip; /* Change from ellipsis to clip */
+        display: block; /* Keep it as a block element */
+        line-height: 1.4; /* Adjust line height for readability */
+        height: auto; /* Allow full height */
+        font-weight: bold; /* Make text bold */
+        letter-spacing: 1px; /* Add letter spacing for a more refined look */
+        text-transform: uppercase; /* Optional: transform text to uppercase for impact */
+        color: #fff; /* Change color to white or another standout color */
+        border-bottom: 2px solid #fff; /* Optional: add an underline for emphasis */
+        padding-bottom: 5px; /* Add padding below the title for separation */
     }
 
     /* Top Divider for Latest Posts section */
     .date-top-divider {
-        width: 60%;
+        width: 90%;
         height: 0.1px;
         background: #444;
         margin-bottom: 5px; /* Space below the title */
@@ -489,7 +497,8 @@
 
     /* Bottom Divider for Latest Posts section */
     .date-bottom-divider {
-        width: 60%;
+        display: flex;
+        width: 90%;
         height: 0.1px;
         background: #444;
         margin-top: -15px; /* Adjust this value to move the divider up */
@@ -497,4 +506,59 @@
         margin-left: auto; /* Center the divider horizontally */
         margin-right: auto; /* Center the divider horizontally */
     }
+
+    .main-discussion {
+        margin-top: auto; /* Pushes .main-discussion to the bottom */
+        width: 100%;
+    }
+
+    /* Discussion Section */
+    .discussion-link {
+        display: block; /* Make the link a block element */
+        text-decoration: none; /* Remove underline from the link */
+        color: inherit; /* Inherit color from parent */
+    }
+
+    .discussion-section {
+        background-size: cover;
+        background-position: center;
+        padding: 50px 20px; /* Adjust padding */
+        border-radius: 0 0 8px 8px;
+        text-align: center;
+        margin-top: 20px; /* Space above the section */
+        position: relative;
+        overflow: hidden;
+        margin-top: auto; /* Push the discussion section to the bottom */
+    }
+
+    .discussion-overlay {
+        background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+        color: #fff;
+        padding: 40px 20px; /* Adjust padding */
+        border-radius: 0 0 8px 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box; /* Include padding in width and height */
+        backdrop-filter: blur(4px); /* Add blur effect */
+        -webkit-backdrop-filter: blur(4px); /* Add blur effect for Safari */
+    }
+
+
+    .discussion-title {
+        font-family: 'Montserrat', sans-serif;
+        color: #fff;
+        font-weight: 700;
+        font-size: 36px; /* Adjust size as needed */
+
+        text-transform: uppercase; /* Optional: transform text to uppercase */
+        letter-spacing: 2px; /* Optional: add letter spacing */
+    }
+
 }

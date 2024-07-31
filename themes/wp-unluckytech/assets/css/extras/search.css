@@ -123,4 +123,14 @@
         flex-basis: 100%;
         max-width: none;
     }
+
+    .search-title {
+        color: #fff !important; /* White text */
+        text-align: left;
+        margin: 20px 0;
+        width: 350px;
+        position: relative;
+        padding-left: 10px;
+        top: 15px;
+    }
 }
