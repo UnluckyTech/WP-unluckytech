@@ -241,7 +241,6 @@ body[data-theme="light"] {
     color: var(--post-card-text-color);
 }
 
-
 /* Mobile styles */
 @media (max-width: 768px) {
 
@@ -345,11 +344,11 @@ body[data-theme="light"] {
     /* Off-Screen Menu */
     .off-screen-menu {
         background-color: #131313;
-        height: 30vh;
+        height: 33vh; /* Set height */
         width: 100%;
         max-width: 450px;
         position: fixed;
-        top: -100vh; /* Start from above the viewport */
+        top: 60px; /* Start below the header navigation */
         left: 0;
         display: flex;
         flex-direction: column;
@@ -359,33 +358,91 @@ body[data-theme="light"] {
         font-size: 1.5rem; /* Make the text smaller */
         padding: 1rem; /* Add padding for spacing */
         transition: top 0.3s ease; /* Animate the top property */
+        opacity: 0; /* Start hidden */
+        pointer-events: none; /* Prevent interactions when not visible */
     }
 
+    /* Active State */
     .off-screen-menu.active {
-        top: 0; /* Slide down into view */
+        opacity: 1; /* Fully visible */
+        pointer-events: auto; /* Allow interactions */
+        top: 60px; /* Position it under the header */
     }
 
-    .off-screen-menu ul {
-        list-style: none; /* Remove default list styling */
-        padding: 0; /* Remove default padding */
-        margin: 0; /* Remove default margin */
-        width: 100%; /* Ensure the list takes full width */
-    }
+
 
     .off-screen-menu li {
         margin: 10px 0; /* Space between menu items */
     }
 
-    .off-screen-menu a {
+    .off-screen-content {
+        width: 90%;
+    }
+
+    .off-screen-content a {
         color: white; /* White text color for menu links */
         text-decoration: none; /* Remove underline from links */
         font-size: 1.2rem; /* Make the link text smaller */
     }
 
-    .off-screen-menu a:hover {
+    .off-screen-content a:hover {
         text-decoration: underline; /* Optional: underline on hover for better UX */
     }
 
-
+    .off-screen-menu.active .mobile-divider {
+        display: block;
+    }
     
+    .mobile-divider {
+        height: 1px;
+        background: #444;
+        margin: 5px 0;
+        display: none; /* Initially hide the divider */
+    }
+
+    /* Off-Screen Search Bar */
+    .off-screen-search-bar {
+        padding: 16px; /* Padding around the search bar */
+        border-radius: 8px; /* Rounded corners */
+        width: 100%; /* Full width */
+        margin: 0 auto; /* Center horizontally */
+        box-sizing: border-box; /* Ensure padding and border are included in the total width */
+    }
+
+    /* Ensure the form is a flex container for alignment */
+    .off-screen-search-bar form {
+        display: flex; /* Flexbox for alignment */
+        width: 100%; /* Full width */
+    }
+
+    /* Input field styling */
+    .off-screen-search-bar input[type="text"] {
+        flex: 1; /* Take remaining space */
+        padding: 10px; /* Padding inside the input */
+        border: 1px solid #444; /* Border styling */
+        border-radius: 4px; /* Rounded corners */
+        background-color: #222; /* Input background color */
+        color: white; /* Text color */
+        font-size: 16px; /* Font size */
+    }
+
+    /* Button styling */
+    .off-screen-search-bar button[type="submit"] {
+        background-color: var(--background-color); /* Match theme */
+        color: var(--text-color); /* Match theme */
+        border: none; /* Remove border */
+        padding: 10px; /* Padding inside the button */
+        border-radius: 4px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor on hover */
+        margin-left: 10px; /* Space between input and button */
+        font-size: 16px; /* Font size */
+    }
+
+    /* Button hover effect */
+    .off-screen-search-bar button[type="submit"]:hover {
+        background-color: #555; /* Darken on hover */
+    }
+    .advanced-toggle {
+        display: none;
+    }
 }

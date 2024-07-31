@@ -58,19 +58,19 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = searchURL; // Redirect to the search results page
         });
     }
-});
 
-// Function to toggle the search bar
-function toggleSearchBar() {
-    const searchBar = document.getElementById("searchBar");
-    if (searchBar.style.display === "block") {
-        searchBar.style.display = "none";
-    } else {
-        searchBar.style.display = "block";
+    // Toggle advanced options
+    const toggleAdvancedButton = document.getElementById('toggleAdvanced');
+    const advancedOptions = document.getElementById('advancedOptions');
+
+    if (toggleAdvancedButton && advancedOptions) {
+        toggleAdvancedButton.addEventListener('click', () => {
+            const isVisible = advancedOptions.style.display === 'block';
+            advancedOptions.style.display = isVisible ? 'none' : 'block';
+            toggleAdvancedButton.textContent = isVisible ? 'Advanced Options' : 'Hide Advanced Options';
+        });
     }
-}
 
-document.addEventListener('DOMContentLoaded', function () {
     // Function to populate the category dropdown
     function populateCategories() {
         fetch('/wp-admin/admin-ajax.php?action=get_categories')
@@ -106,3 +106,12 @@ document.addEventListener('DOMContentLoaded', function () {
     populateTags();
 });
 
+// Function to toggle the search bar
+function toggleSearchBar() {
+    const searchBar = document.getElementById("searchBar");
+    if (searchBar.style.display === "block") {
+        searchBar.style.display = "none";
+    } else {
+        searchBar.style.display = "block";
+    }
+}

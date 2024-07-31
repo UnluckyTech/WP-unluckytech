@@ -115,6 +115,29 @@
 
                     </div>
                 </div>
+                
+                <div class="post-info-box">
+                    <div class="post-info-inner">
+                        <div class="post-info-title">POST INFO</div>
+                        <div class="post-info-content">
+                            <!-- Displaying the categories -->
+                            <div class="post-categories">
+                                <strong>Category:</strong>
+                                <?php the_category(', '); ?>
+                            </div>
+                            <!-- Displaying the tags -->
+                            <div class="post-tags">
+                                <strong>Tags:</strong>
+                                <?php the_tags('', ', ', ''); ?>
+                            </div>
+                            <!-- Displaying the last updated date -->
+                            <div class="post-last-updated">
+                                <strong>Last Updated:</strong>
+                                <?php the_modified_date(); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>    
         </div>
     </div>

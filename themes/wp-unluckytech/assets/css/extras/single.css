@@ -306,6 +306,66 @@
     letter-spacing: 2px; /* Optional: add letter spacing */
 }
 
+/* New Post Info Box Styling */
+.post-info-box {
+    background: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px; /* Adjust padding for content inside */
+    width: 344px; /* Width to match the parent container */
+    margin: 10px 0; /* Space above and below */
+    box-sizing: border-box; /* Include padding in width and height */
+    margin-right: 80px; /* Align with other boxes */
+}
+
+/* Post Info Box Inner Content */
+.post-info-box-inner {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center contents horizontally */
+    text-align: center; /* Center text content */
+}
+
+/* Post Info Title */
+.post-info-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Divider */
+.post-info-divider {
+    width: 80%;
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0;
+}
+
+/* Post Info Details */
+.post-info-details {
+    font-size: 1em;
+    color: #666;
+}
+
+/* Categories, Tags, and Updated Date */
+.post-info-category,
+.post-info-tags,
+.post-info-updated {
+    margin: 5px 0;
+}
+
+/* Styling for individual tags */
+.post-info-tags span {
+    background: #e0e0e0;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 2px;
+    display: inline-block;
+    font-size: 0.9em;
+    color: #333;
+}
+
 @media (max-width: 767.98px) {
     /* Hide sidebar elements on mobile */
     .user-box,

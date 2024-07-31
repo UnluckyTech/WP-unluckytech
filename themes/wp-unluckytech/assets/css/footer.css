@@ -135,6 +135,14 @@ body {
 /* Mobile-specific styles */
 @media (max-width: 768px) {
 
+    body::after {
+        content: '';
+        display: block;
+        min-height: 650px;
+        margin-bottom: 100px;
+        /* Set same as footer's height */
+      }
+
     .footer-common-title {
         font-weight: 700;
     }
