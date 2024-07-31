@@ -447,3 +447,51 @@ body[data-theme="light"] {
         display: none;
     }
 }
+
+@media (max-width: 1024px) {
+ 
+    .logo {
+        display: flex;
+        align-items: left;
+        height: 100%;
+    }
+    
+    .logo a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    
+    .logo img {
+        max-height: 40px;  /* Adjust the height as needed */
+        width: 150px;   /* Automatically scale the width */
+        height: auto;
+    }
+
+    .wp-block-navigation a {
+        margin: 0 15px;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--link-color);
+    }
+
+    .wp-block-navigation {
+        padding-top: 10px;
+    }
+    
+    .right-icons {
+        padding-top: 10px;
+    }
+    
+    .search-icon, .theme-toggle {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .search-icon i, .theme-toggle i {
+        font-size: 16px;
+        color: var(--link-color);
+    }
+}

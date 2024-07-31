@@ -185,3 +185,15 @@ body {
     }
 
 }
+
+@media (max-width: 1024px) {
+
+    body::after {
+        content: '';
+        display: block;
+        min-height: 450px;
+        margin-bottom: 100px;
+        /* Set same as footer's height */
+      }
+
+}
