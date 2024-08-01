@@ -191,7 +191,7 @@ body {
     body::after {
         content: '';
         display: block;
-        min-height: 450px;
+        min-height: 400px;
         margin-bottom: 100px;
         /* Set same as footer's height */
       }

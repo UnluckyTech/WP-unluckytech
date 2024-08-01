@@ -16,10 +16,10 @@ if ( ! function_exists( 'unlucky_theme_support' ) ) :
         // Enqueue editor styles.
         add_editor_style( 'style.css' );
 
-        // Add support for post thumbnails
+        // Add support for post thumbnails.
         add_theme_support( 'post-thumbnails' );
 
-        // Add support for title tag
+        // Add support for title tag.
         add_theme_support( 'title-tag' );
     }
 
@@ -36,30 +36,43 @@ add_filter('excerpt_length', 'custom_excerpt_length');
 
 // Enqueue Theme Styles and Scripts
 function wp_unluckytech_scripts() {
-    wp_enqueue_style('wp-unluckytech-style', get_stylesheet_uri());
-    wp_enqueue_style('wp-unluckytech-main', get_template_directory_uri() . '/assets/css/main.css', array('wp-unluckytech-style'));
-    wp_enqueue_style('wp-unluckytech-home-posts', get_template_directory_uri() . '/assets/css/home/posts.css', array('wp-unluckytech-main'));
-    wp_enqueue_style('wp-unluckytech-home-services', get_template_directory_uri() . '/assets/css/home/services.css', array('wp-unluckytech-main'));
-    wp_enqueue_style('wp-unluckytech-home-welcome', get_template_directory_uri() . '/assets/css/home/welcome.css', array('wp-unluckytech-main'));
-    wp_enqueue_style('wp-unluckytech-footer', get_template_directory_uri() . '/assets/css/footer.css', array('wp-unluckytech-main'));
-    wp_enqueue_style('wp-unluckytech-toggle', get_template_directory_uri() . '/assets/css/toggle.css', array('wp-unluckytech-main'));
-    wp_enqueue_style('wp-unluckytech-about', get_template_directory_uri() . '/assets/css/extras/about.css', array('wp-unluckytech-main'));
-    wp_enqueue_style('wp-unluckytech-post', get_template_directory_uri() . '/assets/css/extras/single.css', array('wp-unluckytech-main'));
-    wp_enqueue_style('wp-unluckytech-blog', get_template_directory_uri() . '/assets/css/extras/blog.css', array('wp-unluckytech-main'));
-    wp_enqueue_style('wp-unluckytech-search', get_template_directory_uri() . '/assets/css/extras/search.css', array('wp-unluckytech-main'));
+    // Enqueue styles
+    $styles = array(
+        'wp-unluckytech-style' => get_stylesheet_uri(),
+        'wp-unluckytech-main' => get_template_directory_uri() . '/assets/css/main.css',
+        'wp-unluckytech-home-posts' => get_template_directory_uri() . '/assets/css/home/posts.css',
+        'wp-unluckytech-home-services' => get_template_directory_uri() . '/assets/css/home/services.css',
+        'wp-unluckytech-home-welcome' => get_template_directory_uri() . '/assets/css/home/welcome.css',
+        'wp-unluckytech-footer' => get_template_directory_uri() . '/assets/css/footer.css',
+        'wp-unluckytech-toggle' => get_template_directory_uri() . '/assets/css/toggle.css',
+        'wp-unluckytech-about' => get_template_directory_uri() . '/assets/css/extras/about.css',
+        'wp-unluckytech-post' => get_template_directory_uri() . '/assets/css/extras/single.css',
+        'wp-unluckytech-blog' => get_template_directory_uri() . '/assets/css/extras/blog.css',
+        'wp-unluckytech-search' => get_template_directory_uri() . '/assets/css/extras/search.css',
+    );
 
+    foreach ($styles as $handle => $src) {
+        wp_enqueue_style($handle, $src);
+    }
 
+    // Enqueue scripts
+    $scripts = array(
+        'wp-unluckytech-script' => get_template_directory_uri() . '/assets/js/custom.js',
+        'slideshow-js' => get_template_directory_uri() . '/assets/js/slideshow.js',
+    );
 
-    wp_enqueue_script('wp-unluckytech-script', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), null, true);
-}
-add_action('wp_enqueue_scripts', 'wp_unluckytech_scripts');
+    foreach ($scripts as $handle => $src) {
+        wp_enqueue_script($handle, $src, array('jquery'), null, true);
+    }
 
-// Enqueue Particle Animation JavaScript and CSS
-function enqueue_particle_animation_assets() {
+    // Enqueue Particle Animation JavaScript and CSS
     wp_enqueue_style('particle-animation-css', get_template_directory_uri() . '/assets/css/particle-animation.css');
     wp_enqueue_script('particle-animation-js', get_template_directory_uri() . '/assets/js/particle-animation.js', array('jquery'), null, true);
+
+    // Localize script to pass the AJAX URL
+    wp_localize_script('wp-unluckytech-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
 }
-add_action('wp_enqueue_scripts', 'enqueue_particle_animation_assets');
+add_action('wp_enqueue_scripts', 'wp_unluckytech_scripts');
 
 // Import Adobe Font CSS
 function import_adobe_font_css() {
@@ -91,11 +104,6 @@ function custom_admin_bar_menu( $wp_admin_bar ) {
 }
 add_action( 'admin_bar_menu', 'custom_admin_bar_menu', 999 );
 
-function enqueue_slideshow_script() {
-    wp_enqueue_script('slideshow-js', get_template_directory_uri() . '/assets/js/slideshow.js', array(), null, true);
-}
-add_action('wp_enqueue_scripts', 'enqueue_slideshow_script');
-
 // Register Navigation Menus
 function register_my_menus() {
     register_nav_menus(
@@ -107,39 +115,36 @@ function register_my_menus() {
 }
 add_action( 'init', 'register_my_menus' );
 
-function enqueue_google_fonts() {
-    wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap', false);
-}
-add_action('wp_enqueue_scripts', 'enqueue_google_fonts');
-
-// Add AJAX action for categories
-add_action('wp_ajax_get_categories', 'get_categories_callback');
-add_action('wp_ajax_nopriv_get_categories', 'get_categories_callback');
-
-// Add AJAX action for tags
-add_action('wp_ajax_get_tags', 'get_tags_callback');
-add_action('wp_ajax_nopriv_get_tags', 'get_tags_callback');
-
-function get_categories_callback() {
+// Function to get categories
+function get_categories_ajax() {
     $categories = get_categories();
-    $response = array();
-    foreach ($categories as $category) {
-        $response[] = array(
-            'id' => $category->term_id,
-            'name' => $category->name
-        );
-    }
-    wp_send_json($response);
-}
+    $result = array();
 
-function get_tags_callback() {
-    $tags = get_tags();
-    $response = array();
-    foreach ($tags as $tag) {
-        $response[] = array(
-            'id' => $tag->term_id,
-            'name' => $tag->name
+    foreach ($categories as $category) {
+        $result[] = array(
+            'id' => $category->term_id,
+            'name' => $category->name,
         );
     }
-    wp_send_json($response);
+
+    wp_send_json($result);
 }
+add_action('wp_ajax_get_categories', 'get_categories_ajax');
+add_action('wp_ajax_nopriv_get_categories', 'get_categories_ajax');
+
+// Function to get tags
+function get_tags_ajax() {
+    $tags = get_tags();
+    $result = array();
+
+    foreach ($tags as $tag) {
+        $result[] = array(
+            'id' => $tag->term_id,
+            'name' => $tag->name,
+        );
+    }
+
+    wp_send_json($result);
+}
+add_action('wp_ajax_get_tags', 'get_tags_ajax');
+add_action('wp_ajax_nopriv_get_tags', 'get_tags_ajax');

@@ -134,3 +134,11 @@
         top: 15px;
     }
 }
+
+@media (max-width: 1024px) {
+    
+    .search-title {
+        width: 280px ;
+    }
+
+}
