@@ -81,6 +81,8 @@
 .single-post-content {
     padding: 0 20px 20px 20px; /* Adjust padding */
     background: #fff; /* White background for content */
+    width: 100%; /* Ensure the content takes up the full width */
+    box-sizing: border-box; /* Include padding in the element's width and height */
 }
 
 /* Link styling for latest posts */
