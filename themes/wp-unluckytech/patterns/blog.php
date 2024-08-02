@@ -164,8 +164,8 @@
                         echo paginate_links(array(
                             'total' => $custom_query->max_num_pages,
                             'current' => $paged,
-                            'prev_text' => __('« Previous', 'textdomain'),
-                            'next_text' => __('Next »', 'textdomain'),
+                            'prev_text' => __('Previous', 'textdomain'),
+                            'next_text' => __('Next', 'textdomain'),
                         ));
                     }
                     ?>

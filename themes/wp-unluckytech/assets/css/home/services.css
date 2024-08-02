@@ -103,135 +103,18 @@
     display: none;
 }
 
-/* Mobile Styles */
-@media (max-width: 768px) {
-    .services-section {
-        width: 90%;
-        background: rgba(0, 0, 0, .5);
-        backdrop-filter: blur(10px);
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
-        padding: 10px;
-        margin: 20px auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .services-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .services-title {
-        display: flex;
-        align-items: center;
-        justify-content: center; /* Center horizontally */
-        position: absolute;
-        top: -10%; /* Adjust this value to move the title up or down */
-        left: 50%;
-        transform: translateX(-50%); /* Center horizontally */
-        font-size: 20px;
-        color: #fff;
-        margin: 0;
-    }
-
-    /* Services Title */
-    .services-title-2 {
-        margin-top: 20px;
-        font-size: 20px;
-        font-weight: 700;
-        color: #fff;
-    }
-    
-    /* Services List */
-    .services-list {
-        order: 3;
-        width: 100%;
-        font-size: 18px;
-        columns: 1;
-        column-gap: 20px;
-        padding: 20px;
-        box-shadow: none;
-        border-radius: 0;
-        margin-top: -30%; /* Pulls the services list up into the bottom part of the slideshow */
-        position: relative;
-        z-index: 1;    }
-
-    .services-list ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        columns: 2; /* Add this to create two columns */
-        column-gap: 20px; /* Adjust the gap between columns */
-    }
-
-    .services-list li {
-        font-size: 16px;
-        color: #fff;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-
-    /* Services Slideshow */
-    .services-slideshow {
-        order: 1;
-        width: 100%;
-        height: 60%;
-        padding: 0;
-    }
-
-    .slideshow-container {
-        width: 100%;
-        height: 60%;
-        overflow: hidden;
-        border-radius: 10px; /* Add rounded corners */
-        position: relative;
-    }
-
-    .mySlides img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensure the image covers the area without stretching */
-        border-radius: 10px; /* Add rounded corners */
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin-left: 0;
-        transform: none;
-    }
-
-
-    .slideshow-container {
-        width: 100%;
-        margin: 0;
-    }
+@media (max-width: 1024px) {
 
     /* Hide dots on mobile */
-    .dot-container {
-        display: none;
-    }
-
+    .dot-container,
     .arrow-container {
         display: none;
     }
-}
-
-@media (max-width: 1024px) {
 
     .services-section {
         width: 90%;
-        background: rgba(0, 0, 0, .5);
-        backdrop-filter: blur(10px);
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
         padding: 10px;
-        margin: 20px auto;
-        display: flex;
         flex-direction: column;
-        align-items: center;
     }
 
     .services-wrapper {
@@ -244,13 +127,10 @@
         display: flex;
         align-items: center;
         justify-content: center; /* Center horizontally */
-        position: absolute;
         top: -10%; /* Adjust this value to move the title up or down */
         left: 50%;
         transform: translateX(-50%); /* Center horizontally */
         font-size: 20px;
-        color: #fff;
-        margin: 0;
     }
 
     /* Services Title */
@@ -287,7 +167,6 @@
     .services-list li {
         font-size: 16px;
         color: #fff;
-        margin-bottom: 10px;
         text-align: center;
     }
 
@@ -302,16 +181,10 @@
     .slideshow-container {
         width: 100%;
         height: 50%;
-        overflow: hidden;
         border-radius: 10px; /* Add rounded corners */
-        position: relative;
     }
 
     .mySlides img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensure the image covers the area without stretching */
-        border-radius: 10px; /* Add rounded corners */
         position: absolute;
         top: 0;
         left: 0;
@@ -325,13 +198,12 @@
         margin: 0;
     }
 
-    /* Hide dots on mobile */
-    .dot-container {
-        display: none;
-    }
+}
 
-    .arrow-container {
-        display: none;
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .slideshow-container {
+        height: 60%;
+        border-radius: 10px; /* Add rounded corners */
     }
-
 }

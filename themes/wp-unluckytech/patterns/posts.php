@@ -11,7 +11,7 @@
 <div class="posts-wrapper">
     <div class="posts-inner-container">
         <div class="posts-title">PROJECTS</div>
-        <hr class="posts-divider">
+        <hr class="posts-top-divider">
         <div class="posts-container">
             <?php
             // Query to get four posts
@@ -54,7 +54,7 @@
             endif;
             ?>
         </div>
-        <hr class="posts-divider">
+        <hr class="posts-bottom-divider">
         <!-- More Button -->
         <div class="more-button-container">
             <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" class="more-button">MORE PROJECTS</a>

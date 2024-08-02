@@ -39,11 +39,9 @@ function wp_unluckytech_scripts() {
     // Enqueue styles
     $styles = array(
         'wp-unluckytech-style' => get_stylesheet_uri(),
-        'wp-unluckytech-main' => get_template_directory_uri() . '/assets/css/main.css',
         'wp-unluckytech-home-posts' => get_template_directory_uri() . '/assets/css/home/posts.css',
         'wp-unluckytech-home-services' => get_template_directory_uri() . '/assets/css/home/services.css',
         'wp-unluckytech-home-welcome' => get_template_directory_uri() . '/assets/css/home/welcome.css',
-        'wp-unluckytech-footer' => get_template_directory_uri() . '/assets/css/footer.css',
         'wp-unluckytech-toggle' => get_template_directory_uri() . '/assets/css/toggle.css',
         'wp-unluckytech-about' => get_template_directory_uri() . '/assets/css/extras/about.css',
         'wp-unluckytech-post' => get_template_directory_uri() . '/assets/css/extras/single.css',
