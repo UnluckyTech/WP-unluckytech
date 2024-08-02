@@ -136,10 +136,8 @@ body {
 @media (max-width: 768px) {
 
     body::after {
-        content: '';
-        display: block;
-        min-height: 650px;
-        margin-bottom: 100px;
+        position: relative;
+        padding-bottom: 280px;
         /* Set same as footer's height */
       }
 
