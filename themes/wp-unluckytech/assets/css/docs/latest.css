@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.unluckytech-slideshow-container {
+    position: relative;
+    margin: auto;
+    width: 100%; /* Adjust the width to create gaps on the sides */
+    max-width: 1200px;
+    height: 100%; /* Full height */
+    max-height: 554.553px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #000; /* Optional: Add a background color to emphasize the gaps */
+    border-top-left-radius: 10px; /* Rounded top left corner */
+    border-top-right-radius: 10px; /* Rounded top right corner */
+}
+
+.unluckytech-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.unluckytech-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.unluckytech-dots-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.unluckytech-dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.unluckytech-dot.active, .unluckytech-dot:hover {
+    background-color: #717171;
+}

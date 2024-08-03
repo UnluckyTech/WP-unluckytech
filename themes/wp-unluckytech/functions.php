@@ -47,6 +47,9 @@ function wp_unluckytech_scripts() {
         'wp-unluckytech-post' => get_template_directory_uri() . '/assets/css/extras/single.css',
         'wp-unluckytech-blog' => get_template_directory_uri() . '/assets/css/extras/blog.css',
         'wp-unluckytech-search' => get_template_directory_uri() . '/assets/css/extras/search.css',
+        'wp-unluckytech-alternative' => get_template_directory_uri() . '/assets/css/docs/alternative.css',
+        'wp-unluckytech-latest' => get_template_directory_uri() . '/assets/css/docs/latest.css',
+        'wp-unluckytech-categories' => get_template_directory_uri() . '/assets/css/docs/categories.css',
     );
 
     foreach ($styles as $handle => $src) {
@@ -57,6 +60,7 @@ function wp_unluckytech_scripts() {
     $scripts = array(
         'wp-unluckytech-script' => get_template_directory_uri() . '/assets/js/custom.js',
         'slideshow-js' => get_template_directory_uri() . '/assets/js/slideshow.js',
+        'slideshow-js' => get_template_directory_uri() . '/assets/js/docslides.js',
     );
 
     foreach ($scripts as $handle => $src) {

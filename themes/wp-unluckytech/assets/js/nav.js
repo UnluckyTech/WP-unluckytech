@@ -25,14 +25,23 @@ document.addEventListener('DOMContentLoaded', () => {
     sunIcon.style.display = savedTheme === 'dark' ? 'none' : 'inline';
     moonIcon.style.display = savedTheme === 'dark' ? 'inline' : 'none';
 
-    // Add event listener for hamburger menu click
-    const hamMenu = document.querySelector(".ham-menu");
-    const offScreenMenu = document.querySelector(".off-screen-menu");
+    const hamMenu = document.querySelector('.ham-menu');
+    const offScreenMenu = document.querySelector('.off-screen-menu');
+    const overlay = document.createElement('div');
+    overlay.classList.add('overlay');
+    document.body.appendChild(overlay);
 
     if (hamMenu && offScreenMenu) {
-        hamMenu.addEventListener("click", () => {
-            hamMenu.classList.toggle("active");
-            offScreenMenu.classList.toggle("active");
+        hamMenu.addEventListener('click', () => {
+            hamMenu.classList.toggle('active');
+            offScreenMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            hamMenu.classList.remove('active');
+            offScreenMenu.classList.remove('active');
+            overlay.classList.remove('active');
         });
     }
 
@@ -46,18 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const query = encodeURIComponent(searchInput.value.trim()); // Get the search query and encode it
             const searchURL = `/?s=${query}`; // Build the search URL
             window.location.href = searchURL; // Redirect to the search results page
-        });
-    }
-
-    // Toggle advanced options
-    const toggleAdvancedButton = document.getElementById('toggleAdvanced');
-    const advancedOptions = document.getElementById('advancedOptions');
-
-    if (toggleAdvancedButton && advancedOptions) {
-        toggleAdvancedButton.addEventListener('click', () => {
-            const isVisible = advancedOptions.style.display === 'block';
-            advancedOptions.style.display = isVisible ? 'none' : 'block';
-            toggleAdvancedButton.textContent = isVisible ? 'Advanced Options' : 'Hide Advanced Options';
         });
     }
 

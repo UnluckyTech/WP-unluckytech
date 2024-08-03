@@ -111,7 +111,7 @@
 
 .search-bar {
     display: none;
-    background: rgba(0, 0, 0, 0.8);
+    background: #151618;
     padding: 20px;
     border-radius: 8px;
     position: absolute;
@@ -257,6 +257,9 @@ body[data-theme="light"] {
 
 /* Mobile styles */
 @media (max-width: 768px) {
+    .off-screen-container {
+        width: 90%;
+    }
 
     /* Navigation Wrapper */
     .navigation-wrapper {
@@ -264,6 +267,7 @@ body[data-theme="light"] {
         top: 0;
         left: 0;
         z-index: 1000; /* Ensure it is on top of other content */
+        background: #1d1e20;
     }
 
     /* Ensure the navigation is not obscured by other content */
@@ -355,7 +359,6 @@ body[data-theme="light"] {
     /* Off-Screen Menu */
     .off-screen-menu {
         background-color: #131313;
-        height: 33vh; /* Set height */
         width: 100%;
         max-width: 450px;
         position: fixed;
@@ -379,8 +382,6 @@ body[data-theme="light"] {
         pointer-events: auto; /* Allow interactions */
         top: 60px; /* Position it under the header */
     }
-
-
 
     .off-screen-menu li {
         margin: 10px 0; /* Space between menu items */
@@ -407,8 +408,9 @@ body[data-theme="light"] {
     .mobile-divider {
         height: 1px;
         background: #444;
-        margin: 5px 0;
+        margin: 6px 0;
         display: none; /* Initially hide the divider */
+        width: 112%;
     }
 
     /* Off-Screen Search Bar */
@@ -422,6 +424,7 @@ body[data-theme="light"] {
 
     /* Ensure the form is a flex container for alignment */
     .off-screen-search-bar form {
+        margin-top: auto;
         display: flex; /* Flexbox for alignment */
         width: 100%; /* Full width */
     }
@@ -439,22 +442,32 @@ body[data-theme="light"] {
 
     /* Button styling */
     .off-screen-search-bar button[type="submit"] {
-        background-color: var(--background-color); /* Match theme */
-        color: var(--text-color); /* Match theme */
-        border: none; /* Remove border */
-        padding: 10px; /* Padding inside the button */
-        border-radius: 4px; /* Rounded corners */
-        cursor: pointer; /* Pointer cursor on hover */
-        margin-left: 10px; /* Space between input and button */
-        font-size: 16px; /* Font size */
+        display: none;
     }
 
     /* Button hover effect */
     .off-screen-search-bar button[type="submit"]:hover {
         background-color: #555; /* Darken on hover */
     }
+    
     .advanced-toggle {
         display: none;
+    }
+
+    /* Overlay that covers the whole screen */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    }
+
+    /* Show the overlay when the menu is active */
+    .overlay.active {
+        display: block;
     }
 }
 

@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wp-block-cover__inner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.unluckytech-alternative-container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+.unluckytech-alternative-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+.unluckytech-alternative-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.unluckytech-alternative-text {
+    flex: 2;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.unluckytech-alternative-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.unluckytech-alternative-description {
+    font-size: 16px;
+}
+
+.unluckytech-alternative-description a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.unluckytech-alternative-description a:hover {
+    text-decoration: underline;
+}
