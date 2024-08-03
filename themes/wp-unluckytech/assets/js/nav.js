@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sunIcon.style.display = savedTheme === 'dark' ? 'none' : 'inline';
     moonIcon.style.display = savedTheme === 'dark' ? 'inline' : 'none';
 
+    // Initialize hamburger menu and overlay
     const hamMenu = document.querySelector('.ham-menu');
     const offScreenMenu = document.querySelector('.off-screen-menu');
     const overlay = document.createElement('div');
@@ -112,7 +113,20 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to toggle the search bar
 function toggleSearchBar() {
     const searchBar = document.getElementById("searchBar");
-    searchBar.style.display = searchBar.style.display === "block" ? "none" : "block";
+    const overlay = document.querySelector('.overlay');
+
+    if (searchBar.style.display === "block") {
+        searchBar.style.display = "none";
+        overlay.classList.remove('active');
+    } else {
+        searchBar.style.display = "block";
+        overlay.classList.add('active');
+    }
+
+    overlay.addEventListener('click', () => {
+        searchBar.style.display = "none";
+        overlay.classList.remove('active');
+    });
 }
 
 // Global error handling

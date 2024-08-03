@@ -3,31 +3,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.wp-block-cover {
-    display: flex;
-    position: relative;
-    margin: auto;
-    width: 100%; /* Adjust the width to create gaps on the sides */
-    max-width: 1200px;
-    height: 100%; /* Full height */
-    max-height: 554.553px;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
 
-.wp-block-cover__inner-container {
-    display: flex;
-    position: relative;
-    margin: auto;
-    width: 100%; /* Adjust the width to create gaps on the sides */
-    max-width: 1200px;
-    height: 100%; /* Full height */
-    max-height: 554.553px;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
 
 .unluckytech-categories-container {
     display: flex;
