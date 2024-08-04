@@ -1,9 +1,9 @@
 <?php
 /**
- * Title: Blog
- * Slug: unluckytech/blog
- * Categories: text, featured
- * Description: This would be used for the blog of the website.
+ * Title: Categories
+ * Slug: unluckytech/cat
+ * Categories: text
+ * Description: Displays list of posts for a specific category.
  */
 ?>
 
@@ -13,10 +13,11 @@
             <div class="blog-overlay"></div>
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bg1.png" alt="Blog Header Image">
             <div class="blog-title">
-                <h1>All Projects</h1>
+                <h1><?php single_cat_title(); ?></h1>
             </div>
         </div>
         <div class="blog-top">
+
             <!-- Sort Form -->
             <form method="get" class="sort-form" action="">
                 <select name="sort" id="sort-by">
@@ -56,22 +57,18 @@
         // Set up the custom query to limit posts per page and handle sorting
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
         $sort = isset($_GET['sort']) ? $_GET['sort'] : 'date_desc';
-        $category = isset($_GET['category']) ? $_GET['category'] : '';
-        $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
+        $category = single_cat_title('', false);
         $posts_per_page = isset($_GET['posts_per_page']) && $_GET['posts_per_page'] != 'all' ? intval($_GET['posts_per_page']) : 5; // Default to 5 posts per page
 
         // Preserve other query parameters
         $query_args = array(
             'posts_per_page' => $posts_per_page,
             'paged' => $paged,
+            'category_name' => $category,
         );
 
-        if ($category != '' && $category != 'all') {
-            $query_args['category_name'] = $category;
-        }
-
-        if ($tag != '' && $tag != 'all') {
-            $query_args['tag'] = $tag;
+        if (isset($_GET['tag']) && $_GET['tag'] != 'all') {
+            $query_args['tag'] = $_GET['tag'];
         }
 
         switch ($sort) {
@@ -129,9 +126,9 @@
                             <div class="meta-inner-container">
                                 <div class="blog-post-category">
                                     <?php
-                                    $category = get_the_category();
-                                    if (!empty($category)) {
-                                        echo esc_html($category[0]->name);
+                                    $categories = get_the_category();
+                                    if (!empty($categories)) {
+                                        echo esc_html($categories[0]->name);
                                     }
                                     ?>
                                 </div>
@@ -162,17 +159,12 @@
                 <div class="pagination">
                     <?php
                     // Pagination
-                    if ($posts_per_page == -1) {
-                        // Show "All" button
-                        echo '<span class="pagination-all-button">All</span>';
-                    } else {
-                        echo paginate_links(array(
-                            'total' => $custom_query->max_num_pages,
-                            'current' => $paged,
-                            'prev_text' => __('Previous', 'textdomain'),
-                            'next_text' => __('Next', 'textdomain'),
-                        ));
-                    }
+                    echo paginate_links(array(
+                        'total' => $custom_query->max_num_pages,
+                        'current' => $paged,
+                        'prev_text' => __('« Previous', 'textdomain'),
+                        'next_text' => __('Next »', 'textdomain'),
+                    ));
                     ?>
                 </div>
                 <!-- Posts Per Page Dropdown -->
@@ -190,7 +182,7 @@
                 </div>
             </div> <!-- End of pagination-container -->
         <?php else : ?>
-            <p><?php _e('No posts found.', 'textdomain'); ?></p>
+            <p><?php _e('No posts found for this category.', 'textdomain'); ?></p>
         <?php endif; ?>
         <?php
         // Reset post data

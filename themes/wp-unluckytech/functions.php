@@ -43,13 +43,15 @@ function wp_unluckytech_scripts() {
         'wp-unluckytech-home-services' => get_template_directory_uri() . '/assets/css/home/services.css',
         'wp-unluckytech-home-welcome' => get_template_directory_uri() . '/assets/css/home/welcome.css',
         'wp-unluckytech-toggle' => get_template_directory_uri() . '/assets/css/toggle.css',
-        'wp-unluckytech-about' => get_template_directory_uri() . '/assets/css/extras/about.css',
         'wp-unluckytech-post' => get_template_directory_uri() . '/assets/css/extras/single.css',
         'wp-unluckytech-blog' => get_template_directory_uri() . '/assets/css/extras/blog.css',
         'wp-unluckytech-search' => get_template_directory_uri() . '/assets/css/extras/search.css',
-        'wp-unluckytech-alternative' => get_template_directory_uri() . '/assets/css/docs/alternative.css',
+        'wp-unluckytech-videos' => get_template_directory_uri() . '/assets/css/docs/videos.css',
         'wp-unluckytech-latest' => get_template_directory_uri() . '/assets/css/docs/latest.css',
         'wp-unluckytech-categories' => get_template_directory_uri() . '/assets/css/docs/categories.css',
+        'wp-unluckytech-about' => get_template_directory_uri() . '/assets/css/about/about.css',
+        'wp-unluckytech-intro' => get_template_directory_uri() . '/assets/css/about/intro.css',
+        'wp-unluckytech-404' => get_template_directory_uri() . '/assets/css/extras/404.css',
     );
 
     foreach ($styles as $handle => $src) {
@@ -124,7 +126,7 @@ function get_categories_ajax() {
 
     foreach ($categories as $category) {
         $result[] = array(
-            'id' => $category->term_id,
+            'id' => $category->slug, // Use the slug as value
             'name' => $category->name,
         );
     }
@@ -141,7 +143,7 @@ function get_tags_ajax() {
 
     foreach ($tags as $tag) {
         $result[] = array(
-            'id' => $tag->term_id,
+            'id' => $tag->slug, // Use the slug as value
             'name' => $tag->name,
         );
     }

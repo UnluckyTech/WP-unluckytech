@@ -9,22 +9,26 @@
 
 <div class="blog-wrapper">
     <div class="blog-inner-container">
-        <div class="blog-top">
+        <div class="blog-header">
+            <div class="blog-overlay"></div>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bg1.png" alt="Blog Header Image">
             <div class="blog-title">
                 <h1><?php single_tag_title(); ?></h1>
             </div>
-            <!-- Sort and Filter Form -->
+        </div>
+        <div class="blog-top">
+
+            <!-- Sort Form -->
             <form method="get" class="sort-form" action="">
-                <label for="sort-by">Sort by:</label>
-                <select name="sort" id="sort-by" onchange="this.form.submit()">
+                <select name="sort" id="sort-by">
                     <option value="date_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_desc') ? 'selected' : ''; ?>>Date: descending</option>
                     <option value="date_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_asc') ? 'selected' : ''; ?>>Date: ascending</option>
                     <option value="title_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_asc') ? 'selected' : ''; ?>>Title: ascending</option>
                     <option value="title_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_desc') ? 'selected' : ''; ?>>Title: descending</option>
                 </select>
 
-                <label for="category"> </label>
-                <select name="category" id="category" onchange="this.form.submit()">
+                <label for="category" class="sr-only">Category</label>
+                <select name="category" id="category">
                     <option value="all"><?php _e('All Categories', 'textdomain'); ?></option>
                     <?php
                     $categories = get_categories();
@@ -34,8 +38,8 @@
                     ?>
                 </select>
 
-                <label for="tag"> </label>
-                <select name="tag" id="tag" onchange="this.form.submit()">
+                <label for="tag" class="sr-only">Tag</label>
+                <select name="tag" id="tag">
                     <option value="all"><?php _e('All Tags', 'textdomain'); ?></option>
                     <?php
                     $tags = get_tags();
@@ -44,6 +48,8 @@
                     }
                     ?>
                 </select>
+
+                <button type="submit" class="apply-button">Apply</button>
             </form>
         </div>
         <div class="blog-divider"></div>

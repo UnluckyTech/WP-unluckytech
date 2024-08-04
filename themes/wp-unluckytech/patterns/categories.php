@@ -17,19 +17,37 @@
 </head>
 <body>
 
-<!-- wp:cover {"url":"<?php echo esc_url( get_theme_file_uri( 'assets/images/bg1.png' ) ); ?>","id":3838,"dimRatio":50,"overlayColor":"contrast","align":"full"} -->
-<div class="wp-block-cover alignfull">
-    <span aria-hidden="true" class="has-contrast-background-color has-background-dim"></span>
-    <img class="wp-block-cover__image-background" alt="" src="<?php echo esc_url( get_theme_file_uri( 'assets/images/bg1.png' ) ); ?>" data-object-fit="cover"/>
-    <div class="wp-block-cover__inner-container">
-        <div class="unluckytech-categories-container">
-            <a href="<?php echo get_category_link(get_category_by_slug('projects')->term_id); ?>" class="unluckytech-category-button">Projects</a>
-            <a href="<?php echo get_category_link(get_category_by_slug('guides')->term_id); ?>" class="unluckytech-category-button">Guides</a>
-            <a href="<?php echo get_category_link(get_category_by_slug('reference')->term_id); ?>" class="unluckytech-category-button">Reference</a>
-        </div>
+<div class="categories-container">
+    <div class="categories-section">
+        <h2>Categories</h2>
+        <a href="<?php echo get_category_link(get_category_by_slug('projects')->term_id); ?>" class="category-item" style="background-image: url('<?php echo esc_url( get_theme_file_uri( 'assets/images/bg1.png' ) ); ?>');">
+            <div class="cat-overlay"></div>
+            <div class="category-content">Projects</div>
+        </a>
+        <a href="<?php echo get_category_link(get_category_by_slug('guides')->term_id); ?>" class="category-item" style="background-image: url('<?php echo esc_url( get_theme_file_uri( 'assets/images/bg1.png' ) ); ?>');">
+            <div class="cat-overlay"></div>
+            <div class="category-content">Guides</div>
+        </a>
+        <a href="<?php echo get_category_link(get_category_by_slug('reference')->term_id); ?>" class="category-item" style="background-image: url('<?php echo esc_url( get_theme_file_uri( 'assets/images/bg1.png' ) ); ?>');">
+            <div class="cat-overlay"></div>
+            <div class="category-content">Reference</div>
+        </a>
+        <a href="https://docs.unluckytech.com" class="mobile-item" style="background-image: url('<?php echo esc_url( get_theme_file_uri( 'assets/images/bg1.png' ) ); ?>');">
+            <div class="cat-overlay"></div>
+            <div class="category-content">Alternative</div>
+        </a>
+    </div>
+    <div class="alternative-section">
+        <h2>Alternative</h2>
+        <a href="https://docs.unluckytech.com" class="alt-item" style="background-image: url('<?php echo esc_url( get_theme_file_uri( 'assets/images/bg1.png' ) ); ?>');">
+            <div class="cat-overlay"></div>
+            <div class="alt-inner">
+                <div class="alt-content">Documentation</div>
+                <p class="alt-description">Check here if you can't find what you are looking for!</p>
+            </div>
+        </a>
     </div>
 </div>
-<!-- /wp:cover -->
 
 </body>
 </html>

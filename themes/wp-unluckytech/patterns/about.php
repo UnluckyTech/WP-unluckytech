@@ -8,9 +8,6 @@
 ?>
 
 <div class="about-container">
-    <div class="about-banner-wrapper">
-        <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/bg1.png' ) ); ?>" alt="Banner" class="about-banner">
-    </div>
     <div class="about-content">
         <div class="about-text">
         <h2>About Me</h2>

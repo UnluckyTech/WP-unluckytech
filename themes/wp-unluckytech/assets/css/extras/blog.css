@@ -1,5 +1,56 @@
 /* BLOG.CSS SECTION */
 
+.blog-header {
+    position: relative;
+    width: 100%;
+    height: 143px; /* Adjust height as needed */
+    overflow: hidden;
+}
+
+.blog-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-overlay {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    backdrop-filter: blur(4px); /* Add blur effect */
+    -webkit-backdrop-filter: blur(4px); /* Add blur effect for Safari */
+}
+
+.blog-title h1{
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px; /* Adjust size as needed */
+    text-transform: uppercase; /* Optional: transform text to uppercase */
+    letter-spacing: 2px; /* Optional: add letter spacing */
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+    z-index: 10; /* Ensure it is above the overlay */
+}
+
+.blog-top {
+    background: #2f3033;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;    /* Center items vertically */
+    justify-content: flex-start; /* Align items horizontally as needed */
+}
+
+.blog-content .empty-section {
+    height: 50px; /* Adjust height as needed */
+}
+
 /* Blog Wrapper */
 .blog-wrapper {
     margin: 20px 0;
@@ -15,23 +66,6 @@
     max-width: 1200px;
 }
 
-/* Blog Title */
-.blog-title {
-    color: #fff !important; /* White text */
-    text-align: left;
-    margin: 20px 0;
-    width: 180px;
-    position: relative;
-    top: 58px;
-}
-
-.blog-title h1 {
-    font-size: 24px;
-    font-weight: 700;
-    margin: 0;
-    color: #fff;
-    font-family: Arial, sans-serif;
-}
 
 /* Blog Dividers */
 .blog-divider,
@@ -65,8 +99,9 @@
 .sort-form {
     display: flex;
     margin-left: auto;
-    margin-bottom: 10px;
-    width: 470px;
+    width: 520px;
+    align-items: right;
+    gap: 20px;
 }
 
 .sort-form label,

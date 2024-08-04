@@ -4,7 +4,9 @@
     max-width: 1200px;
     padding: 20px;
     gap: 20px; /* Space between the left and right sides */
+    margin: 0 auto; /* Center horizontally */
 }
+
 
 .main-post-content {
     flex: 2; /* Takes up more space on the left */

@@ -5,20 +5,10 @@
     max-width: 1200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-}
+    margin-top: 40px;
+    border-radius: 8px;
+    align-items: center;
 
-.about-banner-wrapper {
-    width: 100%;
-    height: 400px; /* Adjust the height as needed */
-    position: relative;
-    overflow: hidden;
-}
-
-.about-banner {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
 }
 
 .about-content {

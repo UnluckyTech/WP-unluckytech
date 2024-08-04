@@ -15,23 +15,6 @@
     max-width: 1200px;
 }
 
-/* Search Title */
-.search-title {
-    text-align: left;
-    margin: 20px 0;
-    width: 700px ;
-    position: relative;
-    top: 58px;
-}
-
-.search-title h1 {
-    color: #fff ;
-    font-size: 24px;
-    font-weight: 700;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
 /* Search Divider */
 .search-divider {
     width: 100%;

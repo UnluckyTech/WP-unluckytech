@@ -55,22 +55,25 @@ if (isset($_GET['s'])) {
     ?>
     <div class="search-wrapper">
         <div class="search-inner-container">
-            <div class="search-top">
-                <div class="search-title">
+            <div class="blog-header">
+                <div class="blog-overlay"></div>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bg1.png" alt="Blog Header Image">
+                <div class="blog-title">
                     <h1>Search Results for: <?php echo esc_html($search_query); ?></h1>
                 </div>
+            </div>
+            <div class="blog-top">
                 <!-- Sort Form -->
                 <form method="get" class="sort-form" action="">
-                    <input type="hidden" name="s" value="<?php echo esc_attr($search_query); ?>">
-                    <label for="sort-by">Sort by:</label>
-                    <select name="sort" id="sort-by" onchange="this.form.submit()">
-                        <option value="date" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date' ? 'selected' : ''); ?>>Date</option>
-                        <option value="title" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title' ? 'selected' : ''); ?>>Title</option>
-                        <option value="popularity" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'popularity' ? 'selected' : ''); ?>>Popularity</option>
+                    <select name="sort" id="sort-by">
+                        <option value="date_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_desc') ? 'selected' : ''; ?>>Date: descending</option>
+                        <option value="date_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_asc') ? 'selected' : ''; ?>>Date: ascending</option>
+                        <option value="title_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_asc') ? 'selected' : ''; ?>>Title: ascending</option>
+                        <option value="title_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_desc') ? 'selected' : ''; ?>>Title: descending</option>
                     </select>
 
-                    <label for="category"> </label>
-                    <select name="category" id="category" onchange="this.form.submit()">
+                    <label for="category" class="sr-only">Category</label>
+                    <select name="category" id="category">
                         <option value="all"><?php _e('All Categories', 'textdomain'); ?></option>
                         <?php
                         $categories = get_categories();
@@ -80,8 +83,8 @@ if (isset($_GET['s'])) {
                         ?>
                     </select>
 
-                    <label for="tag"> </label>
-                    <select name="tag" id="tag" onchange="this.form.submit()">
+                    <label for="tag" class="sr-only">Tag</label>
+                    <select name="tag" id="tag">
                         <option value="all"><?php _e('All Tags', 'textdomain'); ?></option>
                         <?php
                         $tags = get_tags();
@@ -90,6 +93,8 @@ if (isset($_GET['s'])) {
                         }
                         ?>
                     </select>
+
+                    <button type="submit" class="apply-button">Apply</button>
                 </form>
             </div>
             <div class="search-divider"></div>

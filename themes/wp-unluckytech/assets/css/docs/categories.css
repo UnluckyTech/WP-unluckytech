@@ -1,33 +1,181 @@
 body {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    background-color: #0f0f0f;
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
 }
 
+.mobile-item {
+    display: none;
+}
 
+.categories-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the container within its parent */
+}
 
-.unluckytech-categories-container {
+.categories-section, .alternative-section {
+    width: 48%;
+}
+
+.categories-section h2, .alternative-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 0 20px;
+    font-weight: 700;
+    font-size: 1.5em;
+    color: #fff;
+    text-transform: uppercase; /* Optional: transform text to uppercase */
+    border-bottom: 2px solid #fff;
+    padding-bottom: 10px;
+}
+
+.category-item {
+    position: relative; /* To position the overlay correctly */
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    margin-bottom: 10px;
+    height: 80px; /* Adjust the height as needed */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    height: 100vh;
-}
-
-.unluckytech-category-button {
-    display: inline-block;
-    padding: 20px 40px;
-    font-size: 60px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #333;
-    border: none;
-    border-radius: 10px;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s, transform 0.3s;
+    color: #fff;
+    overflow: hidden;
+    transition: transform 0.3s;
 }
 
-.unluckytech-category-button:hover {
-    background-color: #555;
+.category-item:hover {
     transform: scale(1.05);
+}
+
+.cat-overlay {
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120%;
+    height: 120%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px); /* Add blur effect */
+    -webkit-backdrop-filter: blur(4px); /* Add blur effect for Safari */
+}
+
+.category-content {
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px; /* Adjust size as needed */
+    text-transform: uppercase; /* Optional: transform text to uppercase */
+    z-index: 1;
+}
+
+.alternative-section {
+    height: 70%;
+}
+
+.alternative-section a {
+    display: block;
+    background-size: cover;
+    background-position: center;
+    height: 240px;
+    text-align: center;
+    padding-top: 140px;
+    font-size: 1.2em;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.alternative-section a:hover {
+    transform: scale(1.05);
+}
+
+.alt-inner {
+    position: relative;
+    flex-direction: column; /* Stack inner elements vertically */
+    z-index: 2; /* Ensure alt-inner content is above the overlay */
+    align-items: center;
+    justify-content: center;
+}
+
+.alt-content {
+    width: 60%; /* Adjust the width as needed */
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px; /* Adjust size as needed */
+    text-transform: uppercase; /* Optional: transform text to uppercase */
+    border-bottom: 2px solid #fff;
+    margin: 10px auto 0; /* Center the divider horizontally and add top margin */
+    z-index: 1;
+}
+
+.alt-description {
+    font-size: 1em;
+    color: #ddd;
+    text-align: center;
+    padding: 5px;
+    margin-top: 10px; /* Optional: add space above the description */
+}
+
+.alt-item {
+    position: relative; /* To position the overlay correctly */
+    background-size: cover;
+    background-position: center;
+
+    height: 70px; /* Adjust the height as needed */
+    display: flex; /* Enable flexbox for alt-item */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.alt-item:hover {
+    transform: scale(1.05);
+}
+
+
+
+@media (max-width: 767.98px) {
+
+    .alternative-section {
+        display: none;
+    }
+
+    .categories-section {
+        width: 100%;
+    }
+
+    .mobile-item {
+        position: relative; /* To position the overlay correctly */
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        margin-bottom: 10px;
+        height: 80px; /* Adjust the height as needed */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+
 }

@@ -19,18 +19,22 @@
 
 <div class="unluckytech-slideshow-container">
     <?php
-    // Fetch the latest posts
+    // Fetch the latest posts excluding the 'Videos' category
     $latest_posts = new WP_Query(array(
         'posts_per_page' => 3,
         'post_status' => 'publish',
+        'category__not_in' => array(get_cat_ID('Videos')), // Exclude 'Videos' category
     ));
 
     if ($latest_posts->have_posts()) :
         while ($latest_posts->have_posts()) : $latest_posts->the_post();
             $featured_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+            $post_title = get_the_title(); // Get the post title
     ?>
             <div class="unluckytech-slide">
-                <img src="<?php echo esc_url($featured_image_url); ?>" alt="<?php the_title(); ?>">
+                <img src="<?php echo esc_url($featured_image_url); ?>" alt="<?php echo esc_attr($post_title); ?>">
+                <div class="unluckytech-overlay"></div> <!-- Overlay -->
+                <div class="unluckytech-title"><?php echo esc_html($post_title); ?></div> <!-- Title -->
             </div>
     <?php
         endwhile;

@@ -14,10 +14,14 @@
         <hr class="posts-top-divider">
         <div class="posts-container">
             <?php
-            // Query to get four posts
+            // Get the ID of the "Videos" category
+            $video_category_id = get_cat_ID('Videos');
+
+            // Query to get four posts excluding the "Videos" category
             $args = array(
                 'post_type'      => 'post',
                 'posts_per_page' => 4,
+                'category__not_in' => array($video_category_id),
             );
             $query = new WP_Query( $args );
 
