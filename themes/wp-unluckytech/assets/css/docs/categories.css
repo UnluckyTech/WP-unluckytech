@@ -133,7 +133,6 @@ body {
     position: relative; /* To position the overlay correctly */
     background-size: cover;
     background-position: center;
-
     height: 70px; /* Adjust the height as needed */
     display: flex; /* Enable flexbox for alt-item */
     justify-content: center; /* Center content horizontally */
@@ -149,7 +148,58 @@ body {
     transform: scale(1.05);
 }
 
+@media (max-width: 1024px) {
 
+    .alternative-section a {
+        font-size: 1em;
+    }
+
+    .alt-content {
+        width: 100%; /* Adjust the width as needed */
+        position: relative;
+        font-family: 'Montserrat', sans-serif;
+        color: #fff;
+        font-weight: 700;
+        font-size: 32px; /* Adjust size as needed */
+        text-transform: uppercase; /* Optional: transform text to uppercase */
+        border-bottom: 0;
+        margin: 10px auto 0; /* Center the divider horizontally and add top margin */
+        z-index: 1;
+    }
+
+    .alt-content::after {
+        content: ""; /* Required for pseudo-elements */
+        display: block; /* Makes it a block-level element */
+        width: 80%; /* Adjust width as needed */
+        height: 2px; /* Height of the border */
+        background-color: #fff; /* Border color */
+        margin: 10px auto 0; /* Center it under the text */
+    }
+    
+    .alt-description {
+        font-size: 1em;
+        color: #ddd;
+        text-align: center;
+        padding: 5px;
+        margin-top: 10px; /* Optional: add space above the description */
+    }
+    
+    .alt-item {
+        position: relative; /* To position the overlay correctly */
+        background-size: cover;
+        background-position: center;
+        height: 70px; /* Adjust the height as needed */
+        display: flex; /* Enable flexbox for alt-item */
+        justify-content: center; /* Center content horizontally */
+        align-items: center; /* Center content vertically */
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+
+}
 
 @media (max-width: 767.98px) {
 

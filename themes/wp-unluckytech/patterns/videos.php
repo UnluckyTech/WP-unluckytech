@@ -65,7 +65,9 @@ $video_posts = new WP_Query($args);
             <span class="dot <?php echo $i === 0 ? 'active' : ''; ?>" onclick="currentSlide(<?php echo $i; ?>)"></span>
         <?php endfor; ?>
     </div>
-    <a href="<?php echo get_category_link(get_category_by_slug('video')->term_id); ?>" class="more-videos">More</a>
+    <div class="more-videos-container">
+        <a href="<?php echo get_category_link(get_category_by_slug('video')->term_id); ?>" class="more-videos">More</a>
+    </div>
 </div>
 
 <!-- Include the JavaScript file -->

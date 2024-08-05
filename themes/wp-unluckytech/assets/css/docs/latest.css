@@ -27,6 +27,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    z-index: -1;
 }
 
 .unluckytech-overlay {
@@ -37,7 +38,7 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.6); /* Dark overlay */
     backdrop-filter: blur(4px); /* Optional: blur effect */
-    z-index: 1; /* Ensure overlay is above the image */
+    z-index: 0; /* Ensure overlay is above the image */
 }
 
 .unluckytech-title {
@@ -49,7 +50,7 @@ body {
     font-weight: 700;
     font-size: 3em; /* Adjust font size as needed */
     text-align: center;
-    z-index: 2; /* Ensure title is above the overlay */
+    z-index: 0; /* Ensure title is above the overlay */
 }
 
 .unluckytech-dots-container {
@@ -57,7 +58,7 @@ body {
     bottom: 20px;
     width: 100%;
     text-align: center;
-    z-index: 2;
+    z-index: 0;
 }
 
 .unluckytech-dot {
@@ -73,4 +74,23 @@ body {
 
 .unluckytech-dot.active, .unluckytech-dot:hover {
     background-color: #717171;
+}
+
+
+@media (max-width: 768px) {
+
+    .unluckytech-slide img {
+        width: 100vh;
+        height: 100vh;
+
+    }
+
+    .unluckytech-title {
+        font-size: 2em; /* Adjust font size as needed */
+    }
+
+    .unluckytech-slideshow-container {
+        max-height: 400px;
+    }
+
 }

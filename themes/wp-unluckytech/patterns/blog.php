@@ -13,7 +13,7 @@
             <div class="blog-overlay"></div>
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bg1.png" alt="Blog Header Image">
             <div class="blog-title">
-                <h1>All Projects</h1>
+                <h1>All Posts</h1>
             </div>
         </div>
         <div class="blog-top">
@@ -51,7 +51,7 @@
                 <button type="submit" class="apply-button">Apply</button>
             </form>
         </div>
-        <div class="blog-divider"></div>
+
         <?php
         // Set up the custom query to limit posts per page and handle sorting
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -157,7 +157,6 @@
                 endwhile;
                 ?>
             </div><!-- .blog-posts -->
-            <div class="blog-divider"></div>
             <div class="pagination-container"> <!-- New container for pagination and posts per page -->
                 <div class="pagination">
                     <?php

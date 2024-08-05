@@ -35,7 +35,10 @@
     position: absolute;
     bottom: 20px; /* Adjust as needed */
     left: 20px; /* Adjust as needed */
+    text-overflow: ellipsis;
+    overflow: hidden;
     z-index: 10; /* Ensure it is above the overlay */
+    width: auto;
 }
 
 .blog-top {
@@ -68,17 +71,8 @@
 
 
 /* Blog Dividers */
-.blog-divider,
 .title-divider,
 .meta-divider {
-    background: #444;
-    margin: 10px auto;
-}
-
-/* Blog Dividers */
-.blog-divider {
-    width: 100%;
-    height: 2px;
     background: #444;
     margin: 10px auto;
 }
@@ -111,9 +105,16 @@
     font-weight: bold;
 }
 
-.sort-form select,
+.sort-form select {
+    padding: 5px 12px;
+}
+
 .posts-per-page-form select {
     padding: 5px 10px;
+}
+
+.sort-form select,
+.posts-per-page-form select {
     border: 1px solid #555;
     background-color: #333;
     color: #d1d1d1;
@@ -313,6 +314,9 @@
 
 /* Pagination Container */
 .pagination-container {
+    background: #2f3033;
+    width: 100%;
+    height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -351,7 +355,7 @@
     display: flex;
     margin-left: auto;
     margin-bottom: 10px;
-    width: 200px;
+    width: 210px;
 }
 
 
@@ -448,6 +452,10 @@
     .blog-title {
         padding-left: 10px;
         top: 15px;
+    }
+
+    .blog-title h1 {
+        font-size: 24px;
     }
 
     /* Blog Post Title Container */

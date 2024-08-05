@@ -10,7 +10,7 @@
 <!-- patterns/posts.php -->
 <div class="posts-wrapper">
     <div class="posts-inner-container">
-        <div class="posts-title">PROJECTS</div>
+        <div class="posts-title">LATEST</div>
         <hr class="posts-top-divider">
         <div class="posts-container">
             <?php
@@ -61,7 +61,7 @@
         <hr class="posts-bottom-divider">
         <!-- More Button -->
         <div class="more-button-container">
-            <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" class="more-button">MORE PROJECTS</a>
+            <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" class="more-button">MORE</a>
         </div>
     </div>
 </div>
