@@ -1,0 +1,221 @@
+/* Education Page Styles */
+.education-container {
+    background: #ffffff;
+    margin: 0 auto;
+    max-width: 1200px;
+    overflow: hidden;
+    margin-top: 40px;
+    border-radius: 8px;
+    padding-top: 100px;
+    align-items: center;
+    background: transparent;
+}
+
+.education-banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    overflow: hidden;
+}
+
+.education-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.education-banner-overlay h1 {
+    color: #ffffff;
+    font-size: 48px;
+    text-align: center;
+    margin: 0;
+}
+
+.education-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px; /* Adjust size as needed */
+    text-transform: uppercase; 
+    margin-bottom: 10px;
+}
+
+.education-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Degree and School Container */
+.education-info {
+    display: flex;
+    gap: 20px;
+}
+
+/* New container for aligning Core Classes and Skills */
+.classes-skills-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Degree Container with Core Classes */
+.education-degree-container {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.education-degree {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.education-degree h2 {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase; 
+    font-family: Arial, sans-serif; /* Match the font family */
+    font-size: 1.5em; /* Adjust the size as needed */
+}
+
+.education-classes, .education-skills {
+    flex: 1; /* Allow each to take up equal space */
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.education-classes h2, .education-skills h2 {
+    margin-bottom: 10px;
+    text-transform: uppercase; 
+    font-weight: bold;
+    text-align: center;
+    font-family: Arial, sans-serif; /* Match the font family */
+    font-size: 20px;
+}
+
+
+.education-classes li, .education-skills li {
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+/* School Info Styles */
+.education-school {
+    flex: 1;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.school-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.school-link, .degree-link {
+    display: block;
+    margin-top: 10px;
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+.school-link:hover, .degree-link:hover {
+    text-decoration: underline;
+}
+
+/* Center the buttons and add space between them */
+.education-buttons-container {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    gap: 20px; /* Add space between the two buttons */
+    margin-top: 20px;
+}
+
+.education-button {
+    background-color: #3a3b40;
+    color: #ffffff;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.education-button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+
+    .education-container {
+        padding: 20px;
+    }
+
+    .education-banner {
+        height: 20vh;
+    }
+
+    .education-banner-overlay h1 {
+        font-size: 40px;
+    }
+
+    .education-info, .classes-skills-container {
+        display: flex;
+        flex-direction: column; /* Stack items vertically on mobile */
+    }
+
+    /* Dropdown Styling */
+    .dropdown-header {
+        background-color: #3a3b40;
+        color: #ffffff;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 1.2em;
+        cursor: pointer;
+        text-align: center;
+        margin-bottom: 10px;
+        transition: background-color 0.3s ease;
+    }
+
+    .dropdown-header:hover {
+        background-color: #2e2f33;
+    }
+
+    .dropdown-content {
+        display: none;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+}
+

@@ -1,0 +1,235 @@
+/* Account Page Styles */
+.account-container {
+    background: #ffffff;
+    margin: 0 auto;
+    max-width: 1200px;
+    overflow: hidden;
+    margin-top: 40px;
+    border-radius: 8px;
+    padding-top: 20px;
+    align-items: center;
+    background: transparent;
+}
+
+.account-banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    overflow: hidden;
+}
+
+.mobile-settings {
+    display: none;
+}
+
+.account-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.account-banner-overlay h1 {
+    color: #ffffff;
+    font-size: 48px;
+    text-align: center;
+    margin: 0;
+}
+
+.account-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px;
+    text-transform: uppercase;
+}
+
+.account-sidebar {
+    flex: 0 0 20%;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.account-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account-sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.account-sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    background: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.account-sidebar ul li a:hover {
+    background-color: #2b2c30;
+    color: #ffffff;
+}
+
+.account-content {
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    background: #ffffff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+}
+
+.account-display {
+    width: 100%;
+    height: 100%;
+}
+
+.account-section {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    flex-grow: 1; /* Allow the section to grow and fill available space */
+    box-sizing: border-box; /* Include padding and borders in element's total width and height */
+}
+
+.account-section h2 {
+    margin-top: 0;
+}
+
+.account-section p {
+    margin-bottom: 20px;
+}
+
+.profile-saved-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #2b2c30;
+    color: #008000;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 16px;
+}
+
+/* Mobile Accordion */
+.account-mobile-container {
+    display: none;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+
+    .mobile-settings {
+        display: flex;
+        justify-content: center; /* Center the button within the parent container */
+    }
+    
+    .mobile-settings button {
+        width: 100%; /* Make the button take up the full width */
+        font-size: 1.2rem; /* Slightly increase the text size */
+        font-weight: bold; /* Make the text bold */
+        text-align: center; /* Center the text inside the button */
+        padding: 10px 20px; /* Add some padding for better spacing */
+        cursor: pointer; /* Change the cursor to pointer when hovering */
+        background-color: #007bff; /* Example button background color */
+        color: white; /* Button text color */
+        border: none; /* Remove default button borders */
+        border-radius: 5px; /* Optional: Add rounded corners */
+    }
+    
+    .mobile-settings button:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+    }
+    
+    .account-container {
+        padding-top: 0;
+        padding: 20px;
+    }
+
+    .account-banner {
+        height: 20vh;
+    }
+
+    .account-banner-overlay h1 {
+        font-size: 40px;
+    }
+
+    .account-content {
+        flex-direction: column;
+    }
+
+    .account-sidebar {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 70%;
+        height: 50%;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        overflow-y: auto;
+        display: none; /* Initially hidden */
+    }
+
+    .account-sidebar.sidebar-active {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        display: block; /* Make it visible when active */
+    }
+
+    .mobile-settings {
+        text-align: right;
+        margin-bottom: 10px;
+    }
+
+    .mobile-settings button {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* Overlay */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+    }
+
+    .overlay.overlay-active {
+        display: block;
+    }
+}

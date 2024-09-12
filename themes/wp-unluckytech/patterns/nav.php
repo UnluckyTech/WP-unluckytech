@@ -57,18 +57,21 @@
     </form>
 </div>
 
-
-
 <script>
 function handleSubmit() {
+    const searchInput = document.getElementById('searchInput').value;
     const category = document.querySelector('input[name="category"]:checked').value;
     const tag = document.querySelector('input[name="tag"]:checked').value;
 
-    // Construct the URL based on the selected category and tag
-    let url = category !== 'all' ? `/category/${category}/` : '/';
+    // Construct the URL based on the search input, category, and tag
+    let url = '/?s=' + encodeURIComponent(searchInput);
+
+    if (category !== 'all') {
+        url += `&category=${category}`;
+    }
 
     if (tag !== 'all') {
-        url += `?tag=${tag}`;
+        url += `&tag=${tag}`;
     }
 
     // Redirect to the constructed URL

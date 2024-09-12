@@ -3,34 +3,86 @@
     background: #ffffff;
     margin: 0 auto;
     max-width: 1200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     margin-top: 40px;
     border-radius: 8px;
+    padding-top: 50px;
     align-items: center;
+    background: transparent;
+}
 
+.about-banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    overflow: hidden;
+}
+
+.about-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.about-banner-overlay h1 {
+    color: #ffffff;
+    font-size: 48px;
+    text-align: center;
+    margin: 0;
 }
 
 .about-content {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.about-section {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
 
 .about-text {
-    flex: 2;
-    min-width: 300px;
+    flex: 3;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.about-text h2 {
-    font-size: 2em;
+.about-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px; /* Adjust size as needed */
+    text-transform: uppercase; 
     margin-bottom: 10px;
 }
 
 .about-text h3 {
     font-size: 1.5em;
     margin-top: 20px;
+
+    font-weight: bold;
+    text-transform: uppercase; /* Optional: transform text to uppercase */
+    font-family: Arial, sans-serif; /* Match the font family */
 }
 
 .about-text p {
@@ -38,36 +90,318 @@
     line-height: 1.5;
 }
 
-.about-video {
-    flex: 1;
-    min-width: 300px;
-    text-align: center;
+/* Styles for the Info Cards Section */
+.info-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.about-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.info-card {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+}
+
+.info-card ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.info-card ul li {
+    font-size: 1.2em;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.info-card h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase; 
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+.info-card p {
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+.info-card:hover {
+    transform: scale(1.05); /* Slightly enlarge the card on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+.info-card:focus {
+    outline: none; /* Remove default focus outline */
+}
+
+/* Additional Info Section */
+.additional-info {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.additional-info h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase; 
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+.additional-info ul {
+    margin-top: 10px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.additional-info ul li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.additional-info p {
+    font-size: 1.2em;
     margin-top: 20px;
 }
 
-.about-buttons .button {
-    background-color: #0073aa;
+/* Profile Card Styles */
+.profile-card {
+    flex: 1;
+    min-width: 333.33px;
+    height: 450px;
+    padding: 20px;
+    text-align: center;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profile-card h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+.profile-card p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.social-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.button {
+    background-color: #3a3b40; 
     color: #ffffff;
     padding: 10px 20px;
     text-align: center;
     border-radius: 5px;
     text-decoration: none;
-    font-size: 1.1em;
+    font-size: 1.2em;
+    display: inline-block;
+}
+
+.button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+/* FAQ Section Styles */
+.faq-section {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-section h3 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase; 
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+.faq-item {
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    background-color: #3a3b40; 
+    color: #ffffff;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: left;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    outline: none;
     transition: background-color 0.3s;
+    border: none;
+    display: block;
 }
 
-.about-buttons .button:hover {
-    background-color: #005177;
+.faq-question:hover {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
+.faq-answer {
+    display: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+.faq-question.active + .faq-answer {
+    display: block;
+}
+
+
+/* Media Queries */
 @media (max-width: 768px) {
-    .about-content {
+
+    /* About Page Styles */
+    .about-container {
+        padding: 20px;
+        
+    }
+
+    .about-banner {
+        height: 20vh;
+    }
+
+    .about-banner-overlay h1 {
+        font-size: 40px;
+    }
+
+    /* Move profile-card above about-text */
+    .profile-card {
+        order: -1; /* Moves it above */
+        min-width: 90%;
+    }
+
+    .profile-card p {
+        color: #3a3b40;
+    }
+
+    .about-text {
+        flex: none;
+        max-width: 95%;
+        background: #f9f9f9;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .about-title {
+        font-family: 'Montserrat', sans-serif;
+        color: #fff;
+        font-weight: 700;
+        font-size: 36px; /* Adjust size as needed */
+        text-transform: uppercase; 
+        margin-bottom: 10px;
+    }
+    
+    .about-text h3 {
+        font-size: 1.5em;
+        margin-top: 20px;
+    
+        font-weight: bold;
+        text-transform: uppercase; /* Optional: transform text to uppercase */
+        font-family: Arial, sans-serif; /* Match the font family */
+    }
+    
+    .about-text p {
+        font-size: 1.2em;
+        line-height: 1.5;
+    }
+
+    .about-section {
         flex-direction: column;
     }
+
+    .about-question {
+        background-color: #3a3b40; 
+        color: #ffffff;
+        padding: 10px 20px;
+        width: 85%;
+        text-align: left;
+        border-radius: 5px;
+        font-size: 1.2em;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s;
+        border: none;
+        display: block;
+    }
+    
+    .about-question:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .about-answer {
+        display: none;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        background-color: #e0e0e0;
+        border-radius: 5px;
+    }
+
+    .info-cards {
+        display: flex;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        scroll-snap-type: x mandatory; /* Activate scroll snapping */
+        gap: 10px; /* Reduce gap between cards */
+        padding: 10px 0;
+        height: 300px; /* Fixed height for the entire card container */
+    }
+
+    .info-card {
+        flex: none; /* Ensure each card takes up full width */
+        width: 285px; /* Adjust to make the swipe effect visible */
+        scroll-snap-align: start; /* Snap to the start of each card */
+        height: 250px; /* Make each card fill the container height */
+        overflow: hidden; /* Hide overflowing content to maintain uniform size */
+        text-overflow: ellipsis; /* Add an ellipsis for text overflow */
+        white-space: normal; /* Ensure text wraps properly */
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        justify-content: space-between; /* Ensure space is used efficiently */
+    }
+
+    .info-card ul li {
+        font-size: 1em;
+    }
+
+    /* Optional: Hide scrollbar */
+    .info-cards::-webkit-scrollbar {
+        display: none;
+    }
+
 }

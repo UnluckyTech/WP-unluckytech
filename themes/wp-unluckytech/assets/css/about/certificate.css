@@ -1,0 +1,209 @@
+/* Certifications Page Styles */
+.certifications-container {
+    background: #ffffff;
+    margin: 0 auto;
+    max-width: 1200px;
+    overflow: hidden;
+    margin-top: 40px;
+    border-radius: 8px;
+    padding-top: 100px;
+    align-items: center;
+    background: transparent;
+}
+
+.certifications-banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    overflow: hidden;
+}
+
+.certifications-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.certifications-banner-overlay h1 {
+    color: #ffffff;
+    font-size: 48px;
+    text-align: center;
+    margin: 0;
+}
+
+.certifications-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px; /* Adjust size as needed */
+    text-transform: uppercase; 
+    margin-bottom: 10px;
+}
+
+.certifications-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Certifications Intro Styles */
+.certifications-intro {
+    background: #f9f9f9; /* Match card background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Same shadow as cards */
+    text-align: center;
+    min-height: 100px; /* Optional: Ensure it has a minimum height */
+}
+
+.certifications-intro p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #333; /* Adjust text color if needed */
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+/* Grid layout for the certifications cards */
+.certifications-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    gap: 20px;
+}
+
+.certification-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+
+.certification-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-height: 450px; /* Ensure consistent height across all cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure content is evenly spaced */
+}
+
+.certification-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.certification-image {
+    width: 100px;
+    height: 100px; /* Fixed height and width for consistent scaling */
+    object-fit: contain; /* Ensure images fit without distortion */
+    margin: 0 auto 20px auto; /* Center images and add space at the bottom */
+}
+
+.certification-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+.certification-card p {
+    font-size: 1.1em;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Ensure paragraphs grow to fill space */
+}
+
+.certification-card .button {
+    background-color: #3a3b40;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+    display: inline-block;
+    margin-top: auto; /* Ensures the button stays at the bottom of the card */
+}
+
+.certification-card .button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .certifications-cards {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+
+    .certifications-container {
+        padding: 20px;
+    }
+
+    .certifications-banner {
+        height: 20vh;
+    }
+
+    .certifications-banner-overlay h1 {
+        font-size: 40px;
+    }
+
+    .certifications-intro p {
+        font-size: 1em;
+        line-height: 1.5;
+    }
+
+    /* Certifications Intro Styles */
+    .certifications-intro {
+        padding: 5px;
+    }
+
+    .certifications-cards {
+        grid-template-columns: 1fr; /* One column for mobile screens */
+    }
+
+    .certification-image {
+        margin: 0 auto 2px auto; /* Center images and add space at the bottom */
+    }
+    
+    .certification-card h3 {
+        font-size: 1.5em;
+        margin-top: 1px;
+        margin-bottom: 1px;
+        font-weight: bold;
+        font-family: Arial, sans-serif; /* Match the font family */
+    }
+    
+    .certification-card p {
+        font-size: 1.1em;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .certification-card .button {
+        padding: 10px 20px;
+        margin-top: 10px; /* Ensures the button stays at the bottom of the card */
+    }
+
+}

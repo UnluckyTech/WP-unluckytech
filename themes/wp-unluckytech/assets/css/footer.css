@@ -1,7 +1,12 @@
 /* Footer styles */
 body {
-    position: relative;
-  }
+    margin: 0;
+    font-family: Inter, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative
+}
   
   body::after {
     content: '';
@@ -13,7 +18,7 @@ body {
 
 .footer {
     position: absolute;
-    bottom: 0;
+    bottom:0;
     background-color: #1d1f21; /* Dark background for footer */
     color: white; /* White text color for contrast */
     padding: 50px 0; /* Padding around the footer */

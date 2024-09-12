@@ -46,44 +46,43 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   Particle.prototype.draw = function () {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--particle-color').trim();
-      ctx.fill();
-      ctx.closePath();
-  };
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = '#fff'; // Set fill color to white
+    ctx.fill();
+    ctx.closePath();
+};
+    function connectParticles() {
+        const lineColor = 'rgba(255, 255, 255, 0.5)'; // Set line color to semi-transparent white
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const distance = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+                if (distance < maxDistance) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = lineColor; // Use the new line color
+                    ctx.stroke();
+                    ctx.closePath();
+                }
+            }
+        }
+    }
 
-  function connectParticles() {
-      const lineColor = getComputedStyle(document.body).getPropertyValue('--line-color').trim();
-      for (let i = 0; i < particles.length; i++) {
-          for (let j = i + 1; j < particles.length; j++) {
-              const distance = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-              if (distance < maxDistance) {
-                  ctx.beginPath();
-                  ctx.moveTo(particles[i].x, particles[i].y);
-                  ctx.lineTo(particles[j].x, particles[j].y);
-                  ctx.strokeStyle = lineColor;
-                  ctx.stroke();
-                  ctx.closePath();
-              }
-          }
-      }
-  }
-
-  function connectParticlesToMouse() {
-      const lineColor = getComputedStyle(document.body).getPropertyValue('--line-color').trim();
-      for (let i = 0; i < particles.length; i++) {
-          const distance = Math.hypot(particles[i].x - mouse.x, particles[i].y - mouse.y);
-          if (distance < maxDistance) {
-              ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(mouse.x, mouse.y);
-              ctx.strokeStyle = lineColor;
-              ctx.stroke();
-              ctx.closePath();
-          }
-      }
-  }
+    function connectParticlesToMouse() {
+        const lineColor = 'rgba(255, 255, 255, 0.5)'; // Set line color to semi-transparent white
+        for (let i = 0; i < particles.length; i++) {
+            const distance = Math.hypot(particles[i].x - mouse.x, particles[i].y - mouse.y);
+            if (distance < maxDistance) {
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(mouse.x, mouse.y);
+                ctx.strokeStyle = lineColor; // Use the new line color
+                ctx.stroke();
+                ctx.closePath();
+            }
+        }
+    }
 
   function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
