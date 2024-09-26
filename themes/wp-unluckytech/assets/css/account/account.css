@@ -22,6 +22,16 @@
     overflow: hidden;
 }
 
+.sidebar-link {
+    color: inherit; /* Keep the text color the same as the surrounding text */
+    text-decoration: none; /* Remove underline if desired */
+    /* Add any additional styling you want */
+}
+
+.sidebar-link:hover {
+    text-decoration: underline; /* Optional: add underline on hover */
+}
+
 .mobile-settings {
     display: none;
 }
@@ -88,6 +98,38 @@
     color: #ffffff;
 }
 
+.account-sidebar ul li a, .invoice-portal button[type="submit"] {
+    font-family: 'Montserrat', sans-serif; /* Ensure uniform font family */
+    font-size: 16px; /* Set a specific font size */
+    font-weight: 500;
+    /* Other shared styles */
+}
+
+
+/* Make the invoice portal button look like the sidebar links */
+.invoice-portal button[type="submit"] {
+    text-decoration: none;
+    color: #333;
+    padding: 15px;
+    display: block;
+    border-radius: 4px;
+    background: #fff;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    width: 100%; /* Make it stretch to full width like sidebar links */
+    text-align: left; /* Align text to the left */
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Hover effect to match the sidebar links */
+.invoice-portal button[type="submit"]:hover {
+    background-color: #2b2c30;
+    color: #ffffff;
+}
+
+
 .account-content {
     padding: 20px;
     display: flex;
@@ -109,8 +151,10 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    flex-grow: 1; /* Allow the section to grow and fill available space */
-    box-sizing: border-box; /* Include padding and borders in element's total width and height */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adds space between elements */
 }
 
 .account-section h2 {
@@ -134,10 +178,169 @@
     font-size: 16px;
 }
 
+.profile-picture img {
+    border-radius: 50%; /* Makes profile image circular */
+    width: 100px;
+    height: 100px;
+    object-fit: cover; /* Ensures image fits inside the circle */
+    margin: 0 auto 10px auto;
+}
+
+.current-email {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+input[type="password"]:focus {
+    border-color: #007bff; /* Highlight border on focus */
+    outline: none;
+}
+
+input[type="checkbox"] {
+    margin-left: 10px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center; /* Aligns items vertically centered */
+    margin-top: 5px; /* Optional spacing between input and checkbox */
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 5px; /* Space between checkbox and label text */
+}
+
+.test-email-button {
+    background-color: #007bff; /* Button color */
+    color: #fff; /* Button text color */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.test-email-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.acc-group {
+    margin-bottom: 15px;
+}
+
+.acc-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.acc-group input[type="text"],
+.acc-group input[type="email"],
+.acc-group input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+.acc-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.1em;
+}
+
+.btn-save,
+.btn-submit {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btn-save:hover,
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
 /* Mobile Accordion */
 .account-mobile-container {
     display: none;
 }
+
+/* Invoices Page Styles */
+.invoice-container, .quote-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 1000px;
+}
+
+.invoice-title, .quote-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.invoice-table, .quote-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.invoice-table th,
+.invoice-table td,
+.quote-table th,
+.quote-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.invoice-table th,
+.quote-table th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+}
+
+.invoice-table td,
+.quote-table td {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+}
+
+.view-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.view-button:hover {
+    background-color: #0056b3;
+}
+
 
 /* Mobile Styles */
 @media (max-width: 768px) {

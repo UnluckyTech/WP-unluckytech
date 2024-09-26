@@ -265,7 +265,8 @@ button[type="submit"]:hover {
     z-index: 1000; /* Ensure it appears above other content */
 }
 
-.user-login-form input {
+.user-login-form input[type="text"],
+.user-login-form input[type="password"] {
     width: 95%;
     padding: 5px;
     font-size: 16px;
@@ -281,9 +282,10 @@ button[type="submit"]:hover {
 .login-buttons {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
-#loginButton, #signupButton {
+.login-buttons button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -292,7 +294,7 @@ button[type="submit"]:hover {
     padding: 10px;
     border: none;
     border-radius: 4px;
-    width: 48%; /* Ensure buttons are side by side with space in between */
+    width: 100%; /* Ensure buttons are side by side with space in between */
     cursor: pointer;
 }
 
@@ -322,6 +324,11 @@ button[type="submit"]:hover {
 .login-buttons {
     display: flex;
     gap: 10px;
+}
+
+.remember-check {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 1024px) {
@@ -368,6 +375,7 @@ button[type="submit"]:hover {
     .auth-buttons button:hover {
         background-color: #555;
     }
+
 }
 
 /* Mobile styles */

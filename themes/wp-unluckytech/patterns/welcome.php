@@ -6,6 +6,7 @@
  * Description: A welcome section for the homepage.
  */
 ?>
+
 <!-- wp:cover {"url":"<?php echo esc_url( get_theme_file_uri( 'assets/images/bg1.png' ) ); ?>","id":3838,"dimRatio":50,"overlayColor":"contrast","align":"full"} -->
 <div class="wp-block-cover alignfull custom-cover-height">
     <span aria-hidden="true" class="wp-block-cover__background has-contrast-background-color has-background-dim"></span>

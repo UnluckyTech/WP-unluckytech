@@ -1,12 +1,238 @@
-.error-page-container {
-    text-align: center;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* 404 Page Styles */
+.error-container {
+    margin: 0 auto;
+    max-width: 1200px;
+    margin-top: 40px;
+    border-radius: 8px;
+    padding-top: 100px;
+    align-items: center;
+    background: transparent;
 }
 
-.error-page-content {
-    max-width: 500px;
-    margin: auto;
+.error-banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    overflow: hidden;
+}
+
+.error-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.error-banner-overlay h1 {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 0 10px;
+    font-weight: bold;
+    font-size: 48px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    color: #ffffff;
+}
+
+.error-banner-overlay p {
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.error-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.error-message {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 0 10px;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+    color: #ffffff;
+}
+
+/* Latest Posts Section (404 Page) */
+.latest-posts-section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.latest-posts-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 0 10px;
+    font-weight: 700;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+}
+
+.latest-post-divider {
+    border-bottom: 2px solid;
+    margin: 20px 0;
+}
+
+.latest-posts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.latest-post-item {
+    flex: 1 1 calc(20% - 10px); /* 5 posts in 1 row */
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    transition: transform 0.3s;
+    border-radius: 8px;
+}
+
+.latest-post-item:hover {
+    transform: scale(1.05);
+}
+
+.latest-post-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.latest-post-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 150%;
+    backdrop-filter: blur(4px);
+    opacity: 0.8;
+}
+
+.latest-post-item:hover .post-overlay {
+    opacity: 1;
+}
+
+.post-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 1.2em;
+    text-align: center;
+    z-index: 1;
+}
+
+.more-posts-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.more-posts {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.more-posts:hover {
+    background: #3a3b40;
+}
+
+/* Mobile Styles */
+.mobile-view {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    /* About Page Styles */
+    .error-container {
+        padding: 20px;
+        padding-top: 50px;
+    }
+
+    .error-banner {
+        height: 20vh;
+    }
+
+    .error-banner-overlay h1 {
+        font-size: 40px;
+    }
+
+    .error-message {
+        border-bottom: 0;
+
+    }
+
+    .desktop-view,
+    .latest-post-divider {
+        display: none;
+    }
+
+    .mobile-view {
+        display: block;
+    }
+
+    .latest-post-slider {
+        width: 100%;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+    }
+
+    .slide {
+        display: none;
+        width: 100%;
+    }
+
+    .slide.active {
+        display: block;
+    }
+
+    .dots-container {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .dot.active, .dot:hover {
+        background-color: #717171;
+    }
 }

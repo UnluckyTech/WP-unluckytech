@@ -28,3 +28,4 @@ function toggleSearchBar() {
         overlay.classList.remove('active');
     });
 }
+

@@ -13,34 +13,59 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+$turnstile_site_key = get_option('cfturnstile_site_key');
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['contact_form'])) {
-    $firstname = sanitize_text_field($_POST['firstname']); // First Name
-    $lastname = sanitize_text_field($_POST['lastname']); // Last Name
-    $custemail = sanitize_email($_POST['custemail']); // Customer Email
-    $custphone = !empty($_POST['custphone']) ? sanitize_text_field($_POST['custphone']) : 'N/A'; // Customer Phone (optional)
-    $service = sanitize_text_field($_POST['service']); // Service requested
-    $inquiry_type = sanitize_text_field($_POST['inquiry_type']); // Type of inquiry
-    $message = sanitize_textarea_field($_POST['message']); // Message
-
-    $to = 'stawse@unluckytech.com';  // Your email address
-    $subject = 'New Inquiry from ' . $firstname . ' ' . $lastname;
-    $headers = array('Content-Type: text/html; charset=UTF-8');
-    
-    // Email Body
-    $body = "<p>You have received a new message from your contact form:</p>";
-    $body .= "<p><strong>Name:</strong> " . esc_html($firstname) . " " . esc_html($lastname) . "</p>";
-    $body .= "<p><strong>Email:</strong> " . esc_html($custemail) . "</p>";
-    $body .= "<p><strong>Phone (optional):</strong> " . esc_html($custphone) . "</p>";
-    $body .= "<p><strong>Service:</strong> " . esc_html($service) . "</p>";
-    $body .= "<p><strong>Inquiry Type:</strong> " . esc_html($inquiry_type) . "</p>";
-    $body .= "<p><strong>Message:</strong> " . nl2br(esc_html($message)) . "</p>";
-
-    // Send email
-    if (wp_mail($to, $subject, $body, $headers)) {
-        $success_message = "Your message has been sent successfully!";
+    // Check if CAPTCHA response exists
+    if (empty($_POST['cf_turnstile_response'])) {
+        $error_message = "Please complete the CAPTCHA.";
     } else {
-        $error_message = "There was an issue sending your message. Please try again later.";
+        $captcha_response = sanitize_text_field($_POST['cf_turnstile_response']);
+        $captcha_secret = get_option('cfturnstile_secret_key'); // Secret key from Cloudflare Turnstile
+        
+        // Verify CAPTCHA
+        $response = wp_remote_post('https://challenges.cloudflare.com/turnstile/v0/siteverify', array(
+            'body' => array(
+                'secret' => $captcha_secret,
+                'response' => $captcha_response,
+                'remoteip' => $_SERVER['REMOTE_ADDR'],
+            )
+        ));
+        
+        $response_body = wp_remote_retrieve_body($response);
+        $captcha_result = json_decode($response_body, true);
+
+        if (!$captcha_result['success']) {
+            $error_message = "CAPTCHA verification failed. Please try again.";
+        } else {
+            // CAPTCHA passed, continue processing the form
+            $firstname = sanitize_text_field($_POST['firstname']);
+            $lastname = sanitize_text_field($_POST['lastname']);
+            $custemail = sanitize_email($_POST['custemail']);
+            $custphone = !empty($_POST['custphone']) ? sanitize_text_field($_POST['custphone']) : 'N/A';
+            $service = sanitize_text_field($_POST['service']);
+            $inquiry_type = sanitize_text_field($_POST['inquiry_type']);
+            $message = sanitize_textarea_field($_POST['message']);
+            
+            $to = 'stawse@unluckytech.com';
+            $subject = 'New Inquiry from ' . $firstname . ' ' . $lastname;
+            $headers = array('Content-Type: text/html; charset=UTF-8');
+            $body = "<p>You have received a new message from your contact form:</p>";
+            $body .= "<p><strong>Name:</strong> " . esc_html($firstname) . " " . esc_html($lastname) . "</p>";
+            $body .= "<p><strong>Email:</strong> " . esc_html($custemail) . "</p>";
+            $body .= "<p><strong>Phone (optional):</strong> " . esc_html($custphone) . "</p>";
+            $body .= "<p><strong>Service:</strong> " . esc_html($service) . "</p>";
+            $body .= "<p><strong>Inquiry Type:</strong> " . esc_html($inquiry_type) . "</p>";
+            $body .= "<p><strong>Message:</strong> " . nl2br(esc_html($message)) . "</p>";
+
+            // Send email
+            if (wp_mail($to, $subject, $body, $headers)) {
+                $success_message = "Your message has been sent successfully!";
+            } else {
+                $error_message = "There was an issue sending your message. Please try again later.";
+            }
+        }
     }
 }
 ?>
@@ -75,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['contact_form'])) {
                 <input type="hidden" name="contact_form" value="1">
 
                 <!-- First Name and Last Name (Same Row) -->
-                <div class="form-group two-column">
+                <div class="contact-group two-column">
                     <div class="half-width">
                         <label for="firstname">First Name</label>
                         <input type="text" id="firstname" name="firstname" required>
@@ -87,19 +112,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['contact_form'])) {
                 </div>
 
                 <!-- Email Field -->
-                <div class="form-group">
+                <div class="contact-group">
                     <label for="custemail">Your Email</label>
                     <input type="email" id="custemail" name="custemail" required>
                 </div>
 
                 <!-- Phone Field (optional) -->
-                <div class="form-group">
+                <div class="contact-group">
                     <label for="custphone">Your Phone (optional)</label>
                     <input type="text" id="custphone" name="custphone">
                 </div>
 
                 <!-- Service and Inquiry Type (Same Row) -->
-                <div class="form-group two-column">
+                <div class="contact-group two-column">
                     <div class="half-width">
                         <label for="service">Service</label>
                         <select id="service" name="service" required>
@@ -120,16 +145,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['contact_form'])) {
                 </div>
 
                 <!-- Message Field -->
-                <div class="form-group">
+                <div class="contact-group">
                     <label for="message">Your Message</label>
                     <textarea id="message" name="message" rows="4" required></textarea>
                 </div>
 
+                <div class="captcha-container">
+                    <div class="cf-turnstile" data-sitekey="<?php echo esc_attr(get_option('cfturnstile_key')); ?>" data-callback="onCaptchaCompleted"></div>
+                </div>
+                <input type="hidden" id="cf-turnstile-response" name="cf_turnstile_response" required>
+
                 <!-- Submit Button -->
-                <div class="form-group">
+                <div class="contact-group">
                     <button type="submit" class="contact-button">Send Message</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+
+<script>
+function onCaptchaCompleted(token) {
+    document.getElementById('cf-turnstile-response').value = token;
+}
+</script>

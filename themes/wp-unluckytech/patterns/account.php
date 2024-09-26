@@ -11,6 +11,12 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Check if the user is logged in, otherwise redirect to the login page
+if (!is_user_logged_in()) {
+    wp_redirect(wp_login_url(get_permalink()));
+    exit;
+}
+
 // Include necessary function to check if a plugin is active.
 include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 
@@ -87,22 +93,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
         <button id="settingsButton">Settings</button>
         </div>
         <div class="account-sidebar">
-            <ul>
-                <!-- General Section -->
-                <li class="sidebar-section-title">General</li>
-                <li><a href="#" data-section="profile-section">Profile</a></li>
-                <li><a href="#" data-section="notifications">Notifications</a></li>
+        <ul>
+            <!-- General Section -->
+            <li class="sidebar-section-title">General</li>
+            <li><a href="#" data-section="profile-section">Profile</a></li>
+            <li><a href="#" data-section="notifications-section">Notifications</a></li>
 
-                <!-- Security Section -->
-                <li class="sidebar-section-title">Security</li>
-                <li><a href="#" data-section="email-section">Email</a></li>
-                <li><a href="#" data-section="password-section">Password</a></li>
+            <!-- Security Section -->
+            <li class="sidebar-section-title">Security</li>
+            <li><a href="#" data-section="email-section">Email</a></li>
+            <li><a href="#" data-section="password-section">Password</a></li>
 
-                <!-- Purchase Section (placeholder for Billing and Invoices) -->
-                <li class="sidebar-section-title">Billing & Purchase</li>
-                <li><a href="#" data-section="billing-section">Billing</a></li>
-                <li><a href="#" data-section="invoice-section">Invoices</a></li>
-            </ul>
+            <!-- Purchase Section -->
+            <li class="sidebar-section-title">Quote & Purchase</li>
+            <li><a href="#" data-section="quote-section">Quotes</a></li>
+            <li><a href="#" data-section="invoice-section">Invoices</a></li>
+            
+        </ul>
+            <div class="invoice-portal">
+                <?php echo do_shortcode('[client_portal label="Client Portal" sso="true"]'); ?>
+            </div>
         </div>
 
         <div class="account-display">
@@ -110,8 +120,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
             <div class="account-section" id="profile-section" style="display: block;">
                 <h2>Profile</h2>
                 <?php if ($current_user->exists()) : ?>
-                    <form id="profileForm" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+                    <form id="profileForm" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="save_profile">
+                        
                         <!-- Profile Picture -->
                         <?php $profile_picture = get_avatar(get_current_user_id()); ?>
                         <div class="profile-picture">
@@ -119,27 +130,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
                         </div>
 
                         <!-- Nickname -->
-                        <p>
-                            <label for="nickname">Nickname:</label><br>
+                        <div class="acc-group">
+                            <label for="nickname">Nickname:</label>
                             <input type="text" id="nickname" name="nickname" value="<?php echo esc_attr($current_user->nickname); ?>" />
-                        </p>
+                        </div>
 
                         <!-- First Name -->
-                        <p>
-                            <label for="first_name">First Name:</label><br>
+                        <div class="acc-group">
+                            <label for="first_name">First Name:</label>
                             <input type="text" id="first_name" name="first_name" value="<?php echo esc_attr($current_user->user_firstname); ?>" />
-                        </p>
+                        </div>
 
                         <!-- Last Name -->
-                        <p>
-                            <label for="last_name">Last Name:</label><br>
+                        <div class="acc-group">
+                            <label for="last_name">Last Name:</label>
                             <input type="text" id="last_name" name="last_name" value="<?php echo esc_attr($current_user->user_lastname); ?>" />
-                        </p>
+                        </div>
 
-                        <p><button type="submit">Save Profile</button></p>
+                        <!-- Save Button -->
+                        <p><button class="btn btn-save" type="submit">Save Profile</button></p>
                     </form>
                 <?php endif; ?>
             </div>
+
 
             <!-- Notifications Section -->
             <div class="account-section" id="notifications-section" style="display: none;">
@@ -150,57 +163,77 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
             <!-- Email Section -->
             <div class="account-section" id="email-section" style="display: none;">
                 <h2>Change Email</h2>
-                    <!-- Change Email Form -->
-                    <form id="changeEmailForm" method="post">
-                        <label for="new_email">New Email Address:</label><br>
-                        <input type="email" id="new_email" name="new_email" required />
-                        <button type="submit" name="change_email" class="test-email-button">Send Verification Code</button>
-                    </form>
+                
+                <!-- Current Email Display -->
+                <p class="current-email">Your current email: <?php echo esc_html($current_user->user_email); ?></p>
 
-                    <div id="email-verification" style="display: none;">
-                        <h2>Verify New Email</h2>
-                        <form id="verificationForm" method="post">
-                            <label for="verification_code">Verification Code:</label><br>
-                            <input type="text" id="verification_code" name="verification_code" required />
-                            <input type="hidden" name="new_email" id="hidden_new_email" />
-                            <button type="submit" class="test-email-button">Verify Email</button>
-                        </form>
+                <!-- Change Email Form -->
+                <form id="changeEmailForm" method="post">
+                    <div class="acc-group">
+                        <label for="new_email">New Email Address:</label>
+                        <input type="email" id="new_email" name="new_email" required />
                     </div>
+                    <button type="submit" name="change_email" class="btn btn-submit">Send Verification Code</button>
+                </form>
+
+                <!-- Email Verification Section -->
+                <div id="email-verification" style="display: none;">
+                    <h2>Verify New Email</h2>
+                    <form id="verificationForm" method="post">
+                        <div class="acc-group">
+                            <label for="verification_code">Verification Code:</label>
+                            <input type="text" id="verification_code" name="verification_code" required />
+                        </div>
+                        <input type="hidden" name="new_email" id="hidden_new_email" />
+                        <button type="submit" class="btn btn-submit">Verify Email</button>
+                    </form>
+                </div>
             </div>
+
 
             <!-- Password Section -->
             <div class="account-section" id="password-section" style="display: none;">
                 <h2>Change Password</h2>
-                <form id="changePasswordForm" method="post">
-                    <!-- Current Password -->
-                    <label for="current_password">Current Password:</label><br>
-                    <input type="password" id="current_password" name="current_password" required />
-                    <input type="checkbox" id="toggleCurrentPassword"> Show Password<br><br>
+                <form id="changePasswordForm" method="post" class="password-form">
+                    <div class="acc-group">
+                        <label for="current_password">Current Password:</label>
+                        <input type="password" id="current_password" name="current_password" required />
+                        <div class="checkbox-container">
+                            <label for="toggleCurrentPassword">Show Password</label>
+                            <input type="checkbox" id="toggleCurrentPassword"> 
+                            
+                        </div>
+                    </div>
 
-                    <!-- New Password -->
-                    <label for="new_password">New Password:</label><br>
-                    <input type="password" id="new_password" name="new_password" required />
-                    <input type="checkbox" id="toggleNewPassword"> Show Password<br><br>
+                    <div class="acc-group">
+                        <label for="new_password">New Password:</label>
+                        <input type="password" id="new_password" name="new_password" required />
+                        <div class="checkbox-container">
+                            <label for="toggleNewPassword">Show Password</label>
+                            <input type="checkbox" id="toggleNewPassword">
+                        </div>
+                    </div>
 
-                    <!-- Confirm New Password -->
-                    <label for="confirm_password">Confirm New Password:</label><br>
-                    <input type="password" id="confirm_password" name="confirm_password" required /><br><br>
+                    <div class="acc-group">
+                        <label for="confirm_password">Confirm New Password:</label>
+                        <input type="password" id="confirm_password" name="confirm_password" required />
+                    </div>
 
                     <button type="submit" name="change_password" class="test-email-button">Change Password</button>
                 </form>
             </div>
 
-            <!-- Billing Section -->
-            <div class="account-section" id="billing-section" style="display: none;">
-                <h2>Billing</h2>
-                <p>This section is under construction.</p>
+
+            <!-- Quote Section -->
+            <div class="account-section" id="quote-section" style="display: none;">
+	            <!-- wp:pattern {"slug":"unluckytech/quote"} /-->
             </div>
 
             <!-- Invoices Section -->
             <div class="account-section" id="invoice-section" style="display: none;">
-                <h2>Invoices</h2>
-                <p>This section is under construction.</p>
+	            <!-- wp:pattern {"slug":"unluckytech/invoice"} /-->
             </div>
+
         </div>
 
 
@@ -221,6 +254,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
         // Toggle section on sidebar link click
         sidebarLinks.forEach(link => {
             link.addEventListener('click', function (event) {
+                // Check if the link is the client portal link
+                if (link.href.includes('client_portal')) {
+                    // Do nothing, let the link navigate normally
+                    return;
+                }
+
                 event.preventDefault();
                 sections.forEach(section => section.style.display = 'none'); // Hide all sections
                 document.getElementById(link.dataset.section).style.display = 'block'; // Show the selected section

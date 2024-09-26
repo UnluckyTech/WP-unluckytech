@@ -92,20 +92,20 @@
     margin-bottom: 30px;
 }
 
-.form-group {
+.contact-group {
     margin-bottom: 20px;
 }
 
-.form-group label {
+.contact-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     font-size: 1.1em;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
+.contact-group input,
+.contact-group textarea,
+.contact-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -124,4 +124,39 @@
     display: block;
     width: 100%;
     text-transform: uppercase;
+}
+
+.captcha-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Optional: Set height if you want vertical centering */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+
+    /* About Page Styles */
+    .contact-container {
+        padding: 20px;
+    }
+
+    .contact-banner {
+        height: 20vh;
+    }
+
+    .contact-banner-overlay h1 {
+        font-size: 40px;
+    }
+
+    .contact-group input,
+    .contact-group textarea,
+    .contact-group select{
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1.1em;
+    }
+
 }

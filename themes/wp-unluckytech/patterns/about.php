@@ -87,19 +87,19 @@
             <div class="faq-item">
                 <button class="faq-question">How long have you been in the IT industry?</button>
                 <div class="faq-answer">
-                    <p>I have over 15 years of experience in the IT industry, working across various technical domains and tackling numerous challenges.</p>
+                    <p>I have over 5 years of experience in the IT industry, working across various technical domains and tackling numerous challenges.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <button class="faq-question">What platforms do you specialize in?</button>
                 <div class="faq-answer">
-                    <p>I specialize in WordPress, Drupal, Linux, and Windows systems, with a strong focus on custom development and advanced integrations.</p>
+                    <p>I specialize in WordPress, Linux, and Windows systems, with a strong focus on custom development and advanced integrations.</p>
                 </div>
             </div>
             <div class="faq-item">
                 <button class="faq-question">How can I get in touch with you?</button>
                 <div class="faq-answer">
-                    <p>You can contact me via the 'Contact Me' button on this page, or reach out through my social media profiles on GitHub, LinkedIn, or Twitter.</p>
+                    <p>You can contact me via the 'Contact Me' button on this page, or reach out through my social media profiles on GitHub, LinkedIn, or Discord.</p>
                 </div>
             </div>
         </div>

@@ -1,128 +1,106 @@
 <?php
 /**
- * Title: Test
+ * Title: Invoices
  * Slug: unluckytech/test
  * Categories: text, featured
- * Description: This would be used for managing user accounts and email verification.
+ * Description: This file manages and displays user invoices.
  */
 
-// If this file is accessed directly, abort.
+// Exit if accessed directly
 if (!defined('ABSPATH')) {
-    exit;
+    exit; // Exit if accessed directly
 }
 
-// Include necessary function to check if a plugin is active.
-include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-
+// Get the current logged-in WordPress user
 $current_user = wp_get_current_user();
-$verification_code = get_user_meta($current_user->ID, 'email_verification_code', true);
 
-// Handle email change request
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_email'])) {
-    $new_email = sanitize_email($_POST['new_email']);
-    
-    if (is_email($new_email) && $new_email !== $current_user->user_email) {
-        // Generate verification code and send email
-        $verification_code = wp_generate_password(6, false, false); // Generate a 6-digit code
-        update_user_meta($current_user->ID, 'email_verification_code', $verification_code);
-        
-        $subject = 'Verify Your New Email Address';
-        $message = 'Your email verification code is: ' . $verification_code;
-        $headers = ['Content-Type: text/html; charset=UTF-8'];
-        
-        if (wp_mail($new_email, $subject, $message, $headers)) {
-            echo json_encode(['success' => true, 'message' => 'Verification code sent to your new email address!']);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Failed to send verification code.']);
-        }
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Please enter a valid new email address that is different from the current one.']);
-    }
-
-    exit; // Stop processing further
+// Check if the user is logged in
+if ($current_user->ID == 0) {
+    echo '<p>Error: You must be logged in to view your invoices.</p>';
+    return;
 }
 
-// Handle email verification code submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['verification_code'])) {
-    if ($verification_code && $_POST['verification_code'] === $verification_code) {
-        // Update user's email
-        wp_update_user([
-            'ID' => $current_user->ID,
-            'user_email' => $_POST['new_email'],
-        ]);
-        delete_user_meta($current_user->ID, 'email_verification_code');
-        echo json_encode(['success' => true, 'message' => 'Email verified and updated successfully!']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Incorrect verification code.']);
+// Include the necessary Invoice Ninja API class
+use InvoiceNinja\Api\BaseApi; // Assuming BaseApi is the correct class to use
+
+// Check if the BaseApi class exists
+if (class_exists('InvoiceNinja\Api\BaseApi')) {
+    // Fetch the client information using the current user's email
+    $client_response = BaseApi::sendRequest("clients?email={$current_user->user_email}");
+    error_log('Client Response: ' . print_r($client_response, true)); // Debugging statement
+    $client = json_decode($client_response);
+
+    // Check if the client was found
+    if (empty($client->data)) {
+        echo '<p>Error: No client found for the current user in Invoice Ninja.</p>';
+        return;
     }
 
-    exit; // Stop processing further
+    // Get the client ID
+    $client_id = $client->data[0]->id;
+
+    // Fetch the invoices for the client
+    $invoices_response = BaseApi::sendRequest("invoices?client_id=$client_id&include=invitations");
+    error_log('Invoices Response: ' . print_r($invoices_response, true)); // Debugging statement
+
+    if (!$invoices_response) {
+        echo '<p>Error: Unable to fetch invoices for this client.</p>';
+        return;
+    }
+
+    $invoices = json_decode($invoices_response)->data;
+
+    // Check if there are any invoices
+    if (empty($invoices)) {
+        echo '<p>No invoices found for this user.</p>';
+    } else {
+        // Display the invoices in a table format
+        echo '<h1>Invoices</h1>';
+        ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Invoice #</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Due Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($invoices as $invoice): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($invoice->number); ?></td>
+                        <td><?php echo htmlspecialchars($invoice->amount); ?></td>
+                        <td>
+                            <?php 
+                            // Map the status ID to human-readable status
+                            $status_map = [
+                                '1' => 'Draft',
+                                '2' => 'Sent',
+                                '3' => 'Viewed',
+                                '4' => 'Approved',
+                                '5' => 'Partial',
+                                '6' => 'Paid',
+                            ];
+                            echo htmlspecialchars($status_map[$invoice->status_id] ?? 'Unknown');
+                            ?>
+                        </td>
+                        <td><?php echo htmlspecialchars($invoice->due_date); ?></td>
+                        <td>
+                            <?php
+                            // Construct the URL to download the invoice PDF
+                            $pdf_url = 'https://invoice.unluckytech.com/api/v1/invoices/' . $invoice->id . '/pdf';
+                            ?>
+                            <a href="<?php echo esc_url($pdf_url); ?>" target="_blank">Download PDF</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php
+    }
+} else {
+    echo '<p>Error: Invoice Ninja API is not available.</p>';
 }
 ?>
-
-<div class="test-email-container">
-    <h2>Change Email Address</h2>
-    <form id="changeEmailForm" method="post">
-        <label for="new_email">New Email Address:</label><br>
-        <input type="email" id="new_email" name="new_email" required />
-        <button type="submit" name="change_email" class="test-email-button">Send Verification Code</button>
-    </form>
-
-    <div id="email-verification" style="display: none;">
-        <h2>Verify New Email</h2>
-        <form id="verificationForm" method="post">
-            <label for="verification_code">Verification Code:</label><br>
-            <input type="text" id="verification_code" name="verification_code" required />
-            <input type="hidden" name="new_email" id="hidden_new_email" />
-            <button type="submit" class="test-email-button">Verify Email</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const changeEmailForm = document.getElementById('changeEmailForm');
-        const verificationForm = document.getElementById('verificationForm');
-
-        changeEmailForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent page refresh
-
-            const newEmail = document.getElementById('new_email').value;
-
-            // Send AJAX request to change email
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '<?php echo esc_url($_SERVER['REQUEST_URI']); ?>', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-                const response = JSON.parse(xhr.responseText);
-                alert(response.message); // Show response message
-                if (response.success) {
-                    document.getElementById('email-verification').style.display = 'block'; // Show verification code input
-                    document.getElementById('hidden_new_email').value = newEmail; // Set hidden new email
-                }
-            };
-            xhr.send('change_email=1&new_email=' + encodeURIComponent(newEmail)); // Send new email via POST
-        });
-
-        verificationForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent page refresh
-
-            const verificationCode = document.getElementById('verification_code').value;
-            const newEmail = document.getElementById('hidden_new_email').value;
-
-            // Send AJAX request to verify email
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '<?php echo esc_url($_SERVER['REQUEST_URI']); ?>', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-                const response = JSON.parse(xhr.responseText);
-                alert(response.message); // Show response message
-                if (response.success) {
-                    document.getElementById('verification_code').value = ''; // Clear input
-                    document.getElementById('email-verification').style.display = 'none'; // Hide verification section
-                }
-            };
-            xhr.send('verification_code=' + encodeURIComponent(verificationCode) + '&new_email=' + encodeURIComponent(newEmail)); // Send verification code via POST
-        });
-    });
-</script>

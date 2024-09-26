@@ -67,10 +67,16 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    justify-content: space-between;
 }
 
 .post-card:hover {
     transform: scale(1.02);
+}
+
+/* Post Content */
+.post-content {
+    padding: 15px;
 }
 
 /* Post Date */
@@ -79,26 +85,36 @@
     color: #ddd;
 }
 
-/* Post Image */
+/* Post Image Container */
 .post-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0;
+    position: relative;
+    width: 100%;
+    /* Set a specific aspect ratio for the container */
+    aspect-ratio: 16 / 9; /* Example aspect ratio of 16:9 */
+    overflow: hidden; /* Hide any overflow */
+    border-radius: 4px 4px 0 0; /* Rounded top corners */
 }
 
+/* Post Image */
 .post-image img {
+    position: absolute; /* Position the image absolutely inside the container */
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    border-radius: 4px;
+    height: 100%;
+    object-fit: cover; /* Cover the container, maintaining aspect ratio */
 }
 
 /* Post Title */
 .post-title h2 {
     font-size: 20px;
-    margin: 10px 0;
+    margin: -20px 0 10px 0; /* Ensure margin between title and description */
     color: #ffffff;
     font-family: Arial, sans-serif;
+    line-height: 1.2; /* Avoid text overlap */
+    word-wrap: break-word; /* Handle long words */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Post Divider */
@@ -115,6 +131,11 @@
     font-size: 16px;
     color: #ccc;
     font-family: Arial, sans-serif;
+    line-height: 1.4; /* Increase line spacing for better readability */
+    max-height: 130px; /* Limit height to prevent overflow */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis if the text is too long */
+    margin-bottom: 10px; /* Space below description */
 }
 
 /* Custom Cover Height */

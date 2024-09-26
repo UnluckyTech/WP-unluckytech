@@ -11,14 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['log']) && !empty($_P
     $creds = array();
     $creds['user_login'] = sanitize_text_field($_POST['log']);
     $creds['user_password'] = sanitize_text_field($_POST['pwd']);
-    $creds['remember'] = true;
+    
+    // Set 'remember' based on checkbox input
+    $creds['remember'] = isset($_POST['rememberme']) ? true : false;
 
     $user = wp_signon($creds, false);
 
     // Check if the login was successful
     if (is_wp_error($user)) {
-        // Handle login error, e.g., show a message
-        $login_error = $user->get_error_message();
+        // Set the error message for front-end use
+        $login_error = 'Wrong email or password';
     } else {
         // Redirect or refresh the page
         wp_safe_redirect($_SERVER['REQUEST_URI']);
@@ -41,31 +43,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['log']) && !empty($_P
         </div>
         
     <?php else : ?>
-    
-        <?php if (isset($login_error)) : ?>
-            <div class="error-message"><?php echo esc_html($login_error); ?></div>
-        <?php endif; ?>
         
         <form id="loginForm" method="post" action="">
             <input type="text" id="loginEmail" name="log" placeholder="Email" required />
             <input type="password" id="loginPassword" name="pwd" placeholder="Password" required />
+            
+            <!-- Remember Me Checkbox -->
+            <div class="remember-check">
+                <label for="rememberMeCheckbox">Remember Me</label>
+                <input type="checkbox" id="rememberMeCheckbox" name="rememberme">
+            </div>
+            
             <div class="login-buttons">
                 <button type="submit" name="wp-submit" id="loginButton">Log In</button>
                 <button type="button" id="signupButton" onclick="location.href='<?php echo wp_registration_url(); ?>'">Sign Up</button>
             </div>
+            
+            <!-- Hidden field for error message -->
+            <input type="hidden" id="loginError" value="<?php echo isset($login_error) ? esc_html($login_error) : ''; ?>" />
         </form>
         
     <?php endif; ?>
 </div>
 
 <script>
-    // Toggle User Login Form
-    function toggleUserLogin() {
-        const userLoginForm = document.getElementById('userLoginForm');
-        if (userLoginForm.style.display === 'none' || userLoginForm.style.display === '') {
-            userLoginForm.style.display = 'block';
-        } else {
-            userLoginForm.style.display = 'none';
+    document.addEventListener('DOMContentLoaded', function () {
+        var loginError = document.getElementById('loginError').value;
+        if (loginError) {
+            alert(loginError); // Display the pop-up with the error message
         }
-    }
+    });
 </script>

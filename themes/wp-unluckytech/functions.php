@@ -37,6 +37,8 @@ function wp_unluckytech_scripts() {
     // Enqueue styles
     $styles = array(
         'wp-unluckytech-style' => get_stylesheet_uri(),
+        'wp-unluckytech-nav' => get_template_directory_uri() . '/assets/css/nav.css',
+        'wp-unluckytech-footer' => get_template_directory_uri() . '/assets/css/footer.css',
         'wp-unluckytech-home-posts' => get_template_directory_uri() . '/assets/css/home/posts.css',
         'wp-unluckytech-home-services' => get_template_directory_uri() . '/assets/css/home/services.css',
         'wp-unluckytech-home-welcome' => get_template_directory_uri() . '/assets/css/home/welcome.css',
@@ -91,23 +93,7 @@ function enqueue_font_awesome() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_font_awesome');
 
-// Customize Admin Bar Menu
-function custom_admin_bar_menu( $wp_admin_bar ) {
-    // Remove the 'Site Name' link (typically the top-level site link)
-    $wp_admin_bar->remove_node('site-editor');
-    $wp_admin_bar->remove_node('edit');
-    
-    // Add the 'Customize' link with an icon
-    $wp_admin_bar->add_node( array(
-        'id'    => 'customize',
-        'title' => '<span class="ab-icon"></span><span class="ab-label">Customize</span>',
-        'href'  => admin_url('customize.php'),
-        'meta'  => array(
-            'class' => 'customize-icon', // Add a custom class for styling
-        ),
-    ) );
-}
-add_action( 'admin_bar_menu', 'custom_admin_bar_menu', 999 );
+
 
 // Register Navigation Menus
 function register_my_menus() {
@@ -195,66 +181,6 @@ function unluckytech_save_profile() {
 }
 add_action('admin_post_save_profile', 'unluckytech_save_profile');
 
-/**
- * Email Verification Functions
- */
-
-// Function to send email verification code
-function send_verification_code() {
-    if (!is_user_logged_in()) {
-        wp_send_json_error('User not logged in.');
-        return;
-    }
-
-    $current_user = wp_get_current_user();
-    $email = $current_user->user_email;
-
-    // Generate a random 6-digit verification code
-    $verification_code = wp_generate_password(6, false, false);
-
-    // Save the verification code as user meta
-    update_user_meta($current_user->ID, 'email_verification_code', $verification_code);
-
-    $subject = 'Your Email Verification Code';
-    $message = 'Your email verification code is: ' . $verification_code;
-    $headers = ['Content-Type: text/html; charset=UTF-8'];
-
-    // Check if WP Mail SMTP plugin is active and send the email
-    if (is_plugin_active('wp-mail-smtp/wp_mail_smtp.php') && wp_mail($email, $subject, $message, $headers)) {
-        wp_send_json_success('Verification code sent! Check your email.');
-    } else {
-        wp_send_json_error('Failed to send verification code.');
-    }
-}
-
-// Function to verify the email code
-function verify_email_code() {
-    if (!is_user_logged_in()) {
-        wp_redirect(home_url());
-        exit;
-    }
-
-    $current_user = wp_get_current_user();
-    $input_code = isset($_POST['verification_code']) ? sanitize_text_field($_POST['verification_code']) : '';
-
-    // Get the stored verification code
-    $stored_code = get_user_meta($current_user->ID, 'email_verification_code', true);
-
-    // Check if the input code matches the stored code
-    if ($input_code === $stored_code) {
-        delete_user_meta($current_user->ID, 'email_verification_code');
-        wp_redirect(add_query_arg('verification_success', 'true', site_url('/account/')));
-    } else {
-        wp_redirect(add_query_arg('verification_error', 'true', site_url('/account/')));
-    }
-    exit;
-}
-
-// Add actions for the above functions
-add_action('wp_ajax_send_verification_code', 'send_verification_code');
-add_action('wp_ajax_nopriv_send_verification_code', 'send_verification_code');
-add_action('admin_post_verify_email_code', 'verify_email_code');
-
 // Enqueue custom login styles and add particle animation HTML
 function unluckytech_login_styles() {
     wp_enqueue_style('login-css', get_template_directory_uri() . '/assets/css/login.css');
@@ -281,3 +207,52 @@ function unluckytech_login_redirect($redirect_to, $request, $user) {
     return home_url();
 }
 add_filter('login_redirect', 'unluckytech_login_redirect', 10, 3);
+
+// Disable admin bar for non-admin users
+function disable_admin_bar_for_non_admins() {
+    if (!current_user_can('administrator')) {
+        add_filter('show_admin_bar', '__return_false');
+    }
+}
+add_action('wp_loaded', 'disable_admin_bar_for_non_admins');
+
+// Add first and last name fields to the registration form
+function unluckytech_registration_fields() {
+    ?>
+    <p>
+        <label for="first_name"><?php _e('First Name') ?><br />
+        <input type="text" name="first_name" id="first_name" class="input" value="<?php if (!empty($_POST['first_name'])) echo esc_attr($_POST['first_name']); ?>" size="25" /></label>
+    </p>
+    <p>
+        <label for="last_name"><?php _e('Last Name') ?><br />
+        <input type="text" name="last_name" id="last_name" class="input" value="<?php if (!empty($_POST['last_name'])) echo esc_attr($_POST['last_name']); ?>" size="25" /></label>
+    </p>
+    <?php
+}
+add_action('register_form', 'unluckytech_registration_fields');
+
+// Validate the first and last name fields during registration
+function unluckytech_validate_registration_fields($errors, $sanitized_user_login, $user_email) {
+    if (empty($_POST['first_name']) || empty($_POST['last_name'])) {
+        $errors->add('first_last_name_error', __('<strong>ERROR</strong>: You must include a first and last name.'));
+    }
+    return $errors;
+}
+add_filter('registration_errors', 'unluckytech_validate_registration_fields', 10, 3);
+
+// Save the first and last name fields during user registration
+function unluckytech_save_registration_fields($user_id) {
+    if (!empty($_POST['first_name'])) {
+        update_user_meta($user_id, 'first_name', sanitize_text_field($_POST['first_name']));
+    }
+    if (!empty($_POST['last_name'])) {
+        update_user_meta($user_id, 'last_name', sanitize_text_field($_POST['last_name']));
+    }
+    
+    // Automatically mark the user as 'unverified'
+    update_user_meta($user_id, 'email_verified', 0);
+
+    // Generate and send the email verification code
+    unluckytech_send_verification_code($user_id);
+}
+add_action('user_register', 'unluckytech_save_registration_fields');

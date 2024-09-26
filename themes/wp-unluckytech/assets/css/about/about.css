@@ -6,7 +6,7 @@
     overflow: hidden;
     margin-top: 40px;
     border-radius: 8px;
-    padding-top: 50px;
+    padding-top: 100px;
     align-items: center;
     background: transparent;
 }
@@ -289,7 +289,6 @@
     /* About Page Styles */
     .about-container {
         padding: 20px;
-        
     }
 
     .about-banner {
