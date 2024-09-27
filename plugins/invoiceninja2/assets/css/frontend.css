@@ -1,0 +1,39 @@
+.invoiceninja-cart .cart-header 
+{
+    padding: 4px 10px 4px 10px; 
+    border-radius: 5px; 
+    color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.invoiceninja-cart form
+{
+    float: right; 
+}
+
+.invoiceninja-cart img
+{
+    height: 60px;
+    width: 50px;
+    object-fit: cover;
+    float: left;
+}
+
+.invoiceninja-cart table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.invoiceninja-cart table tr {
+    border-bottom: 1px solid #ccc;
+}
+
+.invoiceninja-cart table th, table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.invoiceninja-cart button {
+    margin-top: 3px;
+}

@@ -1,0 +1,52 @@
+a.wp-invoiceninja
+{
+    display: block;
+    margin-left: 16px;
+    margin-right: 16px;
+    text-decoration: none;
+}
+
+.wp-invoiceninja h3 
+{
+    padding: 0px; 
+    margin: 0px;
+}
+
+.wp-invoiceninja h5
+{
+    padding: 0px; 
+    margin: 0px; 
+}
+
+.wp-invoiceninja .truncated
+{
+    line-height: 1.5em; 
+    height: 1.5em; 
+    overflow: hidden; 
+    display: -webkit-box; 
+    text-overflow: ellipsis; 
+    -webkit-box-orient: vertical; 
+    -webkit-line-clamp: 1;
+}
+
+.wp-invoiceninja .divider 
+{
+    margin-top: 8px;
+    margin-bottom: 12px;
+    border-bottom: 2px #000000 solid; 
+    width: 50px;
+    transition: border-color 0.3s ease;
+}
+
+.wp-invoiceninja img
+{
+    width: 100%;
+    height: 400px;
+    display: block;
+    object-fit: cover;
+}
+
+.wp-invoiceninja figure
+{
+    padding-top: 8px;
+}
