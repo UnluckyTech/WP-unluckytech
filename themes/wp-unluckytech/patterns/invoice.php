@@ -41,9 +41,6 @@ if (class_exists('InvoiceNinja\Api\ClientApi')) {
     // Add ?include=invitations to include the invitation key
     $invoices_response = ClientApi::sendRequest("invoices?client_id=$client_id&include=invitations");
 
-    // Output the raw response for debugging
-    echo '<pre>API Response: ' . htmlspecialchars(print_r($invoices_response, true)) . '</pre>';
-
     if (!$invoices_response) {
         echo '<p>Error: Unable to fetch invoices for this client.</p>';
         return;
