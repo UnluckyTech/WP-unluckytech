@@ -53,9 +53,9 @@ if (class_exists('InvoiceNinja\Api\ClientApi')) {
         echo '<p>No invoices found for this user.</p>';
     } else {
         // Display the invoices in a table format
-        echo '<h1 class="invoice-title">Your Invoices</h1>';
+        echo '<h1 class="acc-title">Your Invoices</h1>';
         ?>
-        <div class="invoice-container">
+        <div class="table-container">
             <table class="invoice-table">
                 <thead>
                     <tr>

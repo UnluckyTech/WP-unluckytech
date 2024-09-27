@@ -50,32 +50,35 @@ if (class_exists('InvoiceNinja\Api\ClientApi')) {
         echo '<p>No quotes found for this user.</p>';
     } else {
         // Display the quotes in a table format
-        echo '<h1 class="quote-title">Your Quotes</h1>';
+        echo '<h2 class="acc-title">Quotes</h2>';
         ?>
         <div class="quote-container">
-            <table class="quote-table">
-                <thead>
-                    <tr>
-                        <th>Quote #</th>
-                        <th>Amount</th>
-                        <th>Due Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($quotes as $quote): ?>
+            <div class="table-container">
+                <table class="quote-table">
+                    <thead>
                         <tr>
-                            <td><?php echo htmlspecialchars($quote->number); ?></td>
-                            <td><?php echo htmlspecialchars(number_format($quote->amount, 2)); ?></td>
-                            <td><?php echo htmlspecialchars($quote->due_date); ?></td>
-                            <td>
-                                <a href="https://invoice.unluckytech.com/client/quote/<?php echo htmlspecialchars($quote->invitations[0]->key); ?>" target="_blank" class="view-button">View</a>
-                            </td>
+                            <th>Quote #</th>
+                            <th>Amount</th>
+                            <th>Due Date</th>
+                            <th>Actions</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($quotes as $quote): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($quote->number); ?></td>
+                                <td><?php echo htmlspecialchars(number_format($quote->amount, 2)); ?></td>
+                                <td><?php echo htmlspecialchars($quote->due_date); ?></td>
+                                <td>
+                                    <a href="https://invoice.unluckytech.com/client/quote/<?php echo htmlspecialchars($quote->invitations[0]->key); ?>" target="_blank" class="view-button">View</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
         <?php
     }
 } else {

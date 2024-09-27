@@ -23,19 +23,86 @@ include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 $current_user = wp_get_current_user();
 $verification_code = get_user_meta($current_user->ID, 'email_verification_code', true);
 
+// Handle profile update request
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['profile_update'])) {
+    // Only proceed if user is logged in
+    if (!is_user_logged_in()) {
+        wp_redirect(wp_login_url());
+        exit;
+    }
+
+    $user_id = get_current_user_id();
+    $current_user = wp_get_current_user();
+
+    // Get old values
+    $old_nickname = $current_user->nickname;
+    $old_first_name = $current_user->first_name;
+    $old_last_name = $current_user->last_name;
+
+    // Get new values from POST
+    $new_nickname = sanitize_text_field($_POST['nickname']);
+    $new_first_name = sanitize_text_field($_POST['first_name']);
+    $new_last_name = sanitize_text_field($_POST['last_name']);
+
+    // Prepare changes array
+    $changes = array();
+
+    // Update user data and check for changes
+    $user_data = array('ID' => $user_id);
+
+    if ($old_nickname !== $new_nickname) {
+        $user_data['nickname'] = $new_nickname;
+        $changes['Nickname'] = array('old' => $old_nickname, 'new' => $new_nickname);
+    }
+
+    if ($old_first_name !== $new_first_name) {
+        $user_data['first_name'] = $new_first_name;
+        $changes['First Name'] = array('old' => $old_first_name, 'new' => $new_first_name);
+    }
+
+    if ($old_last_name !== $new_last_name) {
+        $user_data['last_name'] = $new_last_name;
+        $changes['Last Name'] = array('old' => $old_last_name, 'new' => $new_last_name);
+    }
+
+    if (!empty($changes)) {
+        // Update user data
+        wp_update_user($user_data);
+
+        // Send email notification
+        $to = $current_user->user_email;
+        $subject = 'Account Information Changed';
+        $message = 'Hello ' . $current_user->display_name . ",<br><br>The following changes were made to your account:<br><br>";
+
+        foreach ($changes as $field => $values) {
+            $message .= '<strong>' . $field . '</strong> changed from "' . esc_html($values['old']) . '" to "' . esc_html($values['new']) . '".<br>';
+        }
+
+        $message .= "<br>If you did not make these changes, please contact us immediately.<br><br>Thank you,<br>Your Website Team";
+
+        $headers = array('Content-Type: text/html; charset=UTF-8');
+
+        wp_mail($to, $subject, $message, $headers);
+    }
+
+    // Redirect back to account page
+    wp_redirect(get_permalink());
+    exit;
+}
+
 // Handle email change request
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_email'])) {
     $new_email = sanitize_email($_POST['new_email']);
-    
+
     if (is_email($new_email) && $new_email !== $current_user->user_email) {
         // Generate verification code and send email
         $verification_code = wp_generate_password(6, false, false); // Generate a 6-digit code
         update_user_meta($current_user->ID, 'email_verification_code', $verification_code);
-        
+
         $subject = 'Verify Your New Email Address';
         $message = 'Your email verification code is: ' . $verification_code;
         $headers = ['Content-Type: text/html; charset=UTF-8'];
-        
+
         if (wp_mail($new_email, $subject, $message, $headers)) {
             echo json_encode(['success' => true, 'message' => 'Verification code sent to your new email address!']);
         } else {
@@ -51,12 +118,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_email'])) {
 // Handle email verification code submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['verification_code'])) {
     if ($verification_code && $_POST['verification_code'] === $verification_code) {
+        // Get the old email
+        $old_email = $current_user->user_email;
+        $new_email = sanitize_email($_POST['new_email']);
+
         // Update user's email
         wp_update_user([
             'ID' => $current_user->ID,
-            'user_email' => $_POST['new_email'],
+            'user_email' => $new_email,
         ]);
         delete_user_meta($current_user->ID, 'email_verification_code');
+
+        // Send email notification to old email address
+        $subject = 'Your Email Address Has Been Changed';
+        $message = 'Hello ' . $current_user->display_name . ",<br><br>Your email address has been changed from <strong>" . esc_html($old_email) . "</strong> to <strong>" . esc_html($new_email) . "</strong>.<br><br>If you did not make this change, please contact us immediately.<br><br>Thank you,<br>Your Website Team";
+
+        $headers = array('Content-Type: text/html; charset=UTF-8');
+
+        wp_mail($old_email, $subject, $message, $headers);
+
         echo json_encode(['success' => true, 'message' => 'Email verified and updated successfully!']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Incorrect verification code.']);
@@ -72,6 +152,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 
     if (wp_check_password($current_password, $current_user->user_pass, $current_user->ID)) {
         wp_set_password($new_password, $current_user->ID);
+
+        // Send email notification
+        $to = $current_user->user_email;
+        $subject = 'Your Password Has Been Changed';
+        $message = 'Hello ' . $current_user->display_name . ",<br><br>Your account password has been changed.<br><br>If you did not make this change, please reset your password immediately or contact us.<br><br>Thank you,<br>Your Website Team";
+
+        $headers = array('Content-Type: text/html; charset=UTF-8');
+
+        wp_mail($to, $subject, $message, $headers);
+
         echo json_encode(['success' => true, 'message' => 'Password changed successfully!']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Current password is incorrect.']);
@@ -79,6 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 
     exit; // Stop processing further
 }
+
 ?>
 
 <div class="account-container">
@@ -118,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
         <div class="account-display">
             <!-- Profile Section -->
             <div class="account-section" id="profile-section" style="display: block;">
-                <h2>Profile</h2>
+                <h2 class="acc-title">Profile</h2>
                 <?php if ($current_user->exists()) : ?>
                     <form id="profileForm" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="save_profile">
@@ -156,13 +247,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 
             <!-- Notifications Section -->
             <div class="account-section" id="notifications-section" style="display: none;">
-                <h2>Notifications</h2>
-                <!-- Existing notifications content here -->
+	            <!-- wp:pattern {"slug":"unluckytech/notification"} /-->
             </div>
 
             <!-- Email Section -->
             <div class="account-section" id="email-section" style="display: none;">
-                <h2>Change Email</h2>
+                <h2 class="acc-title">Change Email</h2>
                 
                 <!-- Current Email Display -->
                 <p class="current-email">Your current email: <?php echo esc_html($current_user->user_email); ?></p>
@@ -193,7 +283,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 
             <!-- Password Section -->
             <div class="account-section" id="password-section" style="display: none;">
-                <h2>Change Password</h2>
+                <h2 class="acc-title">Change Password</h2>
                 <form id="changePasswordForm" method="post" class="password-form">
                     <div class="acc-group">
                         <label for="current_password">Current Password:</label>

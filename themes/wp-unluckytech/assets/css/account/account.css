@@ -290,7 +290,8 @@ input[type="checkbox"] {
     max-width: 1000px;
 }
 
-.invoice-title, .quote-title {
+/* Title Styles */
+.acc-title {
     font-family: 'Montserrat', sans-serif;
     font-size: 32px;
     font-weight: 700;
@@ -299,6 +300,13 @@ input[type="checkbox"] {
     color: #333;
 }
 
+/* Table Container */
+.table-container {
+    overflow-x: auto; /* Allow horizontal scrolling on small screens */
+    margin: 0 -20px; /* Offset padding on the container */
+}
+
+/* Tables */
 .invoice-table, .quote-table {
     width: 100%;
     border-collapse: collapse;
@@ -311,6 +319,7 @@ input[type="checkbox"] {
 .quote-table td {
     padding: 15px;
     border-bottom: 1px solid #ddd;
+    white-space: nowrap; /* Prevent text from wrapping in table cells */
 }
 
 .invoice-table th,
@@ -325,6 +334,7 @@ input[type="checkbox"] {
     font-size: 16px;
 }
 
+/* View Button */
 .view-button {
     display: inline-block;
     padding: 10px 15px;
@@ -335,6 +345,8 @@ input[type="checkbox"] {
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     transition: background-color 0.3s ease;
+    text-align: center; /* Center the button text */
+    margin: 10px 0; /* Margin for spacing */
 }
 
 .view-button:hover {
@@ -435,4 +447,28 @@ input[type="checkbox"] {
     .overlay.overlay-active {
         display: block;
     }
+
+    .invoice-container, .quote-container {
+        padding: 15px;
+        margin: 10px; /* Reducing margins for smaller screens */
+    }
+
+    .acc-title {
+        font-size: 24px; /* Reducing font size for titles */
+        margin-bottom: 15px; /* Adjusting bottom margin */
+    }
+
+    .invoice-table td,
+    .quote-table td {
+        font-size: 14px; /* Smaller font size for table cells */
+        padding: 10px; /* Reducing padding for smaller screens */
+    }
+
+    .view-button {
+        padding: 8px 12px; /* Adjusting button padding */
+        font-size: 12px; /* Smaller font size for buttons */
+        width: 100%; /* Making button full-width */
+        box-sizing: border-box; /* Ensuring padding doesn't affect width */
+    }
+
 }

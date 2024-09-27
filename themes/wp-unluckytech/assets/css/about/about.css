@@ -289,6 +289,8 @@
     /* About Page Styles */
     .about-container {
         padding: 20px;
+        padding-top: 100px;
+
     }
 
     .about-banner {
