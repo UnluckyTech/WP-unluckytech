@@ -23,7 +23,7 @@
 /plugins/*
 
 # DO NOT ignore these plugins...
-# !/plugins/wordpress-seo
+!/plugins/invoiceninja2
 
 #---------------------------
 # WP MU plugins: often
