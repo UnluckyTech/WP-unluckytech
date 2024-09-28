@@ -74,3 +74,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['log']) && !empty($_P
         }
     });
 </script>
+

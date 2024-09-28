@@ -127,9 +127,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['verification_code'])) 
             'ID' => $current_user->ID,
             'user_email' => $new_email,
         ]);
+        
+        // Mark the email as verified
+        update_user_meta($current_user->ID, 'email_verified', 1);
+
+        // Remove the verification code from user meta
         delete_user_meta($current_user->ID, 'email_verification_code');
 
-        // Send email notification to old email address
+        // Send email notification to the old email address
         $subject = 'Your Email Address Has Been Changed';
         $message = 'Hello ' . $current_user->display_name . ",<br><br>Your email address has been changed from <strong>" . esc_html($old_email) . "</strong> to <strong>" . esc_html($new_email) . "</strong>.<br><br>If you did not make this change, please contact us immediately.<br><br>Thank you,<br>Your Website Team";
 
@@ -137,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['verification_code'])) 
 
         wp_mail($old_email, $subject, $message, $headers);
 
+        // Respond with success message
         echo json_encode(['success' => true, 'message' => 'Email verified and updated successfully!']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Incorrect verification code.']);

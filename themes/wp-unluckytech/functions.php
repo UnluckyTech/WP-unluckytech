@@ -216,43 +216,184 @@ function disable_admin_bar_for_non_admins() {
 }
 add_action('wp_loaded', 'disable_admin_bar_for_non_admins');
 
-// Add first and last name fields to the registration form
-function unluckytech_registration_fields() {
+// Add password and confirm password fields to the registration form
+function unluckytech_registration_password_fields() {
     ?>
     <p>
-        <label for="first_name"><?php _e('First Name') ?><br />
-        <input type="text" name="first_name" id="first_name" class="input" value="<?php if (!empty($_POST['first_name'])) echo esc_attr($_POST['first_name']); ?>" size="25" /></label>
+        <label for="password"><?php _e('Password') ?><br />
+        <input type="password" name="password" id="password" class="input" value="<?php if (!empty($_POST['password'])) echo esc_attr($_POST['password']); ?>" size="25" /></label>
     </p>
     <p>
-        <label for="last_name"><?php _e('Last Name') ?><br />
-        <input type="text" name="last_name" id="last_name" class="input" value="<?php if (!empty($_POST['last_name'])) echo esc_attr($_POST['last_name']); ?>" size="25" /></label>
+        <label for="confirm_password"><?php _e('Confirm Password') ?><br />
+        <input type="password" name="confirm_password" id="confirm_password" class="input" value="<?php if (!empty($_POST['confirm_password'])) echo esc_attr($_POST['confirm_password']); ?>" size="25" /></label>
     </p>
     <?php
 }
-add_action('register_form', 'unluckytech_registration_fields');
+add_action('register_form', 'unluckytech_registration_password_fields');
 
-// Validate the first and last name fields during registration
-function unluckytech_validate_registration_fields($errors, $sanitized_user_login, $user_email) {
-    if (empty($_POST['first_name']) || empty($_POST['last_name'])) {
-        $errors->add('first_last_name_error', __('<strong>ERROR</strong>: You must include a first and last name.'));
+// Validate password fields during registration
+function unluckytech_validate_password_fields($errors, $sanitized_user_login, $user_email) {
+    if (empty($_POST['password']) || empty($_POST['confirm_password'])) {
+        $errors->add('password_error', __('<strong>ERROR</strong>: You must include both password and confirm password.'));
+    } elseif ($_POST['password'] !== $_POST['confirm_password']) {
+        $errors->add('password_mismatch', __('<strong>ERROR</strong>: Passwords do not match.'));
     }
     return $errors;
 }
-add_filter('registration_errors', 'unluckytech_validate_registration_fields', 10, 3);
+add_filter('registration_errors', 'unluckytech_validate_password_fields', 10, 3);
 
-// Save the first and last name fields during user registration
-function unluckytech_save_registration_fields($user_id) {
-    if (!empty($_POST['first_name'])) {
-        update_user_meta($user_id, 'first_name', sanitize_text_field($_POST['first_name']));
+// Save the password during user registration and send verification email
+function unluckytech_save_password_and_send_verification($user_id) {
+    if (!empty($_POST['password'])) {
+        wp_set_password($_POST['password'], $user_id);
     }
-    if (!empty($_POST['last_name'])) {
-        update_user_meta($user_id, 'last_name', sanitize_text_field($_POST['last_name']));
-    }
-    
+
     // Automatically mark the user as 'unverified'
     update_user_meta($user_id, 'email_verified', 0);
 
     // Generate and send the email verification code
     unluckytech_send_verification_code($user_id);
 }
-add_action('user_register', 'unluckytech_save_registration_fields');
+add_action('user_register', 'unluckytech_save_password_and_send_verification');
+
+// Send the verification code
+function unluckytech_send_verification_code($user_id) {
+    $user = get_user_by('ID', $user_id);
+    $verification_code = wp_generate_password(20, false);
+    update_user_meta($user_id, 'email_verification_code', $verification_code);
+
+    $verification_link = add_query_arg(array(
+        'verify_email' => 'true',
+        'code' => $verification_code,
+        'user_id' => $user_id
+    ), site_url());
+
+    $to = $user->user_email;
+    $subject = "Verify your account on UnluckyTech";
+    $message = "Click the following link to verify your email address: " . $verification_link;
+
+    wp_mail($to, $subject, $message);
+}
+
+// Handle email verification upon user click
+function unluckytech_verify_email() {
+    if (isset($_GET['verify_email']) && $_GET['verify_email'] === 'true') {
+        $user_id = intval($_GET['user_id']);
+        $verification_code = sanitize_text_field($_GET['code']);
+        $stored_code = get_user_meta($user_id, 'email_verification_code', true);
+
+        if ($verification_code === $stored_code) {
+            update_user_meta($user_id, 'email_verified', 1);
+            delete_user_meta($user_id, 'email_verification_code');
+            wp_redirect(site_url('/?email_verified=true'));
+            exit;
+        } else {
+            wp_redirect(site_url('/?email_verified=false'));
+            exit;
+        }
+    }
+}
+add_action('init', 'unluckytech_verify_email');
+
+// Show success or error message on the login page
+function unluckytech_show_verification_message() {
+    if (isset($_GET['email_verified']) && $_GET['email_verified'] === 'true') {
+        echo '<div class="verification-success">Your email has been successfully verified!</div>';
+    } elseif (isset($_GET['email_verified']) && $_GET['email_verified'] === 'false') {
+        echo '<div class="verification-failure">The email verification failed. Please try again.</div>';
+    }
+}
+add_action('login_message', 'unluckytech_show_verification_message');
+
+// Disable the default new user notification email to users
+function disable_new_user_notification_email() {
+    remove_action('register_new_user', 'wp_send_new_user_notifications');
+}
+add_action('init', 'disable_new_user_notification_email');
+
+// Block unverified users from logging in
+function unluckytech_block_unverified_users($user, $password) {
+    // Check if the user exists and is not an administrator
+    if (!is_wp_error($user) && !current_user_can('administrator', $user->ID)) {
+        // Get the user's email_verified status
+        $email_verified = get_user_meta($user->ID, 'email_verified', true);
+
+        // If the email is not verified, block the login
+        if ($email_verified != 1) {
+            return new WP_Error('email_not_verified', __('ERROR: Your email is not verified. Please check your inbox for the verification link.'));
+        }
+    }
+
+    return $user;
+}
+add_filter('wp_authenticate_user', 'unluckytech_block_unverified_users', 10, 2);
+
+// Hook into the authenticate process to track login attempts
+add_filter('wp_authenticate_user', 'custom_check_login_attempts', 99, 2);
+function custom_check_login_attempts($user, $password) {
+    if (is_wp_error($user)) {
+        return $user; // Return error if user is invalid
+    }
+    
+    // Get user ID
+    $user_id = $user->ID;
+    
+    // Get login attempts meta
+    $attempts = get_user_meta($user_id, '_failed_login_attempts', true);
+    $last_attempt = get_user_meta($user_id, '_last_failed_login', true);
+
+    // Calculate lockout time (in seconds)
+    $lockout_time = custom_calculate_lockout_time($attempts);
+
+    // Check if the user is locked out
+    if (!empty($last_attempt) && (time() - $last_attempt) < $lockout_time) {
+        $remaining_time = $lockout_time - (time() - $last_attempt);
+        return new WP_Error('too_many_attempts', "Too many login attempts. Please try again in " . human_time_diff(time(), time() + $remaining_time) . ".");
+    }
+
+    return $user;
+}
+
+// Hook into login_failed to increase login attempt counter
+add_action('wp_login_failed', 'custom_track_failed_logins', 10, 1);
+function custom_track_failed_logins($username) {
+    $user = get_user_by('login', $username);
+
+    // If the user exists, increment failed login attempts
+    if ($user) {
+        $user_id = $user->ID;
+        $attempts = get_user_meta($user_id, '_failed_login_attempts', true);
+        $attempts = (empty($attempts)) ? 0 : $attempts;
+        $attempts++;
+        
+        // Update the user meta with the new attempt count and timestamp
+        update_user_meta($user_id, '_failed_login_attempts', $attempts);
+        update_user_meta($user_id, '_last_failed_login', time());
+    }
+}
+
+// Reset failed login attempts after successful login
+add_action('wp_login', 'custom_reset_failed_logins', 10, 2);
+function custom_reset_failed_logins($user_login, $user) {
+    delete_user_meta($user->ID, '_failed_login_attempts');
+    delete_user_meta($user->ID, '_last_failed_login');
+}
+
+// Function to calculate lockout time based on number of attempts
+function custom_calculate_lockout_time($attempts) {
+    $timeout = 0;
+
+    if ($attempts >= 5 && $attempts < 10) {
+        $timeout = 2 * MINUTE_IN_SECONDS; // 2 minutes
+    } elseif ($attempts >= 10 && $attempts < 15) {
+        $timeout = 10 * MINUTE_IN_SECONDS; // 10 minutes
+    } elseif ($attempts >= 15 && $attempts < 20) {
+        $timeout = HOUR_IN_SECONDS; // 1 hour
+    } elseif ($attempts >= 20 && $attempts < 25) {
+        $timeout = 12 * HOUR_IN_SECONDS; // 12 hours
+    } elseif ($attempts >= 25) {
+        $timeout = DAY_IN_SECONDS; // 24 hours
+    }
+
+    return $timeout;
+}
