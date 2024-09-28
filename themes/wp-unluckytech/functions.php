@@ -311,7 +311,22 @@ function disable_new_user_notification_email() {
 }
 add_action('init', 'disable_new_user_notification_email');
 
+// Block unverified users from logging in
+function unluckytech_block_unverified_users($user, $password) {
+    // Check if the user exists and is not an administrator
+    if (!is_wp_error($user) && !current_user_can('administrator', $user->ID)) {
+        // Get the user's email_verified status
+        $email_verified = get_user_meta($user->ID, 'email_verified', true);
 
+        // If the email is not verified, block the login
+        if ($email_verified != 1) {
+            return new WP_Error('email_not_verified', __('ERROR: Your email is not verified. Please check your inbox for the verification link.'));
+        }
+    }
+
+    return $user;
+}
+add_filter('wp_authenticate_user', 'unluckytech_block_unverified_users', 10, 2);
 
 // Hook into the authenticate process to track login attempts
 add_filter('wp_authenticate_user', 'custom_check_login_attempts', 99, 2);
