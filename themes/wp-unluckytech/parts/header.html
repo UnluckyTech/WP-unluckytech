@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UnluckyTECH</title>
-    <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="/wp-content/themes/wp-unluckytech/assets/css/nav.css">
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dyKZQb9heJepObODhUFBQQ2q+NSiVR0YtCk1vs9zAwneAK1/aDB6bZLbaGRt7aP3nM+T7qVh4Zxq3lyBD6K1Hg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <!-- Header content -->
-    <div class="header-wrapper">
-        <div class="wp-block-group" style="padding: 0;">
+    <header class="header">
+        <div class="header-wrapper">
             <!-- Particle animation HTML -->
             <div class="particle-network-animation">
                 <div class="glow glow-1"></div>
@@ -23,47 +21,82 @@
 
             <!-- Navigation wrapper -->
             <div class="navigation-wrapper" id="navWrapper">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="https://unluckytech.com/">
-                        <img src="/wp-content/themes/wp-unluckytech/assets/images/BizTitleLite.webp" alt="UnluckyTECH" />
-                    </a>
-                </div>
+                <!-- New container for logo, nav, and right icons -->
+                <div class="nav-container">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="https://unluckytech.com/">
+                            <img src="/wp-content/themes/wp-unluckytech/assets/images/BizTitleLite.webp" alt="UnluckyTECH" />
+                        </a>
+                    </div>
 
-                <!-- Menu Icon for Mobile -->
-                <a href="#" class="menu-icon" id="menuIcon">
-                    <i class="fas fa-bars"></i>
-                </a>
+                    <!-- Centered Navigation -->
+                    <div class="nav-center" id="navCenter">
+                        <!-- Navigation -->
+                        <div class="wp-block-navigation" id="navMenu">
+                            <a href="/about">About</a>
+                            <a href="/docs" target=>Docs</a>
+                            <a href="https://forums.unluckytech.com/" target="_blank">Forum</a>
+                            <a href="https://store.unluckytech.com/" target="_blank">Store</a>
+                            <a href="https://youtube.com/@UnluckyTechs" target="_blank">Videos</a>
+                        </div>
+                    </div>
 
-                <!-- Centered Navigation -->
-                <div class="nav-center" id="navCenter">
-                    <!-- Navigation -->
-                    <div class="wp-block-navigation" id="navMenu">
-                        <a href="https://unluckytech.com/about" target="_blank">About</a>
-                        <a href="https://docs.unluckytech.com/" target="_blank">Docs</a>
-                        <a href="https://forums.unluckytech.com/" target="_blank">Forum</a>
-                        <a href="https://store.unluckytech.com/" target="_blank">Store</a>
-                        <a href="https://youtube.com/@UnluckyTechs" target="_blank">Videos</a>
+                    <!-- Right Icons -->
+                    <div class="right-icons">
+                        <!-- Search Icon -->
+                        <div class="search-icon" onclick="toggleSearchBar()">
+                            <i class="fas fa-search"></i>
+                        </div>
+
+                        <!-- User Login Icon -->
+                        <div class="user-login" onclick="toggleUserLogin()">
+                            <i class="fas fa-user"></i>
+                        </div>
+
+                        <!-- User Login Form -->
+                        <!-- wp:pattern {"slug":"unluckytech/login"} /-->
+                        <!-- Search Bar -->
+                        <!-- wp:pattern {"slug":"unluckytech/nav"} /-->
+                    </div>
+                </div> <!-- End of nav-container -->
+                <!-- Off-Screen Menu -->
+                <div class="off-screen-menu">
+                    <div class="off-screen-container">
+                        <div class="off-screen-content">
+                            <a href="/about">About</a>
+                            <div class="mobile-divider"></div>
+                            <a href="/docs">Docs</a>
+                            <div class="mobile-divider"></div>
+                            <a href="https://forums.unluckytech.com/" target="_blank">Forum</a>
+                            <div class="mobile-divider"></div>
+                            <a href="https://store.unluckytech.com/" target="_blank">Store</a>
+                            <div class="mobile-divider"></div>
+                            <a href="https://youtube.com/@UnluckyTechs" target="_blank">Videos</a>
+                            <div class="mobile-divider"></div>
+                        </div>
+                        <!-- Unique Search Bar -->
+                        <!-- wp:pattern {"slug":"unluckytech/mobilesearch"} /-->
+                        <!-- Account -->
+                        <!-- wp:pattern {"slug":"unluckytech/mobilenav"} /-->
                     </div>
                 </div>
 
-                <!-- Right Icons -->
-                <div class="right-icons">
-                    <!-- Search Icon -->
-                    <div class="search-icon">
-                        <i class="fas fa-search"></i>
+                <!-- Hamburger Menu -->
+                <nav>
+                    <div class="ham-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
-
-                    <!-- Theme Toggle Icon -->
-                    <div class="theme-toggle" onclick="toggleTheme()">
-                        <i class="fas fa-sun"></i>
-                    </div>
-                </div>
+                </nav>
             </div>
         </div>
-    </div>
+    </header>
 
     <!-- Link to external JavaScript file -->
     <script src="/wp-content/themes/wp-unluckytech/assets/js/nav.js"></script>
+    <script src="/wp-content/themes/wp-unluckytech/assets/js/search.js"></script>
+    <script src="/wp-content/themes/wp-unluckytech/assets/js/login.js"></script>
 </body>
 </html>

@@ -1,16 +1,20 @@
+/* Ensure that the container covers the full viewport */
 .particle-network-animation {
-    position: fixed;
+    position: fixed; /* Fixed positioning to stay in place during scroll */
     top: 0;
     left: 0;
-    right: 0;
-    height: 100vh;
-    background-color: #2b2c30;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background-color: #2b2c30; /* Dark background color */
+    z-index: -1; /* Place behind other content */
+    overflow: hidden; /* Prevent scrollbars from appearing */
 }
 
+/* Ensure the canvas covers the container completely */
 #particle-canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
+    position: absolute; /* Absolute positioning within fixed container */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
 }
-
-

@@ -1,0 +1,202 @@
+/* Footer styles */
+body {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative
+}
+  
+  body::after {
+    content: '';
+    display: block;
+    min-height: 350px;
+    margin-bottom: 100px;
+    /* Set same as footer's height */
+  }
+
+.footer {
+    position: absolute;
+    bottom:0;
+    background-color: #1d1f21; /* Dark background for footer */
+    color: white; /* White text color for contrast */
+    padding: 50px 0; /* Padding around the footer */
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px; /* Maximum width of the content area */
+    margin: 0 auto; /* Center the content horizontally */
+    padding: 0 20px; /* Horizontal padding */
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space between sections */
+    flex-wrap: wrap; /* Wrap sections on smaller screens */
+    gap: 20px; /* Space between sections */
+}
+
+/* Flex item to take up available space */
+.footer-section {
+    flex: 1; 
+}
+
+/* Title style */
+.footer-title {
+    font-size: 18px; /* Font size for section titles */
+    margin-bottom: 10px; /* Space below the title */
+}
+
+.footer-description {
+    background-color: #27292c; /* Darker background for description */
+    padding: 15px; /* Padding around description */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 14px; /* Font size for description */
+    margin: 0; /* Remove default margin */
+}
+
+/* Footer Logo */
+.footer-logo {
+    display: flex; /* Flexbox layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin-bottom: 10px; /* Space below the logo */
+}
+
+.footer-logo img {
+    max-width: 60%; /* Scale the image according to its container */
+    height: auto; /* Maintain aspect ratio */
+    width: auto; /* Allow width to scale with max-width */
+    max-height: 60px; /* Adjust max height to fit the design */
+}
+
+/* Links in footer */
+.footer-links {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.footer-links li {
+    margin-bottom: 10px; /* Space between links */
+}
+
+.footer-links a {
+    color: white; /* White color for links */
+    text-decoration: none; /* Remove underline from links */
+    font-size: 14px; /* Font size for links */
+}
+
+.footer-social-icons,
+.footer-unluckytech-icons {
+    display: flex; /* Flexbox layout for social icons */
+    gap: 10px; /* Space between icons */
+}
+
+/* Ensure all icons are white */
+.footer-social-icons i,
+.footer-unluckytech-icons i {
+    color: white; /* Set icon color to white */
+}
+
+/* Hide new social icons on desktop */
+@media (min-width: 769px) {
+    .footer-unluckytech-icons {
+        display: none; /* Hide on desktop */
+    }
+}
+
+/* Adjustments for the original Connect with Us section */
+.footer-connect {
+    margin-top: 20px; /* Space above the Connect with Us section */
+    margin-top: 0; /* Remove additional margin */
+}
+
+.footer-bottom {
+    text-align: center; /* Center-align text */
+    padding: 20px 0; /* Padding around the bottom text */
+    border-top: 1px solid #27292c; /* Top border */
+    margin-top: 20px; /* Space above the bottom text */
+}
+
+/* Common Title Style for Footer */
+.footer-common-title {
+    font-size: 18px; /* Match font size of .services-title */
+    color: #fff;     /* White color */
+    font-weight: normal; /* Not bold */
+    font-family: Arial, sans-serif; /* Use the same font-family */
+}
+
+/* Hide old social icons and "Connect with Us" section on mobile */
+@media (max-width: 768px) {
+    .footer-connect {
+        display: none; /* Hide entire Connect with Us section on mobile */
+    }
+
+    .footer-social-icons {
+        display: none; /* Hide old social icons on mobile */
+    }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+
+    body::after {
+        position: relative;
+        padding-bottom: 280px;
+        /* Set same as footer's height */
+      }
+
+    .footer-common-title {
+        font-weight: 700;
+    }
+
+    .footer-content {
+        flex-direction: column; /* Stack sections vertically */
+        align-items: center; /* Center align sections */
+    }
+
+    .footer-section {
+        width: 100%; /* Full width for each section on mobile */
+        text-align: left; /* Align text to the left for other sections */
+    }
+
+    .footer-unluckytech-icons {
+        display: flex; /* Show new social icons under UnluckyTech section on mobile */
+        justify-content: center; /* Center icons horizontally */
+        gap: 15px; /* Space between icons */
+        margin-top: 20px; /* Space above the icons */
+    }
+
+    .footer-unluckytech-icons i {
+        font-size: 24px; /* Adjust size of icons */
+        color: white; /* Ensure the icon color is white */
+    }
+
+    .footer-bottom {
+        display: none; /* Hide old social icons on mobile */
+    }
+
+    .footer-logo {
+        text-align: center; /* Ensure the logo remains centered */
+        width: 100%; /* Full width to center logo */
+        margin-bottom: 20px; /* Space below the logo */
+    }
+
+    .footer-logo img {
+        display: inline-block; /* Ensure the logo is treated as an inline-block element */
+        margin: 0 auto; /* Center align the image */
+    }
+
+}
+
+@media (max-width: 1024px) {
+
+    body::after {
+        content: '';
+        display: block;
+        min-height: 400px;
+        margin-bottom: 100px;
+        /* Set same as footer's height */
+      }
+
+}

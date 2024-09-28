@@ -7,42 +7,34 @@
  */
 ?>
 
-<!-- Services Section -->
 <div class="services-section">
-    <div class="services-wrapper">
-        <div class="wp-block-group">
-            <div class="services-title">Services</div>
-            <div class="services-list">
-                <ul>
-                    <li><?php _e('Web Development', 'wp-unluckytech'); ?></li>
-                    <li><?php _e('Graphic Design', 'wp-unluckytech'); ?></li>
-                    <li><?php _e('SEO Optimization', 'wp-unluckytech'); ?></li>
-                    <li><?php _e('Social Media Management', 'wp-unluckytech'); ?></li>
-                    <li><?php _e('Content Creation', 'wp-unluckytech'); ?></li>
-                    <li><?php _e('IT Consulting', 'wp-unluckytech'); ?></li>
-                </ul>
-            </div>
-        </div>
+    <div class="services-list">
+        <h2 class="services-title">SERVICES</h2>
+        <ul>
+            <li>Web Development</li>
+            <li>Graphic Design</li>
+            <li>SEO Optimization</li>
+            <li>Social Media Management</li>
+            <li>Content Creation</li>
+            <li>IT Consulting</li>
+        </ul>
     </div>
     <div class="services-slideshow">
         <div class="slideshow-container">
-            <?php
-            $images = array(
-                'https://via.placeholder.com/300x200',
-                'https://via.placeholder.com/300x200',
-                'https://via.placeholder.com/300x200',
-            );
-            foreach ($images as $index => $image) {
-                echo '<div class="mySlides">';
-                echo '<img src="' . esc_url($image) . '" alt="Service Image ' . ($index + 1) . '">';
-                echo '</div>';
-            }
-            ?>
-            <div class="dot-container">
-                <?php foreach ($images as $index => $image) : ?>
-                    <span class="dot" onclick="currentSlide(<?php echo $index + 1; ?>)"></span>
-                <?php endforeach; ?>
+            <div class="mySlides active">
+                <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/serv1.jpg' ) ); ?>" alt="Service 1">
             </div>
+            <div class="mySlides active">
+                <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/serv2.jpg' ) ); ?>" alt="Service 2">
+            </div>
+            <!-- Add more slides as needed -->
+        </div>
+        <div class="arrow-container">
+            <div class="arrow-up" onclick="plusSlides(-1)">&#10094;</div>
+            <div class="arrow-down" onclick="plusSlides(1)">&#10095;</div>
         </div>
     </div>
 </div>
+
+<!-- Include the slideshow JavaScript -->
+<script src="<?php echo esc_url( get_theme_file_uri( 'assets/js/slideshow.js' ) ); ?>"></script>

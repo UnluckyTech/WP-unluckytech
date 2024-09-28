@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.unluckytech-slideshow-container {
+    position: relative;
+    margin: auto;
+    width: 100%; /* Adjust the width to create gaps on the sides */
+    height: 53vh; /* Full height */
+    max-height: 554.553px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #000; /* Optional: Add a background color to emphasize the gaps */
+}
+
+.unluckytech-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative; /* Make it relative to position the overlay and title */
+}
+
+.unluckytech-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.unluckytech-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    backdrop-filter: blur(4px); /* Optional: blur effect */
+    z-index: 0; /* Ensure overlay is above the image */
+}
+
+.unluckytech-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the title */
+    color: #fff; /* Title color */
+    font-weight: 700;
+    font-size: 3em; /* Adjust font size as needed */
+    text-align: center;
+    z-index: 0; /* Ensure title is above the overlay */
+}
+
+.unluckytech-dots-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 0;
+}
+
+.unluckytech-dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.unluckytech-dot.active, .unluckytech-dot:hover {
+    background-color: #717171;
+}
+
+
+@media (max-width: 768px) {
+
+    .unluckytech-slide img {
+        width: 100vh;
+        height: 100vh;
+
+    }
+
+    .unluckytech-title {
+        font-size: 2em; /* Adjust font size as needed */
+    }
+
+    .unluckytech-slideshow-container {
+        max-height: 400px;
+    }
+
+}

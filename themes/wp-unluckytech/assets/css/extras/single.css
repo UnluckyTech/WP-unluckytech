@@ -1,0 +1,449 @@
+/* Single Post Styling */
+.single-post-container {
+    display: flex;
+    max-width: 1200px;
+    padding: 20px;
+    gap: 20px; /* Space between the left and right sides */
+    margin: 0 auto; /* Center horizontally */
+}
+
+
+.main-post-content {
+    flex: 2; /* Takes up more space on the left */
+    background: #fff; /* White background for the post content */
+    padding: 0; /* No padding for the main content */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.main-discussion {
+    margin-top: auto; /* Pushes .main-discussion to the bottom */
+}
+
+/* Banner for the featured image */
+.single-post-banner {
+    width: 100%;
+    height: 300px; /* Adjust as needed */
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 20px; /* Space below the banner */
+}
+
+/* Sidebar sticky box */
+.single-post-box {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 80px; /* Adjust this value as needed */
+}
+
+/* Title styling */
+.wp-block-post-title {
+    font-size: 2em !important; /* Adjust font size as needed */
+    color: #000 !important; /* Ensure the title color is black */
+    text-align: center; /* Center the text */
+    margin-bottom: 10px; /* Adjust spacing below the title */
+    padding: 0 20px; /* Adjust padding if needed */
+    font-family: 'Montserrat', sans-serif !important; /* Apply Montserrat font */
+}
+
+/* Date styling */
+.main-single-post-date,
+.date-top-divider,
+.date-bottom-divider {
+    display: none;
+}
+
+/* Meta styling */
+.single-post-meta {
+    padding: 0 20px 20px 20px; /* Adjust padding */
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px; /* Space below meta */
+}
+
+/* Content styling */
+.single-post-content {
+    padding: 0 20px 20px 20px; /* Adjust padding */
+    background: #fff; /* White background for content */
+    width: 100%; /* Ensure the content takes up the full width */
+    box-sizing: border-box; /* Include padding in the element's width and height */
+}
+
+/* Link styling for latest posts */
+.single-post-link {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+}
+
+/* User Box Styling */
+.user-box {
+    background: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px; /* Adjust padding for content inside */
+    width: 344px; /* Width to match the parent container */
+    height: 251px; /* Adjust height to fit content */
+    margin: 10px 0; /* Space above and below */
+    box-sizing: border-box; /* Include padding in width and height */
+    margin-right: 80px;
+
+}
+
+/* User Box Inner Content */
+.user-box-inner {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center contents horizontally */
+    justify-content: center; /* Center contents vertically */
+    text-align: center; /* Center text content */
+}
+
+/* User Box Image */
+.user-box img {
+    width: 100px; /* Increased size */
+    height: 100px; /* Increased size */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* User Name */
+.user-name {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Divider */
+.user-box-divider {
+    width: 80%;
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0;
+}
+
+/* Social Links */
+.user-box-social a {
+    color: #000;
+    font-size: 1.5em; /* Adjust size */
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+/* Latest Posts Styling */
+.latest-posts {
+    width: 344px; /* Set width to 344px */
+    height: 532px; /* Set height to 532px */
+    background: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px; /* Add padding */
+    margin-right: 80px;
+    box-sizing: border-box; /* Include padding in the width and height */
+}
+
+/* Latest Posts Title */
+.latest-posts-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Latest Posts Container */
+.latest-posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between each post */
+}
+
+/* Top Divider for Latest Posts section */
+.latest-posts-top-divider,
+.latest-posts-bottom-divider {
+    width: 30%;
+    height: 2px;
+    background: #444;
+    margin-left: auto; /* Center the divider horizontally */
+    margin-right: auto; /* Center the divider horizontally */
+}
+
+.latest-posts-top-divider {
+    margin-top: 0; /* Adjust this value to move the divider up */
+    margin-bottom: -8px; /* Adjust this value to move the divider up */
+}
+
+.latest-posts-bottom-divider {
+    margin-top: -15px; /* Adjust this value to move the divider up */
+    margin-bottom: 5px; /* Adjust this value to move the divider up */
+}
+
+/* Single Post Card */
+.single-post-card {
+    display: flex;
+    gap: 20px; /* Space between image and content */
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+}
+
+.single-post-card:hover {
+    transform: translateY(-10px); /* Move the card up on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Darker and larger shadow on hover */
+}
+
+/* Single Post Image */
+.single-post-image img {
+    width: 100px; /* Adjust size */
+    height: 100px; /* Adjust size */
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Latest Post Content */
+.latest-post-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+}
+
+/* Latest Post Date */
+.single-post-date {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Latest Post Title */
+.single-post-title h2 {
+    font-size: 1.2em;
+    margin: 5px 0 0; /* Adjust spacing */
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Show ellipsis (...) for overflowing text */
+    display: -webkit-box; /* Display as a box element for clamping */
+    -webkit-line-clamp: 2; /* Show up to 2 lines */
+    -webkit-box-orient: vertical; /* Vertical box orientation for clamping */
+    line-height: 1.5em; /* Adjust line height if necessary */
+    height: 3em; /* Set height to match two lines */
+}
+
+/* Discussion Section */
+.discussion-link {
+    display: block; /* Make the link a block element */
+    text-decoration: none; /* Remove underline from the link */
+    color: inherit; /* Inherit color from parent */
+}
+
+.discussion-section {
+    background-size: cover;
+    background-position: center;
+    padding: 50px 20px; /* Adjust padding */
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+    margin-top: 20px; /* Space above the section */
+    position: relative;
+    overflow: hidden;
+}
+
+.discussion-overlay {
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    color: #fff;
+    padding: 40px 20px; /* Adjust padding */
+    border-radius: 0 0 8px 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Include padding in width and height */
+    backdrop-filter: blur(4px); /* Add blur effect */
+    -webkit-backdrop-filter: blur(4px); /* Add blur effect for Safari */
+}
+
+
+.discussion-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px; /* Adjust size as needed */
+    text-transform: uppercase; /* Optional: transform text to uppercase */
+    letter-spacing: 2px; /* Optional: add letter spacing */
+}
+
+/* New Post Info Box Styling */
+.post-info-box {
+    background: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px; /* Adjust padding for content inside */
+    width: 344px; /* Width to match the parent container */
+    margin: 10px 0; /* Space above and below */
+    box-sizing: border-box; /* Include padding in width and height */
+    margin-right: 80px; /* Align with other boxes */
+}
+
+/* Post Info Box Inner Content */
+.post-info-box-inner {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center contents horizontally */
+    text-align: center; /* Center text content */
+}
+
+/* Post Info Title */
+.post-info-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Divider */
+.post-info-divider {
+    width: 80%;
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0;
+}
+
+/* Post Info Details */
+.post-info-details {
+    font-size: 1em;
+    color: #666;
+}
+
+/* Categories, Tags, and Updated Date */
+.post-info-category,
+.post-info-tags,
+.post-info-updated {
+    margin: 5px 0;
+}
+
+/* Styling for individual tags */
+.post-info-tags span {
+    background: #e0e0e0;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 2px;
+    display: inline-block;
+    font-size: 0.9em;
+    color: #333;
+}
+
+@media (max-width: 1024px) {
+
+    /* Hide sidebar elements on mobile */
+    .user-box,
+    .latest-posts,
+    .single-post-sidebar {
+        display: none;
+    }
+
+    /* Date styling */
+    .main-single-post-date {
+        display: flex;
+        font-size: 1em; /* Adjust size as needed */
+        color: #666; /* Change color if needed */
+        text-align: center; /* Center the text */
+        margin-bottom: 20px; /* Space below the date */
+        padding: 0 20px; /* Adjust padding if needed */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+
+    /* Adjust the content area */
+    .single-post-container {
+        flex-direction: column; /* Stack content vertically */
+        max-width: 100%; /* Ensure it does not exceed viewport width */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+
+    .main-post-content {
+        justify-content: center; /* Center content vertically */
+        align-items: center; /* Center content horizontally */
+        width: 100%; /* Fill the entire width of the parent */
+        height: auto; /* Adjust height automatically */
+    }
+
+    /* Banner for the featured image */
+    .single-post-banner {
+        height: 20vh; /* Default height */
+    }
+
+    /* Optionally, adjust the styling for .wp-block-post-title */
+    .wp-block-post-title {
+        font-size: 1.5em; /* Adjust font size if needed */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+
+    /* Optionally, adjust the styling for .single-post-card */
+    .single-post-card {
+        width: 100%; /* Ensure card takes up full width */
+        height: auto; /* Adjust height automatically */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+
+    /* Latest Post Title */
+    .single-post-title h2 {
+        font-size: 18px !important; /* Increase font size for prominence */
+        margin: 10px 0; /* Add more spacing above and below */
+        font-family: 'Montserrat', sans-serif;
+        text-overflow: clip; /* Change from ellipsis to clip */
+        display: block; /* Keep it as a block element */
+        line-height: 1.4; /* Adjust line height for readability */
+        height: auto; /* Allow full height */
+        font-weight: bold; /* Make text bold */
+        letter-spacing: 1px; /* Add letter spacing for a more refined look */
+        text-transform: uppercase; /* Optional: transform text to uppercase for impact */
+        color: #fff; /* Change color to white or another standout color */
+        border-bottom: 2px solid #fff; /* Optional: add an underline for emphasis */
+        padding-bottom: 5px; /* Add padding below the title for separation */
+    }
+
+    .main-discussion {
+        margin-top: auto; /* Pushes .main-discussion to the bottom */
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 767.98px) {
+
+    .single-post-card {
+        padding: 10px; /* Adjust padding if needed */
+    }
+
+    /* Top Divider for Latest Posts section */
+    .date-top-divider {
+        display: flex;
+        width: 90%;
+        height: 0.1px;
+        background: #444;
+        margin-bottom: 5px; /* Space below the title */
+        margin-left: auto; /* Center the divider from the right */
+        margin-right: auto; /* Center the divider from the right */
+    }
+
+    /* Bottom Divider for Latest Posts section */
+    .date-bottom-divider {
+        display: flex;
+        width: 90%;
+        height: 0.1px;
+        background: #444;
+        margin-top: -15px; /* Adjust this value to move the divider up */
+        margin-bottom: 5px; /* Adjust this value to move the divider up */
+        margin-left: auto; /* Center the divider horizontally */
+        margin-right: auto; /* Center the divider horizontally */
+    }
+
+}

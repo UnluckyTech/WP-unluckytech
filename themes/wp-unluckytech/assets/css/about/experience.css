@@ -1,0 +1,144 @@
+/* Experience Page Styles */
+.experience-container {
+    background: #ffffff;
+    margin: 0 auto;
+    max-width: 1200px;
+    overflow: hidden;
+    margin-top: 40px;
+    border-radius: 8px;
+    padding-top: 100px;
+    align-items: center;
+    background: transparent;
+}
+
+.experience-banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    overflow: hidden;
+}
+
+.experience-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.experience-banner-overlay h1 {
+    color: #ffffff;
+    font-size: 48px;
+    text-align: center;
+    margin: 0;
+}
+
+.experience-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px; /* Adjust size as needed */
+    text-transform: uppercase; 
+    margin-bottom: 10px;
+}
+
+.experience-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Experience Intro Styles */
+.experience-intro {
+    background: #f9f9f9; /* Match card background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Same shadow as cards */
+    text-align: center;
+    min-height: 100px; /* Optional: Ensure it has a minimum height */
+}
+
+.experience-intro p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #333; /* Adjust text color if needed */
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+/* Experience Entries Styles */
+.experience-entries {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Experience Entry Hover Effect */
+.experience-entry {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Add smooth transitions */
+}
+
+.experience-entry:hover {
+    transform: translateY(-5px); /* Slight upward movement */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+}
+
+.experience-entry h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-family: Arial, sans-serif; /* Match the font family */
+}
+
+.experience-entry h3 a:hover {
+    color: #3a3b40;
+}
+
+.experience-entry p {
+    font-size: 1.1em;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+
+    .experience-container {
+        padding: 20px;
+    }
+
+    .experience-banner {
+        height: 20vh;
+    }
+
+    .experience-banner-overlay h1 {
+        font-size: 40px;
+    }
+
+    .experience-intro p {
+        font-size: 1em;
+        line-height: 1.5;
+    }
+
+    .experience-entry {
+        padding: 15px;
+    }
+}
