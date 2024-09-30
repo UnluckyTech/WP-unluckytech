@@ -1,7 +1,7 @@
-/* SERVICES.PHP SECTION */
+/* servpart.PHP SECTION */
 
-/* Services Section */
-.services-section {
+/* servpart Section */
+.servpart-section {
     width: 1200px;
     height: 420px;
     background: rgba(0, 0, 0, .5);
@@ -16,8 +16,8 @@
     overflow: hidden; /* Ensure content stays within the container */
 }
 
-/* Services Title */
-.services-title {
+/* servpart Title */
+.servpart-title {
     font-family: Arial, sans-serif; /* Change font-family to match other text */
     position: absolute;
     top: 20px;
@@ -28,8 +28,8 @@
     margin: 0;
 }
 
-/* Services List */
-.services-list {
+/* servpart List */
+.servpart-list {
     font-size: 20px;
     color: #fff;
     columns: 2;
@@ -38,16 +38,16 @@
     justify-content: center;
 }
 
-.services-list ul {
+.servpart-list ul {
     margin-top: 0;
 }
 
-.services-list li {
+.servpart-list li {
     margin-bottom: 10px;
 }
 
-/* Services Slideshow */
-.services-slideshow {
+/* servpart Slideshow */
+.servpart-slideshow {
     flex: 1;
     max-width: 400px;
     position: relative; /* Ensure relative positioning */
@@ -99,7 +99,7 @@
     margin: 10px 0;
 }
 
-.services-title-2 {
+.servpart-title-2 {
     display: none;
 }
 
@@ -111,19 +111,19 @@
         display: none;
     }
 
-    .services-section {
+    .servpart-section {
         width: 90%;
         padding: 10px;
         flex-direction: column;
     }
 
-    .services-wrapper {
+    .servpart-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
     
-    .services-title {
+    .servpart-title {
         display: flex;
         align-items: center;
         justify-content: center; /* Center horizontally */
@@ -133,16 +133,16 @@
         font-size: 20px;
     }
 
-    /* Services Title */
-    .services-title-2 {
+    /* servpart Title */
+    .servpart-title-2 {
         margin-top: 20px;
         font-size: 20px;
         font-weight: 700;
         color: #fff;
     }
     
-    /* Services List */
-    .services-list {
+    /* servpart List */
+    .servpart-list {
         order: 3;
         width: 100%;
         font-size: 18px;
@@ -151,11 +151,11 @@
         padding: 20px;
         box-shadow: none;
         border-radius: 0;
-        margin-top: -30%; /* Pulls the services list up into the bottom part of the slideshow */
+        margin-top: -30%; /* Pulls the servpart list up into the bottom part of the slideshow */
         position: relative;
         z-index: 1;    }
 
-    .services-list ul {
+    .servpart-list ul {
         list-style-type: none;
         padding: 0;
         margin: 0;
@@ -164,14 +164,14 @@
         column-gap: 20px; /* Adjust the gap between columns */
     }
 
-    .services-list li {
+    .servpart-list li {
         font-size: 16px;
         color: #fff;
         text-align: center;
     }
 
-    /* Services Slideshow */
-    .services-slideshow {
+    /* servpart Slideshow */
+    .servpart-slideshow {
         order: 1;
         width: 100%;
         height: 60%;

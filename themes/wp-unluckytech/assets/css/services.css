@@ -1,0 +1,302 @@
+/* Services Page Styles */
+.services-container {
+    background: #ffffff;
+    margin: 0 auto;
+    max-width: 1200px;
+    overflow: hidden;
+    margin-top: 40px;
+    border-radius: 8px;
+    padding-top: 100px;
+    align-items: center;
+    background: transparent;
+}
+
+.services-banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    overflow: hidden;
+}
+
+.services-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 36px; /* Adjust size as needed */
+    text-transform: uppercase; 
+    margin-bottom: 10px;
+}
+
+.services-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.services-banner-overlay h1 {
+    color: #ffffff;
+    font-size: 48px;
+    text-align: center;
+    margin: 0;
+}
+
+.services-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.services-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.service-card {
+    flex: 1;
+    min-width: 300px; /* Minimum width for service cards */
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card h3, .resource-title h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif;
+}
+
+.service-card p {
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+/* Hover Effect for Service Cards */
+.service-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional Info Section */
+.additional-info {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.additional-info h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif;
+}
+
+.additional-info ul {
+    margin-top: 10px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.additional-info ul li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.additional-info p {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+/* Resources Section */
+.resources-section {
+    background: #f9f9f9;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.resources-text {
+    width: 60%; /* Text container taking up 60% of space */
+}
+
+.resources-section p {
+    font-size: 1.2em;
+}
+
+.resources-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 30%; /* Buttons container taking up 30% of space */
+}
+
+.resources-buttons .button {
+    background-color: #3a3b40;
+    color: #ffffff;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.resources-buttons .button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.services-overview {
+    text-align: center;
+    padding: 30px 0;
+    color: #fff;
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.service-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.service-card {
+    background-color: #f9f9f9; /* Card background */
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.service-icon {
+    font-size: 3em;
+    color: #3a3b40; /* Icon color */
+    margin-bottom: 15px;
+}
+
+.service-title {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.service-description {
+    font-size: 0.95em;
+    color: #000000; /* Description color */
+}
+
+/* Contact Section */
+.summary-section {
+    background: #fff;
+    padding: 20px 20px 0 20px;
+
+}
+
+.summary-container {
+    background: #f9f9f9;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.summary-left {
+    flex: 1;
+    padding-right: 20px;
+    text-align: left;
+}
+
+.summary-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.summary-right {
+    flex: 1.2;
+    text-align: left;
+}
+
+.summary-description {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.contact-btn {
+    background-color: #E94E77;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.contact-btn:hover {
+    background-color: #d84368;
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .services-container {
+        padding: 20px;
+        padding-top: 100px;
+    }
+
+    .services-banner {
+        height: 20vh;
+    }
+
+    .services-banner-overlay h1 {
+        font-size: 40px;
+    }
+
+    .service-card {
+        flex: none; /* Ensure each card takes up full width */
+        width: 90%; /* Adjust to make the cards responsive */
+        margin: 0 auto; /* Center the card */
+    }
+}
