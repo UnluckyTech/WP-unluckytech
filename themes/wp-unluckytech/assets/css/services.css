@@ -58,8 +58,6 @@
     flex-direction: column;
     gap: 20px;
     background: #ffffff;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
 }
 
 .services-section {
@@ -69,6 +67,7 @@
 }
 
 .service-card {
+    text-decoration: none;
     flex: 1;
     min-width: 300px; /* Minimum width for service cards */
     background: #f9f9f9;
@@ -137,7 +136,6 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     gap: 20px;
 }

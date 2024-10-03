@@ -1,143 +1,137 @@
 <?php
 /**
- * Title: Invoices
+ * Title: Test
  * Slug: unluckytech/test
  * Categories: text, featured
- * Description: This file manages and displays user invoices.
+ * Description: This is a test file to experiment.
  */
 
-// Exit if accessed directly
 if (!defined('ABSPATH')) {
-    exit;
+    exit; // Exit if accessed directly.
 }
 
-$turnstile_site_key = get_option('cfturnstile_key'); // Fetch the site key from your database
+// Load necessary WordPress functions and Znuny integration plugin if needed.
+require_once(ABSPATH . 'wp-load.php');
+// Include the authentication file to access the session ID
+include_once ABSPATH . 'wp-content/plugins/znuny/includes/auth.php'; // This should work based on your plugins directory.
+include_once ABSPATH . 'wp-content/plugins/znuny/znuny.php'; // This should work based on your plugins directory.
 
-// Initialize log array
-$logs = array();
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_ticket'])) {
+    // Fetch the session ID.
+    $domain = get_option('znuny_api_domain');
+    $user_login = get_option('znuny_user_login');
+    $password = get_option('znuny_password');
 
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['test_form'])) {
-    // Log the form submission
-    $logs[] = "Form submitted.";
+    // Log request details
+    echo '<h3>Session Request Data:</h3>';
+    echo 'API Domain: ' . esc_html($domain) . '<br>';
+    echo 'User Login: ' . esc_html($user_login) . '<br>';
 
-    // Check if CAPTCHA response exists
-    if (empty($_POST['cf-turnstile-response'])) {
-        $error_message = "Please complete the CAPTCHA.";
-        $logs[] = "CAPTCHA response is empty.";
+    // Make API call to authenticate and get Session ID.
+    $session_response = wp_remote_post($domain . '/znuny/nph-genericinterface.pl/Webservice/unluckytech/Session', array(
+        'body' => json_encode(array(
+            'UserLogin' => $user_login,
+            'Password'  => $password,
+        )),
+        'headers' => array(
+            'Content-Type' => 'application/json',
+        ),
+    ));
+
+    if (is_wp_error($session_response)) {
+        echo 'Error retrieving session ID: ' . esc_html($session_response->get_error_message());
+        return;
+    }
+
+    // Log session response
+    $session_status_code = wp_remote_retrieve_response_code($session_response);
+    $session_body = wp_remote_retrieve_body($session_response);
+    echo '<h3>Session Response Data:</h3>';
+    echo 'Status Code: ' . esc_html($session_status_code) . '<br>';
+    echo 'Response Body: ' . esc_html($session_body) . '<br>';
+
+    $session_data = json_decode($session_body, true);
+
+    if (!isset($session_data['SessionID'])) {
+        echo 'Failed to retrieve Session ID.';
+        return;
+    }
+
+    $session_id = $session_data['SessionID'];
+
+    // Ticket data from the form.
+    $ticket_data = array(
+        'Ticket' => array(
+            'Title'        => sanitize_text_field($_POST['ticket_title']),
+            'Queue'        => 'Raw', // Example queue, adjust accordingly
+            'StateID'      => 1, // Adjust as necessary
+            'PriorityID'   => 3, // Adjust as necessary
+            'CustomerUser' => get_option('znuny_customer_user'),
+        ),
+        'Article' => array(
+            'CommunicationChannel' => 'Email',
+            'Subject'              => sanitize_text_field($_POST['article_subject']),
+            'Body'                 => sanitize_textarea_field($_POST['article_body']),
+            'ContentType'          => '',
+            'Charset'              => 'utf-8',
+            'MimeType'             => 'text/plain',
+        ),
+    );
+
+    // Log ticket request data
+    echo '<h3>Ticket Request Data:</h3>';
+    echo 'Request Body: ' . esc_html(json_encode(array(
+        'SessionID' => $session_id,
+        'Ticket'    => $ticket_data['Ticket'],
+        'Article'   => $ticket_data['Article'],
+    ))) . '<br>';
+
+    // Create ticket API request.
+    $ticket_response = wp_remote_post($domain . '/znuny/nph-genericinterface.pl/Webservice/unluckytech/Ticket', array(
+        'body'    => json_encode(array(
+            'SessionID' => $session_id,
+            'Ticket'    => $ticket_data['Ticket'],
+            'Article'   => $ticket_data['Article'],
+        )),
+        'headers' => array(
+            'Content-Type' => 'application/json',
+        ),
+    ));
+
+    if (is_wp_error($ticket_response)) {
+        echo 'Error submitting ticket: ' . esc_html($ticket_response->get_error_message());
+        return;
+    }
+
+    // Log ticket response
+    $ticket_status_code = wp_remote_retrieve_response_code($ticket_response);
+    $ticket_body = wp_remote_retrieve_body($ticket_response);
+    echo '<h3>Ticket Response Data:</h3>';
+    echo 'Status Code: ' . esc_html($ticket_status_code) . '<br>';
+    echo 'Response Body: ' . esc_html($ticket_body) . '<br>';
+
+    $ticket_data = json_decode($ticket_body, true);
+
+    // Output success message.
+    if (isset($ticket_data['TicketNumber'])) {
+        echo 'Ticket created successfully. Ticket Number: ' . esc_html($ticket_data['TicketNumber']);
     } else {
-        // Directly get the token from POST data
-        $token = $_POST['cf-turnstile-response'];
-        $logs[] = "CAPTCHA token received: " . esc_html($token);
-
-        // Prepare to verify the token
-        $captcha_secret = get_option('cfturnstile_secret'); // Fetch the secret key from your database
-        $logs[] = "Secret key used: " . esc_html($captcha_secret); // Log the secret key for debugging (remove after debugging)
-
-        // Verify CAPTCHA with Cloudflare Turnstile
-        $response = wp_remote_post('https://challenges.cloudflare.com/turnstile/v0/siteverify', array(
-            'body' => array(
-                'secret' => $captcha_secret, // Secret key for verification
-                'response' => $token, // Use the token directly here
-                'remoteip' => $_SERVER['REMOTE_ADDR'], // Optional: Include the user's IP address
-            )
-        ));
-
-        // Handle response errors or failures
-        if (is_wp_error($response)) {
-            $error_message = "CAPTCHA verification failed due to a network error. Please try again.";
-            $logs[] = "CAPTCHA verification network error: " . esc_html($response->get_error_message());
-        } else {
-            $response_body = wp_remote_retrieve_body($response);
-            $captcha_result = json_decode($response_body, true);
-
-            // Log the API response
-            $logs[] = "Cloudflare response: " . print_r($captcha_result, true);
-
-            if (!isset($captcha_result['success']) || !$captcha_result['success']) {
-                $error_message = "CAPTCHA verification failed. Please try again.";
-                $logs[] = "CAPTCHA verification failed.";
-            } else {
-                // CAPTCHA passed, form processing continues
-                $input_text = sanitize_text_field($_POST['input_text']);
-                $success_message = "Form submitted successfully with input: " . esc_html($input_text);
-                $logs[] = "Form processed successfully with input: " . esc_html($input_text);
-            }
-        }
+        echo 'Failed to create ticket.';
     }
 }
-
-
-
 ?>
 
-<!-- Simple Form Layout -->
-<div class="test-container">
-    <h2>Test Form with Cloudflare CAPTCHA</h2>
+<!-- HTML form for submitting a ticket -->
+<h1>Submit a Ticket</h1>
+<form method="POST">
+    <label for="ticket_title">Ticket Title:</label>
+    <input type="text" id="ticket_title" name="ticket_title" required>
 
-    <?php if (!empty($success_message)): ?>
-        <div class="test-success">
-            <p><?php echo esc_html($success_message); ?></p>
-        </div>
-    <?php elseif (!empty($error_message)): ?>
-        <div class="test-error">
-            <p><?php echo esc_html($error_message); ?></p>
-        </div>
-    <?php endif; ?>
+    <label for="article_subject">Subject:</label>
+    <input type="text" id="article_subject" name="article_subject" required>
 
-    <!-- Display Logs -->
-    <?php if (!empty($logs)): ?>
-        <div class="test-logs">
-            <h3>Logs</h3>
-            <ul>
-                <?php foreach ($logs as $log): ?>
-                    <li><?php echo esc_html($log); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    <?php endif; ?>
+    <label for="article_body">Message:</label>
+    <textarea id="article_body" name="article_body" required></textarea>
 
-    <form method="post" action="<?php echo esc_url(get_permalink()); ?>" class="test-form">
-        <input type="hidden" name="test_form" value="1">
-
-        <!-- Simple Text Input -->
-        <div class="test-group">
-            <label for="input_text">Your Input</label>
-            <input type="text" id="input_text" name="input_text" required>
-        </div>
-
-        <!-- Cloudflare Turnstile CAPTCHA -->
-        <div class="captcha-container">
-            <div class="cf-turnstile" data-sitekey="<?php echo esc_attr($turnstile_site_key); ?>" data-callback="onCaptchaCompleted"></div>
-        </div>
-
-        <input type="hidden" id="cf-turnstile-response" name="cf-turnstile-response" required>
-
-        <!-- Submit Button (Disabled until CAPTCHA is verified) -->
-        <div class="test-group">
-            <button type="submit" id="test-button" class="test-button" disabled>Submit</button>
-        </div>
-    </form>
-</div>
-
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const turnstileResponseInput = document.getElementById('cf-turnstile-response');
-    const submitButton = document.getElementById('test-button');
-
-    // Callback function when CAPTCHA is completed
-    window.onCaptchaCompleted = function(token) {
-        turnstileResponseInput.value = token;
-        submitButton.disabled = false; // Enable the submit button
-    };
-
-    // Disable the button again if CAPTCHA response is cleared
-    turnstileResponseInput.addEventListener('input', function() {
-        if (!this.value) {
-            submitButton.disabled = true; // Disable the submit button if response is cleared
-        }
-    });
-});
-</script>
+    <input type="submit" name="submit_ticket" value="Submit Ticket">
+</form>

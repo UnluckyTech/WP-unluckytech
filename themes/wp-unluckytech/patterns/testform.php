@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Contact Me
- * Slug: unluckytech/contact
+ * Slug: unluckytech/testform
  * Categories: text, featured
  * Description: This page allows users to contact me directly via email.
  */
@@ -161,6 +161,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
                     <p><?php echo esc_html($error_message); ?></p>
                 </div>
             <?php endif; ?>
+
+            <!-- Display Session ID -->
+            <div class="session-id">
+                <p>Your session ID is: <strong><?php echo esc_html($session_id); ?></strong></p>
+            </div>
 
             <form method="post" action="<?php echo esc_url(get_permalink()); ?>" class="contact-form">
                 <input type="hidden" name="contact_form" value="1">

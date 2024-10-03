@@ -24,6 +24,7 @@
 
 # DO NOT ignore these plugins...
 !/plugins/invoiceninja2
+!/plugins/znuny
 
 #---------------------------
 # WP MU plugins: often
