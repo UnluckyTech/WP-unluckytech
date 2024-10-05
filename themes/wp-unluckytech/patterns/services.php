@@ -83,9 +83,9 @@
                 <p>If you’re unsure where your request fits, just reach out. We're here to assist you!</p>
             </div>
             <div class="resources-buttons">
-                <a href="/ticket" class="button">Help Desk</a>
+                <a href="https://support.unluckytech.com" class="button">Help Desk</a>
                 <a href="https://www.helpwire.app/" class="button">Remote Desktop</a>
-                <a href="/contact" class="button">Contact</a>
+                <a href="/contact" class="button">Contact Us</a>
             </div>
         </div>
 
