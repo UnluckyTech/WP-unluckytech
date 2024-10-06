@@ -1,35 +1,37 @@
 /* servpart.PHP SECTION */
 
-/* servpart Section */
+/* Main container for services and slideshow */
 .servpart-section {
     width: 1200px;
-    height: 420px;
     background: rgba(0, 0, 0, .5);
-    backdrop-filter: blur(10px);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
     margin: 20px auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    position: relative;
-    overflow: hidden; /* Ensure content stays within the container */
+    align-items: flex-start; /* Adjusted to align items at the top */
+    overflow: hidden;
 }
 
 /* servpart Title */
 .servpart-title {
     font-family: Arial, sans-serif; /* Change font-family to match other text */
-    position: absolute;
-    top: 20px;
-    left: 30px;
-    font-size: 24px;
+    margin: 0 auto 10px auto; /* Adds top and bottom margins, centers horizontally */
+    text-transform: uppercase;
+    font-size: 40px;
     font-weight: 700;
     color: #fff;
-    margin: 0;
+    text-align: center; /* Centers the text */
 }
+
+
 
 /* servpart List */
 .servpart-list {
+    display: table;
+    flex-direction: column;
+    width: 60%;
+    margin: 20px;
     font-size: 20px;
     color: #fff;
     columns: 2;
@@ -39,18 +41,86 @@
 }
 
 .servpart-list ul {
-    margin-top: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .servpart-list li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-/* servpart Slideshow */
+
+.servpart-list a {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.servpart-list a:hover {
+    background-color: #555;
+    transform: translateY(-5px);
+}
+
+.servpart-list a i {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+/* Columns Container */
+.servpart-columns, .quick-access-columns {
+    display: flex; /* Align two columns side by side */
+    justify-content: space-between; /* Space between two columns */
+    gap: 40px; /* Adds spacing between the columns */
+}
+
+/* Each column styling */
+.servpart-column, .qa-column {
+    list-style: none; /* Remove bullets */
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ensure equal width for columns */
+    font-size: 20px;
+}
+
+/* Individual list items */
+.servpart-column li, .qa-column li {
+    margin-bottom: 20px; /* Adds space between list items */
+}
+
+/* Links styling */
+.servpart-column a, .qa-column a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    display: flex; /* Align the text with the icon */
+    align-items: center;
+}
+
+/* Icon styling */
+.servpart-column i, .qa-column i {
+    margin-right: 10px; /* Adds space between icon and text */
+    font-size: 24px;
+}
+
+/* Add hover effect */
+.servpart-column a:hover, .qa-column a:hover {
+    color: #f0a500; /* Highlight color on hover */
+    transition: color 0.3s;
+}
+
+/* Adjusted width for the slideshow */
 .servpart-slideshow {
-    flex: 1;
-    max-width: 400px;
-    position: relative; /* Ensure relative positioning */
+    width: 40%; /* The slideshow now takes up the remaining 35% */
+    height: 400px;;
+    position: relative;
 }
 
 .slideshow-container {
@@ -70,7 +140,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover; /* Ensure the image covers the area without stretching */
-    border-radius: 10px;
     margin-left: 20px; /* Adjust this value as needed */
     transform: translateX(10px); /* Adjust this value as needed */
 }
@@ -103,107 +172,101 @@
     display: none;
 }
 
+
+
 @media (max-width: 1024px) {
 
-    /* Hide dots on mobile */
+    /* Hide dots and arrows on tablet */
     .dot-container,
     .arrow-container {
         display: none;
     }
 
+    /* Main container adjustments */
     .servpart-section {
-        width: 90%;
-        padding: 10px;
+        width: 90%; 
+        padding: 10px; 
         flex-direction: column;
+        align-items: center; /* Center content in the container */
     }
 
-    .servpart-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .servpart-title {
-        display: flex;
-        align-items: center;
-        justify-content: center; /* Center horizontally */
-        top: -10%; /* Adjust this value to move the title up or down */
-        left: 50%;
-        transform: translateX(-50%); /* Center horizontally */
-        font-size: 20px;
-    }
-
-    /* servpart Title */
-    .servpart-title-2 {
-        margin-top: 20px;
-        font-size: 20px;
-        font-weight: 700;
-        color: #fff;
-    }
-    
-    /* servpart List */
-    .servpart-list {
-        order: 3;
-        width: 100%;
-        font-size: 18px;
-        columns: 1;
-        column-gap: 20px;
-        padding: 20px;
-        box-shadow: none;
-        border-radius: 0;
-        margin-top: -30%; /* Pulls the servpart list up into the bottom part of the slideshow */
-        position: relative;
-        z-index: 1;    }
-
-    .servpart-list ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        columns: 2; /* Add this to create two columns */
-        column-gap: 20px; /* Adjust the gap between columns */
-    }
-
-    .servpart-list li {
-        font-size: 16px;
-        color: #fff;
-        text-align: center;
-    }
-
-    /* servpart Slideshow */
+    /* Slideshow moved to the top */
     .servpart-slideshow {
-        order: 1;
-        width: 100%;
-        height: 60%;
+        display: flex;
+        justify-content: center;
+        order: 1; 
+        width: 100%; /* Make the slideshow take full width */
+        border-radius: 10px;
+        height: 100%; /* Let the height adjust automatically */
         padding: 0;
+        margin-bottom: 20px; /* Add some space below the slideshow */
     }
 
     .slideshow-container {
         width: 100%;
-        height: 50%;
-        border-radius: 10px; /* Add rounded corners */
+        height: 250px; 
+        border-radius: 10px; /* Rounded corners for the slideshow */
+        margin: 0 auto; /* Center the slideshow on tablet */
+        overflow: hidden;
     }
 
     .mySlides img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin-left: 0;
-        transform: none;
-    }
-
-
-    .slideshow-container {
         width: 100%;
-        margin: 0;
+        height: 100%;
+        margin-left: 0; /* Adjust this value as needed */
+        object-fit: cover; /* Ensure the image covers the area without stretching */
+        transform: translateX(0); /* Adjust this value as needed */
     }
+
+    /* Title styling below slideshow */
+    .servpart-title {
+        order: 0;
+        text-align: center;
+        margin: 20px 0; /* Add space between slideshow and title */
+        font-size: 30px; /* Adjust font size for better readability on tablet */
+    }
+
+    /* List styling adjustments for buttons */
+    .servpart-list {
+        order: 3;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 0;
+        padding: 0 0 20px 0;
+    }
+
+    .servpart-list a {
+        width: 100%; /* Ensure the buttons are responsive */
+        font-size: 18px;
+        padding: 10px 15px;
+        text-align: center;
+    }
+
+    /* Divider and remaining buttons below */
+    .divider {
+        order: 4; /* Place the divider below the buttons */
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        margin: 20px 0; /* Add margin around divider */
+    }
+
 
 }
+
 
 /* Mobile Styles */
 @media (max-width: 768px) {
     .slideshow-container {
         height: 60%;
         border-radius: 10px; /* Add rounded corners */
+    }
+
+    .servpart-list a {
+        font-size: 14px;
+        padding: 8px 16px;
     }
 }
