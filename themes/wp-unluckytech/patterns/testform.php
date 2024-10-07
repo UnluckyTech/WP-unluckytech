@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Contact Me
- * Slug: unluckytech/contact
+ * Slug: unluckytech/testform
  * Categories: text, featured
  * Description: This page allows users to contact me directly via email.
  */
@@ -90,11 +90,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
                             $ticket_data = array(
                                 'Ticket' => array(
                                     'Title'        => 'Inquiry from ' . $firstname . ' ' . $lastname,
-                                    'Queue'        => $service, // Example queue, adjust accordingly
+                                    'Queue'        => 'Raw', // Example queue, adjust accordingly
                                     'StateID'      => 1, // Adjust as necessary
                                     'PriorityID'   => 3, // Adjust as necessary
                                     'CustomerUser' => $custemail,
-                                    'Type'         => $inquiry_type, // Set the Type based on the selected service
+                                    'Type'         => $service, // Set the Type based on the selected service
                                 ),
                                 'Article' => array(
                                     'CommunicationChannel' => 'Email',
@@ -150,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
     <div class="contact-content">
         <div class="contact-form-container">
             <h2>Get in Touch</h2>
-            <p>If you have any questions or would like to reach out, feel free to send us a message! A ticket will be generated and we will get back to you as soon as we can.</p>
+            <p>If you have any questions or would like to reach out, feel free to send me a message!</p>
 
             <?php if (!empty($success_message)): ?>
                 <div class="contact-success">
@@ -161,6 +161,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
                     <p><?php echo esc_html($error_message); ?></p>
                 </div>
             <?php endif; ?>
+
+            <!-- Display Session ID -->
+            <div class="session-id">
+                <p>Your session ID is: <strong><?php echo esc_html($session_id); ?></strong></p>
+            </div>
 
             <form method="post" action="<?php echo esc_url(get_permalink()); ?>" class="contact-form">
                 <input type="hidden" name="contact_form" value="1">
@@ -191,21 +196,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
                         <label for="service">Service</label>
                         <select id="service" name="service" required>
                             <option value="Web Development">Web Development</option>
-                            <option value="System Configuration">System Configuration</option>
-                            <option value="Server Management">Server Management</option>
-                            <option value="Technical Consultation">Technical Consultation</option>
-                            <option value="Custom PC Builds">Custom PC Builds</option>
-                            <option value="IT Support">IT Support</option>
-                            <option value="Custom Request">Custom Request</option>
+                            <option value="seo">SEO Services</option>
+                            <option value="content-writing">Content Writing</option>
+                            <option value="graphic-design">Graphic Design</option>
                         </select>
                     </div>
                     <div class="half-width">
                         <label for="inquiry_type">Inquiry Type</label>
                         <select id="inquiry_type" name="inquiry_type" required>
-                            <option value="General Inquiry">General Inquiry</option>
-                            <option value="Service Quote">Service Quote</option>
-                            <option value="Support">Support</option>
-                            <option value="Feedback">Feedback</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Support</option>
+                            <option value="feedback">Feedback</option>
                         </select>
                     </div>
                 </div>
@@ -216,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
                 </div>
 
                 <!-- Cloudflare Turnstile -->
-                <div class="captcha-container">
+                <div class="contact-group">
                     <div class="cf-turnstile" data-sitekey="<?php echo esc_attr(get_option('cfturnstile_key')); ?>"></div>
                 </div>
 

@@ -9,6 +9,6 @@
 
 <!-- wp:pattern {"slug":"unluckytech/welcome"} /-->
 <!-- wp:pattern {"slug":"unluckytech/posts"} /-->
-<!-- wp:pattern {"slug":"unluckytech/services"} /-->
+<!-- wp:pattern {"slug":"unluckytech/servpart"} /-->
 
 
