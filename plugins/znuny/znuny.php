@@ -38,20 +38,27 @@ function znuny_create_admin_menu() {
     );
 }
 
-// Register the settings.
+// Register the settings, do not show the password value.
 function znuny_register_settings() {
-    // Credentials settings.
     register_setting('znuny-credentials-group', 'znuny_api_domain');
     register_setting('znuny-credentials-group', 'znuny_user_login');
-    register_setting('znuny-credentials-group', 'znuny_password');
-    
-    // Tickets settings.
-    register_setting('znuny-tickets-group', 'znuny_customer_user');
+    register_setting('znuny-credentials-group', 'znuny_password', array(
+        'sanitize_callback' => 'znuny_sanitize_password'
+    ));
+}
+
+// Sanitize password - only update if a new one is provided.
+function znuny_sanitize_password($password) {
+    // If the password field is empty, keep the existing password.
+    if (empty($password)) {
+        return get_option('znuny_password'); // Return the existing password if no new password is provided.
+    } else {
+        return $password; // Update with new password if entered.
+    }
 }
 
 // Admin page content.
 function znuny_settings_page() {
-    // Check if a tab is set; if not, set 'credentials' as default.
     $active_tab = isset($_GET['tab']) ? $_GET['tab'] : 'credentials';
     ?>
     <div class="wrap">
@@ -62,12 +69,10 @@ function znuny_settings_page() {
         </h2>
 
         <?php
-        // Credentials tab content
         if ($active_tab == 'credentials') {
             ?>
             <form method="post" action="options.php">
                 <?php
-                // Output security fields for the 'credentials' settings group.
                 settings_fields('znuny-credentials-group');
                 ?>
                 <table class="form-table">
@@ -81,7 +86,7 @@ function znuny_settings_page() {
                     </tr>
                     <tr valign="top">
                         <th scope="row">Password</th>
-                        <td><input type="password" name="znuny_password" value="<?php echo esc_attr(get_option('znuny_password')); ?>" /></td>
+                        <td><input type="password" name="znuny_password" value="" placeholder="Enter new password (leave blank to keep current)" /></td>
                     </tr>
                 </table>
                 <button id="znuny-test-api" class="button button-primary">Test API</button>
@@ -91,12 +96,10 @@ function znuny_settings_page() {
             <?php
         }
 
-        // Tickets tab content
         if ($active_tab == 'tickets') {
             ?>
             <form method="post" action="options.php">
                 <?php
-                // Output security fields for the 'tickets' settings group.
                 settings_fields('znuny-tickets-group');
                 ?>
                 <table class="form-table">
@@ -117,6 +120,7 @@ function znuny_settings_page() {
 }
 
 
+
 // Enqueue custom script for API testing.
 function znuny_enqueue_admin_scripts( $hook ) {
     if ( $hook === 'toplevel_page_znuny-settings' ) {
@@ -130,41 +134,43 @@ add_action( 'admin_enqueue_scripts', 'znuny_enqueue_admin_scripts' );
 
 // AJAX handler for API testing.
 function znuny_test_api() {
+    // Get the domain and user login from the POST request.
     $domain = sanitize_text_field($_POST['api_url']);
+    $user_login = sanitize_text_field($_POST['user_login']);
+    $password = sanitize_text_field($_POST['password']);
 
     // Ensure the domain starts with "http://" or "https://".
     if (!preg_match('/^https?:\/\//', $domain)) {
-        $domain = 'https://' . $domain; // or use 'http://' depending on your preference.
+        $domain = 'https://' . $domain; // Ensure HTTPS.
     }
 
     // Append the Znuny API path to the domain.
     $api_url = rtrim($domain, '/') . '/znuny/nph-genericinterface.pl/Webservice/unluckytech';
 
-    // Assuming znuny_api_domain is meant to be the sanitized domain.
-    $znuny_api_domain = $domain; // Define the znuny_api_domain variable.
+    // If the password is not provided in the form, get the stored password from the database.
+    if (empty($password)) {
+        $password = get_option('znuny_password'); // Retrieve the stored password.
+    }
 
-    $user_login = sanitize_text_field($_POST['user_login']);
-    $password = sanitize_text_field($_POST['password']);
-
-    // Debugging information.
+    // Debugging information (for easier debugging of the request).
     $debug_info = array(
         'API URL'         => $api_url,
-        'Domain'          => $domain,         // Include domain in debug info
-        'Znuny API Domain'=> $znuny_api_domain, // Include znuny_api_domain in debug info
+        'Domain'          => $domain,
+        'UserLogin'       => $user_login,
     );
 
     // Attempt to authenticate using the Znuny API.
     $response = wp_remote_post($api_url . '/Session', array(
         'body' => json_encode(array(
             'UserLogin' => $user_login,
-            'Password'  => $password,
+            'Password'  => $password, // Use the provided or stored password.
         )),
         'headers' => array(
             'Content-Type' => 'application/json',
         ),
     ));
 
-    // Check for errors.
+    // Check for errors in the API request.
     if (is_wp_error($response)) {
         // Output debug info along with the error message.
         wp_send_json_error(array_merge($debug_info, array('Error' => $response->get_error_message())));
@@ -172,19 +178,20 @@ function znuny_test_api() {
         $body = wp_remote_retrieve_body($response);
         $data = json_decode($body, true);
 
-        // Log the full response for further debugging.
-        $debug_info['Response'] = $body; // Add full response to debug info.
+        // Add full response to debug info for troubleshooting.
+        $debug_info['Response'] = $body;
 
-        // If SessionID is not set, output debug info and error.
+        // If the SessionID is not set, the API call failed.
         if (!isset($data['SessionID'])) {
             wp_send_json_error(array_merge($debug_info, array('Response' => $data)));
         } else {
-            // Success. Include debug info in success response without sensitive info.
-            wp_send_json_success($debug_info); // Return debug info on success
+            // Successful authentication; return the debug info.
+            wp_send_json_success($debug_info); // Return debug info on success without sensitive info.
         }
     }
 }
 add_action('wp_ajax_znuny_test_api', 'znuny_test_api');
+
 
 // AJAX handler for creating a test ticket.
 function znuny_create_test_ticket() {
@@ -217,6 +224,7 @@ function znuny_create_test_ticket() {
             'StateID' => intval($ticket_data['Ticket']['StateID']),
             'PriorityID' => intval($ticket_data['Ticket']['PriorityID']),
             'CustomerUser' => sanitize_text_field($ticket_data['Ticket']['CustomerUser']),
+            'Type'         => 'Unclassified', // Set the Type based on the selected service
         ),
         'Article' => array(
             'CommunicationChannel' => sanitize_text_field($ticket_data['Article']['CommunicationChannel']),
