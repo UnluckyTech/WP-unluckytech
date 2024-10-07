@@ -169,6 +169,12 @@
     background: #3a3b40; /* Slightly lighter shade with a hint of blue */
 }
 
+.more-button-container a:hover {
+    color: #f0a500; /* Highlight color on hover */
+    transition: color 0.3s;
+}
+
+
 @media (max-width: 1024px) {
 
     /* Post Description */

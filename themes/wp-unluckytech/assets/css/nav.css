@@ -79,6 +79,11 @@
     transform: translateX(-50%);
 }
 
+.nav-center a:hover {
+    color: #f0a500; /* Highlight color on hover */
+    transition: color 0.3s;
+}
+
 .wp-block-navigation {
     display: flex;
     align-items: center;
@@ -108,6 +113,11 @@
 .search-icon i, .user-login i {
     font-size: 18px;
     color: #fff;
+}
+
+.right-icons i:hover {
+    color: #f0a500; /* Highlight color on hover */
+    transition: color 0.3s;
 }
 
 .search-icon {

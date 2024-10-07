@@ -46,7 +46,7 @@
                 </li>
             </ul>
         </div>
-        <hr class="posts-bottom-divider">
+        <hr class="servpart-divider">
 
         <!-- New Quick Access Section -->
         <div class="quick-access-section">
