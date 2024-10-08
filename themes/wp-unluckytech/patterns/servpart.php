@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/custom-pc-builds">
+                    <a href="/custom-pc">
                         <i class="fas fa-desktop"></i> Custom PC Builds
                     </a>
                 </li>

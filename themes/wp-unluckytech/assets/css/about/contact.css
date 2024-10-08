@@ -126,6 +126,12 @@
     text-transform: uppercase;
 }
 
+.submit-button:hover {
+    background-color: #555;
+    color: #f0a500; /* Highlight color on hover */
+    transition: color 0.3s;
+}
+
 .captcha-container {
     display: flex;
     justify-content: center;

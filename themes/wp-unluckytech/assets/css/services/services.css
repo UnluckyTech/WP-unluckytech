@@ -232,7 +232,7 @@
     padding: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     gap: 20px;
@@ -250,6 +250,7 @@
     font-size: 36px;
     text-transform: uppercase;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .summary-right {
@@ -276,13 +277,129 @@
     background-color: #d84368;
 }
 
+@media (max-width: 1024px) {
 
-/* Media Queries */
-@media (max-width: 768px) {
     .services-container {
         padding: 20px;
         padding-top: 100px;
     }
+
+    .services-banner {
+        height: 200px; /* Reduce height */
+    }
+
+    .services-title {
+        font-size: 28px; /* Adjust size for tablets */
+    }
+
+    .services-banner-overlay h1 {
+        font-size: 36px; /* Reduce banner title size */
+    }
+
+    .services-content {
+        padding: 15px;
+    }
+
+    .service-card {
+        min-width: 200px; /* Adjust min-width for smaller screens */
+        padding: 15px;
+    }
+
+    .service-card h3, .resource-title h3 {
+        font-size: 1.5em; /* Reduce heading size */
+    }
+
+    .service-card p {
+        font-size: 1em; /* Reduce paragraph font size */
+    }
+
+    .additional-info h3 {
+        font-size: 1.5em; /* Smaller headings for additional info */
+    }
+
+    .additional-info ul li {
+        font-size: 1em; /* Smaller font for list items */
+    }
+
+    .additional-info p {
+        font-size: 1em;
+    }
+
+    .resources-section {
+        flex-direction: column; /* Stack elements on tablets */
+        gap: 15px;
+    }
+
+    .resources-text {
+        width: 100%; /* Full width for text */
+    }
+
+    .resources-buttons {
+        width: 100%; /* Full width for buttons */
+    }
+
+    .resources-buttons .button {
+        padding: 10px 15px; /* Adjust button padding */
+        font-size: 0.95em; /* Smaller button text */
+    }
+
+    .services-overview {
+        padding: 20px 0; /* Less padding for tablets */
+    }
+
+    .section-title {
+        font-size: 2em; /* Smaller section titles */
+    }
+
+    .service-cards {
+        gap: 15px; /* Reduce gap between cards */
+    }
+
+    .service-card {
+        padding: 15px; /* Reduce padding on cards */
+        width: 200px; /* Adjust card width */
+    }
+
+    .service-icon {
+        font-size: 2.5em; /* Smaller icon size */
+    }
+
+    .service-title {
+        font-size: 1.3em; /* Smaller card titles */
+    }
+
+    .service-description {
+        font-size: 0.85em; /* Smaller description text */
+    }
+
+    /* Contact Section */
+    .summary-section {
+        padding: 10px;
+    }
+
+    .summary-left, .summary-right {
+        flex: 1;
+        padding-right: 0;
+    }
+
+    .summary-title {
+        font-size: 28px; /* Smaller summary titles */
+    }
+
+    .summary-description {
+        font-size: 1em; /* Smaller description font size */
+    }
+
+    .contact-btn {
+        padding: 8px 15px; /* Adjust button size */
+        font-size: 1em; /* Smaller button text */
+    }
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+
 
     .services-banner {
         height: 20vh;
@@ -297,4 +414,10 @@
         width: 90%; /* Adjust to make the cards responsive */
         margin: 0 auto; /* Center the card */
     }
+
+    .summary-container {
+        flex-direction: column; /* Stack on smaller screens */
+        gap: 10px;
+    }
+
 }

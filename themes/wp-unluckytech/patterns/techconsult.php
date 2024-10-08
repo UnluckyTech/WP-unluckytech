@@ -16,12 +16,15 @@
         </div>
     </div>
 
-    <!-- Summary Section -->
+    <!-- Service Overview Section -->
     <div class="summary-section">
         <div class="summary-container">
+            <!-- Left Container: Title -->
             <div class="summary-left">
                 <h2 class="summary-title">Expert Technical Consultation Services</h2>
             </div>
+
+            <!-- Right Container: Description -->
             <div class="summary-right">
                 <p class="summary-description">
                     Our team of experts provides in-depth technical consultation services to help your business navigate complex technology decisions. From choosing the right infrastructure to optimizing workflows, we guide you through every step.
@@ -31,69 +34,103 @@
     </div>
 
     <!-- Types of Consultation Section -->
-    <div class="consultation-section">
-        <h2 class="consultation-heading">Our Consultation Services</h2>
-        <div class="consultation-grid">
-            <div class="consultation-item">
-                <i class="fas fa-network-wired consultation-icon"></i>
-                <h3>Infrastructure Assessment</h3>
-                <p>We evaluate your existing infrastructure and provide recommendations for enhancements or upgrades to improve efficiency.</p>
+    <div class="features-section">
+        <h2 class="summary-title">Our Consultation Services</h2>
+        <div class="service-cards">
+            <div class="service-card">
+                <i class="service-icon fas fa-network-wired"></i>
+                <h3 class="service-title">Infrastructure Assessment</h3>
+                <p class="service-description">We evaluate your existing infrastructure and provide recommendations for enhancements or upgrades to improve efficiency.</p>
             </div>
-            <div class="consultation-item">
-                <i class="fas fa-tools consultation-icon"></i>
-                <h3>Software Selection</h3>
-                <p>Our team helps you select the most suitable software solutions tailored to your business needs.</p>
+            <div class="service-card">
+                <i class="service-icon fas fa-tools"></i>
+                <h3 class="service-title">Software Selection</h3>
+                <p class="service-description">Our team helps you select the most suitable software solutions tailored to your business needs.</p>
             </div>
-            <div class="consultation-item">
-                <i class="fas fa-chart-line consultation-icon"></i>
-                <h3>Tech Stack Optimization</h3>
-                <p>Optimize your tech stack for better performance, scalability, and cost-efficiency.</p>
+            <div class="service-card">
+                <i class="service-icon fas fa-chart-line"></i>
+                <h3 class="service-title">Tech Stack Optimization</h3>
+                <p class="service-description">Optimize your tech stack for better performance, scalability, and cost-efficiency.</p>
             </div>
-            <div class="consultation-item">
-                <i class="fas fa-cloud consultation-icon"></i>
-                <h3>Cloud Integration</h3>
-                <p>We assist with cloud strategy, helping you migrate or integrate your infrastructure into cloud environments.</p>
+            <div class="service-card">
+                <i class="service-icon fas fa-cloud"></i>
+                <h3 class="service-title">Cloud Integration</h3>
+                <p class="service-description">We assist with cloud strategy, helping you migrate or integrate your infrastructure into cloud environments.</p>
             </div>
         </div>
     </div>
 
     <!-- Why Choose Us Section -->
-    <div class="why-choose-us-section">
-        <h2 class="why-choose-us-heading">Why Choose Us for Technical Consultation?</h2>
-        <div class="why-choose-us-container">
-            <div class="why-item">
-                <i class="fas fa-user-cog why-icon"></i>
-                <h3>Experienced Consultants</h3>
-                <p>Our consultants have years of experience across multiple industries and technology sectors.</p>
+    <div class="tech-stack-section">
+        <h2 class="summary-title">Why Choose Us for Technical Consultation?</h2>
+        <div class="service-cards">
+            <div class="service-card">
+                <i class="service-icon fas fa-user-cog"></i>
+                <h3 class="service-title">Experienced Consultants</h3>
+                <p class="service-description">Our consultants have years of experience across multiple industries and technology sectors.</p>
             </div>
-            <div class="why-item">
-                <i class="fas fa-lightbulb why-icon"></i>
-                <h3>Innovative Solutions</h3>
-                <p>We provide forward-thinking solutions to help future-proof your business.</p>
+            <div class="service-card">
+                <i class="service-icon fas fa-lightbulb"></i>
+                <h3 class="service-title">Innovative Solutions</h3>
+                <p class="service-description">We provide forward-thinking solutions to help future-proof your business.</p>
             </div>
-            <div class="why-item">
-                <i class="fas fa-check why-icon"></i>
-                <h3>Proven Results</h3>
-                <p>Our consultations have led to tangible improvements in efficiency, cost savings, and performance for many of our clients.</p>
+            <div class="service-card">
+                <i class="service-icon fas fa-check"></i>
+                <h3 class="service-title">Proven Results</h3>
+                <p class="service-description">Our consultations have led to tangible improvements in efficiency, cost savings, and performance for many of our clients.</p>
             </div>
         </div>
     </div>
 
-    <!-- Call to Action Section -->
+    <!-- FAQ Section -->
+    <div class="faq-container">
+        <div class="faq-section">
+            <h2 class="summary-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <button class="faq-question">How do I know if I need technical consultation?</button>
+                <div class="faq-answer" style="display: none;">
+                    <p>If you're facing challenges with your technology or unsure about your tech strategy, a consultation can help clarify your needs and options.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">What industries do you specialize in?</button>
+                <div class="faq-answer" style="display: none;">
+                    <p>We have experience in various industries, including finance, healthcare, and e-commerce, tailoring our solutions to fit specific sector needs.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can you assist with ongoing support?</button>
+                <div class="faq-answer" style="display: none;">
+                    <p>Yes, we offer ongoing support and can help implement the recommendations made during the consultation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Section (Centered) -->
     <div class="cta-section">
-        <h2 class="cta-heading">Looking for Expert Technical Consultation?</h2>
+        <h2 class="summary-title">Looking for Expert Technical Consultation?</h2>
         <p class="cta-description">Let our experienced consultants help you navigate the complexities of technology. Contact us today for a consultation.</p>
-        <a href="/contact" class="cta-button">Get in Touch</a>
+        <a href="/contact" class="button">Get in Touch</a>
     </div>
 
 </div>
 
 <script>
-    // Optional: Add interaction if needed
-    document.querySelectorAll('.techconsult-question').forEach(item => {
-        item.addEventListener('click', function() {
-            const answer = this.nextElementSibling;
-            answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+    document.addEventListener('DOMContentLoaded', function() {
+        const questions = document.querySelectorAll('.faq-question');
+        
+        questions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+
+                // Toggle the display of the answer
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    answer.style.display = 'block';
+                } else {
+                    answer.style.display = 'none';
+                }
+            });
         });
     });
 </script>

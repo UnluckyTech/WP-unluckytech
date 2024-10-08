@@ -229,7 +229,9 @@
 }
 
 .button:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #555;
+    color: #f0a500; /* Highlight color on hover */
+    transition: color 0.3s;
 }
 /* FAQ Section Styles */
 .faq-section {
@@ -267,7 +269,9 @@
 }
 
 .faq-question:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #555;
+    color: #f0a500; /* Highlight color on hover */
+    transition: color 0.3s;
 }
 
 .faq-answer {
