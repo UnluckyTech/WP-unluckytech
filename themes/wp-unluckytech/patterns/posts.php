@@ -38,15 +38,18 @@
                                 <?php endif; ?>
                             </div>
                             <div class="post-content">
+                            <div class="post-card-title">
+                                <h2><?php the_title(); ?></h2>
+                                <div class="title-post-divider"></div> 
                                 <div class="post-date">
-                                    <?php echo get_the_date(); ?>
+                                <?php echo get_the_date(); ?>
                                 </div>
-                                <div class="post-title">
-                                    <h2><?php the_title(); ?></h2>
-                                </div>
-                                <div class="post-description">
-                                    <?php the_excerpt(); ?>
-                                </div>
+                            </div>
+
+
+                            <div class="post-description">
+                                <?php the_excerpt(); ?>
+                            </div>
                             </div>
                         </div>
                     </a>
