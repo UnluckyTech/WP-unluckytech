@@ -224,7 +224,6 @@
 .single-post-title h2 {
     font-size: 1.2em;
     margin: 5px 0 0; /* Adjust spacing */
-    font-family: 'Montserrat', sans-serif;
     overflow: hidden; /* Hide overflow */
     text-overflow: ellipsis; /* Show ellipsis (...) for overflowing text */
     display: -webkit-box; /* Display as a box element for clamping */
@@ -397,7 +396,6 @@
     .single-post-title h2 {
         font-size: 18px !important; /* Increase font size for prominence */
         margin: 10px 0; /* Add more spacing above and below */
-        font-family: 'Montserrat', sans-serif;
         text-overflow: clip; /* Change from ellipsis to clip */
         display: block; /* Keep it as a block element */
         line-height: 1.4; /* Adjust line height for readability */

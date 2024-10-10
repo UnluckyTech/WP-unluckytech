@@ -2,16 +2,11 @@
 .error-container {
     margin: 0 auto;
     max-width: 1200px;
-    margin-top: 40px;
-    border-radius: 8px;
     padding-top: 100px;
-    align-items: center;
-    background: transparent;
 }
 
 .error-banner {
     position: relative;
-    width: 100%;
     height: 300px;
     background-size: cover;
     background-position: center;
@@ -21,10 +16,6 @@
 }
 
 .error-banner-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
@@ -38,16 +29,8 @@
     margin: 0 0 10px;
     font-weight: bold;
     font-size: 48px;
-    text-transform: uppercase;
     padding-bottom: 10px;
     color: #ffffff;
-}
-
-.error-banner-overlay p {
-    color: #ffffff;
-    font-size: 18px;
-    margin-top: 10px;
-    text-align: center;
 }
 
 .error-content {
@@ -61,27 +44,20 @@
 }
 
 .error-message {
-    font-family: 'Montserrat', sans-serif;
     margin: 0 0 10px;
     font-weight: bold;
-    font-size: 1.5em;
     text-transform: uppercase;
-    border-bottom: 2px solid;
-    padding-bottom: 10px;
     color: #ffffff;
+    font-size: 18px;
+
 }
 
 /* Latest Posts Section (404 Page) */
 .latest-posts-section {
-    display: flex;
-    flex-direction: column;
     padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .latest-posts-section h2 {
-    font-family: 'Montserrat', sans-serif;
     margin: 0 0 10px;
     font-weight: 700;
     font-size: 1.5em;
@@ -98,7 +74,6 @@
 .latest-posts-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     gap: 10px;
     margin-top: 20px;
 }
@@ -106,7 +81,6 @@
 .latest-post-item {
     flex: 1 1 calc(20% - 10px); /* 5 posts in 1 row */
     position: relative;
-    margin: 0;
     overflow: hidden;
     aspect-ratio: 16 / 9;
     transition: transform 0.3s;
@@ -118,11 +92,7 @@
 }
 
 .latest-post-thumbnail {
-    position: relative;
-    width: 100%;
     height: 100%;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .latest-post-thumbnail img {
@@ -154,27 +124,6 @@
     color: #fff;
     font-size: 1.2em;
     text-align: center;
-    z-index: 1;
-}
-
-.more-posts-container {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.more-posts {
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
-
-.more-posts:hover {
-    background: #3a3b40;
 }
 
 /* Mobile Styles */
@@ -182,13 +131,21 @@
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 
     /* About Page Styles */
     .error-container {
         padding: 20px;
         padding-top: 50px;
     }
+
+    .post-title {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+
 
     .error-banner {
         height: 20vh;
@@ -200,6 +157,7 @@
 
     .error-message {
         border-bottom: 0;
+        text-align: center;
 
     }
 
@@ -223,16 +181,36 @@
         width: 100%;
     }
 
-    .slide.active {
-        display: block;
-    }
-
     .dots-container {
         text-align: center;
         padding: 10px 0;
     }
 
-    .dot.active, .dot:hover {
+    .dot:hover {
+        background-color: #717171;
+    }
+
+    /* Mobile view slider - Show active slide */
+    .mobile-view .slide {
+        display: none; /* All slides hidden by default */
+    }
+
+    .mobile-view .slide.active {
+        display: block; /* Only active slide is displayed */
+    }
+
+    /* Add some improvements for slider dots on mobile */
+    .dots-container .dot {
+        height: 12px;
+        width: 12px;
+        margin: 0 4px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+    }
+
+    .dots-container .dot.active {
         background-color: #717171;
     }
 }

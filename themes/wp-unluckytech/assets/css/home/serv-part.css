@@ -8,8 +8,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
     margin: 20px auto;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Adjusted to align items at the top */
     overflow: hidden;
 }
 
@@ -18,48 +16,26 @@
     font-family: Arial, sans-serif; /* Change font-family to match other text */
     margin: 0 auto 10px auto; /* Adds top and bottom margins, centers horizontally */
     text-transform: uppercase;
-    font-size: 40px;
     font-weight: 700;
     color: #fff;
     text-align: center; /* Centers the text */
 }
 
-
-
 /* servpart List */
 .servpart-list {
     display: table;
-    flex-direction: column;
     width: 60%;
     margin: 20px;
-    font-size: 20px;
-    color: #fff;
-    columns: 2;
-    column-gap: 40px;
-    align-items: center;
-    justify-content: center;
-}
-
-.servpart-list ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .servpart-list li {
     margin-bottom: 15px;
 }
 
-
 .servpart-list a {
-    display: flex;
-    align-items: center;
     padding: 10px 20px;
     background-color: #333;
-    color: #fff;
-    text-decoration: none;
     border-radius: 8px;
-    font-size: 18px;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -69,15 +45,9 @@
     transform: translateY(-5px);
 }
 
-.servpart-list a i {
-    margin-right: 10px;
-    font-size: 24px;
-}
-
 /* Columns Container */
 .servpart-columns, .quick-access-columns {
     display: flex; /* Align two columns side by side */
-    justify-content: space-between; /* Space between two columns */
     gap: 40px; /* Adds spacing between the columns */
 }
 
@@ -87,7 +57,6 @@
     padding: 0;
     margin: 0;
     width: 100%; /* Ensure equal width for columns */
-    font-size: 20px;
 }
 
 /* Individual list items */
@@ -123,16 +92,7 @@
     position: relative;
 }
 
-.slideshow-container {
-    position: relative;
-    max-width: 100%;
-    margin: auto;
-    overflow: hidden; /* Ensure content stays within the container */
-}
-
 .mySlides {
-    display: none;
-    opacity: 0;
     transition: opacity 1s ease-in-out; /* Transition effect */
 }
 
@@ -151,13 +111,9 @@
 
 /* Arrow Navigation */
 .arrow-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 10px;
 }
 
 .arrow-up,
@@ -179,8 +135,6 @@
 }
 
 .servpart-divider {
-    width: 100%;
-    max-width: 1200px;
     border: 0;
     height: 1px;
     background: #444;

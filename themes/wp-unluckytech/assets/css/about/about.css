@@ -143,36 +143,6 @@
 }
 
 /* Additional Info Section */
-.additional-info {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.additional-info h3 {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-    font-weight: bold;
-    text-transform: uppercase; 
-    font-family: Arial, sans-serif; /* Match the font family */
-}
-
-.additional-info ul {
-    margin-top: 10px;
-    list-style: none;
-    padding-left: 0;
-}
-
-.additional-info ul li {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-}
-
-.additional-info p {
-    font-size: 1.2em;
-    margin-top: 20px;
-}
 
 /* Profile Card Styles */
 .profile-card {
@@ -210,11 +180,6 @@
     justify-content: center;
     gap: 15px;
     margin-bottom: 20px;
-}
-
-.social-icon img {
-    width: 40px;
-    height: 40px;
 }
 
 .button {
@@ -280,10 +245,6 @@
     font-size: 1.2em;
     background-color: #e0e0e0;
     border-radius: 5px;
-}
-
-.faq-question.active + .faq-answer {
-    display: block;
 }
 
 

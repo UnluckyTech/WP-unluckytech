@@ -94,7 +94,6 @@
     text-align: center;
     font-weight: bold;
     text-transform: uppercase; 
-    font-family: Arial, sans-serif; /* Match the font family */
     font-size: 1.5em; /* Adjust the size as needed */
 }
 
@@ -111,7 +110,6 @@
     text-transform: uppercase; 
     font-weight: bold;
     text-align: center;
-    font-family: Arial, sans-serif; /* Match the font family */
     font-size: 20px;
 }
 

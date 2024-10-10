@@ -219,12 +219,6 @@ button[type="submit"]:hover {
     font-size: 18px;
 }
 
-.post-card {
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid #444;
-    color: #f7f7f7;
-}
-
 .category-box, .tag-box {
     border: 1px solid #444; /* Box border */
     padding: 10px; /* Padding inside the box */

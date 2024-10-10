@@ -1,20 +1,11 @@
 /* Footer styles */
-body {
-    margin: 0;
-    font-family: Inter, sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    position: relative
-}
-  
-  body::after {
+body::after {
     content: '';
     display: block;
     min-height: 350px;
     margin-bottom: 100px;
     /* Set same as footer's height */
-  }
+}
 
 .footer {
     position: absolute;

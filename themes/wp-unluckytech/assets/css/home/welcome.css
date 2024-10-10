@@ -1,49 +1,5 @@
 /* WELCOME.PHP SECTION */
 
-/* Container Fluid */
-.container-fluid {
-    width: 100%;
-    padding: 0 15px;
-    margin: 0 auto;
-    box-sizing: border-box;
-}
-
-/* Row */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -15px;
-}
-
-/* Column */
-[class*="col-"] {
-    padding: 0 15px;
-    box-sizing: border-box;
-}
-
-/* Cover Container */
-.wp-block-cover.custom-cover-height {
-    height: 53vh; /* Keep this value unchanged */
-    position: relative;
-    overflow: hidden;
-}
-
-/* Cover Background Image */
-.wp-block-cover__image-background {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-
-.wp-block-cover::before, .wp-block-cover::after {
-    z-index: 0; /* Ensure they don’t overlap */
-}
-
-.wp-block-cover {
-    position: relative;
-    z-index: 0;
-}
-
 /* Content Inner Container */
 .content-inner {
     display: flex;
@@ -61,6 +17,11 @@
     backdrop-filter: blur(10px);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom Cover Height */
+.custom-cover-height {
+    height: 53vh;
 }
 
 /* Video Wrapper */
@@ -90,8 +51,6 @@
 /* Text Wrapper */
 .text-wrapper {
     flex: 1;
-    max-width: 100%; /* Adjust as needed */
-    color: #f7f7f7; /* Text color */
     padding: 20px; /* Space around text */
 }
 
@@ -99,7 +58,6 @@
 .welcome-heading {
     font-size: 2.5em; /* Adjust font size */
     margin-bottom: 20px; /* Space below heading */
-    color: #ffffff; /* Set text color to white */
     font-family: Arial, sans-serif; /* Match the font family */
 }
 
@@ -114,8 +72,6 @@
 /* Welcome Description */
 .welcome-description {
     font-size: 1.2em; /* Adjust font size */
-    line-height: 1.5; /* Improve readability */
-    font-family: Arial, sans-serif; /* Match the font family */
 }
 
 @media (max-width: 1024px) {
