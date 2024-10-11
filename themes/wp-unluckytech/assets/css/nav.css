@@ -37,9 +37,17 @@
     transform: translateX(-50%);
 }
 
-.nav-center a:hover {
+.nav-center a:hover, .right-icons i:hover {
     color: #f0a500; /* Highlight color on hover */
     transition: color 0.3s;
+}
+
+
+
+.search-bar button:hover, .button-style:hover, #loginButton:hover, #signupButton:hover, .login-buttons button:hover {
+    background: #555;
+    color: #f0a500;
+    transition: background 0.3s ease;
 }
 
 .wp-block-navigation {
@@ -69,11 +77,6 @@
 .search-icon i, .user-login i {
     font-size: 18px;
     color: #fff;
-}
-
-.right-icons i:hover {
-    color: #f0a500; /* Highlight color on hover */
-    transition: color 0.3s;
 }
 
 .search-icon {
@@ -108,7 +111,6 @@
 
 .search-options {
     display: flex;
-    justify-content: space-between;
 }
 
 .category-select, .tag-select {
@@ -121,40 +123,9 @@
     margin-bottom: 5px;
 }
 
-.category-select select, .tag-select select {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #444;
-    border-radius: 4px;
-    background: #222;
-    color: #fff;
-}
-
-button[type="submit"] {
-    background: #444;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-button[type="submit"] i {
-    margin-right: 5px;
-}
-
-button[type="submit"]:hover {
-    background: #555;
-}
-
 .search-bar input[type="text"] {
     padding: 5px;
     font-size: 16px;
-    border: none;
-    outline: none;
     background-color: #131313;
     color: var(--text-color);
     border: 1px solid #444;
@@ -168,11 +139,6 @@ button[type="submit"]:hover {
     padding: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-left: 5px;
-}
-
-.search-bar button i {
-    font-size: 18px;
 }
 
 .category-box, .tag-box {
@@ -239,6 +205,34 @@ button[type="submit"]:hover {
     margin-bottom: 10px; /* Add some space between input fields */
 }
 
+/* Container for both Remember Me and Forgot Password styled as buttons */
+.remember-forgot-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 0 10px 0 ;
+    font-size: 14px;
+}
+
+/* Styling for Remember Me and Forgot Password as buttons */
+.button-style {
+    background: #444;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: 90%;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Initial styling for Remember Me button */
+#rememberMeButton {
+    background-color: #444; /* Default color */
+}
+
+
 .login-buttons {
     display: flex;
     justify-content: space-between;
@@ -246,9 +240,6 @@ button[type="submit"]:hover {
 }
 
 .login-buttons button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: #444;
     color: #fff;
     padding: 10px;
@@ -258,10 +249,6 @@ button[type="submit"]:hover {
     cursor: pointer;
 }
 
-#loginButton:hover, #signupButton:hover {
-    background: #555;
-}
-
 .user-profile {
     display: flex;
     flex-direction: column;
@@ -269,31 +256,24 @@ button[type="submit"]:hover {
 }
 
 .profile-icon {
-    width: 50px;
-    height: 50px;
     border-radius: 50%;
-    margin-bottom: 10px;
 }
 
 .username {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 20px;
 }
 
 .login-buttons {
-    display: flex;
     gap: 10px;
 }
 
-.remember-check {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 @media (max-width: 1024px) {
-
-
+    
+    .nav-container {
+        padding: 0 15px; /* Adjust padding for spacing */
+    }
+    
     
     .logo img {
         width: 150px;   /* Automatically scale the width */
@@ -313,6 +293,15 @@ button[type="submit"]:hover {
     
     .search-icon i, .user-login i {
         font-size: 16px;
+    }
+
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+
+    .nav-center, .right-icons, .off-screen-search-bar button[type="submit"] {
+        display: none;
     }
 
     .auth-buttons {
@@ -336,26 +325,8 @@ button[type="submit"]:hover {
         background-color: #555;
     }
 
-}
-
-/* Mobile styles */
-@media (max-width: 768px) {
-    .nav-container {
-        padding: 0 15px; /* Adjust padding for spacing */
-    }
-
-
     .off-screen-container {
         width: 90%;
-    }
-
-    /* Navigation Wrapper */
-    .navigation-wrapper {
-        position: fixed; /* Keep the header fixed at the top */
-        top: 0;
-        left: 0;
-        z-index: 1000; /* Ensure it is on top of other content */
-        background: #1d1e20;
     }
 
     /* Ensure the navigation is not obscured by other content */
@@ -416,31 +387,6 @@ button[type="submit"]:hover {
         transform: translate(-50%, -50%) rotate(-45deg);
     }
 
-    .nav-center, .right-icons {
-        display: none;
-    }
-
-    .wp-block-navigation {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 10px;
-        background-color: rgba(29, 31, 33, 0.8);
-        padding: 10px;
-        border-top: 1px solid #27292c;
-        width: 100%;
-    }
-
-    .wp-block-navigation.open {
-        display: flex;
-    }
-
-    .wp-block-navigation a {
-        margin: 10px 0;
-        font-size: 18px;
-        color: white; /* White text color for navigation links */
-    }
-
     .logo img {
         max-height: 30px;  /* Adjust for mobile view if needed */
     }
@@ -449,14 +395,10 @@ button[type="submit"]:hover {
     .off-screen-menu {
         background-color: #131313;
         width: 100%;
-        max-width: 450px;
         position: fixed;
         top: 60px; /* Start below the header navigation */
         left: 0;
         display: flex;
-        flex-direction: column;
-        align-items: flex-start; /* Align items to the left */
-        justify-content: flex-start; /* Align items to the top */
         text-align: left; /* Align text to the left */
         font-size: 1.5rem; /* Make the text smaller */
         padding: 1rem; /* Add padding for spacing */
@@ -469,7 +411,6 @@ button[type="submit"]:hover {
     .off-screen-menu.active {
         opacity: 1; /* Fully visible */
         pointer-events: auto; /* Allow interactions */
-        top: 60px; /* Position it under the header */
     }
 
     .off-screen-menu li {
@@ -486,10 +427,6 @@ button[type="submit"]:hover {
         font-size: 1.2rem; /* Make the link text smaller */
     }
 
-    .off-screen-content a:hover {
-        text-decoration: underline; /* Optional: underline on hover for better UX */
-    }
-
     .off-screen-menu.active .mobile-divider {
         display: block;
     }
@@ -498,7 +435,6 @@ button[type="submit"]:hover {
         height: 1px;
         background: #444;
         margin: 6px 0;
-        display: none; /* Initially hide the divider */
         width: 112%;
     }
 
@@ -506,7 +442,6 @@ button[type="submit"]:hover {
     .off-screen-search-bar {
         padding: 16px; /* Padding around the search bar */
         border-radius: 8px; /* Rounded corners */
-        width: 100%; /* Full width */
         margin: 0 auto; /* Center horizontally */
         box-sizing: border-box; /* Ensure padding and border are included in the total width */
     }
@@ -527,20 +462,6 @@ button[type="submit"]:hover {
         background-color: #222; /* Input background color */
         color: white; /* Text color */
         font-size: 16px; /* Font size */
-    }
-
-    /* Button styling */
-    .off-screen-search-bar button[type="submit"] {
-        display: none;
-    }
-
-    /* Button hover effect */
-    .off-screen-search-bar button[type="submit"]:hover {
-        background-color: #555; /* Darken on hover */
-    }
-    
-    .advanced-toggle {
-        display: none;
     }
 
     /* Overlay that covers the whole screen */

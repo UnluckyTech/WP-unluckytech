@@ -12,8 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['log']) && !empty($_P
     $creds['user_login'] = sanitize_text_field($_POST['log']);
     $creds['user_password'] = sanitize_text_field($_POST['pwd']);
     
-    // Set 'remember' based on checkbox input
-    $creds['remember'] = isset($_POST['rememberme']) ? true : false;
+    // Set 'remember' based on hidden input for "Remember Me" toggle state
+    $creds['remember'] = isset($_POST['rememberme']) && $_POST['rememberme'] === 'true' ? true : false;
 
     $user = wp_signon($creds, false);
 
@@ -48,17 +48,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['log']) && !empty($_P
             <input type="text" id="loginEmail" name="log" placeholder="Email" required />
             <input type="password" id="loginPassword" name="pwd" placeholder="Password" required />
             
-            <!-- Remember Me Checkbox -->
-            <div class="remember-check">
-                <label for="rememberMeCheckbox">Remember Me</label>
-                <input type="checkbox" id="rememberMeCheckbox" name="rememberme">
+            <!-- Remember Me and Forgot Password Buttons -->
+            <div class="remember-forgot-container">
+                <input type="hidden" id="rememberMeHidden" name="rememberme" value="false" />
+                <div class="button-style remember-me" id="rememberMeButton">Remember Me</div>
+                <a href="<?php echo esc_url(wp_lostpassword_url()); ?>" class="button-style forgot-password">Forgot Password</a>
             </div>
-            
+
             <div class="login-buttons">
                 <button type="submit" name="wp-submit" id="loginButton">Log In</button>
                 <button type="button" id="signupButton" onclick="location.href='<?php echo wp_registration_url(); ?>'">Sign Up</button>
             </div>
-            
+
             <!-- Hidden field for error message -->
             <input type="hidden" id="loginError" value="<?php echo isset($login_error) ? esc_html($login_error) : ''; ?>" />
         </form>
@@ -68,10 +69,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['log']) && !empty($_P
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        var rememberMeButton = document.getElementById('rememberMeButton');
+        var rememberMeHidden = document.getElementById('rememberMeHidden');
         var loginError = document.getElementById('loginError').value;
+
+        // Toggle button highlight when clicked (text color only)
+        rememberMeButton.addEventListener('click', function () {
+            if (rememberMeHidden.value === 'false') {
+                rememberMeButton.style.color = '#f0a500'; // Change text color to highlight
+                rememberMeHidden.value = 'true';
+            } else {
+                rememberMeButton.style.color = '#fff'; // Revert text color
+                rememberMeHidden.value = 'false';
+            }
+        });
+
+        // Display login error if present
         if (loginError) {
             alert(loginError); // Display the pop-up with the error message
         }
     });
 </script>
-
