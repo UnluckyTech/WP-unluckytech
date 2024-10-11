@@ -1,66 +1,4 @@
 /* Experience Page Styles */
-.experience-container {
-    background: #ffffff;
-    margin: 0 auto;
-    max-width: 1200px;
-    overflow: hidden;
-    margin-top: 40px;
-    border-radius: 8px;
-    padding-top: 100px;
-    align-items: center;
-    background: transparent;
-}
-
-.experience-banner {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    overflow: hidden;
-}
-
-.experience-banner-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-.experience-banner-overlay h1 {
-    color: #ffffff;
-    font-size: 48px;
-    text-align: center;
-    margin: 0;
-}
-
-.experience-title {
-    font-family: 'Montserrat', sans-serif;
-    color: #fff;
-    font-weight: 700;
-    font-size: 36px; /* Adjust size as needed */
-    text-transform: uppercase; 
-    margin-bottom: 10px;
-}
-
-.experience-content {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background: #ffffff;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
 
 /* Experience Intro Styles */
 .experience-intro {
@@ -120,18 +58,6 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
-
-    .experience-container {
-        padding: 20px;
-    }
-
-    .experience-banner {
-        height: 20vh;
-    }
-
-    .experience-banner-overlay h1 {
-        font-size: 40px;
-    }
 
     .experience-intro p {
         font-size: 1em;

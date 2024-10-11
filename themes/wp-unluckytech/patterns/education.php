@@ -7,17 +7,17 @@
  */
 ?>
 
-<div class="education-container">
+<div class="main-container">
 
     <!-- Education Banner -->
-    <div class="education-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
-        <div class="education-banner-overlay">
-            <h1 class="education-title">Education</h1>
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+        <div class="main-banner-overlay">
+            <h1 class="main-title">Education</h1>
         </div>
     </div>
 
     <!-- Education Content Section -->
-    <div class="education-content">
+    <div class="main-content">
 
         <!-- Degree and School Container -->
         <div class="education-info">

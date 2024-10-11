@@ -1,66 +1,4 @@
 /* Education Page Styles */
-.education-container {
-    background: #ffffff;
-    margin: 0 auto;
-    max-width: 1200px;
-    overflow: hidden;
-    margin-top: 40px;
-    border-radius: 8px;
-    padding-top: 100px;
-    align-items: center;
-    background: transparent;
-}
-
-.education-banner {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    overflow: hidden;
-}
-
-.education-banner-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-.education-banner-overlay h1 {
-    color: #ffffff;
-    font-size: 48px;
-    text-align: center;
-    margin: 0;
-}
-
-.education-title {
-    font-family: 'Montserrat', sans-serif;
-    color: #fff;
-    font-weight: 700;
-    font-size: 36px; /* Adjust size as needed */
-    text-transform: uppercase; 
-    margin-bottom: 10px;
-}
-
-.education-content {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background: #ffffff;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
 
 /* Degree and School Container */
 .education-info {
@@ -172,18 +110,6 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
-
-    .education-container {
-        padding: 20px;
-    }
-
-    .education-banner {
-        height: 20vh;
-    }
-
-    .education-banner-overlay h1 {
-        font-size: 40px;
-    }
 
     .education-info, .classes-skills-container {
         display: flex;

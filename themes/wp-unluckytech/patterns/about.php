@@ -7,16 +7,16 @@
  */
 ?>
 
-<div class="about-container">
+<div class="main-container">
     
     <!-- About Me Banner -->
-    <div class="about-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
-        <div class="about-banner-overlay">
-            <h1 class="about-title">About Me</h1>
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+        <div class="main-banner-overlay">
+            <h1 class="main-title">About Me</h1>
         </div>
     </div> 
 
-    <div class="about-content">
+    <div class="main-content">
 
         <!-- Container for About Text and Profile Card -->
         <div class="about-section">
@@ -46,8 +46,8 @@
                     <a href="https://linkedin.com/in/stawse" target="_blank" class="social-icon">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://twitter.com/yourusername" target="_blank" class="social-icon">
-                        <i class="fab fa-twitter"></i>
+                    <a href="https://discord.gg/9mnGBAc8aC" target="_blank" class="social-icon">
+                        <i class="fab fa-discord"></i>
                     </a>
                 </div>
                 <a href="/contact" class="button">Contact Me</a>

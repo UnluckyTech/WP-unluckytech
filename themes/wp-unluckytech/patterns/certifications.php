@@ -7,21 +7,21 @@
  */
 ?>
 
-<div class="certifications-container">
+<div class="main-container">
 
     <!-- Certifications Banner (same as About Me banner) -->
-    <div class="certifications-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
-        <div class="certifications-banner-overlay">
-            <h1 class="certifications-title">Certifications</h1>
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+        <div class="main-banner-overlay">
+            <h1 class="main-title">Certifications</h1>
         </div>
     </div>
 
     <!-- Certifications Content Section -->
-    <div class="certifications-content">
+    <div class="main-content">
 
-    <div class="certifications-intro">
-        <p>I am constantly learning and developing new skills. To further validate my expertise, I actively pursue additional certifications that reflect my ongoing growth in the field. With that in mind, I will update this page with new certifications as I earn them.</p>
-    </div>
+        <div class="certifications-intro">
+            <p>I am constantly learning and developing new skills. To further validate my expertise, I actively pursue additional certifications that reflect my ongoing growth in the field. With that in mind, I will update this page with new certifications as I earn them.</p>
+        </div>
 
         <!-- Certifications Cards Section -->
         <div class="certifications-cards">

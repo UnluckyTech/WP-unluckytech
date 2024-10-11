@@ -7,17 +7,17 @@
  */
 ?>
 
-<div class="experience-container">
+<div class="main-container">
 
     <!-- Experience Banner -->
-    <div class="experience-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
-        <div class="experience-banner-overlay">
-            <h1 class="experience-title">Experience</h1>
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+        <div class="main-banner-overlay">
+            <h1 class="main-title">Experience</h1>
         </div>
     </div>
 
     <!-- Experience Content Section -->
-    <div class="experience-content">
+    <div class="main-content">
 
         <div class="experience-intro">
             <p>With years of experience in the IT field, I have worked on various projects that have honed my skills and expertise. Here, I highlight key experiences that have contributed to my professional growth.</p>

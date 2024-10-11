@@ -75,7 +75,6 @@ function wp_unluckytech_scripts() {
     }
 
     // Enqueue Particle Animation JavaScript and CSS
-    wp_enqueue_style('particle-animation-css', get_template_directory_uri() . '/assets/css/particle-animation.css');
     wp_enqueue_script('particle-animation-js', get_template_directory_uri() . '/assets/js/particle-animation.js', array('jquery'), null, true);
 
     // Localize script to pass the AJAX URL
