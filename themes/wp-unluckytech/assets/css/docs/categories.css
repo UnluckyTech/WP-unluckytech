@@ -34,14 +34,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
     text-decoration: none;
-    color: #fff;
     overflow: hidden;
     transition: transform 0.3s;
 }
 
-.category-item:hover {
+.category-item:hover { 
     transform: scale(1.05);
 }
 
@@ -49,19 +47,12 @@
     background: rgba(0, 0, 0, 0.6); /* Dark overlay */
     position: absolute;
     top: 0;
-    left: 0;
     width: 120%;
     height: 120%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     backdrop-filter: blur(4px); /* Add blur effect */
-    -webkit-backdrop-filter: blur(4px); /* Add blur effect for Safari */
 }
 
 .category-content {
-    position: relative;
-    font-family: 'Montserrat', sans-serif;
     color: #fff;
     font-weight: 700;
     font-size: 36px; /* Adjust size as needed */
@@ -69,21 +60,12 @@
     z-index: 1;
 }
 
-.alternative-section {
-    height: 70%;
-}
 
 .alternative-section a {
     display: block;
-    background-size: cover;
-    background-position: center;
     height: 240px;
-    text-align: center;
     padding-top: 140px;
     font-size: 1.2em;
-    color: #fff;
-    text-decoration: none;
-    position: relative;
     transition: transform 0.3s;
 }
 
@@ -93,46 +75,29 @@
 
 .alt-inner {
     position: relative;
-    flex-direction: column; /* Stack inner elements vertically */
-    z-index: 2; /* Ensure alt-inner content is above the overlay */
-    align-items: center;
-    justify-content: center;
 }
 
 .alt-content {
     width: 60%; /* Adjust the width as needed */
-    position: relative;
-    font-family: 'Montserrat', sans-serif;
-    color: #fff;
     font-weight: 700;
     font-size: 36px; /* Adjust size as needed */
     text-transform: uppercase; /* Optional: transform text to uppercase */
     border-bottom: 2px solid #fff;
     margin: 10px auto 0; /* Center the divider horizontally and add top margin */
-    z-index: 1;
 }
 
 .alt-description {
-    font-size: 1em;
     color: #ddd;
-    text-align: center;
-    padding: 5px;
-    margin-top: 10px; /* Optional: add space above the description */
 }
 
 .alt-item {
     position: relative; /* To position the overlay correctly */
     background-size: cover;
     background-position: center;
-    height: 70px; /* Adjust the height as needed */
-    display: flex; /* Enable flexbox for alt-item */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
     text-align: center;
     text-decoration: none;
     color: #fff;
     overflow: hidden;
-    transition: transform 0.3s;
 }
 
 .alt-item:hover {
@@ -147,15 +112,8 @@
 
     .alt-content {
         width: 100%; /* Adjust the width as needed */
-        position: relative;
-        font-family: 'Montserrat', sans-serif;
-        color: #fff;
-        font-weight: 700;
         font-size: 32px; /* Adjust size as needed */
-        text-transform: uppercase; /* Optional: transform text to uppercase */
         border-bottom: 0;
-        margin: 10px auto 0; /* Center the divider horizontally and add top margin */
-        z-index: 1;
     }
 
     .alt-content::after {
@@ -170,24 +128,8 @@
     .alt-description {
         font-size: 1em;
         color: #ddd;
-        text-align: center;
         padding: 5px;
         margin-top: 10px; /* Optional: add space above the description */
-    }
-    
-    .alt-item {
-        position: relative; /* To position the overlay correctly */
-        background-size: cover;
-        background-position: center;
-        height: 70px; /* Adjust the height as needed */
-        display: flex; /* Enable flexbox for alt-item */
-        justify-content: center; /* Center content horizontally */
-        align-items: center; /* Center content vertically */
-        text-align: center;
-        text-decoration: none;
-        color: #fff;
-        overflow: hidden;
-        transition: transform 0.3s;
     }
 
 }
@@ -207,14 +149,11 @@
         background-size: cover;
         background-position: center;
         padding: 20px;
-        margin-bottom: 10px;
         height: 80px; /* Adjust the height as needed */
         display: flex;
         justify-content: center;
         align-items: center;
-        text-align: center;
         text-decoration: none;
-        color: #fff;
         overflow: hidden;
         transition: transform 0.3s;
     }
