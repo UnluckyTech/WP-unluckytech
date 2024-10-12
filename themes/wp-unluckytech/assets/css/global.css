@@ -102,6 +102,20 @@ h1, h2, h3 {
     border-bottom-right-radius: 8px;
 }
 
+.intro-section {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.intro-section p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #333;
+}
+
 /* FAQ Section Styles */
 .faq-section {
     background: #f9f9f9;

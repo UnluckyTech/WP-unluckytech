@@ -55,7 +55,6 @@ function wp_unluckytech_scripts() {
         'wp-unluckytech-cert' => get_template_directory_uri() . '/assets/css/about/certificate.css',
         'wp-unluckytech-exp' => get_template_directory_uri() . '/assets/css/about/experience.css',
         'wp-unluckytech-edu' => get_template_directory_uri() . '/assets/css/about/education.css',
-        'wp-unluckytech-intro' => get_template_directory_uri() . '/assets/css/about/intro.css',
         'wp-unluckytech-404' => get_template_directory_uri() . '/assets/css/extras/404.css',
         'wp-unluckytech-account' => get_template_directory_uri() . '/assets/css/account/account.css',
     );

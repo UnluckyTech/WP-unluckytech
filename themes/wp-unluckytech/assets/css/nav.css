@@ -4,7 +4,7 @@
 
 .navigation-wrapper {
     display: flex;
-    justify-content: center; /* Center the nav-container */
+    justify-content: center;
     background-color: #1d1e20;
     color: #fff;
     z-index: 1000;
@@ -17,10 +17,10 @@
 
 .nav-container {
     display: flex;
-    align-items: center; /* Align items vertically in the center */
-    justify-content: space-between; /* Space items between logo, nav, and icons */
-    width: 100%; /* Full width of the navigation wrapper */
-    max-width: 1200px; /* Optional: limit max width for better alignment */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .logo a {
@@ -28,7 +28,7 @@
 }
 
 .logo img {
-    max-height: 40px;  /* Adjust the height as needed */
+    max-height: 40px;
 }
 
 .nav-center {
@@ -38,7 +38,7 @@
 }
 
 .nav-center a:hover, .right-icons i:hover {
-    color: #f0a500; /* Highlight color on hover */
+    color: #f0a500;
     transition: color 0.3s;
 }
 
@@ -93,14 +93,14 @@
     top: 100%;
     right: 25px;
     width: 300px;
-    margin-top: 30px; /* Add the desired gap here */
+    margin-top: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .search-bar.visible {
-    display: block; /* Make it visible */
-    top: calc(100% + 20px); /* Adjusted for the gap at the top */
-    opacity: 1; /* Fully visible */
+    display: block; 
+    top: calc(100% + 20px); 
+    opacity: 1;
 }
 
 .search-bar form {
@@ -142,35 +142,35 @@
 }
 
 .category-box, .tag-box {
-    border: 1px solid #444; /* Box border */
-    padding: 10px; /* Padding inside the box */
-    border-radius: 4px; /* Rounded corners */
-    background-color: #222; /* Background color of the box */
-    height: 100px; /* Set a maximum height */
-    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #444; 
+    padding: 10px; 
+    border-radius: 4px; 
+    background-color: #222; 
+    height: 100px; 
+    overflow-y: auto;
 }
 
 .styled-select {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove default padding */
-    margin: 0; /* Remove default margin */
-    font-size: 14px; /* Change the font size here */
-    color: #fff; /* Set the text color for better visibility */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #fff;
 }
 
 .styled-select li {
-    margin: 0.5em 0; /* Add some space between items */
-    cursor: pointer; /* Change cursor to pointer on hover */
+    margin: 0.5em 0; 
+    cursor: pointer;
 }
 
 .styled-select input[type="radio"] {
-    display: none; /* Hide radio buttons */
+    display: none;
 }
 
 .styled-select input[type="radio"]:checked + label {
-    background-color: #333333; /* Charcoal */
-    color: white; /* Change text color of selected option */
-    border-color: #333333; /* Charcoal */
+    background-color: #333333;
+    color: white;
+    border-color: #333333;
 }
 
 .user-login {
@@ -186,9 +186,9 @@
     top: 100%;
     right: 0;
     width: 200px;
-    margin-top: 30px; /* Add the desired gap here */
+    margin-top: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Ensure it appears above other content */
+    z-index: 1000;
 }
 
 .user-login-form input[type="text"],
@@ -202,10 +202,9 @@
     color: var(--text-color);
     border: 1px solid var(--post-card-border);
     border-radius: 4px;
-    margin-bottom: 10px; /* Add some space between input fields */
+    margin-bottom: 10px;
 }
 
-/* Container for both Remember Me and Forgot Password styled as buttons */
 .remember-forgot-container {
     display: flex;
     flex-direction: column;
@@ -214,7 +213,6 @@
     font-size: 14px;
 }
 
-/* Styling for Remember Me and Forgot Password as buttons */
 .button-style {
     background: #444;
     color: #fff;
@@ -227,9 +225,8 @@
     text-decoration: none;
 }
 
-/* Initial styling for Remember Me button */
 #rememberMeButton {
-    background-color: #444; /* Default color */
+    background-color: #444;
 }
 
 
@@ -245,7 +242,7 @@
     padding: 10px;
     border: none;
     border-radius: 4px;
-    width: 100%; /* Ensure buttons are side by side with space in between */
+    width: 100%;
     cursor: pointer;
 }
 
@@ -271,12 +268,12 @@
 @media (max-width: 1024px) {
     
     .nav-container {
-        padding: 0 15px; /* Adjust padding for spacing */
+        padding: 0 15px; 
     }
     
     
     .logo img {
-        width: 150px;   /* Automatically scale the width */
+        width: 150px;
     }
 
     .wp-block-navigation a {
@@ -297,7 +294,6 @@
 
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
 
     .nav-center, .right-icons, .off-screen-search-bar button[type="submit"] {
@@ -329,30 +325,27 @@
         width: 90%;
     }
 
-    /* Ensure the navigation is not obscured by other content */
     body {
-        padding-top: 60px; /* Adjust based on header height */
+        padding-top: 60px;
     }
 
-    /* Style for the navigation bar */
     nav {
         padding: 1rem;
         display: flex;
     }
 
-    /* ham-menu */
     .ham-menu {
-        height: 40px; /* Slightly smaller */
-        width: 30px;  /* Slightly smaller */
+        height: 40px;
+        width: 30px;
         margin-left: auto;
         position: relative;
         top: -20%;
     }
 
     .ham-menu span {
-        height: 4px; /* Slightly smaller */
+        height: 4px; 
         width: 100%;
-        background-color: white; /* Make it white */
+        background-color: white;
         border-radius: 25px;
         position: absolute;
         left: 40%;
@@ -370,7 +363,7 @@
     }
 
     .ham-menu.active span {
-        background-color: white; /* Ensure active state is also white */
+        background-color: white;
     }
 
     .ham-menu.active span:nth-child(1) {
@@ -388,33 +381,31 @@
     }
 
     .logo img {
-        max-height: 30px;  /* Adjust for mobile view if needed */
+        max-height: 30px; 
     }
 
-    /* Off-Screen Menu */
     .off-screen-menu {
         background-color: #131313;
         width: 100%;
         position: fixed;
-        top: 60px; /* Start below the header navigation */
+        top: 60px;
         left: 0;
         display: flex;
-        text-align: left; /* Align text to the left */
-        font-size: 1.5rem; /* Make the text smaller */
-        padding: 1rem; /* Add padding for spacing */
-        transition: top 0.3s ease; /* Animate the top property */
-        opacity: 0; /* Start hidden */
-        pointer-events: none; /* Prevent interactions when not visible */
+        text-align: left; 
+        font-size: 1.5rem;
+        padding: 1rem; 
+        transition: top 0.3s ease; 
+        opacity: 0; 
+        pointer-events: none;
     }
 
-    /* Active State */
     .off-screen-menu.active {
-        opacity: 1; /* Fully visible */
-        pointer-events: auto; /* Allow interactions */
+        opacity: 1; 
+        pointer-events: auto; 
     }
 
     .off-screen-menu li {
-        margin: 10px 0; /* Space between menu items */
+        margin: 10px 0; 
     }
 
     .off-screen-content {
@@ -422,9 +413,9 @@
     }
 
     .off-screen-content a {
-        color: white; /* White text color for menu links */
-        text-decoration: none; /* Remove underline from links */
-        font-size: 1.2rem; /* Make the link text smaller */
+        color: white; 
+        text-decoration: none;
+        font-size: 1.2rem; 
     }
 
     .off-screen-menu.active .mobile-divider {
@@ -438,33 +429,29 @@
         width: 112%;
     }
 
-    /* Off-Screen Search Bar */
     .off-screen-search-bar {
-        padding: 16px; /* Padding around the search bar */
-        border-radius: 8px; /* Rounded corners */
-        margin: 0 auto; /* Center horizontally */
-        box-sizing: border-box; /* Ensure padding and border are included in the total width */
+        padding: 16px;
+        border-radius: 8px;
+        margin: 0 auto;
+        box-sizing: border-box;
     }
 
-    /* Ensure the form is a flex container for alignment */
     .off-screen-search-bar form {
         margin-top: auto;
-        display: flex; /* Flexbox for alignment */
-        width: 100%; /* Full width */
+        display: flex; 
+        width: 100%; 
     }
 
-    /* Input field styling */
     .off-screen-search-bar input[type="text"] {
-        flex: 1; /* Take remaining space */
-        padding: 10px; /* Padding inside the input */
-        border: 1px solid #444; /* Border styling */
-        border-radius: 4px; /* Rounded corners */
-        background-color: #222; /* Input background color */
-        color: white; /* Text color */
-        font-size: 16px; /* Font size */
+        flex: 1; 
+        padding: 10px; 
+        border: 1px solid #444; 
+        border-radius: 4px; 
+        background-color: #222;
+        color: white; 
+        font-size: 16px; 
     }
 
-    /* Overlay that covers the whole screen */
     .overlay {
         display: none;
         position: fixed;
@@ -472,10 +459,9 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+        background-color: rgba(0, 0, 0, 0.5);
     }
 
-    /* Show the overlay when the menu is active */
     .overlay.active {
         display: block;
     }

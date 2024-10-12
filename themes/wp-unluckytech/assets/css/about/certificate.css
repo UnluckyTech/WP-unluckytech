@@ -1,19 +1,5 @@
 /* Certifications Page Styles */
 
-.certifications-intro {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.certifications-intro p {
-    font-size: 1.2em;
-    line-height: 1.5;
-    color: #333;
-}
-
 .certifications-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

@@ -1,17 +1,15 @@
 /* WELCOME.PHP SECTION */
 
-/* Content Inner Container */
 .content-inner {
     display: flex;
     justify-content: center;
 }
 
-/* Welcome Container */
 .welcome-container {
     display: flex;
-    align-items: center; /* Center content vertically */
-    gap: 20px; /* Space between video and text */
-    max-width: 1200px; /* Adjust as needed */
+    align-items: center;
+    gap: 20px; 
+    max-width: 1200px;
     width: 100%;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
@@ -19,24 +17,21 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Custom Cover Height */
 .custom-cover-height {
     height: 53vh;
 }
 
-/* Video Wrapper */
 .video-wrapper {
     flex: 1;
-    max-width: 50%; /* Adjust as needed */
+    max-width: 50%; 
     position: relative;
     overflow: hidden;
 }
 
-/* Aspect Ratio for Video */
 .video-wrapper::before {
     content: "";
     display: block;
-    padding-top: 75%; /* 16:9 Aspect Ratio */
+    padding-top: 75%; 
 }
 
 .video-wrapper iframe {
@@ -48,37 +43,32 @@
     border: none;
 }
 
-/* Text Wrapper */
 .text-wrapper {
     flex: 1;
-    padding: 20px; /* Space around text */
+    padding: 20px;
 }
 
-/* Welcome Heading */
 .welcome-heading {
-    font-size: 2.5em; /* Adjust font size */
-    margin-bottom: 20px; /* Space below heading */
-    font-family: Arial, sans-serif; /* Match the font family */
+    font-size: 2.5em; 
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif; 
 }
 
-/* Welcome Divider */
 .welcome-divider {
     border: 0;
     height: 1px;
-    background: #444; /* Darker line color */
-    margin: 10px 0; /* Space above and below the line */
+    background: #444; 
+    margin: 10px 0; 
 }
 
-/* Welcome Description */
 .welcome-description {
-    font-size: 1.2em; /* Adjust font size */
+    font-size: 1.2em;
 }
 
 @media (max-width: 1024px) {
 
-    /* Aspect Ratio for Video */
     .video-wrapper::before {
-        padding-top: 100%; /* 16:9 Aspect Ratio */
+        padding-top: 100%;
     }
 }
 
@@ -93,16 +83,16 @@
     }
 
     .video-wrapper {
-        order: -1; /* Move video to the top */
+        order: -1; 
     }
 
     .welcome-heading {
-        font-size: 1.2em; /* Smaller font size for mobile */
-        margin-bottom: 10px; /* Reduce space below heading */
+        font-size: 1.2em; 
+        margin-bottom: 10px;
     }
 
     .welcome-description {
-        font-size: 1em; /* Adjust font size */
+        font-size: 1em;
     }
 }
 

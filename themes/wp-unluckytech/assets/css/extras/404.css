@@ -52,7 +52,6 @@
 
 }
 
-/* Latest Posts Section (404 Page) */
 .latest-posts-section {
     padding: 20px;
 }
@@ -79,7 +78,7 @@
 }
 
 .latest-post-item {
-    flex: 1 1 calc(20% - 10px); /* 5 posts in 1 row */
+    flex: 1 1 calc(20% - 10px); 
     position: relative;
     overflow: hidden;
     aspect-ratio: 16 / 9;
@@ -126,14 +125,12 @@
     text-align: center;
 }
 
-/* Mobile Styles */
 .mobile-view {
     display: none;
 }
 
 @media (max-width: 1024px) {
 
-    /* About Page Styles */
     .error-container {
         padding: 20px;
         padding-top: 50px;
@@ -190,16 +187,14 @@
         background-color: #717171;
     }
 
-    /* Mobile view slider - Show active slide */
     .mobile-view .slide {
-        display: none; /* All slides hidden by default */
+        display: none; 
     }
 
     .mobile-view .slide.active {
-        display: block; /* Only active slide is displayed */
+        display: block; 
     }
 
-    /* Add some improvements for slider dots on mobile */
     .dots-container .dot {
         height: 12px;
         width: 12px;

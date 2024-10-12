@@ -15,7 +15,7 @@
     font-size: 1.5em;
     margin-top: 20px;
     font-weight: bold;
-    text-transform: uppercase; /* Optional: transform text to uppercase */
+    text-transform: uppercase;
 }
 
 .about-text p {
@@ -23,7 +23,6 @@
     line-height: 1.5;
 }
 
-/* Styles for the Info Cards Section */
 .info-cards {
     display: flex;
     gap: 20px;
@@ -36,8 +35,8 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    text-decoration: none; /* Remove underline from links */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .info-card ul {
@@ -63,17 +62,14 @@
 }
 
 .info-card:hover {
-    transform: scale(1.05); /* Slightly enlarge the card on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
 }
 
 .info-card:focus {
-    outline: none; /* Remove default focus outline */
+    outline: none; 
 }
 
-/* Additional Info Section */
-
-/* Profile Card Styles */
 .profile-card {
     min-width: 333.33px;
     padding: 20px;
@@ -106,19 +102,14 @@
 }
 
 .social-icon:hover {
-    color: #f0a500; /* Highlight color on hover */
+    color: #f0a500;
     transition: color 0.3s;
 }
 
-
-
-
-/* Media Queries */
 @media (max-width: 1024px) {
 
-    /* Move profile-card above about-text */
     .profile-card {
-        order: -1; /* Moves it above */
+        order: -1;
         min-width: 90%;
     }
 
@@ -164,15 +155,15 @@
 
     .info-cards {
         display: flex;
-        overflow-x: auto; /* Enable horizontal scrolling */
-        scroll-snap-type: x mandatory; /* Activate scroll snapping */
-        gap: 10px; /* Reduce gap between cards */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
         padding: 10px 0;
-        height: 300px; /* Fixed height for the entire card container */
+        height: 300px;
     }
 
     .info-card {
-        overflow: hidden; /* Hide overflowing content to maintain uniform size */
+        overflow: hidden;
     }
 
     .info-card h3 {
@@ -187,7 +178,6 @@
         font-size: 1em;
     }
 
-    /* Optional: Hide scrollbar */
     .info-cards::-webkit-scrollbar {
         display: none;
     }
@@ -196,6 +186,6 @@
 
 @media (max-width: 768px) {
     .info-card {
-        flex: none; /* Ensure each card takes up full width */
+        flex: none;
     }
 }

@@ -1,19 +1,15 @@
 /* Education Page Styles */
 
-/* Degree and School Container */
 .education-info {
     display: flex;
     gap: 20px;
 }
 
-/* New container for aligning Core Classes and Skills */
 .classes-skills-container {
     display: flex;
     gap: 20px;
-    justify-content: space-between;
 }
 
-/* Degree Container with Core Classes */
 .education-degree-container {
     flex: 3;
     display: flex;
@@ -32,11 +28,11 @@
     text-align: center;
     font-weight: bold;
     text-transform: uppercase; 
-    font-size: 1.5em; /* Adjust the size as needed */
+    font-size: 1.5em;
 }
 
 .education-classes, .education-skills {
-    flex: 1; /* Allow each to take up equal space */
+    flex: 1;
     padding: 20px;
     background: #f9f9f9;
     border-radius: 8px;
@@ -44,7 +40,6 @@
 }
 
 .education-classes h2, .education-skills h2 {
-    margin-bottom: 10px;
     text-transform: uppercase; 
     font-weight: bold;
     text-align: center;
@@ -57,7 +52,6 @@
     line-height: 1.5;
 }
 
-/* School Info Styles */
 .education-school {
     flex: 1;
     padding: 20px;
@@ -68,9 +62,7 @@
 
 .school-image {
     width: 100%;
-    height: auto;
     border-radius: 8px;
-    margin-bottom: 10px;
 }
 
 .school-link, .degree-link {
@@ -84,39 +76,28 @@
     text-decoration: underline;
 }
 
-/* Center the buttons and add space between them */
 .education-buttons-container {
     display: flex;
-    justify-content: center; /* Center the buttons */
-    gap: 20px; /* Add space between the two buttons */
+    justify-content: center; 
+    gap: 20px;
     margin-top: 20px;
 }
 
-.education-button {
-    background-color: #3a3b40;
-    color: #ffffff;
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    transition: background-color 0.3s ease;
+@media (max-width: 1024px) {
+
+    .education-classes li, .education-skills li {
+        font-size: 1em;
+        line-height: 1;
+    }
 }
 
-.education-button:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-
-/* Responsive design */
 @media (max-width: 768px) {
 
     .education-info, .classes-skills-container {
         display: flex;
-        flex-direction: column; /* Stack items vertically on mobile */
+        flex-direction: column;
     }
 
-    /* Dropdown Styling */
     .dropdown-header {
         background-color: #3a3b40;
         color: #ffffff;

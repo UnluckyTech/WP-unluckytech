@@ -19,7 +19,7 @@
     <!-- Certifications Content Section -->
     <div class="main-content">
 
-        <div class="certifications-intro">
+        <div class="intro-section">
             <p>I am constantly learning and developing new skills. To further validate my expertise, I actively pursue additional certifications that reflect my ongoing growth in the field. With that in mind, I will update this page with new certifications as I earn them.</p>
         </div>
 

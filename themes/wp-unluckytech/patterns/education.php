@@ -65,8 +65,8 @@
 
                 <!-- Custom Buttons for IRSC and Degree -->
                 <div class="education-buttons-container">
-                    <a href="https://www.irsc.edu" target="_blank" class="education-button irsc-button">IRSC</a>
-                    <a href="https://irsc.edu/programs/computer-information-technology.html" target="_blank" class="education-button degree-button">DEGREE</a>
+                    <a href="https://www.irsc.edu" target="_blank" class="button">IRSC</a>
+                    <a href="https://irsc.edu/programs/computer-information-technology.html" target="_blank" class="button">DEGREE</a>
                 </div>
             </div>
         </div>

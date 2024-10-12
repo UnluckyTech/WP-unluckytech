@@ -19,7 +19,7 @@
     <!-- Experience Content Section -->
     <div class="main-content">
 
-        <div class="experience-intro">
+        <div class="intro-section">
             <p>With years of experience in the IT field, I have worked on various projects that have honed my skills and expertise. Here, I highlight key experiences that have contributed to my professional growth.</p>
         </div>
 

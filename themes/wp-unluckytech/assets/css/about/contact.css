@@ -1,4 +1,3 @@
-/* Two-column layout for input rows */
 .two-column {
     display: flex;
     justify-content: space-between;
@@ -63,7 +62,7 @@
 
 .submit-button:hover {
     background-color: #555;
-    color: #f0a500; /* Highlight color on hover */
+    color: #f0a500;
     transition: color 0.3s;
 }
 
@@ -71,10 +70,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Optional: Set height if you want vertical centering */
+    height: 100%;
 }
 
-/* Media Queries */
 @media (max-width: 768px) {
 
     .contact-group input,

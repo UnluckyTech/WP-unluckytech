@@ -7,7 +7,7 @@
     justify-content: space-between;
     padding: 20px;
     max-width: 1200px;
-    margin: 0 auto; /* Center the container within its parent */
+    margin: 0 auto;
 }
 
 .categories-section, .alternative-section {
@@ -19,18 +19,18 @@
     font-weight: 700;
     font-size: 1.5em;
     color: #fff;
-    text-transform: uppercase; /* Optional: transform text to uppercase */
+    text-transform: uppercase; 
     border-bottom: 2px solid #fff;
     padding-bottom: 10px;
 }
 
 .category-item {
-    position: relative; /* To position the overlay correctly */
+    position: relative;
     background-size: cover;
     background-position: center;
     padding: 20px;
     margin-bottom: 10px;
-    height: 80px; /* Adjust the height as needed */
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,19 +44,19 @@
 }
 
 .cat-overlay {
-    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    background: rgba(0, 0, 0, 0.6); 
     position: absolute;
     top: 0;
     width: 120%;
     height: 120%;
-    backdrop-filter: blur(4px); /* Add blur effect */
+    backdrop-filter: blur(4px);
 }
 
 .category-content {
     color: #fff;
     font-weight: 700;
-    font-size: 36px; /* Adjust size as needed */
-    text-transform: uppercase; /* Optional: transform text to uppercase */
+    font-size: 36px; 
+    text-transform: uppercase;
     z-index: 1;
 }
 
@@ -78,12 +78,12 @@
 }
 
 .alt-content {
-    width: 60%; /* Adjust the width as needed */
+    width: 60%; 
     font-weight: 700;
-    font-size: 36px; /* Adjust size as needed */
-    text-transform: uppercase; /* Optional: transform text to uppercase */
+    font-size: 36px; 
+    text-transform: uppercase; 
     border-bottom: 2px solid #fff;
-    margin: 10px auto 0; /* Center the divider horizontally and add top margin */
+    margin: 10px auto 0; 
 }
 
 .alt-description {
@@ -91,7 +91,7 @@
 }
 
 .alt-item {
-    position: relative; /* To position the overlay correctly */
+    position: relative; 
     background-size: cover;
     background-position: center;
     text-align: center;
@@ -111,25 +111,25 @@
     }
 
     .alt-content {
-        width: 100%; /* Adjust the width as needed */
-        font-size: 32px; /* Adjust size as needed */
+        width: 100%;
+        font-size: 32px;
         border-bottom: 0;
     }
 
     .alt-content::after {
-        content: ""; /* Required for pseudo-elements */
-        display: block; /* Makes it a block-level element */
-        width: 80%; /* Adjust width as needed */
-        height: 2px; /* Height of the border */
-        background-color: #fff; /* Border color */
-        margin: 10px auto 0; /* Center it under the text */
+        content: ""; 
+        display: block; 
+        width: 80%; 
+        height: 2px; 
+        background-color: #fff;
+        margin: 10px auto 0;
     }
     
     .alt-description {
         font-size: 1em;
         color: #ddd;
         padding: 5px;
-        margin-top: 10px; /* Optional: add space above the description */
+        margin-top: 10px;
     }
 
 }
@@ -145,11 +145,11 @@
     }
 
     .mobile-item {
-        position: relative; /* To position the overlay correctly */
+        position: relative; 
         background-size: cover;
         background-position: center;
         padding: 20px;
-        height: 80px; /* Adjust the height as needed */
+        height: 80px;
         display: flex;
         justify-content: center;
         align-items: center;
