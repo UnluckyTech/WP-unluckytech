@@ -7,14 +7,14 @@
  */
 ?>
 
-<div class="services-container">
+<div class="main-container">
 
     <!-- Services Banner -->
-    <div class="services-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
-        <div class="services-banner-overlay">
-            <h1 class="services-title">System Configuration</h1>
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+        <div class="main-banner-overlay">
+            <h1 class="main-title">System Configuration</h1>
         </div>
-    </div>
+    </div> 
 
     <!-- Summary Section (Service Overview) -->
     <div class="summary-section">
