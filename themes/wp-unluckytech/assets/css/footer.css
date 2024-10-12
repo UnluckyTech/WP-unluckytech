@@ -1,4 +1,5 @@
 /* Footer styles */
+
 .footer {
     position: absolute;
     bottom:0;
@@ -29,7 +30,6 @@
     margin: 0; 
 }
 
-/* Footer Logo */
 .footer-logo {
     margin-bottom: 10px;
 }
@@ -38,7 +38,6 @@
     max-width: 60%;
 }
 
-/* Links in footer */
 .footer-links {
     list-style: none;
     padding: 0;
@@ -61,7 +60,6 @@
     gap: 10px;
 }
 
-/* Ensure all icons are white */
 .footer-social-icons i,
 .footer-unluckytech-icons i {
     color: white;
@@ -83,7 +81,6 @@
     margin-top: 20px;
 }
 
-/* Common Title Style for Footer */
 .footer-common-title {
     font-size: 18px;
     color: #fff;

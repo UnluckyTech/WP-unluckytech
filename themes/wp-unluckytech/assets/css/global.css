@@ -151,7 +151,7 @@ h1, h2, h3 {
 
 .faq-question:hover {
     background-color: #555;
-    color: #f0a500; /* Highlight color on hover */
+    color: #f0a500; 
     transition: color 0.3s;
 }
 

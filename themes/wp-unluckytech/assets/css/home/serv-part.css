@@ -1,6 +1,5 @@
 /* servpart.PHP SECTION */
 
-/* Main container for services and slideshow */
 .servpart-section {
     width: 1200px;
     background: rgba(0, 0, 0, .5);
@@ -11,17 +10,15 @@
     overflow: hidden;
 }
 
-/* servpart Title */
 .servpart-title {
-    font-family: Arial, sans-serif; /* Change font-family to match other text */
-    margin: 0 auto 10px auto; /* Adds top and bottom margins, centers horizontally */
+    font-family: Arial, sans-serif; 
+    margin: 0 auto 10px auto; 
     text-transform: uppercase;
     font-weight: 700;
     color: #fff;
-    text-align: center; /* Centers the text */
+    text-align: center; 
 }
 
-/* servpart List */
 .servpart-list {
     display: table;
     width: 60%;
@@ -45,63 +42,56 @@
     transform: translateY(-5px);
 }
 
-/* Columns Container */
 .servpart-columns, .quick-access-columns {
-    display: flex; /* Align two columns side by side */
-    gap: 40px; /* Adds spacing between the columns */
+    display: flex;
+    gap: 40px;
 }
 
-/* Each column styling */
 .servpart-column, .qa-column {
-    list-style: none; /* Remove bullets */
+    list-style: none; 
     padding: 0;
     margin: 0;
-    width: 100%; /* Ensure equal width for columns */
+    width: 100%;
 }
 
-/* Individual list items */
 .servpart-column li, .qa-column li {
-    margin-bottom: 20px; /* Adds space between list items */
+    margin-bottom: 20px;
 }
 
-/* Links styling */
 .servpart-column a, .qa-column a {
     color: #fff;
     text-decoration: none;
     font-size: 20px;
-    display: flex; /* Align the text with the icon */
+    display: flex;
     align-items: center;
 }
 
-/* Icon styling */
 .servpart-column i, .qa-column i {
-    margin-right: 10px; /* Adds space between icon and text */
+    margin-right: 10px;
     font-size: 24px;
 }
 
-/* Add hover effect */
 .servpart-column a:hover, .qa-column a:hover {
-    color: #f0a500; /* Highlight color on hover */
+    color: #f0a500; 
     transition: color 0.3s;
 }
 
-/* Adjusted width for the slideshow */
 .servpart-slideshow {
-    width: 40%; /* The slideshow now takes up the remaining 35% */
+    width: 40%; 
     height: 400px;;
     position: relative;
 }
 
 .mySlides {
-    transition: opacity 1s ease-in-out; /* Transition effect */
+    transition: opacity 1s ease-in-out;
 }
 
 .mySlides img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensure the image covers the area without stretching */
-    margin-left: 20px; /* Adjust this value as needed */
-    transform: translateX(10px); /* Adjust this value as needed */
+    object-fit: cover;
+    margin-left: 20px; 
+    transform: translateX(10px);
 }
 
 .mySlides.active {
@@ -109,7 +99,6 @@
     opacity: 1;
 }
 
-/* Arrow Navigation */
 .arrow-container {
     position: absolute;
     top: 50%;
@@ -124,9 +113,8 @@
     margin: 10px 0;
 }
 
-/* Add hover effect */
 .arrow-up:hover, .arrow-down:hover {
-    color: #f0a500; /* Highlight color on hover */
+    color: #f0a500;
     transition: color 0.3s;
 }
 
@@ -143,57 +131,52 @@
 
 @media (max-width: 1024px) {
 
-    /* Hide dots and arrows on tablet */
     .dot-container,
     .arrow-container {
         display: none;
     }
 
-    /* Main container adjustments */
     .servpart-section {
         width: 90%; 
         padding: 10px; 
         flex-direction: column;
-        align-items: center; /* Center content in the container */
+        align-items: center;
     }
 
-    /* Slideshow moved to the top */
     .servpart-slideshow {
         display: flex;
         justify-content: center;
         order: 1; 
-        width: 100%; /* Make the slideshow take full width */
+        width: 100%;
         border-radius: 10px;
-        height: 100%; /* Let the height adjust automatically */
+        height: 100%;
         padding: 0;
-        margin-bottom: 20px; /* Add some space below the slideshow */
+        margin-bottom: 20px;
     }
 
     .slideshow-container {
         width: 100%;
         height: 250px; 
-        border-radius: 10px; /* Rounded corners for the slideshow */
-        margin: 0 auto; /* Center the slideshow on tablet */
+        border-radius: 10px;
+        margin: 0 auto;
         overflow: hidden;
     }
 
     .mySlides img {
         width: 100%;
         height: 100%;
-        margin-left: 0; /* Adjust this value as needed */
-        object-fit: cover; /* Ensure the image covers the area without stretching */
-        transform: translateX(0); /* Adjust this value as needed */
+        margin-left: 0; 
+        object-fit: cover;
+        transform: translateX(0);
     }
 
-    /* Title styling below slideshow */
     .servpart-title {
         order: 0;
         text-align: center;
-        margin: 10px 0; /* Add space between slideshow and title */
-        font-size: 30px; /* Adjust font size for better readability on tablet */
+        margin: 10px 0;
+        font-size: 30px;
     }
 
-    /* List styling adjustments for buttons */
     .servpart-list {
         order: 3;
         width: 100%;
@@ -206,7 +189,7 @@
     }
 
     .servpart-list a {
-        width: 100%; /* Ensure the buttons are responsive */
+        width: 100%;
         font-size: 18px;
         padding: 10px 15px;
         text-align: center;
@@ -224,78 +207,71 @@
 
 }
 
-
-/* Mobile Styles */
 @media (max-width: 768px) {
 
-    /* Main container adjustments */
     .servpart-section {
         width: 90%; 
         padding: 10px; 
         flex-direction: column;
-        align-items: center; /* Center content in the container */
+        align-items: center;
     }
 
-    /* Slideshow moved to the top */
     .servpart-slideshow {
         display: flex;
         justify-content: center;
         order: 1; 
-        width: 100%; /* Make the slideshow take full width */
+        width: 100%; 
         border-radius: 10px;
-        height: 100%; /* Let the height adjust automatically */
+        height: 100%;
         padding: 0;
-        margin-bottom: 20px; /* Add some space below the slideshow */
+        margin-bottom: 20px;
     }
 
     .slideshow-container {
         width: 100%;
         height: 250px; 
-        border-radius: 10px; /* Rounded corners for the slideshow */
-        margin: 0 auto; /* Center the slideshow on tablet */
+        border-radius: 10px;
+        margin: 0 auto;
         overflow: hidden;
     }
 
     .mySlides img {
         width: 100%;
         height: 100%;
-        margin-left: 0; /* Adjust this value as needed */
-        object-fit: cover; /* Ensure the image covers the area without stretching */
-        transform: translateX(0); /* Adjust this value as needed */
+        margin-left: 0;
+        object-fit: cover;
+        transform: translateX(0); 
     }
 
-    /* Title styling below slideshow */
     .servpart-title {
         order: 0;
         text-align: center;
-        margin: 10px 0; /* Add space between slideshow and title */
-        font-size: 26px; /* Adjust font size for better readability on tablet */
+        margin: 10px 0;
+        font-size: 26px;
     }
 
-    /* List styling adjustments for buttons */
     .servpart-list {
         order: 3;
         width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px; /* Reduce gap to prevent overflowing */
+        gap: 10px; 
         margin-top: 0;
         margin-bottom: 0;
         padding: 0;
     }
 
-    /* Fixed button size */
     .servpart-list a {
-        width: 150px; /* Fixed width for the buttons */
-        height: 60px; /* Fixed height for the buttons */
-        font-size: 14px; /* Adjust font size */
-        padding: 8px 10px; /* Adjust padding */
-        text-align: center; /* Center text */
-        overflow: hidden; /* Hide overflowing text */
-        text-overflow: ellipsis; /* Add "..." for overflowed text */
-        box-sizing: border-box; /* Ensure padding is included in width */
-        max-width: 100%; /* Prevent overflowing */
+        width: 150px;
+        height: 60px;
+        font-size: 14px;
+        padding: 8px 10px; 
+        text-align: center; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        box-sizing: border-box;
+        max-width: 100%;
     }
 
     .servpart-divider {
