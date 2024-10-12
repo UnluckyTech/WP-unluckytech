@@ -53,15 +53,16 @@ if (isset($_GET['s'])) {
     $search_results = new WP_Query($args);
 
     ?>
-    <div class="search-wrapper">
-        <div class="search-inner-container">
-            <div class="blog-header">
-                <div class="blog-overlay"></div>
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bg1.png" alt="Blog Header Image">
-                <div class="blog-title">
-                    <h1>Search Results for: <?php echo esc_html($search_query); ?></h1>
-                </div>
+    <div class="main-container">
+
+        <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+            <div class="main-banner-overlay">
+                <h1 class="main-title">Search Results for: <?php echo esc_html($search_query); ?></h1>
             </div>
+        </div> 
+
+        <div class="search-inner-container">
+
             <div class="blog-top">
                 <!-- Sort Form -->
                 <form method="get" class="sort-form" action="">

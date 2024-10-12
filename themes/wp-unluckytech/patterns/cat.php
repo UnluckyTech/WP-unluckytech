@@ -7,15 +7,15 @@
  */
 ?>
 
-<div class="blog-wrapper">
-    <div class="blog-inner-container">
-        <div class="blog-header">
-            <div class="blog-overlay"></div>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/bg1.png" alt="Blog Header Image">
-            <div class="blog-title">
-                <h1><?php single_cat_title(); ?></h1>
-            </div>
+<div class="main-container">
+
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+        <div class="main-banner-overlay">
+            <h1 class="main-title"><?php single_cat_title(); ?></h1>
         </div>
+    </div> 
+
+    <div class="blog-inner-container">
         <div class="blog-top">
 
             <!-- Sort Form -->
