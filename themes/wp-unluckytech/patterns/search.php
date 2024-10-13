@@ -5,18 +5,16 @@
  * Categories: text
  * Description: A section to display search results.
  */
-?>
 
-<?php
 /* Template Name: Search Results */
 
 if (isset($_GET['s'])) {
     $search_query = sanitize_text_field($_GET['s']);
-    $sort = isset($_GET['sort']) ? $_GET['sort'] : 'date';
+    $sort = isset($_GET['sort']) ? $_GET['sort'] : 'date_desc';
     $category = isset($_GET['category']) ? $_GET['category'] : '';
     $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-    $posts_per_page = isset($_GET['posts_per_page']) && $_GET['posts_per_page'] != 'all' ? intval($_GET['posts_per_page']) : 20;
+    $posts_per_page = isset($_GET['posts_per_page']) && $_GET['posts_per_page'] != 'all' ? intval($_GET['posts_per_page']) : 5; // Default to 5 posts per page
 
     $args = array(
         'post_type' => 'post',
@@ -34,16 +32,19 @@ if (isset($_GET['s'])) {
     }
 
     switch ($sort) {
-        case 'title':
+        case 'title_asc':
             $args['orderby'] = 'title';
             $args['order'] = 'ASC';
             break;
-        case 'popularity':
-            $args['meta_key'] = 'post_views_count';
-            $args['orderby'] = 'meta_value_num';
+        case 'title_desc':
+            $args['orderby'] = 'title';
             $args['order'] = 'DESC';
             break;
-        case 'date':
+        case 'date_asc':
+            $args['orderby'] = 'date';
+            $args['order'] = 'ASC';
+            break;
+        case 'date_desc':
         default:
             $args['orderby'] = 'date';
             $args['order'] = 'DESC';
@@ -51,8 +52,8 @@ if (isset($_GET['s'])) {
     }
 
     $search_results = new WP_Query($args);
-
     ?>
+
     <div class="main-container">
 
         <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
@@ -61,11 +62,12 @@ if (isset($_GET['s'])) {
             </div>
         </div> 
 
-        <div class="search-inner-container">
+        <div class="blog-inner-container">
 
             <div class="blog-top">
                 <!-- Sort Form -->
                 <form method="get" class="sort-form" action="">
+                    <input type="hidden" name="s" value="<?php echo esc_attr($search_query); ?>">
                     <select name="sort" id="sort-by">
                         <option value="date_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_desc') ? 'selected' : ''; ?>>Date: descending</option>
                         <option value="date_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_asc') ? 'selected' : ''; ?>>Date: ascending</option>
@@ -95,17 +97,15 @@ if (isset($_GET['s'])) {
                         ?>
                     </select>
 
-                    <button type="submit" class="apply-button">Apply</button>
+                    <button type="submit" class="sort-button">Apply</button>
                 </form>
             </div>
-            <div class="search-divider"></div>
-            <?php
-            if ($search_results->have_posts()) :
-            ?>
-                <div class="search-posts">
+
+            <?php if ($search_results->have_posts()) : ?>
+                <div class="blog-posts">
                     <?php
                     while ($search_results->have_posts()) : $search_results->the_post();
-                    ?>
+                        ?>
                         <div class="blog-post-card">
                             <a href="<?php the_permalink(); ?>" class="blog-post-image-link">
                                 <div class="blog-post-image">
@@ -122,7 +122,7 @@ if (isset($_GET['s'])) {
                                         <div class="blog-post-title">
                                             <h2><?php the_title(); ?></h2>
                                         </div>
-                                        <div class="title-divider"></div> <!-- Divider element -->
+                                        <div class="title-divider"></div>
                                     </div>
                                     <div class="blog-post-excerpt">
                                         <?php the_excerpt(); ?>
@@ -139,7 +139,7 @@ if (isset($_GET['s'])) {
                                         }
                                         ?>
                                     </div>
-                                    <div class="meta-divider"></div> <!-- Divider after category -->
+                                    <div class="meta-divider"></div>
                                     <div class="blog-post-tags">
                                         <?php
                                         $tags = get_the_tags();
@@ -150,33 +150,32 @@ if (isset($_GET['s'])) {
                                         }
                                         ?>
                                     </div>
-                                    <div class="meta-divider"></div> <!-- Divider before date -->
+                                    <div class="meta-divider"></div>
                                     <div class="blog-post-date">
                                         <?php echo get_the_date(); ?>
                                     </div>
                                 </div>
-                            </div><!-- .blog-post-meta-content -->
+                            </div>
                         </div>
-                    <?php
+                        <?php
                     endwhile;
                     ?>
                 </div><!-- .blog-posts -->
-                <div class="search-divider"></div>
+
                 <div class="pagination-container">
                     <div class="pagination">
                         <?php
                         echo paginate_links(array(
                             'total' => $search_results->max_num_pages,
                             'current' => $paged,
-                            'prev_text' => __('« Previous', 'textdomain'),
-                            'next_text' => __('Next »', 'textdomain'),
+                            'prev_text' => __('Previous', 'textdomain'),
+                            'next_text' => __('Next', 'textdomain'),
                         ));
                         ?>
                     </div>
-                    <!-- Posts Per Page Dropdown -->
+
                     <div class="posts-per-page">
                         <form method="get" class="posts-per-page-form" action="">
-                            <input type="hidden" name="s" value="<?php echo esc_attr($search_query); ?>">
                             <label for="posts-per-page">Posts per page:</label>
                             <select name="posts_per_page" id="posts-per-page" onchange="this.form.submit()">
                                 <option value="5" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == '5') ? 'selected' : ''; ?>>5</option>
@@ -188,28 +187,18 @@ if (isset($_GET['s'])) {
                         </form>
                     </div>
                 </div>
+
+            <?php else : ?>
+                <p><?php _e('No search results found.', 'textdomain'); ?></p>
+            <?php endif; ?>
+            
             <?php
-            else :
-            ?>
-                <div class="search-title">
-                    <h1>No results found for: <?php echo esc_html($search_query); ?></h1>
-                </div>
-            <?php
-            endif;
             wp_reset_postdata();
             ?>
-        </div>
-    </div>
-    <?php
-} else {
-    ?>
-    <div class="search-wrapper">
-        <div class="search-inner-container">
-            <div class="search-title">
-                <h1>Please enter a search query.</h1>
-            </div>
-        </div>
-    </div>
-    <?php
+
+        </div><!-- .blog-inner-container -->
+    </div><!-- .main-container -->
+
+<?php
 }
 ?>

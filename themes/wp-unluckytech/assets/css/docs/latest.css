@@ -1,6 +1,6 @@
 .unluckytech-slideshow-container {
     position: relative;
-    height: 53vh;
+    height: 40vh;
 }
 
 .unluckytech-slide {
@@ -62,18 +62,13 @@
 }
 
 @media (max-width: 1024px) {
+
     .unluckytech-slideshow-container {
         max-height: 400px;
     }
 }
 
 @media (max-width: 768px) {
-
-    .unluckytech-slide img {
-        width: 100vh;
-        height: 100vh;
-
-    }
 
     .unluckytech-title {
         font-size: 2em;

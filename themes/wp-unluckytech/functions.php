@@ -46,7 +46,6 @@ function wp_unluckytech_scripts() {
         'wp-unluckytech-home-welcome' => get_template_directory_uri() . '/assets/css/home/welcome.css',
         'wp-unluckytech-post' => get_template_directory_uri() . '/assets/css/extras/single.css',
         'wp-unluckytech-blog' => get_template_directory_uri() . '/assets/css/extras/blog.css',
-        'wp-unluckytech-search' => get_template_directory_uri() . '/assets/css/extras/search.css',
         'wp-unluckytech-videos' => get_template_directory_uri() . '/assets/css/docs/videos.css',
         'wp-unluckytech-latest' => get_template_directory_uri() . '/assets/css/docs/latest.css',
         'wp-unluckytech-categories' => get_template_directory_uri() . '/assets/css/docs/categories.css',

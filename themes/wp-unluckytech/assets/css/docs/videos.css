@@ -1,7 +1,4 @@
 .video-section {
-    display: flex;
-    flex-direction: column; /* Stack children vertically */
-    padding: 20px;
     max-width: 1200px;
     margin: 0 auto; /* Center the container within its parent */
 }
@@ -21,7 +18,6 @@
     margin: 0 0 20px;
     font-weight: 700;
     font-size: 1.5em;
-    color: #fff;
     text-transform: uppercase; /* Optional: transform text to uppercase */
     padding-bottom: 10px;
 }
@@ -33,8 +29,6 @@
 
 .video-grid {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Evenly space the items */
     gap: 10px; /* Adjust space between items */
     margin-top: 20px; /* Add spacing above the grid if needed */
 }
@@ -54,7 +48,6 @@
 
 .video-thumbnail {
     position: relative;
-    width: 100%;
     height: 100%; /* Fill the item */
     overflow: hidden; /* Hide overflow */
     border-radius: 5px; /* Optional: add some styling */
@@ -75,7 +68,6 @@
     width: 150%;
     height: 150%;
     backdrop-filter: blur(4px); /* Add blur effect */
-    -webkit-backdrop-filter: blur(4px); /* Add blur effect for Safari */
     transition: opacity 0.3s; /* Smooth transition for opacity */
     opacity: 0.8; /* Slightly transparent overlay */
 }
@@ -118,6 +110,7 @@
 }
 
 .more-videos:hover {
+    color: #f0a500;
     background: #3a3b40; /* Slightly lighter shade with a hint of blue */
 }
 
@@ -126,7 +119,15 @@
     display: none;
 }
 
+@media (max-width: 1024px) {
+
+    .video-section {
+        padding: 20px;
+    }    
+}
+
 @media (max-width: 768px) {
+
     .dot,
     .desktop-view,
     .video-divider {

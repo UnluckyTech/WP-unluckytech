@@ -100,7 +100,7 @@
                                         <div class="latest-post-content">
                                             <div class="single-post-date"><?php echo get_the_date(); ?></div>
                                             <div class="single-post-title">
-                                                <h2><?php the_title(); ?></h2>
+                                                <h3><?php the_title(); ?></h3>
                                             </div>
                                         </div>
                                     </div>
