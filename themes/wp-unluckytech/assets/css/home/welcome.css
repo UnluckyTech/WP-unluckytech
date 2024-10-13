@@ -31,16 +31,10 @@
 .video-wrapper::before {
     content: "";
     display: block;
-    padding-top: 75%; 
 }
 
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
+.video-wrapper img {
+    display: block;
 }
 
 .text-wrapper {
