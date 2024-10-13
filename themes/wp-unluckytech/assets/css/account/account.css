@@ -1,68 +1,7 @@
 /* Account Page Styles */
-.account-container {
-    background: #ffffff;
-    margin: 0 auto;
-    max-width: 1200px;
-    overflow: hidden;
-    margin-top: 40px;
-    border-radius: 8px;
-    padding-top: 20px;
-    align-items: center;
-    background: transparent;
-}
-
-.account-banner {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    overflow: hidden;
-}
-
-.sidebar-link {
-    color: inherit; /* Keep the text color the same as the surrounding text */
-    text-decoration: none; /* Remove underline if desired */
-    /* Add any additional styling you want */
-}
-
-.sidebar-link:hover {
-    text-decoration: underline; /* Optional: add underline on hover */
-}
 
 .mobile-settings {
     display: none;
-}
-
-.account-banner-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-}
-
-.account-banner-overlay h1 {
-    color: #ffffff;
-    font-size: 48px;
-    text-align: center;
-    margin: 0;
-}
-
-.account-title {
-    font-family: 'Montserrat', sans-serif;
-    color: #fff;
-    font-weight: 700;
-    font-size: 36px;
-    text-transform: uppercase;
 }
 
 .account-sidebar {
@@ -99,31 +38,22 @@
 }
 
 .account-sidebar ul li a, .invoice-portal button[type="submit"] {
-    font-family: 'Montserrat', sans-serif; /* Ensure uniform font family */
-    font-size: 16px; /* Set a specific font size */
-    font-weight: 500;
-    /* Other shared styles */
+    font-size: 16px; 
 }
 
-
-/* Make the invoice portal button look like the sidebar links */
 .invoice-portal button[type="submit"] {
-    text-decoration: none;
+    padding: 12px;
     color: #333;
-    padding: 15px;
-    display: block;
-    border-radius: 4px;
     background: #fff;
     transition: background-color 0.3s ease;
     border: none;
     cursor: pointer;
-    width: 100%; /* Make it stretch to full width like sidebar links */
-    text-align: left; /* Align text to the left */
-    font-size: 14px;
-    font-weight: 500;
+    width: 100%;
+    text-align: left; 
+    font-size: 16px;
+    border-radius: 4px;
 }
 
-/* Hover effect to match the sidebar links */
 .invoice-portal button[type="submit"]:hover {
     background-color: #2b2c30;
     color: #ffffff;
@@ -142,19 +72,12 @@
 
 .account-display {
     width: 100%;
-    height: 100%;
 }
 
 .account-section {
     padding: 20px;
-    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Adds space between elements */
 }
 
 .account-section h2 {
@@ -179,10 +102,10 @@
 }
 
 .profile-picture img {
-    border-radius: 50%; /* Makes profile image circular */
+    border-radius: 50%; 
     width: 100px;
     height: 100px;
-    object-fit: cover; /* Ensures image fits inside the circle */
+    object-fit: cover; 
     margin: 0 auto 10px auto;
 }
 
@@ -190,10 +113,9 @@
     font-size: 16px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 10px;
 }
 input[type="password"]:focus {
-    border-color: #007bff; /* Highlight border on focus */
+    border-color: #007bff; 
     outline: none;
 }
 
@@ -203,17 +125,17 @@ input[type="checkbox"] {
 
 .checkbox-container {
     display: flex;
-    align-items: center; /* Aligns items vertically centered */
-    margin-top: 5px; /* Optional spacing between input and checkbox */
+    align-items: center;
+    margin-top: 5px;
 }
 
 .checkbox-container input[type="checkbox"] {
-    margin-right: 5px; /* Space between checkbox and label text */
+    margin-right: 5px;
 }
 
 .test-email-button {
-    background-color: #007bff; /* Button color */
-    color: #fff; /* Button text color */
+    background-color: #3a3b40; 
+    color: #fff; 
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -222,8 +144,12 @@ input[type="checkbox"] {
     transition: background-color 0.3s;
 }
 
-.test-email-button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+.test-email-button:hover,
+.btn-save:hover,
+.btn-submit:hover {
+    background-color: #555;
+    color: #f0a500; 
+    transition: color 0.3s;
 }
 
 .acc-group {
@@ -259,7 +185,7 @@ input[type="checkbox"] {
 
 .btn-save,
 .btn-submit {
-    background-color: #007bff;
+    background-color: #3a3b40;
     color: #fff;
     padding: 10px 20px;
     font-size: 16px;
@@ -270,29 +196,11 @@ input[type="checkbox"] {
     margin-top: 20px;
 }
 
-.btn-save:hover,
-.btn-submit:hover {
-    background-color: #0056b3;
-}
-
-/* Mobile Accordion */
 .account-mobile-container {
     display: none;
 }
 
-/* Invoices Page Styles */
-.invoice-container, .quote-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    max-width: 1000px;
-}
-
-/* Title Styles */
 .acc-title {
-    font-family: 'Montserrat', sans-serif;
     font-size: 32px;
     font-weight: 700;
     text-align: center;
@@ -300,13 +208,10 @@ input[type="checkbox"] {
     color: #333;
 }
 
-/* Table Container */
 .table-container {
-    overflow-x: auto; /* Allow horizontal scrolling on small screens */
-    margin: 0 -20px; /* Offset padding on the container */
+    overflow-x: auto;
 }
 
-/* Tables */
 .invoice-table, .quote-table {
     width: 100%;
     border-collapse: collapse;
@@ -319,7 +224,7 @@ input[type="checkbox"] {
 .quote-table td {
     padding: 15px;
     border-bottom: 1px solid #ddd;
-    white-space: nowrap; /* Prevent text from wrapping in table cells */
+    white-space: nowrap; 
 }
 
 .invoice-table th,
@@ -334,62 +239,39 @@ input[type="checkbox"] {
     font-size: 16px;
 }
 
-/* View Button */
 .view-button {
     display: inline-block;
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: #3a3b40;
     color: white;
     border-radius: 5px;
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     transition: background-color 0.3s ease;
-    text-align: center; /* Center the button text */
-    margin: 10px 0; /* Margin for spacing */
 }
 
 .view-button:hover {
-    background-color: #0056b3;
+    background-color: #555;
+    color: #f0a500; 
+    transition: color 0.3s;
 }
 
-
-/* Mobile Styles */
 @media (max-width: 768px) {
 
     .mobile-settings {
         display: flex;
-        justify-content: center; /* Center the button within the parent container */
     }
     
     .mobile-settings button {
-        width: 100%; /* Make the button take up the full width */
-        font-size: 1.2rem; /* Slightly increase the text size */
-        font-weight: bold; /* Make the text bold */
-        text-align: center; /* Center the text inside the button */
-        padding: 10px 20px; /* Add some padding for better spacing */
-        cursor: pointer; /* Change the cursor to pointer when hovering */
-        background-color: #007bff; /* Example button background color */
-        color: white; /* Button text color */
-        border: none; /* Remove default button borders */
-        border-radius: 5px; /* Optional: Add rounded corners */
-    }
-    
-    .mobile-settings button:hover {
-        background-color: #0056b3; /* Darker shade on hover */
-    }
-    
-    .account-container {
-        padding-top: 0;
-        padding: 20px;
-    }
-
-    .account-banner {
-        height: 20vh;
-    }
-
-    .account-banner-overlay h1 {
-        font-size: 40px;
+        background-color: #333;
+        width: 100%;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 10px 20px; 
+        cursor: pointer; 
+        color: white;
+        border: none; 
+        border-radius: 5px; 
     }
 
     .account-content {
@@ -405,34 +287,18 @@ input[type="checkbox"] {
         background-color: #fff;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         z-index: 1000;
-        transform: translate(-50%, -50%) scale(0.8);
         opacity: 0;
         transition: transform 0.3s ease, opacity 0.3s ease;
         overflow-y: auto;
-        display: none; /* Initially hidden */
+        display: none;
     }
 
     .account-sidebar.sidebar-active {
         transform: translate(-50%, -50%) scale(1);
         opacity: 1;
-        display: block; /* Make it visible when active */
+        display: block;
     }
 
-    .mobile-settings {
-        text-align: right;
-        margin-bottom: 10px;
-    }
-
-    .mobile-settings button {
-        background-color: #333;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-
-    /* Overlay */
     .overlay {
         display: none;
         position: fixed;
@@ -448,27 +314,22 @@ input[type="checkbox"] {
         display: block;
     }
 
-    .invoice-container, .quote-container {
-        padding: 15px;
-        margin: 10px; /* Reducing margins for smaller screens */
-    }
-
     .acc-title {
-        font-size: 24px; /* Reducing font size for titles */
-        margin-bottom: 15px; /* Adjusting bottom margin */
+        font-size: 24px;
+        margin-bottom: 15px;
     }
 
     .invoice-table td,
     .quote-table td {
-        font-size: 14px; /* Smaller font size for table cells */
-        padding: 10px; /* Reducing padding for smaller screens */
+        font-size: 14px;
+        padding: 10px; 
     }
 
     .view-button {
-        padding: 8px 12px; /* Adjusting button padding */
-        font-size: 12px; /* Smaller font size for buttons */
-        width: 100%; /* Making button full-width */
-        box-sizing: border-box; /* Ensuring padding doesn't affect width */
+        padding: 8px 12px; 
+        font-size: 12px; 
+        width: 100%;
+        box-sizing: border-box; 
     }
 
 }

@@ -1,100 +1,90 @@
 /* Single Post Styling */
+
 .single-post-container {
     display: flex;
     max-width: 1200px;
     padding: 80px 20px 0 20px;
-    gap: 20px; /* Space between the left and right sides */
-    margin: 0 auto; /* Center horizontally */
+    gap: 20px; 
+    margin: 0 auto;
 }
 
 
 .main-post-content {
-    background: #fff; /* White background for the post content */
+    background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     display: flex;
-    flex-direction: column; /* Stack children vertically */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    flex-direction: column; 
+    box-sizing: border-box; 
 }
 
 .main-discussion {
-    margin-top: auto; /* Pushes .main-discussion to the bottom */
+    margin-top: auto; 
 }
 
-/* Banner for the featured image */
 .single-post-banner {
-    height: 300px; /* Adjust as needed */
+    height: 300px;
     background-size: cover;
     background-position: center;
     border-radius: 8px 8px 0 0;
-    margin-bottom: 20px; /* Space below the banner */
+    margin-bottom: 20px;
 }
 
-/* Sidebar sticky box */
 .single-post-box {
     position: sticky;
-    top: 80px; /* Adjust this value as needed */
+    top: 80px;
 }
 
-/* Title styling */
 .wp-block-post-title {
-    font-size: 2em; /* Adjust font size as needed */
-    color: #000; /* Ensure the title color is black */
-    text-align: center; /* Center the text */
-    padding: 0 20px; /* Adjust padding if needed */
-    margin: 5px 0 20px 0; /* Adjust spacing */
+    font-size: 2em;
+    color: #000; 
+    text-align: center; 
+    padding: 0 20px;
+    margin: 5px 0 20px 0; 
 }
 
-/* Date styling */
 .main-single-post-date,
 .date-top-divider,
 .date-bottom-divider {
     display: none;
 }
 
-/* Content styling */
 .single-post-content {
-    padding: 0 20px 20px 20px; /* Adjust padding */
+    padding: 0 20px 20px 20px; 
 }
 
-/* Link styling for latest posts */
 .single-post-link {
-    text-decoration: none; /* Remove underline from links */
+    text-decoration: none; 
 }
 
-/* User Box Styling */
 .user-box {
     background: #f4f4f4;
     border-radius: 8px;
-    width: 344px; /* Width to match the parent container */
-    height: 251px; /* Adjust height to fit content */
-    margin: 10px 0; /* Space above and below */
-    box-sizing: border-box; /* Include padding in width and height */
+    width: 344px;
+    height: 251px; 
+    margin: 10px 0; 
+    box-sizing: border-box; 
 }
 
-/* User Box Inner Content */
 .user-box-inner {
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center contents horizontally */
-    justify-content: center; /* Center contents vertically */
+    align-items: center; 
+    justify-content: center; 
 }
 
-/* User Box Image */
 .user-box img {
-    height: 100px; /* Increased size */
+    height: 100px; 
     margin-bottom: 10px;
 }
 
-/* User Name */
 .user-name {
     font-size: 1.2em;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
-/* Divider */
 .user-box-divider {
     width: 80%;
     height: 1px;
@@ -102,10 +92,9 @@
     margin: 10px 0;
 }
 
-/* Social Links */
 .user-box-social a {
     color: #000;
-    font-size: 1.5em; /* Adjust size */
+    font-size: 1.5em;
     margin: 0 10px;
 }
 
@@ -114,80 +103,73 @@
     transition: color 0.3s;
 }
 
-/* Latest Posts Styling */
 .latest-posts {
     background: #f4f4f4;
     border-radius: 8px;
-    padding: 20px; /* Add padding */
+    padding: 20px;
     margin-right: 80px;
 }
 
-/* Latest Posts Title */
 .latest-posts-title {
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
 }
 
-/* Latest Posts Container */
 .latest-posts-container {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between each post */
+    gap: 20px; 
 }
 
-/* Top Divider for Latest Posts section */
 .latest-posts-top-divider,
 .latest-posts-bottom-divider {
     width: 30%;
     height: 2px;
     background: #444;
-    margin-left: auto; /* Center the divider horizontally */
-    margin-right: auto; /* Center the divider horizontally */
+    margin-left: auto; 
+    margin-right: auto; 
 }
 
 .latest-posts-top-divider {
-    margin-top: 0; /* Adjust this value to move the divider up */
-    margin-bottom: -8px; /* Adjust this value to move the divider up */
+    margin-top: 0; 
+    margin-bottom: -8px; 
 }
 
 .latest-posts-bottom-divider {
-    margin-top: -15px; /* Adjust this value to move the divider up */
-    margin-bottom: 5px; /* Adjust this value to move the divider up */
+    margin-top: -15px; 
+    margin-bottom: 5px; 
 }
 
-/* Single Post Card */
 .single-post-card {
     display: flex;
-    gap: 20px; /* Space between image and content */
+    gap: 20px; 
     background: #fff;
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .single-post-card:hover {
-    transform: translateY(-10px); /* Move the card up on hover */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Darker and larger shadow on hover */
+    transform: translateY(-10px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
 }
 
-/* Single Post Image */
+
 .single-post-image img {
-    width: 100px; /* Adjust size */
-    height: 100px; /* Adjust size */
+    width: 100px; 
+    height: 100px; 
     border-radius: 8px;
     object-fit: cover;
 }
 
-/* Latest Post Content */
 .latest-post-content {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically */
+    justify-content: center; 
 }
 
-/* Latest Post Date */
 .single-post-date {
     font-size: 0.9em;
     color: #666;
@@ -195,22 +177,22 @@
 
 .single-post-title h3 {
     font-size: 1.2em;
-    margin: 5px 0 0; /* Adjust spacing */
-    overflow: hidden; /* Hide overflow */
-    height: 3em; /* Set height to match two lines */
+    margin: 5px 0 0;
+    overflow: hidden; 
+    height: 3em; 
 } 
 
 .discussion-section {
     background-size: cover;
     background-position: center;
-    padding: 50px 20px; /* Adjust padding */
+    padding: 50px 20px;
     border-radius: 0 0 8px 8px;
-    margin-top: 20px; /* Space above the section */
+    margin-top: 20px;
     position: relative;
 }
 
 .discussion-overlay {
-    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 0 0 8px 8px;
     position: absolute;
     top: 0;
@@ -220,36 +202,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box; /* Include padding in width and height */
-    backdrop-filter: blur(4px); /* Add blur effect */
+    box-sizing: border-box;
+    backdrop-filter: blur(4px); 
 }
 
 .discussion-title {
     color: #fff;
     font-weight: 700;
-    font-size: 36px; /* Adjust size as needed */
-    text-transform: uppercase; /* Optional: transform text to uppercase */
-    letter-spacing: 2px; /* Optional: add letter spacing */
+    font-size: 36px;
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
 }
 
-/* New Post Info Box Styling */
 .post-info-box {
     background: #f4f4f4;
     border-radius: 8px;
-    padding: 20px; /* Adjust padding for content inside */
-    width: 344px; /* Width to match the parent container */
-    margin: 10px 80px 0 0; /* Space above and below */
-    box-sizing: border-box; /* Include padding in width and height */
+    padding: 20px;
+    width: 344px; 
+    margin: 10px 80px 0 0; 
+    box-sizing: border-box; 
 }
 
-/* Post Info Title */
 .post-info-title {
     font-size: 1.2em;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
-/* Categories, Tags, and Updated Date */
 .post-info-category,
 .post-info-tags,
 .post-info-updated {
@@ -258,33 +237,29 @@
 
 @media (max-width: 1024px) {
 
-    /* Hide sidebar elements on mobile */
     .user-box,
     .latest-posts,
     .single-post-sidebar {
         display: none;
     }
 
-    /* Date styling */
     .main-single-post-date {
         display: flex;
-        color: #666; /* Change color if needed */
-        margin-bottom: 20px; /* Space below the date */
+        color: #666;
+        margin-bottom: 20px;
     }
 
     .main-post-content {
-        align-items: center; /* Center content horizontally */
+        align-items: center;
     }
 
-    /* Banner for the featured image */
     .single-post-banner {
         width: 100%;
-        height: 20vh; /* Adjust as needed */
+        height: 20vh;
     }
 
-    /* Optionally, adjust the styling for .wp-block-post-title */
     .wp-block-post-title {
-        font-size: 1.5em; /* Adjust font size if needed */
+        font-size: 1.5em;
     }
 
     .main-discussion {
