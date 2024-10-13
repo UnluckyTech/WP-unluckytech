@@ -20,7 +20,7 @@ The plugin can be used to connect to either the hosted platform API at [invoicin
 * Integrated shopping cart functionality.
 
 <p align="center">
-    <img src="https://github.com/invoiceninja/wordpress/blob/main/assets/images/screenshot.png?raw=true" alt="Screenshot"/>
+    <img src="https://github.com/invoiceninja/wordpress/blob/main/assets/images/screenshot.webp?raw=true" alt="Screenshot"/>
 </p>
 
 ## Settings

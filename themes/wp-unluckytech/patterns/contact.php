@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
 
 <!-- Contact Page Layout -->
 <div class="main-container">
-    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/home/bg1.webp');">
         <div class="main-banner-overlay">
             <h1 class="main-title">Contact Me</h1>
         </div>

@@ -10,7 +10,7 @@
 <div class="main-container">
 
     <!-- Certifications Banner (same as About Me banner) -->
-    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/about/about.webp');">
         <div class="main-banner-overlay">
             <h1 class="main-title">Certifications</h1>
         </div>
@@ -30,7 +30,7 @@
             <div class="certification-card">
                 <a href="https://www.comptia.org/certifications/a" target="_blank" class="certification-card-link">
                     <div class="certification-image-wrapper">
-                        <img src="/wp-content/themes/wp-unluckytech/assets/images/Aplus.png" alt="CompTIA A+ Badge" class="certification-image">
+                        <img src="/wp-content/themes/wp-unluckytech/assets/images/about/Aplus.webp" alt="CompTIA A+ Badge" class="certification-image">
                     </div>
                     <h3>CompTIA A+</h3>
                     <p>This certification covers the fundamentals of computer hardware and software, and it's a foundational step for IT professionals.</p>
@@ -41,7 +41,7 @@
             <div class="certification-card">
                 <a href="https://www.comptia.org/certifications/network" target="_blank" class="certification-card-link">
                     <div class="certification-image-wrapper">
-                        <img src="/wp-content/themes/wp-unluckytech/assets/images/NetworkPlus.png" alt="CompTIA Network+ Badge" class="certification-image">
+                        <img src="/wp-content/themes/wp-unluckytech/assets/images/about/NetworkPlus.webp" alt="CompTIA Network+ Badge" class="certification-image">
                     </div>
                     <h3>CompTIA Network+</h3>
                     <p>Network+ certifies the skills needed to troubleshoot, configure, and manage both wired and wireless networks.</p>
@@ -52,7 +52,7 @@
             <div class="certification-card">
                 <a href="https://www.comptia.org/certifications/linux" target="_blank" class="certification-card-link">
                     <div class="certification-image-wrapper">
-                        <img src="/wp-content/themes/wp-unluckytech/assets/images/LinuxPlus.png" alt="CompTIA Linux+ Badge" class="certification-image">
+                        <img src="/wp-content/themes/wp-unluckytech/assets/images/about/LinuxPlus.webp" alt="CompTIA Linux+ Badge" class="certification-image">
                     </div>
                     <h3>CompTIA Linux+</h3>
                     <p>Linux+ certifies the fundamental skills required to configure, manage, and troubleshoot Linux systems.</p>

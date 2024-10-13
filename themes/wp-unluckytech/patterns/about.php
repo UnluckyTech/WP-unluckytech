@@ -10,7 +10,7 @@
 <div class="main-container">
     
     <!-- About Me Banner -->
-    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/about/about.webp');">
         <div class="main-banner-overlay">
             <h1 class="main-title">About Me</h1>
         </div>
@@ -36,7 +36,7 @@
         
             <!-- Mini Profile Card -->
             <div class="profile-card">
-                <img src="/wp-content/themes/wp-unluckytech/assets/images/termicon.png" alt="Profile Image" class="profile-image">
+                <img src="/wp-content/themes/wp-unluckytech/assets/images/termicon.webp" alt="Profile Image" class="profile-image">
                 <h3>Scott Tawse</h3>
                 <p>IT Professional | Web Developer | Tech Enthusiast</p>
                 <div class="social-icons">

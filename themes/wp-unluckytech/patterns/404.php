@@ -10,7 +10,7 @@
 <div class="error-container">
     
     <!-- 404 Banner -->
-    <div class="error-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+    <div class="error-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/home/bg1.webp');">
         <div class="error-banner-overlay">
             <h1 class="error-title">404</h1>
             <p class="error-message">Oops! The page you’re looking for can’t be found.</p>

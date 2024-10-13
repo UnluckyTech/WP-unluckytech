@@ -10,7 +10,7 @@
 <div class="main-container">
 
     <!-- Education Banner -->
-    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/about/about.webp');">
         <div class="main-banner-overlay">
             <h1 class="main-title">Education</h1>
         </div>
@@ -60,7 +60,7 @@
 
             <!-- School Info Container -->
             <div class="education-school">
-                <img src="/wp-content/themes/wp-unluckytech/assets/images/irsc.webp" alt="Indian River State College" class="school-image">
+                <img src="/wp-content/themes/wp-unluckytech/assets/images/about/irsc.webp" alt="Indian River State College" class="school-image">
                 <p>Located in Florida, this institution provided a comprehensive education in Information Technology Management and Cybersecurity.</p>
 
                 <!-- Custom Buttons for IRSC and Degree -->
