@@ -87,9 +87,3 @@
 </div>
 
 
-
-<!-- Include Font Awesome for icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-<!-- Include the slideshow JavaScript -->
-<script src="<?php echo esc_url( get_theme_file_uri( 'assets/js/slideshow.js' ) ); ?>"></script>

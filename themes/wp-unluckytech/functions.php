@@ -64,8 +64,7 @@ function wp_unluckytech_scripts() {
 
     // Enqueue scripts
     $scripts = array(
-        'wp-unluckytech-script' => get_template_directory_uri() . '/assets/js/custom.js',
-        'slideshow-js' => get_template_directory_uri() . '/assets/js/slideshow.js',
+        'wp-unluckytech-script' => get_template_directory_uri() . '/assets/js/main.js',
     );
 
     foreach ($scripts as $handle => $src) {
@@ -79,6 +78,46 @@ function wp_unluckytech_scripts() {
     wp_localize_script('wp-unluckytech-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
 }
 add_action('wp_enqueue_scripts', 'wp_unluckytech_scripts');
+
+function wp_unluckytech_enqueue_page_specific_scripts() {
+
+    if (is_front_page() || is_home()) {
+        wp_enqueue_script('slideshow-js', get_template_directory_uri() . '/assets/js/modules/slideshow.js', array(), null, true);
+    }
+
+    if (is_page('about')) {
+        wp_enqueue_script('about-js', get_template_directory_uri() . '/assets/js/modules/about.js', array(), null, true);
+    }
+
+    if (is_page('education')) {
+        wp_enqueue_script('education-js', get_template_directory_uri() . '/assets/js/modules/education.js', array(), null, true);
+    }
+    
+    if (is_page('docs')) {
+        wp_enqueue_script('latest-js', get_template_directory_uri() . '/assets/js/modules/latest.js', array(), null, true);
+        wp_enqueue_script('videos-js', get_template_directory_uri() . '/assets/js/modules/videos.js', array(), null, true);
+    }
+
+    if (is_404()) {
+        wp_enqueue_script('404-js', get_template_directory_uri() . '/assets/js/modules/404.js', array(), null, true);
+    }
+}
+add_action('wp_enqueue_scripts', 'wp_unluckytech_enqueue_page_specific_scripts');
+
+// New function to enqueue shared scripts for multiple pages
+function wp_unluckytech_enqueue_shared_scripts() {
+    // Define pages that share the same scripts
+    $shared_pages = array('it-support', 'web-development', 'system-configuration', 'server-management', 'technical-consultation', 'custom-pc' ); // Add other slugs as needed
+
+    // Check if the current page is one of the shared pages
+    foreach ($shared_pages as $slug) {
+        if (is_page($slug)) {
+            wp_enqueue_script('faq-js', get_template_directory_uri() . '/assets/js/modules/faq.js', array(), null, true);
+            break; // No need to check further once the script is enqueued
+        }
+    }
+}
+add_action('wp_enqueue_scripts', 'wp_unluckytech_enqueue_shared_scripts');
 
 // Import Adobe Font CSS
 function import_adobe_font_css() {

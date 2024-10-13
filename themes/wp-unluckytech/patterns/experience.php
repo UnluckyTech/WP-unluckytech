@@ -74,8 +74,3 @@
 
     </div>
 </div>
-
-<!-- Add any additional necessary scripts -->
-<script>
-    // You can include any additional JavaScript here if needed
-</script>

@@ -69,6 +69,3 @@ $video_posts = new WP_Query($args);
         <a href="<?php echo get_category_link(get_category_by_slug('video')->term_id); ?>" class="more-videos">More</a>
     </div>
 </div>
-
-<!-- Include the JavaScript file -->
-<script src="<?php echo get_theme_file_uri('assets/js/videos.js'); ?>"></script>

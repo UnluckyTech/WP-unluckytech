@@ -1,3 +1,7 @@
+// ----------------------------------
+// Navigation Functionality (from nav.js)
+// ----------------------------------
+
 // Constants for element IDs
 const ELEMENT_IDS = {
     searchForm: 'searchForm',
@@ -10,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupHamburgerMenu(); // Initialize hamburger menu
     populateCategories(); // Populate category dropdown
     populateTags(); // Populate tags dropdown
+    handleSubmit();
 });
 
 // Function to set up the hamburger menu and overlay
@@ -84,3 +89,73 @@ window.addEventListener('resize', () => {
         header.style.top = '0';
     }
 });
+
+// ----------------------------------
+// Search Functionality (from search.js)
+// ----------------------------------
+
+// Function to toggle the search bar
+function toggleSearchBar() {
+    const searchBar = document.getElementById(ELEMENT_IDS.searchBar);
+    const overlay = document.querySelector('.overlay');
+
+    // Toggle the search bar visibility
+    if (searchBar.style.display === "block") {
+        searchBar.style.display = "none";
+        overlay.classList.remove('active');
+    } else {
+        searchBar.style.display = "block";
+        overlay.classList.add('active');
+
+        // Event listener to close the search bar when clicking outside of it
+        document.addEventListener('click', function handleClickOutside(event) {
+            // Check if the click is outside the search bar
+            if (!searchBar.contains(event.target) && !event.target.closest('.search-icon')) {
+                searchBar.style.display = "none"; // Hide the search bar
+                overlay.classList.remove('active'); // Hide the overlay
+                document.removeEventListener('click', handleClickOutside); // Remove the event listener after hiding
+            }
+        });
+    }
+
+    // Event listener to close the search bar when clicking on the overlay
+    overlay.addEventListener('click', () => {
+        searchBar.style.display = "none";
+        overlay.classList.remove('active');
+    });
+}
+
+// ----------------------------------
+// Login Functionality (from login.js)
+// ----------------------------------
+
+// Toggle User Login Form
+function toggleUserLogin() {
+    const userLoginForm = document.getElementById('userLoginForm');
+    if (userLoginForm.style.display === 'none' || userLoginForm.style.display === '') {
+        userLoginForm.style.display = 'block';
+    } else {
+        userLoginForm.style.display = 'none';
+    }
+}
+
+function handleSubmit() {
+    const searchInput = document.getElementById('searchInput').value;
+    const category = document.querySelector('input[name="category"]:checked').value;
+    const tag = document.querySelector('input[name="tag"]:checked').value;
+
+    // Construct the URL based on the search input, category, and tag
+    let url = '/?s=' + encodeURIComponent(searchInput);
+
+    if (category !== 'all') {
+        url += `&category=${category}`;
+    }
+
+    if (tag !== 'all') {
+        url += `&tag=${tag}`;
+    }
+
+    // Redirect to the constructed URL
+    window.location.href = url;
+    return false; // Prevent default form submission
+}

@@ -56,26 +56,3 @@
         <button type="submit" class="apply-button">Search</button>
     </form>
 </div>
-
-<script>
-function handleSubmit() {
-    const searchInput = document.getElementById('searchInput').value;
-    const category = document.querySelector('input[name="category"]:checked').value;
-    const tag = document.querySelector('input[name="tag"]:checked').value;
-
-    // Construct the URL based on the search input, category, and tag
-    let url = '/?s=' + encodeURIComponent(searchInput);
-
-    if (category !== 'all') {
-        url += `&category=${category}`;
-    }
-
-    if (tag !== 'all') {
-        url += `&tag=${tag}`;
-    }
-
-    // Redirect to the constructed URL
-    window.location.href = url;
-    return false; // Prevent default form submission
-}
-</script>
