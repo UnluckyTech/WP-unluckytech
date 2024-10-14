@@ -19,7 +19,7 @@
     if ($latest_posts->have_posts()) :
         $slide_index = 0;
         while ($latest_posts->have_posts()) : $latest_posts->the_post();
-            $featured_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: 'path/to/fallback-image.jpg';
+            $featured_image_url = get_the_post_thumbnail_url(get_the_ID(), 'full') ?: '/assets/images/home/placeholder.webp';
             $post_title = get_the_title(); // Get the post title
             $post_link = get_permalink(); // Get the post link
     ?>
