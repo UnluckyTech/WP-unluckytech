@@ -47,6 +47,19 @@ function load_account_script() {
 }
 add_action('wp', 'load_account_script');
 
+// Hook into the password reset action to reset failed login attempts using reset.php
+add_action('after_password_reset', 'trigger_reset_script_on_password_reset', 10, 2);
+function trigger_reset_script_on_password_reset($user, $new_pass) {
+    // Include the reset.php file
+    require_once get_template_directory() . '/inc/reset.php';
+
+    // Call the function to reset failed login attempts
+    reset_failed_login_attempts($user->ID);
+
+    // Log the reset (for debugging purposes)
+    error_log("Password reset and failed login attempts cleared for user ID {$user->ID}");
+}
+
 // Enqueue Font Awesome
 function enqueue_font_awesome() {
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), '5.15.4', 'all');
