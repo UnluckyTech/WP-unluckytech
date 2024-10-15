@@ -68,13 +68,6 @@ function custom_reset_failed_logins($user_login, $user) {
     delete_user_meta($user->ID, '_last_failed_login');
 }
 
-// Hook into the password reset action to reset failed login attempts
-add_action('after_password_reset', 'custom_reset_failed_logins_on_password_reset', 10, 2);
-function custom_reset_failed_logins_on_password_reset($user, $new_pass) {
-    delete_user_meta($user->ID, '_failed_login_attempts');
-    delete_user_meta($user->ID, '_last_failed_login');
-}
-
 // Function to calculate lockout time based on number of attempts
 function custom_calculate_lockout_time($attempts) {
     $timeout = 0;
@@ -101,3 +94,10 @@ function disable_admin_bar_on_login($user_login, $user) {
     }
 }
 add_action('wp_login', 'disable_admin_bar_on_login', 10, 2);
+
+// Hook into the password reset action to reset failed login attempts
+add_action('after_password_reset', 'custom_reset_failed_logins_on_password_reset', 10, 2);
+function custom_reset_failed_logins_on_password_reset($user, $new_pass) {
+    delete_user_meta($user->ID, '_failed_login_attempts');
+    delete_user_meta($user->ID, '_last_failed_login');
+}
