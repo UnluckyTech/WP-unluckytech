@@ -1,10 +1,11 @@
 .two-column {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
 }
 
 .half-width {
-    width: 48%;
+    width: 48%; /* For two-column layout */
 }
 
 .contact-form-container {
@@ -73,16 +74,109 @@
     height: 100%;
 }
 
+.tabs {
+    margin-bottom: 20px;
+}
+
+.tab-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #ccc;
+}
+
+.tab-links li {
+    margin-right: 20px;
+}
+
+.tab-links li a {
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    color: #333;
+}
+
+.tab-links li.active a {
+    border-bottom: 2px solid #3a3b40;
+    font-weight: bold;
+    color: #3a3b40;
+}
+
+.tab-content {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Mobile Adjustments */
 @media (max-width: 768px) {
+    .contact-form-container {
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
 
     .contact-group input,
     .contact-group textarea,
-    .contact-group select{
-        width: 90%;
+    .contact-group select {
+        width: 90%; /* Full width on mobile */
         padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 1.1em;
+        font-size: 1em; /* Slightly smaller font size */
     }
 
+    .submit-button {
+        font-size: 1em; /* Adjust button size */
+    }
+
+    .tab-links {
+        border-bottom: none; /* Remove the bottom border */
+    }
+
+    .tab-links li {
+        margin-bottom: 10px; /* Add spacing between tab links */
+    }
+
+    .tab-content {
+        padding: 10px; /* Reduce padding in tab content */
+    }
+
+    /* Ensure two-column layout behaves responsively */
+    .two-column {
+        flex-direction: column; /* Stack the columns */
+        width: 100%; /* Full width for each column */
+    }
+
+    .half-width {
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    /* Optional: Reduce margin on smaller screens */
+    .contact-group {
+        margin-bottom: 15px;
+    }
+
+    
 }
