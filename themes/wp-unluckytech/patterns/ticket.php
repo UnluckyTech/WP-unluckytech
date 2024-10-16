@@ -126,7 +126,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ticket_number'])) {
     <h2>Check Ticket Status</h2>
     <?php if (!empty($success_message)): ?>
         <div class="contact-success">
-            <p><?php echo $success_message; ?></p>
+            <div class="table-responsive">
+                <p><?php echo $success_message; ?></p>
+            </div>
         </div>
     <?php elseif (!empty($error_message)): ?>
         <div class="contact-error">

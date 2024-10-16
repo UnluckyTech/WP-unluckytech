@@ -1,11 +1,11 @@
 .two-column {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    flex-wrap: wrap;
 }
 
 .half-width {
-    width: 48%; /* For two-column layout */
+    width: 48%; 
 }
 
 .contact-form-container {
@@ -117,6 +117,12 @@
     display: block;
 }
 
+.table-responsive {
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch; 
+    width: 100%; 
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -133,50 +139,51 @@ th {
     background-color: #f2f2f2;
 }
 
-/* Mobile Adjustments */
 @media (max-width: 768px) {
     .contact-form-container {
-        padding: 10px; /* Reduce padding for smaller screens */
+        padding: 10px; 
+        width: 100%;
     }
 
     .contact-group input,
     .contact-group textarea,
     .contact-group select {
-        width: 90%; /* Full width on mobile */
+        width: 90%;
         padding: 10px;
-        font-size: 1em; /* Slightly smaller font size */
+        font-size: 1em; 
     }
 
     .submit-button {
-        font-size: 1em; /* Adjust button size */
+        font-size: 1em; 
     }
 
     .tab-links {
-        border-bottom: none; /* Remove the bottom border */
+        border-bottom: none; 
     }
 
     .tab-links li {
-        margin-bottom: 10px; /* Add spacing between tab links */
+        margin-bottom: 10px; 
     }
 
     .tab-content {
-        padding: 10px; /* Reduce padding in tab content */
+        padding: 10px; 
     }
 
-    /* Ensure two-column layout behaves responsively */
     .two-column {
-        flex-direction: column; /* Stack the columns */
-        width: 100%; /* Full width for each column */
+        flex-direction: column; 
+        width: 100%; 
     }
 
     .half-width {
-        width: 100%; /* Full width on smaller screens */
+        width: 100%; 
     }
 
-    /* Optional: Reduce margin on smaller screens */
     .contact-group {
         margin-bottom: 15px;
     }
 
-    
+    .table-responsive {
+        margin-bottom: 15px; 
+    }
+
 }
