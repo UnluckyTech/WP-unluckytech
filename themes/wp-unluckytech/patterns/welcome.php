@@ -21,7 +21,7 @@
                 <div class="col-12 col-md-6 text-wrapper">
                     <h2 class="welcome-heading">Welcome to UnluckyTech</h2>
                     <hr class="welcome-divider">
-                    <p class="welcome-description">Still a work in progress!</p>
+                    <p class="welcome-description">Explore resources and services to support your technical projects and inquiries.</p>
                 </div>
             </div>
         </div>

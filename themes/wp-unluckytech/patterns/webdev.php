@@ -67,17 +67,17 @@
             <div class="service-card">
                 <i class="service-icon fas fa-desktop"></i>
                 <h3 class="service-title">Frontend Technologies</h3>
-                <p class="service-description">HTML5, CSS3, JavaScript (React, Vue.js)</p>
+                <p class="service-description">HTML5, CSS3, JavaScript</p>
             </div>
             <div class="service-card">
                 <i class="service-icon fas fa-server"></i>
                 <h3 class="service-title">Backend Technologies</h3>
-                <p class="service-description">PHP, Python, Node.js</p>
+                <p class="service-description">PHP, Python, Node.js, Ruby</p>
             </div>
             <div class="service-card">
                 <i class="service-icon fas fa-database"></i>
                 <h3 class="service-title">Platforms & Databases</h3>
-                <p class="service-description">WordPress, Shopify, MySQL, MongoDB</p>
+                <p class="service-description">WordPress, MySQL, MongoDB</p>
             </div>
         </div>
     </div>
