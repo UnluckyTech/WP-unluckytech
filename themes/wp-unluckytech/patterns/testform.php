@@ -90,11 +90,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
                             $ticket_data = array(
                                 'Ticket' => array(
                                     'Title'        => 'Inquiry from ' . $firstname . ' ' . $lastname,
-                                    'Queue'        => 'Raw', // Example queue, adjust accordingly
+                                    'Queue'        => $service, // Example queue, adjust accordingly
                                     'StateID'      => 1, // Adjust as necessary
                                     'PriorityID'   => 3, // Adjust as necessary
                                     'CustomerUser' => $custemail,
-                                    'Type'         => $service, // Set the Type based on the selected service
+                                    'Type'         => $inquiry_type, // Set the Type based on the selected service
                                 ),
                                 'Article' => array(
                                     'CommunicationChannel' => 'Email',
@@ -140,91 +140,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
 ?>
 
 <!-- Contact Page Layout -->
-<div class="contact-container">
-    <div class="contact-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.webp');">
-        <div class="contact-banner-overlay">
-            <h1 class="contact-title">Contact Me</h1>
+<div id="contact" class="tab active">
+    <?php if (!empty($success_message)): ?>
+        <div class="contact-success">
+            <p><?php echo esc_html($success_message); ?></p>
         </div>
-    </div>
+    <?php elseif (!empty($error_message)): ?>
+        <div class="contact-error">
+            <p><?php echo esc_html($error_message); ?></p>
+        </div>
+    <?php endif; ?>
 
-    <div class="contact-content">
-        <div class="contact-form-container">
-            <h2>Get in Touch</h2>
-            <p>If you have any questions or would like to reach out, feel free to send me a message!</p>
-
-            <?php if (!empty($success_message)): ?>
-                <div class="contact-success">
-                    <p><?php echo esc_html($success_message); ?></p>
-                </div>
-            <?php elseif (!empty($error_message)): ?>
-                <div class="contact-error">
-                    <p><?php echo esc_html($error_message); ?></p>
-                </div>
-            <?php endif; ?>
-
-            <!-- Display Session ID -->
-            <div class="session-id">
-                <p>Your session ID is: <strong><?php echo esc_html($session_id); ?></strong></p>
+    <form method="post" action="<?php echo esc_url(get_permalink()); ?>" class="contact-form">
+        <input type="hidden" name="contact_form" value="1">
+        
+        <div class="contact-group two-column">
+            <div class="half-width">
+                <label for="firstname">First Name</label>
+                <input type="text" id="firstname" name="firstname" required>
             </div>
-
-            <form method="post" action="<?php echo esc_url(get_permalink()); ?>" class="contact-form">
-                <input type="hidden" name="contact_form" value="1">
-                
-                <div class="contact-group two-column">
-                    <div class="half-width">
-                        <label for="firstname">First Name</label>
-                        <input type="text" id="firstname" name="firstname" required>
-                    </div>
-                    <div class="half-width">
-                        <label for="lastname">Last Name</label>
-                        <input type="text" id="lastname" name="lastname" required>
-                    </div>
-                </div>
-
-                <div class="contact-group">
-                    <label for="custemail">Your Email</label>
-                    <input type="email" id="custemail" name="custemail" required>
-                </div>
-
-                <div class="contact-group">
-                    <label for="custphone">Your Phone (optional)</label>
-                    <input type="text" id="custphone" name="custphone">
-                </div>
-
-                <div class="contact-group two-column">
-                    <div class="half-width">
-                        <label for="service">Service</label>
-                        <select id="service" name="service" required>
-                            <option value="Web Development">Web Development</option>
-                            <option value="seo">SEO Services</option>
-                            <option value="content-writing">Content Writing</option>
-                            <option value="graphic-design">Graphic Design</option>
-                        </select>
-                    </div>
-                    <div class="half-width">
-                        <label for="inquiry_type">Inquiry Type</label>
-                        <select id="inquiry_type" name="inquiry_type" required>
-                            <option value="general">General Inquiry</option>
-                            <option value="support">Support</option>
-                            <option value="feedback">Feedback</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="contact-group">
-                    <label for="message">Your Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-
-                <!-- Cloudflare Turnstile -->
-                <div class="contact-group">
-                    <div class="cf-turnstile" data-sitekey="<?php echo esc_attr(get_option('cfturnstile_key')); ?>"></div>
-                </div>
-
-                <button type="submit" class="submit-button">Send Message</button>
-            </form>
+            <div class="half-width">
+                <label for="lastname">Last Name</label>
+                <input type="text" id="lastname" name="lastname" required>
+            </div>
         </div>
-    </div>
+
+        <div class="contact-group">
+            <label for="custemail">Your Email</label>
+            <input type="email" id="custemail" name="custemail" required>
+        </div>
+
+        <div class="contact-group">
+            <label for="custphone">Your Phone (optional)</label>
+            <input type="text" id="custphone" name="custphone">
+        </div>
+
+        <div class="contact-group two-column">
+            <div class="half-width">
+                <label for="service">Service</label>
+                <select id="service" name="service" required>
+                    <option value="Web Development">Web Development</option>
+                    <option value="System Configuration">System Configuration</option>
+                    <option value="Server Management">Server Management</option>
+                    <option value="Technical Consultation">Technical Consultation</option>
+                    <option value="Custom PC Builds">Custom PC Builds</option>
+                    <option value="IT Support">IT Support</option>
+                    <option value="Custom Request">Custom Request</option>
+                </select>
+            </div>
+            <div class="half-width">
+                <label for="inquiry_type">Inquiry Type</label>
+                <select id="inquiry_type" name="inquiry_type" required>
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Service Quote">Service Quote</option>
+                    <option value="Support">Support</option>
+                    <option value="Feedback">Feedback</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="contact-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" required></textarea>
+        </div>
+
+        <!-- Cloudflare Turnstile -->
+        <div class="captcha-container">
+            <div class="cf-turnstile" data-sitekey="<?php echo esc_attr(get_option('cfturnstile_key')); ?>"></div>
+        </div>
+
+        <button type="submit" class="submit-button">Send Message</button>
+    </form>
 </div>
 
 
