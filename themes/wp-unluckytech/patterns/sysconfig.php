@@ -27,7 +27,7 @@
             <!-- Right Container: Description -->
             <div class="summary-right">
                 <p class="summary-description">
-                    At UnluckyTech, we provide end-to-end System Configuration services for businesses of all sizes. Our services include server management, network configuration, automation, and more, ensuring optimal performance and reliability.
+                    We provide end-to-end System Configuration services for businesses of all sizes. Our services include server management, network configuration, automation, and more, ensuring optimal performance and reliability.
                 </p>
             </div>
         </div>

@@ -69,7 +69,7 @@ function wp_unluckytech_scripts() {
     }
 
     // Shared CSS/JS for multiple pages (conditionally loaded)
-    $shared_service = array('services',' it-support', 'web-development', 'system-configuration', 'server-management', 'technical-consultation', 'custom-pc');
+    $shared_service = array('services','it-support', 'web-development', 'system-configuration', 'server-management', 'technical-consultation', 'custom-pc');
     if (is_page($shared_service)) {
         wp_enqueue_style('wp-unluckytech-service-services', get_template_directory_uri() . '/assets/css/services/services.css');
         wp_enqueue_script('faq-js', get_template_directory_uri() . '/assets/js/modules/faq.js', array(), null, true);

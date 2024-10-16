@@ -27,7 +27,7 @@
             <!-- Right Container: Description -->
             <div class="summary-right">
                 <p class="summary-description">
-                    At UnluckyTech, we offer end-to-end server management solutions, from initial setup to ongoing monitoring and optimization. Our team of experts ensures that your servers run efficiently and securely, allowing you to focus on your core business operations.
+                    We offer end-to-end server management solutions, from initial setup to ongoing monitoring and optimization. Our team of experts ensures that your servers run efficiently and securely, allowing you to focus on your core business operations.
                 </p>
             </div>
         </div>
@@ -104,27 +104,6 @@
                 <button class="faq-question">How often do you perform server maintenance?</button>
                 <div class="faq-answer" style="display: none;">
                     <p>We perform regular maintenance as needed, including software updates, security patches, and performance tuning. Typically, maintenance is scheduled weekly or biweekly depending on the server's requirements.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">What types of servers do you manage?</button>
-                <div class="faq-answer" style="display: none;">
-                    <p>We manage a wide range of servers including dedicated servers, cloud servers, VPS, and hybrid environments. We work with Linux, Windows, and other platforms based on your infrastructure.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Can you assist with server migrations?</button>
-                <div class="faq-answer" style="display: none;">
-                    <p>Yes, we provide migration services, ensuring a seamless transition of your data, applications, and services from one server to another without downtime.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Do you offer backups as part of your service?</button>
-                <div class="faq-answer" style="display: none;">
-                    <p>Yes, regular backups are included in our server management service. We ensure your data is securely backed up and can be restored quickly in case of any issues.</p>
                 </div>
             </div>
         </div>

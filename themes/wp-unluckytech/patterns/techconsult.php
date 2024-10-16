@@ -27,7 +27,7 @@
             <!-- Right Container: Description -->
             <div class="summary-right">
                 <p class="summary-description">
-                    Our team of experts provides in-depth technical consultation services to help your business navigate complex technology decisions. From choosing the right infrastructure to optimizing workflows, we guide you through every step.
+                    We provide in-depth technical consultation services to help your business navigate complex technology decisions. From choosing the right infrastructure to optimizing workflows, we guide you through every step.
                 </p>
             </div>
         </div>
@@ -45,7 +45,7 @@
             <div class="service-card">
                 <i class="service-icon fas fa-tools"></i>
                 <h3 class="service-title">Software Selection</h3>
-                <p class="service-description">Our team helps you select the most suitable software solutions tailored to your business needs.</p>
+                <p class="service-description">We help you select the most suitable software solutions tailored to your business needs.</p>
             </div>
             <div class="service-card">
                 <i class="service-icon fas fa-chart-line"></i>
@@ -90,12 +90,6 @@
                 <button class="faq-question">How do I know if I need technical consultation?</button>
                 <div class="faq-answer" style="display: none;">
                     <p>If you're facing challenges with your technology or unsure about your tech strategy, a consultation can help clarify your needs and options.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">What industries do you specialize in?</button>
-                <div class="faq-answer" style="display: none;">
-                    <p>We have experience in various industries, including finance, healthcare, and e-commerce, tailoring our solutions to fit specific sector needs.</p>
                 </div>
             </div>
             <div class="faq-item">

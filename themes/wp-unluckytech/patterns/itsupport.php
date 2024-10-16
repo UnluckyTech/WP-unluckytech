@@ -94,30 +94,9 @@
             </div>
 
             <div class="faq-item">
-                <button class="faq-question">Do you offer 24/7 IT support?</button>
-                <div class="faq-answer" style="display: none;">
-                    <p>Yes, we provide round-the-clock support to ensure that any IT issues are addressed promptly, minimizing downtime and keeping your business running smoothly.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
                 <button class="faq-question">What is your response time for IT support requests?</button>
                 <div class="faq-answer" style="display: none;">
                     <p>Our typical response time for critical issues is within 1 hour. For non-critical issues, we aim to respond within 4 hours during business hours.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Do you offer remote IT support?</button>
-                <div class="faq-answer" style="display: none;">
-                    <p>Yes, we provide remote IT support to quickly resolve issues without needing to send a technician onsite. This allows us to provide faster and more cost-effective support for most issues.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">Can you help with cybersecurity?</button>
-                <div class="faq-answer" style="display: none;">
-                    <p>Yes, we offer comprehensive cybersecurity solutions, including firewall setup, antivirus protection, security audits, and vulnerability assessments to safeguard your business against threats.</p>
                 </div>
             </div>
 
