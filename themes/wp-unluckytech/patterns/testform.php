@@ -140,17 +140,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
 ?>
 
 <!-- Contact Page Layout -->
-<<<<<<< Updated upstream
-<div class="contact-container">
-    <div class="contact-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
-        <div class="contact-banner-overlay">
-            <h1 class="contact-title">Contact Me</h1>
-=======
 <div id="contact" class="tab active">
     <?php if (!empty($success_message)): ?>
         <div class="contact-success">
             <p><?php echo esc_html($success_message); ?></p>
->>>>>>> Stashed changes
         </div>
     <?php elseif (!empty($error_message)): ?>
         <div class="contact-error">
