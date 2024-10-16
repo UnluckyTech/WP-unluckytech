@@ -7,7 +7,6 @@
  */
 ?>
 
-<!-- patterns/posts.php -->
 <div class="posts-wrapper">
     <div class="posts-inner-container">
         <div class="posts-title">LATEST</div>
@@ -32,24 +31,22 @@
                         <div class="post-card">
                             <div class="post-image">
                                 <?php if ( has_post_thumbnail() ) : ?>
-                                    <?php the_post_thumbnail('medium'); ?>
+                                    <?php the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
                                 <?php else: ?>
-                                    <img src="https://via.placeholder.com/200" alt="Placeholder Image" />
+                                    <img src="https://via.placeholder.com/200" alt="Placeholder Image" loading="lazy" />
                                 <?php endif; ?>
                             </div>
                             <div class="post-content">
-                            <div class="post-card-title">
-                                <h2><?php the_title(); ?></h2>
-                                <div class="title-post-divider"></div> 
-                                <div class="post-date">
-                                <?php echo get_the_date(); ?>
+                                <div class="post-card-title">
+                                    <h2><?php the_title(); ?></h2>
+                                    <div class="title-post-divider"></div>
+                                    <div class="post-date">
+                                        <?php echo get_the_date(); ?>
+                                    </div>
                                 </div>
-                            </div>
-
-
-                            <div class="post-description">
-                                <?php the_excerpt(); ?>
-                            </div>
+                                <div class="post-description">
+                                    <?php the_excerpt(); ?>
+                                </div>
                             </div>
                         </div>
                     </a>

@@ -72,10 +72,10 @@
     <div class="servpart-slideshow">
         <div class="slideshow-container">
             <div class="mySlides active">
-                <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home/serv1.webp' ) ); ?>" alt="Service 1">
+                <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home/serv1.webp' ) ); ?>" alt="Service 1" loading="lazy">
             </div>
             <div class="mySlides active">
-                <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home/serv2.webp' ) ); ?>" alt="Service 2">
+                <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home/serv2.webp' ) ); ?>" alt="Service 2" loading="lazy">
             </div>
         </div>
         <div class="arrow-container">
@@ -83,7 +83,4 @@
             <div class="arrow-down" onclick="plusSlides(1)">&#10095;</div>
         </div>
     </div>
-
 </div>
-
-
