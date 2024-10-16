@@ -29,7 +29,7 @@
 
             <div class="tab-content">
                 <!-- Contact Me Form -->
-                <!-- wp:pattern {"slug":"unluckytech/testform"} /-->
+                <!-- wp:pattern {"slug":"unluckytech/contact"} /-->
                 <!-- Ticket Status Form -->
                 <!-- wp:pattern {"slug":"unluckytech/ticket"} /-->
 
