@@ -180,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 
 <div class="main-container">
     <!-- Account Banner -->
-    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/account/account.webp');">
         <div class="main-banner-overlay">
             <h1 class="main-title">Account</h1>
         </div>

@@ -45,7 +45,7 @@
                 }
                 ?>
                 <a href="<?php echo esc_url( $discussion_url ); ?>" class="discussion-link">
-                    <div class="discussion-section" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/discussion.jpg' ); ?>');">
+                    <div class="discussion-section" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/discussion.webp' ); ?>');">
                         <div class="discussion-overlay">
                             <h2 class="discussion-title">DISCUSSION</h2>
                         </div>
@@ -60,7 +60,7 @@
             <div class="single-post-box">
                 <div class="user-box">
                     <div class="user-box-inner">
-                        <img src="/wp-content/themes/wp-unluckytech/assets/images/termicon.png" alt="User Logo">
+                        <img src="/wp-content/themes/wp-unluckytech/assets/images/termicon.webp" alt="User Logo">
                         <div class="user-name">UnluckyTech</div>
                         <div class="user-box-divider"></div>
                         <div class="user-box-social">

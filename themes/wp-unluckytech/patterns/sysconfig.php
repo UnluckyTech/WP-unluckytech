@@ -10,7 +10,7 @@
 <div class="main-container">
 
     <!-- Services Banner -->
-    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/bg1.png');">
+    <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/services/sysconfig.webp');">
         <div class="main-banner-overlay">
             <h1 class="main-title">System Configuration</h1>
         </div>

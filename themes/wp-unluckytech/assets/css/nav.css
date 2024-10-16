@@ -205,7 +205,7 @@
     margin-bottom: 10px;
 }
 
-.remember-forgot-container {
+.forgot-password-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -223,10 +223,6 @@
     text-align: center;
     cursor: pointer;
     text-decoration: none;
-}
-
-#rememberMeButton {
-    background-color: #444;
 }
 
 

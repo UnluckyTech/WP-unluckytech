@@ -132,13 +132,38 @@ function toggleSearchBar() {
 // Toggle User Login Form
 function toggleUserLogin() {
     const userLoginForm = document.getElementById('userLoginForm');
+    const overlay = document.querySelector('.overlay'); // Optional: reuse the overlay
+
     if (userLoginForm.style.display === 'none' || userLoginForm.style.display === '') {
         userLoginForm.style.display = 'block';
+        overlay.classList.add('active'); // Optional: show overlay
+        document.addEventListener('click', handleClickOutsideLogin);
     } else {
         userLoginForm.style.display = 'none';
+        overlay.classList.remove('active'); // Optional: hide overlay
+        document.removeEventListener('click', handleClickOutsideLogin);
     }
 }
 
+// Handle click outside the user login form to close it
+function handleClickOutsideLogin(event) {
+    const userLoginForm = document.getElementById('userLoginForm');
+    const userIcon = document.querySelector('.user-login'); // Assuming user icon has this class
+
+    // Close the login form if the click is outside of the login form and not on the icon
+    if (!userLoginForm.contains(event.target) && !userIcon.contains(event.target)) {
+        userLoginForm.style.display = 'none';
+        const overlay = document.querySelector('.overlay');
+        overlay.classList.remove('active'); // Optional: hide overlay
+        document.removeEventListener('click', handleClickOutsideLogin);
+    }
+}
+
+// ----------------------------------
+// Form Submission Functionality (from search.js)
+// ----------------------------------
+
+// Function to handle form submission for search
 function handleSubmit() {
     const searchInput = document.getElementById('searchInput').value;
     const category = document.querySelector('input[name="category"]:checked').value;
