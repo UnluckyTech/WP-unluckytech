@@ -12,7 +12,6 @@ const ELEMENT_IDS = {
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     setupHamburgerMenu(); // Initialize hamburger menu
-    populateCategories(); // Populate category dropdown
     populateTags(); // Populate tags dropdown
     handleSubmit();
 });
