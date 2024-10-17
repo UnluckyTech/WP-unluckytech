@@ -171,10 +171,10 @@
     }
 
     .servpart-title {
-        order: 0;
         text-align: center;
         margin: 10px 0;
         font-size: 30px;
+        width: 100%;
     }
 
     .servpart-list {
