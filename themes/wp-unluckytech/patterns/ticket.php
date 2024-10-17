@@ -137,7 +137,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ticket_number'])) {
     <?php endif; ?>
     <form method="post" action="">
         <div class="contact-group">
-            <label for="ticket_number">Enter Ticket Number</label>
             <input type="text" id="ticket_number" name="ticket_number" required>
         </div>
         <button type="submit" class="submit-button">Check Status</button>
