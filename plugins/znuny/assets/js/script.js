@@ -1,6 +1,12 @@
 jQuery(document).ready(function($) {
+    // Cache DOM elements to avoid repeated lookups.
+    var $apiButton = $('#znuny-test-api');
+    var $createTicketButton = $('#znuny-create-ticket');
+    var $result = $('#znuny-test-result');
+    var $ticketResult = $('#znuny-ticket-result');
+
     // Test API Connection
-    $('#znuny-test-api').on('click', function(e) {
+    $apiButton.on('click', function(e) {
         e.preventDefault();
         console.log('Test API button clicked'); // Debug message
 
@@ -11,64 +17,56 @@ jQuery(document).ready(function($) {
 
         console.log('API URL:', api_url);
         console.log('User Login:', user_login);
-        console.log('Password:', password);
 
-        $.ajax({
-            url: ajaxurl, // The built-in AJAX URL.
-            method: 'POST',
-            data: {
-                action: 'znuny_test_api',
-                api_url: api_url,
-                user_login: user_login,
-                password: password,
-            },
-            success: function(response) {
-                console.log('Raw response:', response); // Log the raw response for debugging
-                
-                // Display response as string to avoid "[object Object]"
-                let responseText = JSON.stringify(response, null, 2);
-                console.log('Formatted response:', responseText); // Log formatted response
-                
-                if (response.success) {
-                    $('#znuny-test-result').html('<strong>API connection successful!</strong><br>' + responseText);
-                } else {
-                    let errorMessage = '<strong>API connection failed:</strong><br>';
-                    $.each(response.data, function(key, value) {
-                        errorMessage += key + ': ' + value + '<br>';
-                    });
-                    $('#znuny-test-result').html(errorMessage + '<br>Full response:<br>' + responseText);
+        // Throttle API request
+        if (api_url && user_login) {
+            $.ajax({
+                url: znuny_ajax_object.ajax_url, // Use localized variable for AJAX URL.
+                method: 'POST',
+                data: {
+                    action: 'znuny_test_api',
+                    api_url: api_url,
+                    user_login: user_login,
+                    password: password
+                },
+                success: function(response) {
+                    console.log('API Response:', response);
+
+                    let responseText = JSON.stringify(response, null, 2);
+                    if (response.success) {
+                        $result.html('<strong>API connection successful!</strong><br>' + responseText);
+                    } else {
+                        $result.html('<strong>API connection failed:</strong><br>' + responseText);
+                    }
+                },
+                error: function(xhr) {
+                    let errorResponse = JSON.stringify(xhr.responseText, null, 2);
+                    $result.html('<strong>API connection failed:</strong> ' + errorResponse);
                 }
-            },
-            error: function(xhr, status, error) {
-                console.log('Error:', error); // Debug error
-                // Convert and display full error response
-                let errorResponse = JSON.stringify(xhr.responseText, null, 2);
-                $('#znuny-test-result').html('<strong>API connection failed:</strong> ' + error + '<br>Full response:<br>' + errorResponse);
-            }
-        });
+            });
+        }
     });
 
     // Create Test Ticket
-    $('#znuny-create-ticket').on('click', function(event) {
+    $createTicketButton.on('click', function(event) {
         event.preventDefault(); // Prevent default button action
         console.log('Create Ticket button clicked'); // Debug message
 
-        // Define the ticket data structure using predefined variables
+        // Define the ticket data structure using localized data
         var ticket_data = {
-            UserLogin: '<?php echo esc_js($user_login); ?>', // Use the predefined user login
-            Password: '<?php echo esc_js($password); ?>', // Use the predefined password
+            UserLogin: znuny_ajax_object.user_login,  // Use localized variable
+            Password: znuny_ajax_object.password,    // Use localized variable
             Ticket: {
                 Title: 'Ticket created via REST API - minimal content',
                 Queue: 'Raw', // Replace this with the correct queue
-                StateID: 1, // Open or any other state ID
+                StateID: 1,   // Open or any other state ID
                 PriorityID: 3, // Normal priority
-                CustomerUser: 'test' // A test user or real user ID
+                CustomerUser: 'test'
             },
             Article: {
                 CommunicationChannel: 'Email',
                 Subject: 'Test Article created with new Ticket via REST API type Email',
                 Body: 'email body.',
-                ContentType: '', // You can specify if needed
                 Charset: 'utf-8',
                 MimeType: 'text/plain'
             }
@@ -76,36 +74,25 @@ jQuery(document).ready(function($) {
 
         // AJAX call to create the test ticket
         $.ajax({
-            url: ajaxurl, // The built-in AJAX URL
+            url: znuny_ajax_object.ajax_url,  // Use localized variable for AJAX URL
             method: 'POST',
             data: {
                 action: 'znuny_create_test_ticket',
                 ticket_data: ticket_data
             },
             success: function(response) {
-                console.log('Response from server:', response); // Debug response
+                console.log('Create Ticket Response:', response);
 
-                // Display response as string
                 let responseText = JSON.stringify(response, null, 2);
-                console.log('Formatted response:', responseText); // Log formatted response
-
                 if (response.success) {
-                    $('#znuny-ticket-result').text('Ticket successfully created: ' + response.data.ticket_number);
+                    $ticketResult.text('Ticket successfully created: ' + response.data.ticket_number);
                 } else {
-                    let errorMessage = 'Error creating ticket: ';
-                    errorMessage += responseText; // Display full error message
-                    $('#znuny-ticket-result').text(errorMessage);
+                    $ticketResult.text('Error creating ticket: ' + responseText);
                 }
             },
-            error: function(xhr, status, error) {
-                console.log('Error:', error); // Debug error
-                // Parse the error response and extract relevant information
-                try {
-                    let errorResponse = JSON.stringify(JSON.parse(xhr.responseText), null, 2);
-                    $('#znuny-ticket-result').text('Error: ' + errorResponse);
-                } catch (e) {
-                    $('#znuny-ticket-result').text('Error: ' + xhr.responseText);
-                }
+            error: function(xhr) {
+                let errorResponse = xhr.responseText ? JSON.stringify(xhr.responseText, null, 2) : 'Unknown error';
+                $ticketResult.text('Error: ' + errorResponse);
             }
         });
     });

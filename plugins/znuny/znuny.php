@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Include necessary files.
 include_once plugin_dir_path( __FILE__ ) . 'includes/api.php';
-include_once plugin_dir_path( __FILE__ ) . 'includes/customer.php';
 include_once plugin_dir_path( __FILE__ ) . 'includes/ticket.php';
 include_once plugin_dir_path( __FILE__ ) . 'includes/auth.php';
 
@@ -123,12 +122,16 @@ function znuny_settings_page() {
 
 // Enqueue custom script for API testing.
 function znuny_enqueue_admin_scripts( $hook ) {
+    // Only load script on the Znuny settings page
     if ( $hook === 'toplevel_page_znuny-settings' ) {
         wp_enqueue_script( 'znuny-script', plugin_dir_url( __FILE__ ) . 'assets/js/script.js', array( 'jquery' ), '1.0', true );
+        
+        // Localize variables for use in the script
         wp_localize_script( 'znuny-script', 'znuny_ajax_object', array(
             'ajax_url' => admin_url('admin-ajax.php'),
+            'user_login' => esc_js(get_option('znuny_user_login')), // Send user login from settings
+            'password' => esc_js(get_option('znuny_password')) // Send password from settings
         ));
     }
 }
 add_action( 'admin_enqueue_scripts', 'znuny_enqueue_admin_scripts' );
-
