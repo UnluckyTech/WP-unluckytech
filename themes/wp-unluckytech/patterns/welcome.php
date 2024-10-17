@@ -11,19 +11,18 @@
 <div class="wp-block-cover alignfull custom-cover-height">
     <span aria-hidden="true" class="wp-block-cover__background has-contrast-background-color has-background-dim"></span>
     
-    <!-- Lazy loading the background image -->
     <img class="wp-block-cover__image-background wp-image-3838" alt="" 
          src="<?php echo esc_url( get_theme_file_uri( 'assets/images/home/bg1.webp' ) ); ?>"
          srcset="<?php echo esc_url( get_theme_file_uri( 'assets/images/home/bg1-mobile.webp' ) ); ?> 768w, 
                  <?php echo esc_url( get_theme_file_uri( 'assets/images/home/bg1.webp' ) ); ?> 1200w"
          sizes="(max-width: 768px) 768px, 1200px"
-         loading="lazy" data-object-fit="cover" />
+         data-object-fit="cover" />
 
     <div class="wp-block-cover__inner-container">
         <div class="content-inner container-fluid">
             <div class="row welcome-container">
                 <div class="col-12 col-md-6 video-wrapper" style="position: relative;">
-                    <!-- Lazy load placeholder image -->
+                    <!-- Lazy load placeholder image for non-critical content -->
                     <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/placeholder.webp' ) ); ?>" 
                          alt="Video Placeholder" style="width: 100%; height: auto;" loading="lazy">
                 </div>
