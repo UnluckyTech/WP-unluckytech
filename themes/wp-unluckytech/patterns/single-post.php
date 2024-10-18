@@ -138,6 +138,25 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Admin-only box -->
+                <?php if ( current_user_can( 'administrator' ) ) : ?>
+                    <div class="admin-post-box">
+                        <div class="admin-box-inner">
+                            <div class="admin-box-title">Admin Options</div>
+                            <div class="admin-box-content">
+                                <!-- Edit Post Link -->
+                                <?php edit_post_link( 'Edit Post', '<div class="admin-edit-link">', '</div>' ); ?>
+                                
+                                <!-- Delete Post Link -->
+                                <a href="<?php echo esc_url( get_delete_post_link( get_the_ID() ) ); ?>" class="admin-delete-link" onclick="return confirm('Are you sure you want to delete this post?');">
+                                    Delete Post
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
             </div>    
         </div>
     </div>

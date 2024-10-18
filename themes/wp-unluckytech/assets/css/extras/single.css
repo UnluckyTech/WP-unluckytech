@@ -235,6 +235,35 @@
     margin: 5px 0;
 }
 
+/* Admin Post Box Styling */
+.admin-post-box {
+    background: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px;
+    width: 304px; 
+    margin-top: 20px;
+}
+
+.admin-box-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.admin-edit-link a,
+.admin-delete-link {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.admin-edit-link a:hover,
+.admin-delete-link:hover {
+    color: #f00;
+}
+
+
 @media (max-width: 1024px) {
 
     .user-box,
