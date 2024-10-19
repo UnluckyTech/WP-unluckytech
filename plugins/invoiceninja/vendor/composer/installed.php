@@ -3,7 +3,7 @@
         'name' => 'invoiceninja/wordpress',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd92e82c80f86cd65d325fe778deeb7e8b5f718e8',
+        'reference' => '0e94c48c1e4073b23be656e37b143e18460a66f7',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'invoiceninja/wordpress' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'd92e82c80f86cd65d325fe778deeb7e8b5f718e8',
+            'reference' => '0e94c48c1e4073b23be656e37b143e18460a66f7',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -208,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
             
         </ul>
             <div class="invoice-portal">
-                <?php echo do_shortcode('[client_portal label="Client Portal" sso="true"]'); ?>
+                <?php echo do_shortcode('[invoiceninja_client_portal label="Client Portal" sso="true"]'); ?>
             </div>
         </div>
 

@@ -23,7 +23,7 @@
 /plugins/*
 
 # DO NOT ignore these plugins...
-!/plugins/invoiceninja2
+!/plugins/invoiceninja
 !/plugins/znuny
 
 #---------------------------

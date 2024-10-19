@@ -4,10 +4,10 @@
  * Plugin Name:        Invoice Ninja
  * Plugin URI:         https://github.com/invoiceninja/wordpress
  * Description:        WordPress plugin for Invoice Ninja
- * Version:            1.0.8
+ * Version:            1.0.11
  * Author:             Invoice Ninja
  * Author URI:         https://invoiceninja.com
- * GitHub Plugin URI:  https://github.com/invoiceninja/wordpress
+ * GitHub URI:         https://github.com/invoiceninja/wordpress
  * Primary Branch:     main
  *
  * License:            GPLv2
@@ -39,7 +39,7 @@ define( 'INVOICENINJA_DEFAULT_PRODUCT_TEMPLATE', '<a href="$page_url" class="wp-
   <div class="divider"></div>
   <h5 class="truncated">$description</h5>
   <h5><b>$price</b></h5>
-  [purchase product_id="$product_id"]
+  [invoiceninja_purchase product_id="$product_id"]
   $image
 </a>' );
 
