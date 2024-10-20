@@ -209,36 +209,35 @@ class PostApi
     {
         global $post;
 
-        if ( $post->post_type == 'invoiceninja_product' ) {
-            wp_enqueue_style( 'product-styles', plugins_url( '/../../assets/css/product.css', __FILE__ ), [], time() );
-                    
-            $custom_css = esc_attr( get_option( 'invoiceninja_product_css' ) );
-
-            wp_add_inline_style( 'product-styles', $custom_css );
+        // Check if $post is set and not null
+        if ($post && $post->post_type == 'invoiceninja_product') {
+            wp_enqueue_style('product-styles', plugins_url('/../../assets/css/product.css', __FILE__), [], time());
+            
+            $custom_css = esc_attr(get_option('invoiceninja_product_css'));
+            wp_add_inline_style('product-styles', $custom_css);
         }
-
-        if ( get_the_ID() == get_option( 'invoiceninja_product_page_id' ) ) {
-            wp_enqueue_style( 'products-styles', plugins_url( '/../../assets/css/products.css', __FILE__ ), [], time() );
-
+    
+        if ($post && get_the_ID() == get_option('invoiceninja_product_page_id')) {
+            wp_enqueue_style('products-styles', plugins_url('/../../assets/css/products.css', __FILE__), [], time());
+    
             $color = '#0000EE';
-            $profile = json_decode( get_option( 'invoiceninja_profile' ) );
-            if ( $profile->settings->primary_color ) {
+            $profile = json_decode(get_option('invoiceninja_profile'));
+            if ($profile->settings->primary_color) {
                 $color = $profile->settings->primary_color;
             }
     
-            $custom_css = esc_attr( get_option( 'invoiceninja_products_css' ) ) . '
+            $custom_css = esc_attr(get_option('invoiceninja_products_css')) . '
                 a:hover div.divider {
-                    border-color: ' . esc_attr( $color ) . ';
+                    border-color: ' . esc_attr($color) . ';
                 }
             ';
     
-            wp_add_inline_style( 'products-styles', $custom_css );
+            wp_add_inline_style('products-styles', $custom_css);
         }
-
-        if ( ! is_admin() ) {
-            wp_enqueue_style( 'frontend-styles', plugins_url( '/../../assets/css/frontend.css', __FILE__ ), [], time() );
-
-            wp_enqueue_script( 'frontend-scripts', plugins_url( '/../../assets/js/frontend.js', __FILE__ ), [], time(), false );
+    
+        if (!is_admin()) {
+            wp_enqueue_style('frontend-styles', plugins_url('/../../assets/css/frontend.css', __FILE__), [], time());
+            wp_enqueue_script('frontend-scripts', plugins_url('/../../assets/js/frontend.js', __FILE__), [], time(), false);
         }
     }
 

@@ -71,3 +71,53 @@ function unluckytech_login_redirect($redirect_to, $request, $user) {
     return home_url();
 }
 add_filter('login_redirect', 'unluckytech_login_redirect', 10, 3);
+
+function modify_blog_query($query) {
+    // Check if it's the main query and it's a blog query (is_home or is_category, for example)
+    if (!is_admin() && $query->is_main_query() && (is_home() || is_category() || is_tag())) {
+        
+        // Set pagination
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        $query->set('paged', $paged);
+        
+        // Set posts per page
+        $query->set('posts_per_page', 5);
+        
+        // Sorting based on URL query parameters
+        if (isset($_GET['sort'])) {
+            $sort = sanitize_text_field($_GET['sort']);
+            switch ($sort) {
+                case 'title_asc':
+                    $query->set('orderby', 'title');
+                    $query->set('order', 'ASC');
+                    break;
+                case 'title_desc':
+                    $query->set('orderby', 'title');
+                    $query->set('order', 'DESC');
+                    break;
+                case 'date_asc':
+                    $query->set('orderby', 'date');
+                    $query->set('order', 'ASC');
+                    break;
+                case 'date_desc':
+                default:
+                    $query->set('orderby', 'date');
+                    $query->set('order', 'DESC');
+                    break;
+            }
+        }
+
+        // Filter by category if provided
+        if (isset($_GET['category']) && $_GET['category'] != 'all') {
+            $category = sanitize_text_field($_GET['category']);
+            $query->set('category_name', $category);
+        }
+
+        // Filter by tag if provided
+        if (isset($_GET['tag']) && $_GET['tag'] != 'all') {
+            $tag = sanitize_text_field($_GET['tag']);
+            $query->set('tag', $tag);
+        }
+    }
+}
+add_action('pre_get_posts', 'modify_blog_query');

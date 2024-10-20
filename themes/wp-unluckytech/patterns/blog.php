@@ -54,19 +54,20 @@
         </div>
 
         <?php
-        // Set up the custom query to limit posts per page and handle sorting
+        // Correct pagination variable setup
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
         $sort = isset($_GET['sort']) ? $_GET['sort'] : 'date_desc';
         $category = isset($_GET['category']) ? $_GET['category'] : '';
         $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
-        $posts_per_page = isset($_GET['posts_per_page']) && $_GET['posts_per_page'] != 'all' ? intval($_GET['posts_per_page']) : 5; // Default to 5 posts per page
+        $posts_per_page = isset($_GET['posts_per_page']) && $_GET['posts_per_page'] != 'all' ? intval($_GET['posts_per_page']) : 5;
 
-        // Preserve other query parameters
+        // Adjust query arguments for WP_Query
         $query_args = array(
             'posts_per_page' => $posts_per_page,
-            'paged' => $paged,
+            'paged' => $paged, // Important for pagination
         );
 
+        // Filter by category and tag
         if ($category != '' && $category != 'all') {
             $query_args['category_name'] = $category;
         }
@@ -75,6 +76,7 @@
             $query_args['tag'] = $tag;
         }
 
+        // Sorting by date or title
         switch ($sort) {
             case 'title_asc':
                 $query_args['orderby'] = 'title';
@@ -95,14 +97,12 @@
                 break;
         }
 
+        // Create a new custom query
         $custom_query = new WP_Query($query_args);
         ?>
         <?php if ($custom_query->have_posts()) : ?>
             <div class="blog-posts">
-                <?php
-                // Start the loop
-                while ($custom_query->have_posts()) : $custom_query->the_post();
-                    ?>
+                <?php while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
                     <div class="blog-post-card">
                         <a href="<?php the_permalink(); ?>" class="blog-post-image-link">
                             <div class="blog-post-image">
@@ -162,17 +162,12 @@
                 <div class="pagination">
                     <?php
                     // Pagination
-                    if ($posts_per_page == -1) {
-                        // Show "All" button
-                        echo '<span class="pagination-all-button">All</span>';
-                    } else {
-                        echo paginate_links(array(
-                            'total' => $custom_query->max_num_pages,
-                            'current' => $paged,
-                            'prev_text' => __('Previous', 'textdomain'),
-                            'next_text' => __('Next', 'textdomain'),
-                        ));
-                    }
+                    echo paginate_links(array(
+                        'total' => $custom_query->max_num_pages,
+                        'current' => $paged,
+                        'prev_text' => __('Previous', 'textdomain'),
+                        'next_text' => __('Next', 'textdomain'),
+                    ));
                     ?>
                 </div>
                 <!-- Posts Per Page Dropdown -->

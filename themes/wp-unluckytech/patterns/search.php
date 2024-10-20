@@ -176,6 +176,7 @@ if (isset($_GET['s'])) {
 
                     <div class="posts-per-page">
                         <form method="get" class="posts-per-page-form" action="">
+                            <input type="hidden" name="s" value="<?php echo esc_attr($search_query); ?>">
                             <label for="posts-per-page">Posts per page:</label>
                             <select name="posts_per_page" id="posts-per-page" onchange="this.form.submit()">
                                 <option value="5" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == '5') ? 'selected' : ''; ?>>5</option>
