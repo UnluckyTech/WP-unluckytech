@@ -59,15 +59,17 @@
                     <?php $index = 0; ?>
                     <?php while ($latest_posts->have_posts()) : $latest_posts->the_post(); ?>
                         <div class="slide <?php echo $index === 0 ? 'active' : ''; ?>">
-                            <a href="<?php the_permalink(); ?>" class="post-link">
-                                <div class="latest-post-thumbnail">
-                                    <?php if (has_post_thumbnail()) : ?>
-                                        <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" />
-                                        <div class="post-overlay"></div>
-                                        <div class="post-title"><?php the_title(); ?></div>
-                                    <?php endif; ?>
-                                </div>
-                            </a>
+                            <div class="latest-post-item">
+                                <a href="<?php the_permalink(); ?>" class="post-link">
+                                    <div class="latest-post-thumbnail">
+                                        <?php if (has_post_thumbnail()) : ?>
+                                            <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" />
+                                            <div class="post-overlay"></div>
+                                            <div class="post-title"><?php the_title(); ?></div>
+                                        <?php endif; ?>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                         <?php $index++; ?>
                     <?php endwhile; ?>

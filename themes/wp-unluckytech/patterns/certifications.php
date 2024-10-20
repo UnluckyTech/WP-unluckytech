@@ -34,7 +34,7 @@
                     </div>
                     <h3>CompTIA A+</h3>
                     <p>This certification covers the fundamentals of computer hardware and software, and it's a foundational step for IT professionals.</p>
-                    <a href="http://unluckytech.local/wp-content/uploads/2024/09/CompTIA-A-ce-certificate.pdf" target="_blank" class="button">View Certification</a>
+                    <a href="https://www.unluckytech.com/wp-content/uploads/2024/10/CompTIA-A-ce-certificate.pdf" target="_blank" class="button">View Certification</a>
                 </a>
             </div>
 
@@ -45,7 +45,7 @@
                     </div>
                     <h3>CompTIA Network+</h3>
                     <p>Network+ certifies the skills needed to troubleshoot, configure, and manage both wired and wireless networks.</p>
-                    <a href="http://unluckytech.local/wp-content/uploads/2024/09/CompTIA-Network-ce-certificate.pdf" target="_blank" class="button">View Certification</a>
+                    <a href="https://www.unluckytech.com/wp-content/uploads/2024/10/CompTIA-Network-ce-certificate.pdf" target="_blank" class="button">View Certification</a>
                 </a>
             </div>
 
@@ -56,7 +56,7 @@
                     </div>
                     <h3>CompTIA Linux+</h3>
                     <p>Linux+ certifies the fundamental skills required to configure, manage, and troubleshoot Linux systems.</p>
-                    <a href="http://unluckytech.local/wp-content/uploads/2024/09/CompTIA-Linux-ce-certificate.pdf" target="_blank" class="button">View Certification</a>
+                    <a href="https://www.unluckytech.com/wp-content/uploads/2024/10/CompTIA-Linux-ce-certificate.pdf" target="_blank" class="button">View Certification</a>
                 </a>
             </div>
 
