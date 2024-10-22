@@ -12,9 +12,6 @@ const ELEMENT_IDS = {
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     setupHamburgerMenu(); // Initialize hamburger menu
-    populateCategories(); // Populate category dropdown
-    populateTags(); // Populate tags dropdown
-    handleSubmit();
 });
 
 // Function to set up the hamburger menu and overlay
@@ -159,28 +156,3 @@ function handleClickOutsideLogin(event) {
     }
 }
 
-// ----------------------------------
-// Form Submission Functionality (from search.js)
-// ----------------------------------
-
-// Function to handle form submission for search
-function handleSubmit() {
-    const searchInput = document.getElementById('searchInput').value;
-    const category = document.querySelector('input[name="category"]:checked').value;
-    const tag = document.querySelector('input[name="tag"]:checked').value;
-
-    // Construct the URL based on the search input, category, and tag
-    let url = '/?s=' + encodeURIComponent(searchInput);
-
-    if (category !== 'all') {
-        url += `&category=${category}`;
-    }
-
-    if (tag !== 'all') {
-        url += `&tag=${tag}`;
-    }
-
-    // Redirect to the constructed URL
-    window.location.href = url;
-    return false; // Prevent default form submission
-}
