@@ -55,14 +55,14 @@
         </div>
         <div class="blog-divider"></div>
         <?php
-        // Set up the custom query to limit posts per page and handle sorting
+        // Set up the custom query for pagination and sorting
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
         $sort = isset($_GET['sort']) ? $_GET['sort'] : 'date_desc';
         $category = isset($_GET['category']) ? $_GET['category'] : '';
         $tag = single_tag_title('', false);
-        $posts_per_page = isset($_GET['posts_per_page']) && $_GET['posts_per_page'] != 'all' ? intval($_GET['posts_per_page']) : 5; // Default to 5 posts per page
+        $posts_per_page = isset($_GET['posts_per_page']) && $_GET['posts_per_page'] != 'all' ? intval($_GET['posts_per_page']) : 5;
 
-        // Preserve other query parameters
+        // Query arguments
         $query_args = array(
             'posts_per_page' => $posts_per_page,
             'paged' => $paged,
@@ -70,9 +70,10 @@
         );
 
         if ($category != '' && $category != 'all') {
-            $query_args['category_name'] = $category;
+            $query_args['category_name'] = sanitize_text_field($category);
         }
 
+        // Sorting logic
         switch ($sort) {
             case 'title_asc':
                 $query_args['orderby'] = 'title';
@@ -93,14 +94,12 @@
                 break;
         }
 
+        // Custom query execution
         $custom_query = new WP_Query($query_args);
         ?>
         <?php if ($custom_query->have_posts()) : ?>
             <div class="blog-posts">
-                <?php
-                // Start the loop
-                while ($custom_query->have_posts()) : $custom_query->the_post();
-                    ?>
+                <?php while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
                     <div class="blog-post-card">
                         <a href="<?php the_permalink(); ?>" class="blog-post-image-link">
                             <div class="blog-post-image">
@@ -117,7 +116,7 @@
                                     <div class="blog-post-title">
                                         <h2><?php the_title(); ?></h2>
                                     </div>
-                                    <div class="title-divider"></div> <!-- Divider element -->
+                                    <div class="title-divider"></div>
                                 </div>
                                 <div class="blog-post-excerpt">
                                     <?php the_excerpt(); ?>
@@ -134,7 +133,7 @@
                                     }
                                     ?>
                                 </div>
-                                <div class="meta-divider"></div> <!-- Divider after category -->
+                                <div class="meta-divider"></div>
                                 <div class="blog-post-tags">
                                     <?php
                                     $tags = get_the_tags();
@@ -145,7 +144,7 @@
                                     }
                                     ?>
                                 </div>
-                                <div class="meta-divider"></div> <!-- Divider before date -->
+                                <div class="meta-divider"></div>
                                 <div class="blog-post-date">
                                     <?php echo get_the_date(); ?>
                                 </div>
@@ -157,7 +156,7 @@
                 ?>
             </div><!-- .blog-posts -->
             <div class="blog-divider"></div>
-            <div class="pagination-container"> <!-- New container for pagination and posts per page -->
+            <div class="pagination-container"> <!-- Pagination and posts per page section -->
                 <div class="pagination">
                     <?php
                     // Pagination

@@ -64,7 +64,7 @@
         // Adjust query arguments for WP_Query
         $query_args = array(
             'posts_per_page' => $posts_per_page,
-            'paged' => $paged, // Important for pagination
+            'paged' => $paged,
         );
 
         // Filter by category and tag
@@ -167,6 +167,12 @@
                         'current' => $paged,
                         'prev_text' => __('Previous', 'textdomain'),
                         'next_text' => __('Next', 'textdomain'),
+                        'add_args' => array(
+                            'sort' => isset($_GET['sort']) ? $_GET['sort'] : null,
+                            'category' => isset($_GET['category']) ? $_GET['category'] : null,
+                            'tag' => isset($_GET['tag']) ? $_GET['tag'] : null,
+                            'posts_per_page' => isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : 5,
+                        ),
                     ));
                     ?>
                 </div>
