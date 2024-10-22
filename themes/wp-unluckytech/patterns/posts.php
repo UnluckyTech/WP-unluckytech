@@ -61,7 +61,7 @@
         <hr class="posts-bottom-divider">
         <!-- More Button -->
         <div class="more-button-container">
-            <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" class="more-button" aria-label="Read more blog posts from Unlucky Tech">MORE</a>
+            <a href="<?php echo get_permalink( get_option( 'page_for_posts' ) ); ?>" class="more-button" aria-label="Read more blog posts from Unlucky Tech">See All Posts</a>
         </div>
     </div>
 </div>
