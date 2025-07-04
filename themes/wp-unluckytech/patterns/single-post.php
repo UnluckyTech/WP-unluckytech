@@ -71,48 +71,57 @@
                     </div>
                 </div>
 
-                <div class="latest-posts">
-                    <div class="latest-posts-title">LATEST</div>
-                    <div class="latest-posts-container">
-                        <hr class="latest-posts-top-divider"> <!-- Top Divider -->
-                        
-                        <?php
-                        // Query to get the latest posts
-                        $args = array(
-                            'post_type'      => 'post',
-                            'posts_per_page' => 3,
-                            'post__not_in'   => array( get_the_ID() ), // Exclude current post
-                        );
-                        $latest_posts_query = new WP_Query( $args );
+                <div class="related-posts">
+                    <div class="related-posts-title">RELATED</div>
+                    <div class="related-posts-container">
+                        <hr class="related-posts-top-divider">
 
-                        if ( $latest_posts_query->have_posts() ) :
-                            while ( $latest_posts_query->have_posts() ) : $latest_posts_query->the_post();
-                                ?>
-                                <a href="<?php the_permalink(); ?>" class="single-post-link">
-                                    <div class="single-post-card">
-                                        <div class="single-post-image">
-                                            <?php if ( has_post_thumbnail() ) : ?>
-                                                <?php the_post_thumbnail('medium'); ?>
-                                            <?php else: ?>
-                                                <img src="https://via.placeholder.com/200" alt="Placeholder Image" />
-                                            <?php endif; ?>
-                                        </div>
-                                        <div class="latest-post-content">
-                                            <div class="single-post-date"><?php echo get_the_date(); ?></div>
-                                            <div class="single-post-title">
-                                                <h3><?php the_title(); ?></h3>
+                        <?php
+                        // Get tags for the current post
+                        $post_tags = wp_get_post_tags( get_the_ID() );
+
+                        if ( $post_tags ) {
+                            $tag_ids = array_map( function( $tag ) {
+                                return $tag->term_id;
+                            }, $post_tags );
+
+                            $related_args = array(
+                                'tag__in'             => $tag_ids,
+                                'post__not_in'        => array( get_the_ID() ),
+                                'posts_per_page'      => 3,
+                                'ignore_sticky_posts' => 1,
+                            );
+
+                            $related_query = new WP_Query( $related_args );
+
+                            if ( $related_query->have_posts() ) :
+                                while ( $related_query->have_posts() ) : $related_query->the_post(); ?>
+                                    <a href="<?php the_permalink(); ?>" class="single-post-link">
+                                        <div class="single-post-card">
+                                            <div class="single-post-image">
+                                                <?php if ( has_post_thumbnail() ) : ?>
+                                                    <?php the_post_thumbnail('medium'); ?>
+                                                <?php else : ?>
+                                                    <img src="https://via.placeholder.com/200" alt="Placeholder Image" />
+                                                <?php endif; ?>
+                                            </div>
+                                            <div class="latest-post-content">
+                                                <div class="single-post-date"><?php echo get_the_date(); ?></div>
+                                                <div class="single-post-title">
+                                                    <h3><?php the_title(); ?></h3>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <?php
-                            endwhile;
-                            wp_reset_postdata();
-                        else :
-                            echo '<p>No posts found</p>';
-                        endif;
+                                    </a>
+                                <?php endwhile;
+                                wp_reset_postdata();
+                            else :
+                                echo '<p>No related posts found</p>';
+                            endif;
+                        } else {
+                            echo '<p>No related tags to match posts.</p>';
+                        }
                         ?>
-
                     </div>
                 </div>
                 
