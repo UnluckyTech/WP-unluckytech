@@ -27,8 +27,12 @@ class PostApi
 
     public function init()
     {
-        if ( ! session_id() ) {
-            session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            if (!headers_sent()) {
+                @session_start();
+            } else {
+                error_log('InvoiceNinja: Cannot start session, headers already sent.');
+            }
         }
 
         foreach ($this->post_types as $type)
