@@ -8,25 +8,25 @@
 ?>
 
 <?php
-session_start(); // Start session management
 
-// Fetch the necessary options from your WordPress settings
 $domain = get_option('znuny_api_domain');
 $user_login = get_option('znuny_user_login');
 $password = get_option('znuny_password');
-$session_id = session_id(); // Get current session ID
+$session_id = session_id(); // Will work fine if session was started via functions.php
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
-    // Check if CAPTCHA response exists
+
     if (empty($_POST['cf-turnstile-response'])) {
         $error_message = "Please complete the CAPTCHA.";
     } else {
         $captcha_response = sanitize_text_field($_POST['cf-turnstile-response']);
-        $_SESSION['captcha_response'] = $captcha_response; // Store response temporarily
+        $_SESSION['captcha_response'] = $captcha_response;
 
-        $captcha_secret = get_option('cfturnstile_secret'); // Secret key from Cloudflare Turnstile
-        
-        // Verify CAPTCHA
+        // Close session before making any HTTP calls
+        session_write_close();
+
+        $captcha_secret = get_option('cfturnstile_secret');
+
         $response = wp_remote_post('https://challenges.cloudflare.com/turnstile/v0/siteverify', array(
             'body' => array(
                 'secret' => $captcha_secret,
