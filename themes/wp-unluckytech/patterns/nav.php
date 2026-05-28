@@ -8,7 +8,7 @@
 ?>
 
 <div class="search-bar" id="searchBar">
-    <form method="get" class="filter-form" action="" onsubmit="return handleSubmit();">
+    <form method="get" class="filter-form" action="<?php echo esc_url(home_url('/')); ?>">
         <input type="text" id="searchInput" name="s" placeholder="Search projects..." />
         <div class="search-options">
             <div class="category-select">
