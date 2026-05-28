@@ -47,8 +47,7 @@ function wp_unluckytech_scripts() {
     }
 
     if (is_page('account')) {
-        wp_enqueue_style('wp-unluckytech-acc', get_template_directory_uri() . '/assets/css/account/account.css');
-        wp_enqueue_script('education-js', get_template_directory_uri() . '/assets/js/modules/education.js', array(), null, true);
+        wp_enqueue_style('wp-unluckytech-account', get_template_directory_uri() . '/assets/css/account/account.css');
     }
 
     if (is_page('docs')) {
@@ -62,10 +61,6 @@ function wp_unluckytech_scripts() {
     if (is_404()) {
         wp_enqueue_style('wp-unluckytech-404', get_template_directory_uri() . '/assets/css/extras/404.css');
         wp_enqueue_script('404-js', get_template_directory_uri() . '/assets/js/modules/404.js', array(), null, true);
-    }
-
-    if (is_page('account')) {
-        wp_enqueue_style('wp-unluckytech-account', get_template_directory_uri() . '/assets/css/account/account.css');
     }
 
     // Shared CSS/JS for multiple pages (conditionally loaded)

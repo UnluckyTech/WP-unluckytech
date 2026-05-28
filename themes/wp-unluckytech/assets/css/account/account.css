@@ -1,218 +1,240 @@
-/* Account Page Styles */
+/* ── Account Page ─────────────────────────────────────────────────────────── */
 
-.mobile-settings {
-    display: none;
+/* Layout */
+.account-content {
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    background: var(--color-card);
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
 }
 
+.account-display {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────────── */
+
 .account-sidebar {
-    flex: 0 0 20%;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 0 0 220px;
+    padding: 16px;
+    background: var(--color-sidebar-bg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    align-self: flex-start;
 }
 
 .account-sidebar ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .account-sidebar ul li {
-    margin-bottom: 10px;
+    margin-bottom: 4px;
+}
+
+.sidebar-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: var(--color-text-muted);
+    padding: 12px 10px 4px;
+    margin-bottom: 2px !important;
 }
 
 .account-sidebar ul li a {
-    text-decoration: none;
-    color: #333;
-    padding: 10px;
     display: block;
-    border-radius: 4px;
-    background: #fff;
-    transition: background-color 0.3s ease;
+    padding: 9px 12px;
+    text-decoration: none;
+    color: var(--color-text);
+    background: var(--color-card);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .account-sidebar ul li a:hover {
-    background-color: #2b2c30;
-    color: #ffffff;
+    background-color: var(--color-surface);
+    color: var(--color-white);
 }
 
-.account-sidebar ul li a, .invoice-portal button[type="submit"] {
-    font-size: 16px; 
+.account-sidebar ul li a.sidebar-link-active {
+    background-color: var(--color-surface-mid);
+    color: var(--color-white);
 }
 
+/* Invoice portal button matches sidebar links */
 .invoice-portal button[type="submit"] {
-    padding: 12px;
-    color: #333;
-    background: #fff;
-    transition: background-color 0.3s ease;
-    border: none;
-    cursor: pointer;
+    display: block;
     width: 100%;
-    text-align: left; 
-    font-size: 16px;
-    border-radius: 4px;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 15px;
+    color: var(--color-text);
+    background: var(--color-card);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .invoice-portal button[type="submit"]:hover {
-    background-color: #2b2c30;
-    color: #ffffff;
+    background-color: var(--color-surface);
+    color: var(--color-white);
 }
 
-
-.account-content {
-    padding: 20px;
-    display: flex;
-    gap: 20px;
-    background: #ffffff;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-
-}
-
-.account-display {
-    width: 100%;
-}
+/* ── Account sections ─────────────────────────────────────────────────────── */
 
 .account-section {
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    background: var(--color-card);
 }
 
-.account-section h2 {
-    margin-top: 0;
+.account-section h2 { margin-top: 0; }
+.account-section p  { margin-bottom: 20px; }
+
+.acc-title {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--color-text);
 }
 
-.account-section p {
+/* ── Profile picture ──────────────────────────────────────────────────────── */
+
+.profile-picture {
+    text-align: center;
     margin-bottom: 20px;
 }
+
+.profile-picture img {
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border: 3px solid var(--color-border);
+}
+
+/* ── Form groups ──────────────────────────────────────────────────────────── */
+
+.acc-group {
+    margin-bottom: 18px;
+}
+
+.acc-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.acc-group input[type="text"],
+.acc-group input[type="email"],
+.acc-group input[type="password"],
+.acc-group textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.acc-group input:focus,
+.acc-group textarea:focus {
+    border-color: var(--color-surface-mid);
+    box-shadow: 0 0 0 2px rgba(58, 59, 64, 0.15);
+    outline: none;
+}
+
+.acc-group textarea {
+    max-width: 100%;
+    resize: vertical;
+}
+
+.current-email {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 16px;
+}
+
+/* Password show/hide */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin: 0;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+.btn,
+.btn-save,
+.btn-submit,
+.test-email-button {
+    display: inline-block;
+    background-color: var(--color-surface-mid);
+    color: var(--color-white);
+    padding: 10px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn:hover,
+.btn-save:hover,
+.btn-submit:hover,
+.test-email-button:hover {
+    background-color: var(--color-surface-hover);
+    color: var(--color-accent);
+}
+
+/* ── Notifications toast ──────────────────────────────────────────────────── */
 
 .profile-saved-popup {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #2b2c30;
-    color: #008000;
-    padding: 15px 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--color-surface);
+    color: var(--color-accent);
+    padding: 14px 20px;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
     z-index: 1000;
-    font-size: 16px;
-}
-
-.profile-picture img {
-    border-radius: 50%; 
-    width: 100px;
-    height: 100px;
-    object-fit: cover; 
-    margin: 0 auto 10px auto;
-}
-
-.current-email {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-}
-input[type="password"]:focus {
-    border-color: #007bff; 
-    outline: none;
-}
-
-input[type="checkbox"] {
-    margin-left: 10px;
-}
-
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    margin-top: 5px;
-}
-
-.checkbox-container input[type="checkbox"] {
-    margin-right: 5px;
-}
-
-.test-email-button {
-    background-color: #3a3b40; 
-    color: #fff; 
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.test-email-button:hover,
-.btn-save:hover,
-.btn-submit:hover {
-    background-color: #555;
-    color: #f0a500; 
-    transition: color 0.3s;
-}
-
-.acc-group {
-    margin-bottom: 15px;
-}
-
-.acc-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
 }
 
-.acc-group input[type="text"],
-.acc-group input[type="email"],
-.acc-group input[type="password"] {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    width: 100%;
-    max-width: 500px;
-    box-sizing: border-box;
-}
-
-.acc-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1.1em;
-}
-
-.btn-save,
-.btn-submit {
-    background-color: #3a3b40;
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.account-mobile-container {
-    display: none;
-}
-
-.acc-title {
-    font-size: 32px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
+/* ── Tables (invoices, quotes, tickets) ───────────────────────────────────── */
 
 .table-container {
     overflow-x: auto;
 }
 
-.invoice-table, .quote-table {
+.invoice-table,
+.quote-table,
+.ut-tickets-table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
@@ -221,92 +243,288 @@ input[type="checkbox"] {
 .invoice-table th,
 .invoice-table td,
 .quote-table th,
-.quote-table td {
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-    white-space: nowrap; 
+.quote-table td,
+.ut-tickets-table th,
+.ut-tickets-table td {
+    padding: 13px 15px;
+    border-bottom: 1px solid #e9e9e9;
+    white-space: nowrap;
 }
 
 .invoice-table th,
-.quote-table th {
-    background-color: #f2f2f2;
-    font-weight: 600;
+.quote-table th,
+.ut-tickets-table th {
+    background-color: #f5f5f5;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: var(--color-text-muted);
 }
 
 .invoice-table td,
-.quote-table td {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+.quote-table td,
+.ut-tickets-table td {
+    font-size: 15px;
+    color: var(--color-text);
 }
 
-.view-button {
+.ut-detail-row td {
+    padding: 0 !important;
+    white-space: normal !important;
+}
+
+.view-button,
+.ut-view-ticket {
     display: inline-block;
-    padding: 10px 15px;
-    background-color: #3a3b40;
-    color: white;
-    border-radius: 5px;
+    padding: 7px 14px;
+    background-color: var(--color-surface-mid);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    cursor: pointer;
     text-decoration: none;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s, color 0.2s;
 }
 
-.view-button:hover {
-    background-color: #555;
-    color: #f0a500; 
-    transition: color 0.3s;
+.view-button:hover,
+.ut-view-ticket:hover {
+    background-color: var(--color-surface-hover);
+    color: var(--color-accent);
 }
+
+/* ── Ticket status badges ─────────────────────────────────────────────────── */
+
+.ut-status-badge,
+.ut-staff-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    line-height: 1.6;
+}
+
+.ut-status-open    { background: #d1eafe; color: #004fa3; }
+.ut-status-pending { background: #fef3c7; color: #7c5600; }
+.ut-status-closed  { background: #e9ecef; color: #495057; }
+
+.ut-staff-tag {
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(58, 59, 64, 0.12);
+    color: var(--color-surface-mid);
+    padding: 1px 7px;
+    border-radius: 8px;
+    text-transform: none;
+    letter-spacing: 0;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+/* ── Ticket thread (account + ticket page) ────────────────────────────────── */
+
+.ut-inline-thread {
+    padding: 20px 24px;
+    background: #f9f9f9;
+    border-top: 2px solid #e9e9e9;
+}
+
+.ut-thread {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.ut-thread-message {
+    background: var(--color-card);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    border-left: 3px solid var(--color-border);
+}
+
+.ut-thread-admin {
+    border-left-color: var(--color-surface-mid);
+}
+
+.ut-thread-user {
+    border-left-color: #d0d0d0;
+}
+
+.ut-thread-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.ut-thread-meta strong {
+    font-size: 14px;
+    color: var(--color-text);
+}
+
+.ut-thread-meta span {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+}
+
+.ut-thread-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-text);
+}
+
+/* ── Reply form inside account page ──────────────────────────────────────── */
+
+.ut-reply-form-wrap {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 18px;
+    margin-top: 4px;
+}
+
+.ut-reply-form-wrap h3,
+.ut-reply-form-wrap h4 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.ut-reply-feedback {
+    font-size: 13px;
+    margin-bottom: 8px;
+    min-height: 18px;
+    color: var(--color-text-muted);
+}
+
+.ut-reply-textarea {
+    width: 100%;
+    max-width: 600px;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.ut-reply-textarea:focus {
+    border-color: var(--color-surface-mid);
+    outline: none;
+}
+
+/* Ticket page extras */
+.ut-lookup-section h2 { margin-top: 0; }
+.ut-lookup-form { max-width: 480px; }
+
+.ut-ticket-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.ut-ticket-detail-header h2 { margin: 0 0 6px; }
+
+.ut-ticket-meta-line {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.ut-no-tickets {
+    color: var(--color-text-muted);
+    font-size: 15px;
+}
+
+.ut-ticket-closed-note {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: 16px;
+}
+
+.ut-lookup-again {
+    margin-top: 24px;
+    font-size: 14px;
+}
+
+.ut-lookup-again a {
+    color: var(--color-surface-mid);
+    text-decoration: none;
+}
+
+.ut-lookup-again a:hover {
+    color: var(--color-accent);
+}
+
+/* ── Mobile settings button ───────────────────────────────────────────────── */
+
+.mobile-settings {
+    display: none;
+}
+
+.mobile-settings button {
+    background-color: var(--color-surface);
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 12px 20px;
+    cursor: pointer;
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-sm);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
 
 @media (max-width: 768px) {
 
     .mobile-settings {
         display: flex;
-    }
-    
-    .mobile-settings button {
-        background-color: #333;
-        width: 100%;
-        font-size: 1.2rem;
-        font-weight: bold;
-        padding: 10px 20px; 
-        cursor: pointer; 
-        color: white;
-        border: none; 
-        border-radius: 5px; 
+        margin-bottom: 12px;
     }
 
     .account-content {
         flex-direction: column;
     }
 
+    /* Slide-in sidebar drawer */
     .account-sidebar {
         position: fixed;
-        top: 50%;
-        left: 50%;
-        width: 70%;
-        height: 50%;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-        opacity: 0;
-        transition: transform 0.3s ease, opacity 0.3s ease;
+        top: 0;
+        left: 0;
+        width: 80%;
+        max-width: 300px;
+        height: 100%;
         overflow-y: auto;
-        display: none;
+        background: var(--color-card);
+        border-radius: 0;
+        box-shadow: 4px 0 16px rgba(0, 0, 0, 0.25);
+        z-index: 1000;
+        transform: translateX(-110%);
+        transition: transform 0.3s ease;
+        padding: 24px 16px;
     }
 
     .account-sidebar.sidebar-active {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-        display: block;
+        transform: translateX(0);
     }
 
     .overlay {
         display: none;
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.6);
         z-index: 999;
     }
 
@@ -315,21 +533,28 @@ input[type="checkbox"] {
     }
 
     .acc-title {
-        font-size: 24px;
-        margin-bottom: 15px;
+        font-size: 22px;
+        margin-bottom: 16px;
     }
 
     .invoice-table td,
-    .quote-table td {
-        font-size: 14px;
-        padding: 10px; 
+    .quote-table td,
+    .ut-tickets-table td {
+        font-size: 13px;
+        padding: 10px;
     }
 
-    .view-button {
-        padding: 8px 12px; 
-        font-size: 12px; 
-        width: 100%;
-        box-sizing: border-box; 
+    .view-button,
+    .ut-view-ticket {
+        padding: 6px 10px;
+        font-size: 12px;
     }
 
+    .ut-ticket-detail-header {
+        flex-direction: column;
+    }
+
+    .ut-inline-thread {
+        padding: 14px;
+    }
 }

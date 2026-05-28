@@ -9,126 +9,96 @@
 
 <?php
 
-$domain = get_option('znuny_api_domain');
-$user_login = get_option('znuny_user_login');
-$password = get_option('znuny_password');
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
 
     if (!wp_verify_nonce($_POST['_wpnonce'] ?? '', 'contact_form_submit')) {
         $error_message = "Security check failed. Please try again.";
+
     } elseif (empty($_POST['cf-turnstile-response'])) {
         $error_message = "Please complete the CAPTCHA.";
+
     } else {
         $captcha_response = sanitize_text_field($_POST['cf-turnstile-response']);
+        $captcha_secret   = get_option('cfturnstile_secret');
 
-        $captcha_secret = get_option('cfturnstile_secret');
-
-        $response = wp_remote_post('https://challenges.cloudflare.com/turnstile/v0/siteverify', array(
-            'body' => array(
-                'secret' => $captcha_secret,
+        $captcha_verify = wp_remote_post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
+            'body' => [
+                'secret'   => $captcha_secret,
                 'response' => $captcha_response,
                 'remoteip' => $_SERVER['REMOTE_ADDR'],
-            )
-        ));
+            ],
+        ]);
 
-        if (is_wp_error($response)) {
+        if (is_wp_error($captcha_verify)) {
             $error_message = "CAPTCHA verification failed due to a network error. Please try again.";
+
         } else {
-            $response_body = wp_remote_retrieve_body($response);
-            $captcha_result = json_decode($response_body, true);
+            $captcha_result = json_decode(wp_remote_retrieve_body($captcha_verify), true);
 
-            if (!isset($captcha_result['success']) || !$captcha_result['success']) {
+            if (empty($captcha_result['success'])) {
                 $error_message = "CAPTCHA verification failed. Please try again.";
+
             } else {
-                // Process form data if CAPTCHA passed
-                $firstname = sanitize_text_field($_POST['firstname']);
-                $lastname = sanitize_text_field($_POST['lastname']);
-                $custemail = sanitize_email($_POST['custemail']);
-                $custphone = !empty($_POST['custphone']) ? sanitize_text_field($_POST['custphone']) : 'N/A';
-                $service = sanitize_text_field($_POST['service']);
+                $firstname    = sanitize_text_field($_POST['firstname']);
+                $lastname     = sanitize_text_field($_POST['lastname']);
+                $custemail    = sanitize_email($_POST['custemail']);
+                $custphone    = !empty($_POST['custphone']) ? sanitize_text_field($_POST['custphone']) : '';
+                $service      = sanitize_text_field($_POST['service']);
                 $inquiry_type = sanitize_text_field($_POST['inquiry_type']);
-                $message = sanitize_textarea_field($_POST['message']);
+                $message      = sanitize_textarea_field($_POST['message']);
+                $full_name    = $firstname . ' ' . $lastname;
+                $subject      = 'New Inquiry from ' . $full_name;
 
-                $to = get_option('admin_email');
-                $subject = 'New Inquiry from ' . $firstname . ' ' . $lastname;
-                $headers = array('Content-Type: text/html; charset=UTF-8');
-                $body = "<p>You have received a new message from your contact form:</p>";
-                $body .= "<p><strong>Name:</strong> " . esc_html($firstname) . " " . esc_html($lastname) . "</p>";
-                $body .= "<p><strong>Email:</strong> " . esc_html($custemail) . "</p>";
-                $body .= "<p><strong>Phone (optional):</strong> " . esc_html($custphone) . "</p>";
-                $body .= "<p><strong>Service:</strong> " . esc_html($service) . "</p>";
-                $body .= "<p><strong>Inquiry Type:</strong> " . esc_html($inquiry_type) . "</p>";
-                $body .= "<p><strong>Message:</strong> " . nl2br(esc_html($message)) . "</p>";
+                // Notify admin
+                $admin_body  = '<p>New contact form submission:</p>';
+                $admin_body .= '<p><strong>Name:</strong> '         . esc_html($full_name) . '</p>';
+                $admin_body .= '<p><strong>Email:</strong> '        . esc_html($custemail) . '</p>';
+                $admin_body .= '<p><strong>Phone:</strong> '        . esc_html($custphone ?: 'N/A') . '</p>';
+                $admin_body .= '<p><strong>Service:</strong> '      . esc_html($service) . '</p>';
+                $admin_body .= '<p><strong>Inquiry Type:</strong> ' . esc_html($inquiry_type) . '</p>';
+                $admin_body .= '<p><strong>Message:</strong><br>'   . nl2br(esc_html($message)) . '</p>';
 
-                // Send email
-                if (wp_mail($to, $subject, $body, $headers)) {
-                    // Authenticate and get Session ID
-                    $session_response = wp_remote_post($domain . '/znuny/nph-genericinterface.pl/Webservice/unluckytech/Session', array(
-                        'body' => json_encode(array(
-                            'UserLogin' => $user_login,
-                            'Password'  => $password,
-                        )),
-                        'headers' => array(
-                            'Content-Type' => 'application/json',
-                        ),
-                    ));
+                wp_mail(
+                    get_option('admin_email'),
+                    $subject,
+                    $admin_body,
+                    ['Content-Type: text/html; charset=UTF-8']
+                );
 
-                    if (is_wp_error($session_response)) {
-                        $error_message = 'Error retrieving session ID: ' . esc_html($session_response->get_error_message());
-                    } else {
-                        $session_data = json_decode(wp_remote_retrieve_body($session_response), true);
-                        if (!isset($session_data['SessionID'])) {
-                            $error_message = 'Failed to retrieve Session ID.';
-                        } else {
-                            $session_id = $session_data['SessionID'];
+                // Create ticket
+                $ticket_number = null;
+                if (class_exists('UT_Ticket_Handler')) {
+                    $handler = new UT_Ticket_Handler();
+                    $ticket_number = $handler->create_ticket([
+                        'user_id'      => is_user_logged_in() ? get_current_user_id() : 0,
+                        'name'         => $full_name,
+                        'email'        => $custemail,
+                        'phone'        => $custphone,
+                        'service'      => $service,
+                        'inquiry_type' => $inquiry_type,
+                        'subject'      => $subject,
+                        'message'      => $message,
+                    ]);
+                }
 
-                            // Create ticket data
-                            $ticket_data = array(
-                                'Ticket' => array(
-                                    'Title'        => 'Inquiry from ' . $firstname . ' ' . $lastname,
-                                    'Queue'        => $service, // Example queue, adjust accordingly
-                                    'StateID'      => 1, // Adjust as necessary
-                                    'PriorityID'   => 3, // Adjust as necessary
-                                    'CustomerUser' => $custemail,
-                                    'Type'         => $inquiry_type, // Set the Type based on the selected service
-                                ),
-                                'Article' => array(
-                                    'CommunicationChannel' => 'Email',
-                                    'Subject'              => 'New Inquiry from ' . $firstname . ' ' . $lastname,
-                                    'Body'                 => nl2br(esc_html($message)),
-                                    'ContentType'          => '',
-                                    'Charset'              => 'utf-8',
-                                    'MimeType'             => 'text/plain',
-                                ),
-                            );
+                // Confirm to user
+                if ($ticket_number) {
+                    $site = get_bloginfo('name');
+                    $confirm_body  = '<p>Hi ' . esc_html($firstname) . ',</p>';
+                    $confirm_body .= '<p>Thanks for reaching out! Your support ticket has been created.</p>';
+                    $confirm_body .= '<p><strong>Ticket #:</strong> ' . esc_html($ticket_number) . '</p>';
+                    $confirm_body .= '<p>You can check the status of your ticket from your account page. We\'ll reply as soon as possible.</p>';
+                    $confirm_body .= '<p>— ' . esc_html($site) . '</p>';
+                    wp_mail(
+                        $custemail,
+                        '[' . $site . '] Ticket #' . $ticket_number . ' received',
+                        $confirm_body,
+                        ['Content-Type: text/html; charset=UTF-8']
+                    );
 
-                            // Create ticket API request
-                            $ticket_response = wp_remote_post($domain . '/znuny/nph-genericinterface.pl/Webservice/unluckytech/Ticket', array(
-                                'body'    => json_encode(array(
-                                    'SessionID' => $session_id,
-                                    'Ticket'    => $ticket_data['Ticket'],
-                                    'Article'   => $ticket_data['Article'],
-                                )),
-                                'headers' => array(
-                                    'Content-Type' => 'application/json',
-                                ),
-                            ));
-
-                            if (is_wp_error($ticket_response)) {
-                                $error_message = "Your message has been sent, but there was an issue generating a ticket. Please try again later.";
-                            } else {
-                                $ticket_data = json_decode(wp_remote_retrieve_body($ticket_response), true);
-                                if (isset($ticket_data['TicketNumber'])) {
-                                    $success_message = "Your message has been sent successfully, and a ticket has been generated! Ticket Number: " . esc_html($ticket_data['TicketNumber']);
-                                } else {
-                                    $error_message = "Your message has been sent, but there was an issue generating a ticket. Please try again later.";
-                                }
-                            }
-                        }
-                    }
+                    $success_message = 'Your message has been sent! Your ticket number is <strong>' . esc_html($ticket_number) . '</strong>. Check your email for a confirmation.';
                 } else {
-                    $error_message = "There was an issue sending your message. Please try again later.";
+                    $success_message = 'Your message has been sent! We\'ll get back to you soon.';
                 }
             }
         }
@@ -140,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
 <div id="contact" class="tab active">
     <?php if (!empty($success_message)): ?>
         <div class="contact-success">
-            <p><?php echo esc_html($success_message); ?></p>
+            <p><?php echo $success_message; ?></p>
         </div>
     <?php elseif (!empty($error_message)): ?>
         <div class="contact-error">
@@ -151,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
     <form method="post" action="<?php echo esc_url(get_permalink()); ?>" class="contact-form">
         <input type="hidden" name="contact_form" value="1">
         <?php wp_nonce_field('contact_form_submit'); ?>
-        
+
         <div class="contact-group two-column">
             <div class="half-width">
                 <label for="firstname">First Name</label>
@@ -202,7 +172,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
             <textarea id="message" name="message" required></textarea>
         </div>
 
-        <!-- Cloudflare Turnstile -->
         <div class="captcha-container">
             <div class="cf-turnstile" data-sitekey="<?php echo esc_attr(get_option('cfturnstile_key')); ?>"></div>
         </div>
@@ -211,18 +180,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
     </form>
 </div>
 
-
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const turnstileResponseInput = document.getElementById('cf-turnstile-response');
-    const submitButton = document.getElementById('contact-button');
-
-    // Callback function when CAPTCHA is completed
-    window.onCaptchaCompleted = function(token) {
-        turnstileResponseInput.value = token;
-        submitButton.disabled = false; // Enable the submit button
-    };
-});
-</script>

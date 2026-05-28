@@ -1,3 +1,20 @@
+:root {
+    --color-bg:           #0f0f0f;
+    --color-surface:      #2b2c30;
+    --color-surface-mid:  #3a3b40;
+    --color-surface-hover:#555555;
+    --color-accent:       #f0a500;
+    --color-text:         #333333;
+    --color-text-muted:   #666666;
+    --color-white:        #ffffff;
+    --color-border:       #cccccc;
+    --color-card:         #ffffff;
+    --color-sidebar-bg:   #f9f9f9;
+    --radius-sm:          4px;
+    --radius-md:          8px;
+    --shadow-card:        0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .particle-network-animation {
     position: fixed; 
     top: 0;
