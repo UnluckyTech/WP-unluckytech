@@ -116,23 +116,23 @@ function unluckytech_track_failed_logins($username) {
 add_filter('wp_authenticate_user', 'custom_check_login_attempts', 99, 2);
 function custom_check_login_attempts($user, $password) {
     if (is_wp_error($user)) {
-        return $user; // Return error if user is invalid
-    }
-
-    if (current_user_can('administrator', $user->ID)) {
         return $user;
     }
 
-    $user_id = $user->ID;
-
-    $attempts = intval(get_user_meta($user_id, '_failed_login_attempts', true));
+    $user_id      = $user->ID;
+    $attempts     = intval(get_user_meta($user_id, '_failed_login_attempts', true));
     $last_attempt = get_user_meta($user_id, '_last_failed_login', true);
-
     $lockout_time = custom_calculate_lockout_time($attempts);
 
     if (!empty($last_attempt) && (time() - $last_attempt) < $lockout_time) {
         $remaining_time = $lockout_time - (time() - $last_attempt);
-        return new WP_Error('too_many_attempts', "Too many login attempts. Please try again in " . human_time_diff(time(), time() + $remaining_time) . ".");
+        return new WP_Error('too_many_attempts', 'Too many login attempts. Please try again in ' . human_time_diff(time(), time() + $remaining_time) . '.');
+    }
+
+    // Lockout window has passed — reset the counter so it doesn't accumulate forever
+    if (!empty($last_attempt) && $lockout_time > 0) {
+        delete_user_meta($user_id, '_failed_login_attempts');
+        delete_user_meta($user_id, '_last_failed_login');
     }
 
     return $user;
