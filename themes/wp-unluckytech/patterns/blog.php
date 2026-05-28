@@ -13,61 +13,66 @@
         <div class="main-banner-overlay">
             <h1 class="main-title">All Posts</h1>
         </div>
-    </div> 
+    </div>
 
     <div class="blog-inner-container">
 
         <div class="blog-top">
-            <!-- Sort Form -->
             <form method="get" class="sort-form" action="">
-                <select name="sort" id="sort-by">
-                    <option value="date_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_desc') ? 'selected' : ''; ?>>Date: descending</option>
-                    <option value="date_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_asc') ? 'selected' : ''; ?>>Date: ascending</option>
-                    <option value="title_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_asc') ? 'selected' : ''; ?>>Title: ascending</option>
-                    <option value="title_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_desc') ? 'selected' : ''; ?>>Title: descending</option>
-                </select>
 
-                <label for="category" class="sr-only">Category</label>
-                <select name="category" id="category">
-                    <option value="all"><?php _e('All Categories', 'textdomain'); ?></option>
-                    <?php
-                    $categories = get_categories();
-                    foreach ($categories as $category) {
-                        echo '<option value="' . esc_attr($category->slug) . '"' . (isset($_GET['category']) && $_GET['category'] == $category->slug ? ' selected' : '') . '>' . esc_html($category->name) . '</option>';
-                    }
-                    ?>
-                </select>
+                <div class="filter-group">
+                    <label for="sort-by">Sort</label>
+                    <select name="sort" id="sort-by">
+                        <option value="date_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_desc') ? 'selected' : ''; ?>>Newest</option>
+                        <option value="date_asc"  <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_asc')  ? 'selected' : ''; ?>>Oldest</option>
+                        <option value="title_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_asc') ? 'selected' : ''; ?>>A → Z</option>
+                        <option value="title_desc"<?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_desc')? 'selected' : ''; ?>>Z → A</option>
+                    </select>
+                </div>
 
-                <label for="tag" class="sr-only">Tag</label>
-                <select name="tag" id="tag">
-                    <option value="all"><?php _e('All Tags', 'textdomain'); ?></option>
-                    <?php
-                    $tags = get_tags();
-                    foreach ($tags as $tag) {
-                        echo '<option value="' . esc_attr($tag->slug) . '"' . (isset($_GET['tag']) && $_GET['tag'] == $tag->slug ? ' selected' : '') . '>' . esc_html($tag->name) . '</option>';
-                    }
-                    ?>
-                </select>
+                <div class="filter-group">
+                    <label for="category">Category</label>
+                    <select name="category" id="category">
+                        <option value="all">All</option>
+                        <?php foreach (get_categories() as $cat): ?>
+                            <option value="<?php echo esc_attr($cat->slug); ?>"
+                                <?php echo (isset($_GET['category']) && $_GET['category'] == $cat->slug) ? 'selected' : ''; ?>>
+                                <?php echo esc_html($cat->name); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="tag">Tag</label>
+                    <select name="tag" id="tag">
+                        <option value="all">All</option>
+                        <?php foreach (get_tags() as $tag): ?>
+                            <option value="<?php echo esc_attr($tag->slug); ?>"
+                                <?php echo (isset($_GET['tag']) && $_GET['tag'] == $tag->slug) ? 'selected' : ''; ?>>
+                                <?php echo esc_html($tag->name); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
                 <button type="submit" class="sort-button">Apply</button>
+
             </form>
         </div>
 
         <?php
-        // Correct pagination variable setup
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-        $sort = isset($_GET['sort']) ? $_GET['sort'] : 'date_desc';
-        $category = isset($_GET['category']) ? $_GET['category'] : '';
-        $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
+        $paged        = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        $sort         = isset($_GET['sort']) ? $_GET['sort'] : 'date_desc';
+        $category     = isset($_GET['category']) ? $_GET['category'] : '';
+        $tag          = isset($_GET['tag']) ? $_GET['tag'] : '';
         $posts_per_page = isset($_GET['posts_per_page']) && $_GET['posts_per_page'] != 'all' ? intval($_GET['posts_per_page']) : 5;
 
-        // Adjust query arguments for WP_Query
         $query_args = array(
             'posts_per_page' => $posts_per_page,
-            'paged' => $paged,
+            'paged'          => $paged,
         );
 
-        // Filter by category and tag
         if ($category != '' && $category != 'all') {
             $query_args['category_name'] = $category;
         }
@@ -76,30 +81,16 @@
             $query_args['tag'] = $tag;
         }
 
-        // Sorting by date or title
         switch ($sort) {
-            case 'title_asc':
-                $query_args['orderby'] = 'title';
-                $query_args['order'] = 'ASC';
-                break;
-            case 'title_desc':
-                $query_args['orderby'] = 'title';
-                $query_args['order'] = 'DESC';
-                break;
-            case 'date_asc':
-                $query_args['orderby'] = 'date';
-                $query_args['order'] = 'ASC';
-                break;
-            case 'date_desc':
-            default:
-                $query_args['orderby'] = 'date';
-                $query_args['order'] = 'DESC';
-                break;
+            case 'title_asc':  $query_args['orderby'] = 'title'; $query_args['order'] = 'ASC';  break;
+            case 'title_desc': $query_args['orderby'] = 'title'; $query_args['order'] = 'DESC'; break;
+            case 'date_asc':   $query_args['orderby'] = 'date';  $query_args['order'] = 'ASC';  break;
+            default:           $query_args['orderby'] = 'date';  $query_args['order'] = 'DESC'; break;
         }
 
-        // Create a new custom query
         $custom_query = new WP_Query($query_args);
         ?>
+
         <?php if ($custom_query->have_posts()) : ?>
             <div class="blog-posts">
                 <?php while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
@@ -119,7 +110,7 @@
                                     <div class="blog-post-title">
                                         <h2><?php the_title(); ?></h2>
                                     </div>
-                                    <div class="title-divider"></div> <!-- Divider element -->
+                                    <div class="title-divider"></div>
                                 </div>
                                 <div class="blog-post-excerpt">
                                     <?php the_excerpt(); ?>
@@ -130,72 +121,64 @@
                             <div class="meta-inner-container">
                                 <div class="blog-post-category">
                                     <?php
-                                    $category = get_the_category();
-                                    if (!empty($category)) {
-                                        echo esc_html($category[0]->name);
-                                    }
+                                    $cats = get_the_category();
+                                    if (!empty($cats)) echo esc_html($cats[0]->name);
                                     ?>
                                 </div>
-                                <div class="meta-divider"></div> <!-- Divider after category -->
+                                <div class="meta-divider"></div>
                                 <div class="blog-post-tags">
                                     <?php
-                                    $tags = get_the_tags();
-                                    if ($tags) {
-                                        foreach ($tags as $tag) {
-                                            echo '<a href="' . esc_url(get_tag_link($tag->term_id)) . '">' . esc_html($tag->name) . '</a>';
+                                    $post_tags = get_the_tags();
+                                    if ($post_tags) {
+                                        foreach ($post_tags as $t) {
+                                            echo '<a href="' . esc_url(get_tag_link($t->term_id)) . '">' . esc_html($t->name) . '</a>';
                                         }
                                     }
                                     ?>
                                 </div>
-                                <div class="meta-divider"></div> <!-- Divider before date -->
-                                <div class="blog-post-date">
-                                    <?php echo get_the_date(); ?>
-                                </div>
+                                <div class="meta-divider"></div>
+                                <div class="blog-post-date"><?php echo get_the_date(); ?></div>
                             </div>
-                        </div><!-- .blog-post-meta-content -->
+                        </div>
                     </div>
-                    <?php
-                endwhile;
-                ?>
-            </div><!-- .blog-posts -->
-            <div class="pagination-container"> <!-- New container for pagination and posts per page -->
+                <?php endwhile; ?>
+            </div>
+
+            <div class="pagination-container">
                 <div class="pagination">
-                    <?php
-                    // Pagination
-                    echo paginate_links(array(
-                        'total' => $custom_query->max_num_pages,
-                        'current' => $paged,
-                        'prev_text' => __('Previous', 'textdomain'),
-                        'next_text' => __('Next', 'textdomain'),
-                        'add_args' => array(
-                            'sort' => isset($_GET['sort']) ? $_GET['sort'] : null,
-                            'category' => isset($_GET['category']) ? $_GET['category'] : null,
-                            'tag' => isset($_GET['tag']) ? $_GET['tag'] : null,
-                            'posts_per_page' => isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : 5,
+                    <?php echo paginate_links(array(
+                        'total'     => $custom_query->max_num_pages,
+                        'current'   => $paged,
+                        'prev_text' => '&larr; Previous',
+                        'next_text' => 'Next &rarr;',
+                        'add_args'  => array(
+                            'sort'          => $sort ?: null,
+                            'category'      => $category ?: null,
+                            'tag'           => $tag ?: null,
+                            'posts_per_page'=> isset($_GET['posts_per_page']) ? $_GET['posts_per_page'] : null,
                         ),
-                    ));
-                    ?>
+                    )); ?>
                 </div>
-                <!-- Posts Per Page Dropdown -->
                 <div class="posts-per-page">
                     <form method="get" class="posts-per-page-form" action="">
-                        <label for="posts-per-page">Posts per page:</label>
+                        <label for="posts-per-page">Per page:</label>
                         <select name="posts_per_page" id="posts-per-page" onchange="this.form.submit()">
-                            <option value="5" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == '5') ? 'selected' : ''; ?>>5</option>
-                            <option value="10" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == '10') ? 'selected' : ''; ?>>10</option>
-                            <option value="20" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == '20') ? 'selected' : ''; ?>>20</option>
-                            <option value="50" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == '50') ? 'selected' : ''; ?>>50</option>
-                            <option value="all" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == 'all') ? 'selected' : ''; ?>>All</option>
+                            <?php foreach ([5, 10, 20, 50] as $n): ?>
+                                <option value="<?php echo $n; ?>" <?php echo (isset($_GET['posts_per_page']) && $_GET['posts_per_page'] == $n) ? 'selected' : ''; ?>><?php echo $n; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </form>
                 </div>
-            </div> <!-- End of pagination-container -->
+            </div>
+
         <?php else : ?>
-            <p><?php _e('No posts found.', 'textdomain'); ?></p>
+            <div class="blog-no-results">
+                <i class="fas fa-search"></i>
+                <p>No posts found. Try adjusting your filters.</p>
+            </div>
         <?php endif; ?>
-        <?php
-        // Reset post data
-        wp_reset_postdata();
-        ?>
-    </div><!-- .blog-inner-container -->
-</div><!-- .blog-wrapper -->
+
+        <?php wp_reset_postdata(); ?>
+
+    </div>
+</div>

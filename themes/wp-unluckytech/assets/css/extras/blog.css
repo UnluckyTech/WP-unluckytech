@@ -2,76 +2,105 @@
 
 /* ── Filter bar ───────────────────────────────────────────────────────────── */
 
-.blog-top {
-    background: #2f3033;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 8px 0;
-}
-
 .blog-inner-container {
     width: 100%;
     max-width: 1200px;
 }
 
-.sort-form {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    gap: 12px;
-    flex-wrap: wrap;
-    padding: 0 12px;
+.blog-top {
+    background: #1a1b1f;
+    border-bottom: 1px solid #2a2b30;
+    padding: 0;
 }
 
-.sort-form label,
-.posts-per-page-form label {
-    color: #d1d1d1;
-    font-weight: 600;
-    font-size: 14px;
+.sort-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    padding: 14px 16px;
+    flex-wrap: wrap;
+}
+
+/* Labelled filter group */
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.filter-group label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: #555;
     white-space: nowrap;
 }
 
 .sort-form select,
 .posts-per-page-form select {
-    padding: 5px 10px;
-    border: 1px solid #555;
-    background-color: #333;
-    color: #d1d1d1;
-    border-radius: 5px;
-    font-size: 14px;
+    padding: 7px 10px;
+    border: 1px solid #2e2f35;
+    background-color: #111214;
+    color: #cccccc;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
     outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    transition: border-color 0.2s;
 }
 
 .sort-form select:focus,
 .posts-per-page-form select:focus {
-    border-color: #888;
-    box-shadow: 0 0 4px rgba(136, 136, 136, 0.5);
+    border-color: #555;
 }
 
 .sort-form select option,
 .posts-per-page-form select option {
-    background-color: #333;
-    color: #d1d1d1;
+    background-color: #1a1b1f;
+    color: #cccccc;
 }
 
 .sort-button {
-    background-color: #3a3b40;
-    color: #fff;
-    padding: 6px 14px;
-    border-radius: 5px;
-    border: 1px solid #555;
-    font-size: 14px;
+    padding: 7px 20px;
+    background-color: #2b2c30;
+    color: #ffffff;
+    border: 1px solid #3a3b40;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     cursor: pointer;
     white-space: nowrap;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, border-color 0.2s;
+    align-self: flex-end;
 }
 
 .sort-button:hover {
-    background-color: #555;
-    color: #f0a500;
+    background-color: #3a3b40;
+    border-color: #555;
+}
+
+/* Empty state */
+.blog-no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: #555;
+}
+
+.blog-no-results i {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 16px;
+    opacity: 0.4;
+}
+
+.blog-no-results p {
+    font-size: 16px;
+    margin: 0;
 }
 
 /* ── Post list ────────────────────────────────────────────────────────────── */
@@ -316,19 +345,39 @@
 
 @media (max-width: 768px) {
 
-    .sort-form,
+    .sort-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+
+    .filter-group select,
+    .sort-form select {
+        width: 100%;
+    }
+
+    .sort-button {
+        width: 100%;
+        padding: 10px;
+        align-self: stretch;
+    }
+
     .blog-post-meta-content {
-        display: none !important;
+        display: none;
     }
 
     .blog-posts {
         gap: 10px;
     }
 
-    /* Card goes full-width, height flows naturally */
     .blog-post-card {
         min-height: 110px;
-        transform: none !important; /* disable hover scale on touch */
+        transform: none !important;
     }
 
     .blog-post-image {
@@ -336,10 +385,8 @@
         flex-shrink: 0;
     }
 
-    /* Content fills the full card width when meta is hidden */
     .blog-post-content {
         padding: 12px;
-        padding-right: 12px; /* no meta panel */
     }
 
     .blog-post-title h2 {
@@ -348,7 +395,7 @@
     }
 
     .blog-post-excerpt {
-        display: none; /* tight cards on mobile — title is enough */
+        display: none;
     }
 
     .pagination-container {

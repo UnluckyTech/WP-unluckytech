@@ -71,37 +71,44 @@ if (isset($_GET['s'])) {
         <div class="blog-inner-container">
 
             <div class="blog-top">
-                <!-- Sort Form -->
                 <form method="get" class="sort-form" action="">
                     <input type="hidden" name="s" value="<?php echo esc_attr($search_query); ?>">
-                    <select name="sort" id="sort-by">
-                        <option value="date_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_desc') ? 'selected' : ''; ?>>Date: descending</option>
-                        <option value="date_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_asc') ? 'selected' : ''; ?>>Date: ascending</option>
-                        <option value="title_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_asc') ? 'selected' : ''; ?>>Title: ascending</option>
-                        <option value="title_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_desc') ? 'selected' : ''; ?>>Title: descending</option>
-                    </select>
 
-                    <label for="category" class="sr-only">Category</label>
-                    <select name="category" id="category">
-                        <option value="all"><?php _e('All Categories', 'textdomain'); ?></option>
-                        <?php
-                        $categories = get_categories();
-                        foreach ($categories as $category) {
-                            echo '<option value="' . esc_attr($category->slug) . '"' . (isset($_GET['category']) && $_GET['category'] == $category->slug ? ' selected' : '') . '>' . esc_html($category->name) . '</option>';
-                        }
-                        ?>
-                    </select>
+                    <div class="filter-group">
+                        <label for="sort-by">Sort</label>
+                        <select name="sort" id="sort-by">
+                            <option value="date_desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_desc') ? 'selected' : ''; ?>>Newest</option>
+                            <option value="date_asc"  <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'date_asc')  ? 'selected' : ''; ?>>Oldest</option>
+                            <option value="title_asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_asc') ? 'selected' : ''; ?>>A → Z</option>
+                            <option value="title_desc"<?php echo (isset($_GET['sort']) && $_GET['sort'] == 'title_desc')? 'selected' : ''; ?>>Z → A</option>
+                        </select>
+                    </div>
 
-                    <label for="tag" class="sr-only">Tag</label>
-                    <select name="tag" id="tag">
-                        <option value="all"><?php _e('All Tags', 'textdomain'); ?></option>
-                        <?php
-                        $tags = get_tags();
-                        foreach ($tags as $tag) {
-                            echo '<option value="' . esc_attr($tag->slug) . '"' . (isset($_GET['tag']) && $_GET['tag'] == $tag->slug ? ' selected' : '') . '>' . esc_html($tag->name) . '</option>';
-                        }
-                        ?>
-                    </select>
+                    <div class="filter-group">
+                        <label for="category">Category</label>
+                        <select name="category" id="category">
+                            <option value="all">All</option>
+                            <?php foreach (get_categories() as $cat): ?>
+                                <option value="<?php echo esc_attr($cat->slug); ?>"
+                                    <?php echo (isset($_GET['category']) && $_GET['category'] == $cat->slug) ? 'selected' : ''; ?>>
+                                    <?php echo esc_html($cat->name); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="tag">Tag</label>
+                        <select name="tag" id="tag">
+                            <option value="all">All</option>
+                            <?php foreach (get_tags() as $tag): ?>
+                                <option value="<?php echo esc_attr($tag->slug); ?>"
+                                    <?php echo (isset($_GET['tag']) && $_GET['tag'] == $tag->slug) ? 'selected' : ''; ?>>
+                                    <?php echo esc_html($tag->name); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
 
                     <button type="submit" class="sort-button">Apply</button>
                 </form>
