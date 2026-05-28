@@ -1,13 +1,12 @@
 /* ── Account Page ─────────────────────────────────────────────────────────── */
 
-/* Layout */
 .account-content {
     padding: 20px;
     display: flex;
     gap: 20px;
-    background: var(--color-card);
-    border-bottom-left-radius: var(--radius-md);
-    border-bottom-right-radius: var(--radius-md);
+    background: #ffffff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .account-display {
@@ -20,12 +19,12 @@
 .account-sidebar {
     flex: 0 0 220px;
     padding: 16px;
-    background: var(--color-sidebar-bg);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-card);
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     align-self: flex-start;
     position: sticky;
-    top: 120px; /* clears fixed nav */
+    top: 120px;
 }
 
 .account-sidebar ul {
@@ -43,7 +42,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .8px;
-    color: var(--color-text-muted);
+    color: #666666;
     padding: 12px 10px 4px;
     margin-bottom: 2px !important;
 }
@@ -52,50 +51,49 @@
     display: block;
     padding: 9px 12px;
     text-decoration: none;
-    color: var(--color-text);
-    background: var(--color-card);
-    border-radius: var(--radius-sm);
+    color: #333333;
+    background: #ffffff;
+    border-radius: 4px;
     font-size: 15px;
     transition: background-color 0.2s, color 0.2s;
 }
 
 .account-sidebar ul li a:hover {
-    background-color: var(--color-surface);
-    color: var(--color-white);
+    background-color: #2b2c30;
+    color: #ffffff;
 }
 
 .account-sidebar ul li a.sidebar-link-active {
-    background-color: var(--color-surface-mid);
-    color: var(--color-white);
+    background-color: #3a3b40;
+    color: #ffffff;
 }
 
-/* Invoice portal button matches sidebar links */
 .invoice-portal button[type="submit"] {
     display: block;
     width: 100%;
     padding: 9px 12px;
     text-align: left;
     font-size: 15px;
-    color: var(--color-text);
-    background: var(--color-card);
+    color: #333333;
+    background: #ffffff;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
 }
 
 .invoice-portal button[type="submit"]:hover {
-    background-color: var(--color-surface);
-    color: var(--color-white);
+    background-color: #2b2c30;
+    color: #ffffff;
 }
 
 /* ── Account sections ─────────────────────────────────────────────────────── */
 
 .account-section {
     padding: 24px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-card);
-    background: var(--color-card);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
 }
 
 .account-section h2 { margin-top: 0; }
@@ -106,7 +104,7 @@
     font-weight: 700;
     text-align: center;
     margin-bottom: 24px;
-    color: var(--color-text);
+    color: #333333;
 }
 
 /* ── Profile picture ──────────────────────────────────────────────────────── */
@@ -126,22 +124,22 @@
     width: 90px;
     height: 90px;
     object-fit: cover;
-    border: 3px solid var(--color-border);
+    border: 3px solid #cccccc;
 }
 
 .profile-picture a {
     font-size: 13px;
-    color: var(--color-text-muted);
+    color: #666666;
     text-decoration: none;
     padding: 4px 12px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    border: 1px solid #cccccc;
+    border-radius: 4px;
     transition: border-color 0.2s, color 0.2s;
 }
 
 .profile-picture a:hover {
-    border-color: var(--color-surface-mid);
-    color: var(--color-surface-mid);
+    border-color: #3a3b40;
+    color: #3a3b40;
 }
 
 /* ── Form groups ──────────────────────────────────────────────────────────── */
@@ -155,7 +153,7 @@
     margin-bottom: 6px;
     font-size: 14px;
     font-weight: 600;
-    color: var(--color-text);
+    color: #333333;
 }
 
 .acc-group input[type="text"],
@@ -165,15 +163,15 @@
     width: 100%;
     padding: 10px 12px;
     font-size: 15px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    border: 1px solid #cccccc;
+    border-radius: 4px;
     box-sizing: border-box;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .acc-group input:focus,
 .acc-group textarea:focus {
-    border-color: var(--color-surface-mid);
+    border-color: #3a3b40;
     box-shadow: 0 0 0 2px rgba(58, 59, 64, 0.15);
     outline: none;
 }
@@ -186,23 +184,20 @@
 .current-email {
     font-size: 15px;
     font-weight: 600;
-    color: var(--color-text);
+    color: #333333;
     margin-bottom: 16px;
 }
 
-/* Password show/hide */
 .checkbox-container {
     display: flex;
     align-items: center;
     gap: 6px;
     margin-top: 6px;
     font-size: 13px;
-    color: var(--color-text-muted);
+    color: #666666;
 }
 
-.checkbox-container input[type="checkbox"] {
-    margin: 0;
-}
+.checkbox-container input[type="checkbox"] { margin: 0; }
 
 /* ── Buttons ──────────────────────────────────────────────────────────────── */
 
@@ -211,13 +206,13 @@
 .btn-submit,
 .test-email-button {
     display: inline-block;
-    background-color: var(--color-surface-mid);
-    color: var(--color-white);
+    background-color: #3a3b40;
+    color: #ffffff;
     padding: 10px 22px;
     font-size: 15px;
     font-weight: 600;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: 4px;
     cursor: pointer;
     margin-top: 12px;
     transition: background-color 0.2s, color 0.2s;
@@ -227,8 +222,8 @@
 .btn-save:hover,
 .btn-submit:hover,
 .test-email-button:hover {
-    background-color: var(--color-surface-hover);
-    color: var(--color-accent);
+    background-color: #555555;
+    color: #f0a500;
 }
 
 /* ── Notifications toast ──────────────────────────────────────────────────── */
@@ -237,21 +232,19 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: var(--color-surface);
-    color: var(--color-accent);
+    background-color: #2b2c30;
+    color: #f0a500;
     padding: 14px 20px;
-    border-radius: var(--radius-sm);
+    border-radius: 4px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
     z-index: 1000;
     font-size: 15px;
     font-weight: 600;
 }
 
-/* ── Tables (invoices, quotes, tickets) ───────────────────────────────────── */
+/* ── Tables ───────────────────────────────────────────────────────────────── */
 
-.table-container {
-    overflow-x: auto;
-}
+.table-container { overflow-x: auto; }
 
 .invoice-table,
 .quote-table,
@@ -280,14 +273,14 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .4px;
-    color: var(--color-text-muted);
+    color: #666666;
 }
 
 .invoice-table td,
 .quote-table td,
 .ut-tickets-table td {
     font-size: 15px;
-    color: var(--color-text);
+    color: #333333;
 }
 
 .ut-detail-row td {
@@ -299,10 +292,10 @@
 .ut-view-ticket {
     display: inline-block;
     padding: 7px 14px;
-    background-color: var(--color-surface-mid);
-    color: var(--color-white);
+    background-color: #3a3b40;
+    color: #ffffff;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: 4px;
     font-size: 13px;
     cursor: pointer;
     text-decoration: none;
@@ -311,14 +304,13 @@
 
 .view-button:hover,
 .ut-view-ticket:hover {
-    background-color: var(--color-surface-hover);
-    color: var(--color-accent);
+    background-color: #555555;
+    color: #f0a500;
 }
 
 /* ── Ticket status badges ─────────────────────────────────────────────────── */
 
-.ut-status-badge,
-.ut-staff-tag {
+.ut-status-badge {
     display: inline-block;
     padding: 3px 10px;
     border-radius: 10px;
@@ -334,10 +326,11 @@
 .ut-status-closed  { background: #e9ecef; color: #495057; }
 
 .ut-staff-tag {
+    display: inline-block;
     font-size: 11px;
     font-weight: 600;
     background: rgba(58, 59, 64, 0.12);
-    color: var(--color-surface-mid);
+    color: #3a3b40;
     padding: 1px 7px;
     border-radius: 8px;
     text-transform: none;
@@ -346,7 +339,7 @@
     margin-left: 4px;
 }
 
-/* ── Ticket thread (account + ticket page) ────────────────────────────────── */
+/* ── Ticket thread ────────────────────────────────────────────────────────── */
 
 .ut-inline-thread {
     padding: 20px 24px;
@@ -362,19 +355,14 @@
 }
 
 .ut-thread-message {
-    background: var(--color-card);
-    border-radius: var(--radius-sm);
+    background: #ffffff;
+    border-radius: 4px;
     padding: 14px 16px;
-    border-left: 3px solid var(--color-border);
+    border-left: 3px solid #cccccc;
 }
 
-.ut-thread-admin {
-    border-left-color: var(--color-surface-mid);
-}
-
-.ut-thread-user {
-    border-left-color: #d0d0d0;
-}
+.ut-thread-admin { border-left-color: #3a3b40; }
+.ut-thread-user  { border-left-color: #d0d0d0; }
 
 .ut-thread-meta {
     display: flex;
@@ -384,24 +372,16 @@
     margin-bottom: 8px;
 }
 
-.ut-thread-meta strong {
-    font-size: 14px;
-    color: var(--color-text);
-}
-
-.ut-thread-meta span {
-    font-size: 12px;
-    color: var(--color-text-muted);
-    white-space: nowrap;
-}
+.ut-thread-meta strong { font-size: 14px; color: #333333; }
+.ut-thread-meta span   { font-size: 12px; color: #666666; white-space: nowrap; }
 
 .ut-thread-body {
     font-size: 14px;
     line-height: 1.7;
-    color: var(--color-text);
+    color: #333333;
 }
 
-/* ── Reply form inside account page ──────────────────────────────────────── */
+/* ── Reply form ───────────────────────────────────────────────────────────── */
 
 .ut-reply-form-wrap {
     border-top: 1px solid #e0e0e0;
@@ -414,22 +394,22 @@
     margin: 0 0 12px;
     font-size: 15px;
     font-weight: 700;
-    color: var(--color-text);
+    color: #333333;
 }
 
 .ut-reply-feedback {
     font-size: 13px;
     margin-bottom: 8px;
     min-height: 18px;
-    color: var(--color-text-muted);
+    color: #666666;
 }
 
 .ut-reply-textarea {
     width: 100%;
     max-width: 600px;
     padding: 10px 12px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
+    border: 1px solid #cccccc;
+    border-radius: 4px;
     font-size: 14px;
     line-height: 1.5;
     resize: vertical;
@@ -438,7 +418,7 @@
 }
 
 .ut-reply-textarea:focus {
-    border-color: var(--color-surface-mid);
+    border-color: #3a3b40;
     outline: none;
 }
 
@@ -458,52 +438,37 @@
 
 .ut-ticket-meta-line {
     font-size: 13px;
-    color: var(--color-text-muted);
+    color: #666666;
     margin: 0;
 }
 
-.ut-no-tickets {
-    color: var(--color-text-muted);
-    font-size: 15px;
-}
+.ut-no-tickets { font-size: 15px; color: #666666; }
 
 .ut-ticket-closed-note {
     font-size: 14px;
-    color: var(--color-text-muted);
+    color: #666666;
     font-style: italic;
     margin-top: 16px;
 }
 
-.ut-lookup-again {
-    margin-top: 24px;
-    font-size: 14px;
-}
-
-.ut-lookup-again a {
-    color: var(--color-surface-mid);
-    text-decoration: none;
-}
-
-.ut-lookup-again a:hover {
-    color: var(--color-accent);
-}
+.ut-lookup-again { margin-top: 24px; font-size: 14px; }
+.ut-lookup-again a { color: #3a3b40; text-decoration: none; }
+.ut-lookup-again a:hover { color: #f0a500; }
 
 /* ── Mobile settings button ───────────────────────────────────────────────── */
 
-.mobile-settings {
-    display: none;
-}
+.mobile-settings { display: none; }
 
 .mobile-settings button {
-    background-color: var(--color-surface);
+    background-color: #2b2c30;
     width: 100%;
     font-size: 1.1rem;
     font-weight: 700;
     padding: 12px 20px;
     cursor: pointer;
-    color: var(--color-white);
+    color: #ffffff;
     border: none;
-    border-radius: var(--radius-sm);
+    border-radius: 4px;
 }
 
 /* ── Responsive ───────────────────────────────────────────────────────────── */
@@ -515,11 +480,8 @@
         margin-bottom: 12px;
     }
 
-    .account-content {
-        flex-direction: column;
-    }
+    .account-content { flex-direction: column; }
 
-    /* Slide-in sidebar drawer */
     .account-sidebar {
         position: fixed;
         top: 0;
@@ -528,7 +490,7 @@
         max-width: 300px;
         height: 100%;
         overflow-y: auto;
-        background: var(--color-card);
+        background: #ffffff;
         border-radius: 0;
         box-shadow: 4px 0 16px rgba(0, 0, 0, 0.25);
         z-index: 1000;
@@ -537,9 +499,7 @@
         padding: 24px 16px;
     }
 
-    .account-sidebar.sidebar-active {
-        transform: translateX(0);
-    }
+    .account-sidebar.sidebar-active { transform: translateX(0); }
 
     .overlay {
         display: none;
@@ -549,14 +509,9 @@
         z-index: 999;
     }
 
-    .overlay.overlay-active {
-        display: block;
-    }
+    .overlay.overlay-active { display: block; }
 
-    .acc-title {
-        font-size: 22px;
-        margin-bottom: 16px;
-    }
+    .acc-title { font-size: 22px; margin-bottom: 16px; }
 
     .invoice-table td,
     .quote-table td,
@@ -566,16 +521,8 @@
     }
 
     .view-button,
-    .ut-view-ticket {
-        padding: 6px 10px;
-        font-size: 12px;
-    }
+    .ut-view-ticket { padding: 6px 10px; font-size: 12px; }
 
-    .ut-ticket-detail-header {
-        flex-direction: column;
-    }
-
-    .ut-inline-thread {
-        padding: 14px;
-    }
+    .ut-ticket-detail-header { flex-direction: column; }
+    .ut-inline-thread { padding: 14px; }
 }

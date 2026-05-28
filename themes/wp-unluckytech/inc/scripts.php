@@ -1,13 +1,15 @@
 <?php
 
 function wp_unluckytech_scripts() {
+    $v = '1.1.0';
+
     // Global CSS (loaded on every page)
-    wp_enqueue_style('wp-unluckytech-style', get_stylesheet_uri());
-    wp_enqueue_style('wp-unluckytech-global', get_template_directory_uri() . '/assets/css/global.css');
-    wp_enqueue_style('wp-unluckytech-nav', get_template_directory_uri() . '/assets/css/nav.css');
-    wp_enqueue_style('wp-unluckytech-footer', get_template_directory_uri() . '/assets/css/footer.css');
-    wp_enqueue_style('wp-unluckytech-blog', get_template_directory_uri() . '/assets/css/extras/blog.css');
-    wp_enqueue_style('wp-unluckytech-single', get_template_directory_uri() . '/assets/css/extras/single.css');
+    wp_enqueue_style('wp-unluckytech-style', get_stylesheet_uri(), [], $v);
+    wp_enqueue_style('wp-unluckytech-global', get_template_directory_uri() . '/assets/css/global.css', [], $v);
+    wp_enqueue_style('wp-unluckytech-nav', get_template_directory_uri() . '/assets/css/nav.css', [], $v);
+    wp_enqueue_style('wp-unluckytech-footer', get_template_directory_uri() . '/assets/css/footer.css', [], $v);
+    wp_enqueue_style('wp-unluckytech-blog', get_template_directory_uri() . '/assets/css/extras/blog.css', [], $v);
+    wp_enqueue_style('wp-unluckytech-single', get_template_directory_uri() . '/assets/css/extras/single.css', [], $v);
 
     // Global JS (loaded on every page)
     wp_enqueue_script('wp-unluckytech-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), null, true);
@@ -47,7 +49,7 @@ function wp_unluckytech_scripts() {
     }
 
     if (is_page('account')) {
-        wp_enqueue_style('wp-unluckytech-account', get_template_directory_uri() . '/assets/css/account/account.css');
+        wp_enqueue_style('wp-unluckytech-account', get_template_directory_uri() . '/assets/css/account/account.css', [], $v);
     }
 
     if (is_page('docs')) {
