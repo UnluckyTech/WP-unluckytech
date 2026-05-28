@@ -1,7 +1,7 @@
 <?php
 
 function wp_unluckytech_scripts() {
-    $v = '1.1.0';
+    $v = '1.2.0';
 
     // Global CSS (loaded on every page)
     wp_enqueue_style('wp-unluckytech-style', get_stylesheet_uri(), [], $v);

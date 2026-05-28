@@ -58,7 +58,13 @@ if (isset($_GET['s'])) {
 
         <div class="main-banner" style="background-image: url('/wp-content/themes/wp-unluckytech/assets/images/blog/blog.webp');">
             <div class="main-banner-overlay">
-                <h1 class="main-title">Search Results for: <?php echo esc_html($search_query); ?></h1>
+                <h1 class="main-title"><?php echo esc_html($search_query); ?></h1>
+                <p class="search-result-count">
+                    <?php
+                    $found = $search_results->found_posts;
+                    echo $found === 1 ? '1 result found' : esc_html($found) . ' results found';
+                    ?>
+                </p>
             </div>
         </div> 
 
@@ -112,7 +118,7 @@ if (isset($_GET['s'])) {
                                     <?php if (has_post_thumbnail()) : ?>
                                         <?php the_post_thumbnail('medium'); ?>
                                     <?php else : ?>
-                                        <img src="https://via.placeholder.com/200" alt="Placeholder Image" />
+                                        <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/placeholder.webp" alt="No thumbnail" />
                                     <?php endif; ?>
                                 </div>
                             </a>

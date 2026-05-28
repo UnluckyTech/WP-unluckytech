@@ -8,51 +8,38 @@
 ?>
 
 <div class="search-bar" id="searchBar">
-    <form method="get" class="filter-form" action="" onsubmit="return handleSubmit();">
-        <input type="text" id="searchInput" name="s" placeholder="Search projects..." />
-        <div class="search-options">
-            <div class="category-select">
-                <label for="category-list">Category:</label>
-                <div class="category-box">
-                    <ul id="category-list" class="styled-select">
-                        <li>
-                            <input type="radio" name="category" id="category-all" value="all" class="styled-select" checked>
-                            <label for="category-all"><?php _e('All', 'textdomain'); ?></label>
-                        </li>
-                        <?php
-                        $categories = get_categories();
-                        foreach ($categories as $category) {
-                            echo '<li>
-                                    <input type="radio" name="category" id="category-' . esc_attr($category->slug) . '" value="' . esc_attr($category->slug) . '"' . (isset($_GET['category']) && $_GET['category'] == $category->slug ? ' checked' : '') . '>
-                                    <label for="category-' . esc_attr($category->slug) . '">' . esc_html($category->name) . '</label>
-                                </li>';
-                        }
-                        ?>
-                    </ul>
-                </div>
-            </div>
-            <div class="tag-select">
-                <label for="tag-list">Tags:</label>
-                <div class="tag-box">
-                    <ul id="tag-list" class="styled-select">
-                        <li>
-                            <input type="radio" name="tag" id="tag-all" value="all" class="styled-select" checked>
-                            <label for="tag-all"><?php _e('All', 'textdomain'); ?></label>
-                        </li>
-                        <?php
-                        $tags = get_tags();
-                        foreach ($tags as $tag) {
-                            echo '<li>
-                                    <input type="radio" name="tag" id="tag-' . esc_attr($tag->slug) . '" value="' . esc_attr($tag->slug) . '"' . (isset($_GET['tag']) && $_GET['tag'] == $tag->slug ? ' checked' : '') . '>
-                                    <label for="tag-' . esc_attr($tag->slug) . '">' . esc_html($tag->name) . '</label>
-                                </li>';
-                        }
-                        ?>
-                    </ul>
-                </div>
-            </div>
+    <form method="get" action="<?php echo esc_url(home_url('/')); ?>" class="search-bar-form">
+
+        <div class="search-input-group">
+            <i class="fas fa-search search-input-icon"></i>
+            <input type="text" id="searchInput" name="s"
+                   placeholder="Search posts..."
+                   value="<?php echo isset($_GET['s']) ? esc_attr($_GET['s']) : ''; ?>"
+                   autocomplete="off" />
         </div>
-        <!-- Apply Button -->
-        <button type="submit" class="apply-button">Search</button>
+
+        <div class="search-filters">
+            <select name="category" class="search-select">
+                <option value="all">All Categories</option>
+                <?php foreach (get_categories() as $cat): ?>
+                    <option value="<?php echo esc_attr($cat->slug); ?>"
+                        <?php echo (isset($_GET['category']) && $_GET['category'] === $cat->slug) ? 'selected' : ''; ?>>
+                        <?php echo esc_html($cat->name); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+
+            <select name="tag" class="search-select">
+                <option value="all">All Tags</option>
+                <?php foreach (get_tags() as $tag): ?>
+                    <option value="<?php echo esc_attr($tag->slug); ?>"
+                        <?php echo (isset($_GET['tag']) && $_GET['tag'] === $tag->slug) ? 'selected' : ''; ?>>
+                        <?php echo esc_html($tag->name); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <button type="submit" class="search-submit">Search</button>
     </form>
 </div>
