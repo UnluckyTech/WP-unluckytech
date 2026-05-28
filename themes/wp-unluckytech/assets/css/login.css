@@ -161,7 +161,7 @@ canvas#particle-canvas {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
 }
 
 .login .forgetmenot label {
