@@ -24,7 +24,7 @@
 
 # DO NOT ignore these plugins...
 !/plugins/invoiceninja
-!/plugins/znuny
+!/plugins/unluckytech-tickets
 
 #---------------------------
 # WP MU plugins: often
@@ -105,6 +105,11 @@ autoupdater_maintenance_mode_enabled.tmp
 # Build tools
 #---------------------------
 node_modules
+
+#---------------------------
+# Claude Code
+#---------------------------
+/.claude/
 
 #---------------------------
 # Other

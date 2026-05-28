@@ -102,7 +102,7 @@
                                                 <?php if ( has_post_thumbnail() ) : ?>
                                                     <?php the_post_thumbnail('medium'); ?>
                                                 <?php else : ?>
-                                                    <img src="https://via.placeholder.com/200" alt="Placeholder Image" />
+                                                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/placeholder.webp" alt="No thumbnail" />
                                                 <?php endif; ?>
                                             </div>
                                             <div class="latest-post-content">
