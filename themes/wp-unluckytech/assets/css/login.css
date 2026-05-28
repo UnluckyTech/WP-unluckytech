@@ -1,38 +1,332 @@
+/* ── WP Login Page — UnluckyTech Theme ────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* ── Page ─────────────────────────────────────────────────────────────────── */
 
 body.login {
-    background-color: #0d0d0d; 
-    position: relative;
-    z-index: 1;
+    background-color: #0f0f0f;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px;
+    box-sizing: border-box;
 }
 
-body.login:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #2b2c30; 
-    z-index: -1;
-}
-
+/* Particle canvas — sits behind everything */
 .particle-network-animation {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
     overflow: hidden;
-    z-index: -1;
+    background-color: #2b2c30;
 }
 
 canvas#particle-canvas {
     width: 100%;
     height: 100%;
+    display: block;
 }
 
-body.login div#login form {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
+/* ── Card — single unified panel ──────────────────────────────────────────── */
+
+#login {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto !important;
+    padding: 40px 36px !important;
+    background: rgba(15, 16, 20, 0.97);
+    border: 1px solid #2e2f35;
+    border-radius: 8px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
 }
 
+/* ── Logo / Header ────────────────────────────────────────────────────────── */
+
+#login h1 {
+    margin: 0 0 28px !important;
+    padding: 0 !important;
+    text-align: center;
+}
+
+#login h1 a {
+    /* Reset WP defaults */
+    background-image: none !important;
+    background: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    text-indent: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    outline: none !important;
+
+    /* Site name */
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    letter-spacing: 5px !important;
+    text-transform: uppercase !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+}
+
+/* "PORTAL" label — muted gray, no amber */
+#login h1 a::before {
+    content: 'PORTAL';
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 6px;
+    color: #666666;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Subtle separator below the site name */
+#login h1 a::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: #3a3b40;
+    margin: 14px auto 0;
+}
+
+/* ── Form ─────────────────────────────────────────────────────────────────── */
+
+#loginform {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* ── Labels ───────────────────────────────────────────────────────────────── */
+
+.login label {
+    color: #777777;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* ── Inputs ───────────────────────────────────────────────────────────────── */
+
+.login input[type="text"],
+.login input[type="password"],
+.login input[type="email"] {
+    background: #1a1b20 !important;
+    border: 1px solid #32333a !important;
+    border-radius: 4px !important;
+    color: #ffffff !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 14px !important;
+    padding: 12px 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    height: auto !important;
+    transition: border-color 0.2s !important;
+}
+
+.login input[type="text"]:focus,
+.login input[type="password"]:focus,
+.login input[type="email"]:focus {
+    border-color: #5a5b62 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background: #1e1f26 !important;
+}
+
+/* ── Remember me ──────────────────────────────────────────────────────────── */
+
+.login .forgetmenot {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.login .forgetmenot label {
+    color: #555555;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.login input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    accent-color: #888888;
+}
+
+/* ── Submit button ────────────────────────────────────────────────────────── */
+
+.login .submit {
+    margin-top: 0;
+    padding: 0;
+}
+
+#wp-submit {
+    background: #3a3b40 !important;
+    border: 1px solid #52535a !important;
+    border-radius: 4px !important;
+    color: #ffffff !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    padding: 13px 20px !important;
+    width: 100% !important;
+    height: auto !important;
+    line-height: normal !important;
+    float: none !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    transition: background-color 0.2s, border-color 0.2s !important;
+}
+
+#wp-submit:hover {
+    background: #4a4b52 !important;
+    border-color: #666 !important;
+}
+
+/* ── Nav links ────────────────────────────────────────────────────────────── */
+
+#nav, #backtoblog {
+    text-align: center;
+    padding: 0 !important;
+    margin-top: 16px !important;
+}
+
+#nav a,
+#backtoblog a {
+    color: #444444 !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 12px !important;
+    text-decoration: none !important;
+    transition: color 0.2s !important;
+}
+
+#nav a:hover,
+#backtoblog a:hover {
+    color: #888888 !important;
+}
+
+#backtoblog {
+    margin-top: 8px !important;
+}
+
+/* ── Error & message boxes ────────────────────────────────────────────────── */
+
+#login_error,
+.login .message,
+.login .success {
+    border-radius: 4px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 13px !important;
+    margin-bottom: 16px !important;
+    border-left-width: 3px !important;
+}
+
+#login_error {
+    background: rgba(180, 30, 30, 0.1) !important;
+    border-color: #8b2020 !important;
+    color: #cc6666 !important;
+}
+
+.login .message {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: #444 !important;
+    color: #aaaaaa !important;
+}
+
+.login .success {
+    background: rgba(60, 100, 60, 0.1) !important;
+    border-color: #3a6b3a !important;
+    color: #7aaa7a !important;
+}
+
+/* ── Show/hide password button ────────────────────────────────────────────── */
+
+.login .wp-pwd {
+    position: relative;
+}
+
+.login .wp-pwd .button {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #555 !important;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 4px !important;
+    min-height: auto !important;
+    height: auto !important;
+}
+
+.login .wp-pwd .button:hover {
+    color: #aaaaaa !important;
+    background: transparent !important;
+}
+
+/* ── Other WP chrome ──────────────────────────────────────────────────────── */
+
+.login .button-secondary {
+    background: #2b2c30 !important;
+    border-color: #3a3b40 !important;
+    color: #aaaaaa !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.login .button-secondary:hover {
+    color: #ffffff !important;
+    border-color: #555 !important;
+}
+
+#login_privacy_policy a {
+    color: #444 !important;
+    font-size: 11px !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* ── Mobile ───────────────────────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+    body.login {
+        padding: 16px;
+        justify-content: flex-start;
+        padding-top: 60px;
+    }
+
+    #login {
+        padding: 28px 24px !important;
+    }
+}
