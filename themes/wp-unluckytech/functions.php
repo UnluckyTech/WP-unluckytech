@@ -76,6 +76,9 @@ function enqueue_font_awesome() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_font_awesome');
 
+add_filter('login_headerurl',  fn() => home_url());
+add_filter('login_headertext', fn() => get_bloginfo('name'));
+
 // Redirect users to the homepage after login
 function unluckytech_login_redirect($redirect_to, $request, $user) {
     return home_url();
