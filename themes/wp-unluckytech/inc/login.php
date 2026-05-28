@@ -20,7 +20,7 @@ if (!function_exists('unluckytech_get_user_ip')) {
 if (!function_exists('unluckytech_ip_allowed')) {
     function unluckytech_ip_allowed($ip) {
         if (defined('UNLUCKYTECH_ALLOW_IPS')) {
-            $allow = @unserialize(UNLUCKYTECH_ALLOW_IPS);
+            $allow = json_decode(UNLUCKYTECH_ALLOW_IPS, true);
             if (is_array($allow) && in_array($ip, $allow, true)) {
                 return true;
             }

@@ -62,7 +62,17 @@ function trigger_reset_script_on_password_reset($user, $new_pass) {
 
 // Enqueue Font Awesome
 function enqueue_font_awesome() {
-    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css', array(), '5.15.4', 'all');
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css', array(), '6.7.2', 'all');
+    add_filter('style_loader_tag', function($html, $handle) {
+        if ($handle === 'font-awesome') {
+            $html = str_replace(
+                "rel='stylesheet'",
+                "rel='stylesheet' integrity='sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==' crossorigin='anonymous' referrerpolicy='no-referrer'",
+                $html
+            );
+        }
+        return $html;
+    }, 10, 2);
 }
 add_action('wp_enqueue_scripts', 'enqueue_font_awesome');
 

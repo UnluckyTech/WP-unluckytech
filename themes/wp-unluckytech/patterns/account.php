@@ -23,8 +23,15 @@ include_once(ABSPATH . 'wp-admin/includes/plugin.php');
 $current_user = wp_get_current_user();
 $verification_code = get_user_meta($current_user->ID, 'email_verification_code', true);
 
+$profile_nonce  = wp_create_nonce('account_profile_update');
+$email_nonce    = wp_create_nonce('account_change_email');
+$password_nonce = wp_create_nonce('account_change_password');
+
 // Handle profile update request
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['profile_update'])) {
+    if (!wp_verify_nonce($_POST['_wpnonce'] ?? '', 'account_profile_update')) {
+        wp_die('Security check failed.');
+    }
     // Only proceed if user is logged in
     if (!is_user_logged_in()) {
         wp_redirect(wp_login_url());
@@ -92,6 +99,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['profile_update'])) {
 
 // Handle email change request
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_email'])) {
+    if (!wp_verify_nonce($_POST['_wpnonce'] ?? '', 'account_change_email')) {
+        echo json_encode(['success' => false, 'message' => 'Security check failed.']);
+        exit;
+    }
     $new_email = sanitize_email($_POST['new_email']);
 
     if (is_email($new_email) && $new_email !== $current_user->user_email) {
@@ -117,6 +128,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_email'])) {
 
 // Handle email verification code submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['verification_code'])) {
+    if (!wp_verify_nonce($_POST['_wpnonce'] ?? '', 'account_change_email')) {
+        echo json_encode(['success' => false, 'message' => 'Security check failed.']);
+        exit;
+    }
     if ($verification_code && $_POST['verification_code'] === $verification_code) {
         // Get the old email
         $old_email = $current_user->user_email;
@@ -153,6 +168,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['verification_code'])) 
 
 // Handle password change request
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
+    if (!wp_verify_nonce($_POST['_wpnonce'] ?? '', 'account_change_password')) {
+        echo json_encode(['success' => false, 'message' => 'Security check failed.']);
+        exit;
+    }
     $current_password = sanitize_text_field($_POST['current_password']);
     $new_password = sanitize_text_field($_POST['new_password']);
 
@@ -219,6 +238,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
                 <?php if ($current_user->exists()) : ?>
                     <form id="profileForm" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="save_profile">
+                        <?php wp_nonce_field('account_profile_update'); ?>
                         
                         <!-- Profile Picture -->
                         <?php $profile_picture = get_avatar(get_current_user_id()); ?>
@@ -337,6 +357,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
 </div>
 
 <script>
+const utNonces = {
+    email:    '<?php echo esc_js($email_nonce); ?>',
+    password: '<?php echo esc_js($password_nonce); ?>'
+};
+</script>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         const sidebarLinks = document.querySelectorAll('.account-sidebar ul li a');
         const sections = document.querySelectorAll('.account-section');
@@ -381,7 +407,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
                 },
                 body: new URLSearchParams({
                     change_email: '1',
-                    new_email: emailInput
+                    new_email: emailInput,
+                    _wpnonce: utNonces.email
                 })
             })
                 .then(response => response.json())
@@ -410,7 +437,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
                 },
                 body: new URLSearchParams({
                     verification_code: verificationCode,
-                    new_email: newEmail
+                    new_email: newEmail,
+                    _wpnonce: utNonces.email
                 })
             })
                 .then(response => response.json())
@@ -447,7 +475,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
                 body: new URLSearchParams({
                     change_password: '1',
                     current_password: currentPassword,
-                    new_password: newPassword
+                    new_password: newPassword,
+                    _wpnonce: utNonces.password
                 })
             })
                 .then(response => response.json())

@@ -17,11 +17,11 @@ jobs:
             ARGS: "-rlgoDzvc -i"
             TARGET: ${{ secrets.REMOTE_TARGET }}
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             # - uses: actions/setup-node@v3.6.0
             #   with:
             #       node-version: '20.3.0'
             # - run: 'npm ci'
             # - run: 'composer install'
             # - run: 'npm run dist'
-            - uses: easingthemes/ssh-deploy@main
+            - uses: easingthemes/ssh-deploy@v6.0.1

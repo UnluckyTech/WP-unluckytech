@@ -12,18 +12,15 @@
 $domain = get_option('znuny_api_domain');
 $user_login = get_option('znuny_user_login');
 $password = get_option('znuny_password');
-$session_id = session_id(); // Will work fine if session was started via functions.php
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
 
-    if (empty($_POST['cf-turnstile-response'])) {
+    if (!wp_verify_nonce($_POST['_wpnonce'] ?? '', 'contact_form_submit')) {
+        $error_message = "Security check failed. Please try again.";
+    } elseif (empty($_POST['cf-turnstile-response'])) {
         $error_message = "Please complete the CAPTCHA.";
     } else {
         $captcha_response = sanitize_text_field($_POST['cf-turnstile-response']);
-        $_SESSION['captcha_response'] = $captcha_response;
-
-        // Close session before making any HTTP calls
-        session_write_close();
 
         $captcha_secret = get_option('cfturnstile_secret');
 
@@ -53,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
                 $inquiry_type = sanitize_text_field($_POST['inquiry_type']);
                 $message = sanitize_textarea_field($_POST['message']);
 
-                $to = 'stawse@unluckytech.com';
+                $to = get_option('admin_email');
                 $subject = 'New Inquiry from ' . $firstname . ' ' . $lastname;
                 $headers = array('Content-Type: text/html; charset=UTF-8');
                 $body = "<p>You have received a new message from your contact form:</p>";
@@ -153,6 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contact_form'])) {
 
     <form method="post" action="<?php echo esc_url(get_permalink()); ?>" class="contact-form">
         <input type="hidden" name="contact_form" value="1">
+        <?php wp_nonce_field('contact_form_submit'); ?>
         
         <div class="contact-group two-column">
             <div class="half-width">
