@@ -1,23 +1,8 @@
 <?php
 
-function custom_login_logo() {
-    ?>
-    <style type="text/css">
-        body.login div#login h1 a {
-            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/assets/images/BizTitleLite.webp);
-            padding-bottom: 30px;
-            background-size: contain;
-            width: 100%;
-            height: 80px;
-        }
-    </style>
-    <?php
-}
-add_action('login_enqueue_scripts', 'custom_login_logo');
-
 // Enqueue custom login styles
 function unluckytech_login_styles() {
-    wp_enqueue_style('login-css', get_template_directory_uri() . '/assets/css/login.css');
+    wp_enqueue_style('login-css', get_template_directory_uri() . '/assets/css/login.css', [], '1.1.1');
     wp_enqueue_script('particle-animation-js', get_template_directory_uri() . '/assets/js/particle-animation.js', array('jquery'), null, true);
     
     add_action('login_footer', function() {
