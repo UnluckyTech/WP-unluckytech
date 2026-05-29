@@ -12,8 +12,12 @@ if ( ! function_exists( 'unlucky_theme_support' ) ) :
         // Add support for block styles.
         add_theme_support( 'wp-block-styles' );
 
-        // Enqueue editor styles.
-        add_editor_style( 'style.css' );
+        // Enqueue editor styles (load Montserrat in the block editor so it
+        // matches the front end).
+        add_editor_style( array(
+            'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap',
+            'style.css',
+        ) );
 
         // Add support for post thumbnails.
         add_theme_support( 'post-thumbnails' );
@@ -59,6 +63,68 @@ function trigger_reset_script_on_password_reset($user, $new_pass) {
     // Log the reset (for debugging purposes)
     error_log("Password reset and failed login attempts cleared for user ID {$user->ID}");
 }
+
+// Per-page SEO meta: description + basic Open Graph tags.
+// Skips automatically if a dedicated SEO plugin (Yoast / Rank Math) is active.
+function unluckytech_seo_meta() {
+    if (defined('WPSEO_VERSION') || class_exists('RankMath')) {
+        return;
+    }
+
+    $default = get_bloginfo('description');
+    if (trim($default) === '') {
+        $default = 'UnluckyTech — IT services, web development, server management, and tech guides. Custom solutions and support for your projects.';
+    }
+    $desc = $default;
+    $title   = wp_get_document_title();
+    $url     = home_url(add_query_arg(null, null));
+    $image   = get_theme_file_uri('assets/images/BizTitleOfficial.webp');
+
+    if (is_singular()) {
+        $post = get_queried_object();
+        if (!empty($post->post_excerpt)) {
+            $desc = $post->post_excerpt;
+        } elseif (!empty($post->post_content)) {
+            $desc = wp_trim_words(wp_strip_all_tags($post->post_content), 30, '…');
+        }
+        if (has_post_thumbnail($post)) {
+            $image = get_the_post_thumbnail_url($post, 'large');
+        }
+    } elseif (is_category() || is_tag() || is_tax()) {
+        $term_desc = term_description();
+        if ($term_desc) {
+            $desc = wp_trim_words(wp_strip_all_tags($term_desc), 30, '…');
+        }
+    } elseif (is_search()) {
+        $desc = 'Search results for "' . get_search_query() . '" on ' . get_bloginfo('name') . '.';
+    }
+
+    $desc = trim($desc);
+    if ($desc === '') {
+        $desc = $default;
+    }
+
+    echo "\n";
+    printf('<meta name="description" content="%s" />' . "\n", esc_attr($desc));
+    printf('<meta property="og:title" content="%s" />' . "\n", esc_attr($title));
+    printf('<meta property="og:description" content="%s" />' . "\n", esc_attr($desc));
+    printf('<meta property="og:type" content="%s" />' . "\n", is_singular('post') ? 'article' : 'website');
+    printf('<meta property="og:url" content="%s" />' . "\n", esc_url($url));
+    printf('<meta property="og:site_name" content="%s" />' . "\n", esc_attr(get_bloginfo('name')));
+    printf('<meta property="og:image" content="%s" />' . "\n", esc_url($image));
+    printf('<meta name="twitter:card" content="%s" />' . "\n", 'summary_large_image');
+}
+add_action('wp_head', 'unluckytech_seo_meta', 1);
+
+// Preconnect to Google Fonts hosts for faster Montserrat loading
+function unluckytech_resource_hints($hints, $relation_type) {
+    if ('preconnect' === $relation_type) {
+        $hints[] = 'https://fonts.googleapis.com';
+        $hints[] = ['href' => 'https://fonts.gstatic.com', 'crossorigin'];
+    }
+    return $hints;
+}
+add_filter('wp_resource_hints', 'unluckytech_resource_hints', 10, 2);
 
 // Enqueue Font Awesome
 function enqueue_font_awesome() {

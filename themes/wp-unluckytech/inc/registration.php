@@ -2,7 +2,8 @@
 
 // Enqueue custom login styles
 function unluckytech_login_styles() {
-    wp_enqueue_style('login-css', get_template_directory_uri() . '/assets/css/login.css', [], '1.1.1');
+    wp_enqueue_style('unluckytech-montserrat', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap', [], null);
+    wp_enqueue_style('login-css', get_template_directory_uri() . '/assets/css/login.css', ['unluckytech-montserrat'], '1.1.2');
     wp_enqueue_script('particle-animation-js', get_template_directory_uri() . '/assets/js/particle-animation.js', array('jquery'), null, true);
     
     add_action('login_footer', function() {

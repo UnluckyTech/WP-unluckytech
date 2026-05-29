@@ -33,7 +33,7 @@
                                 <?php if ( has_post_thumbnail() ) : ?>
                                     <?php the_post_thumbnail('medium', ['loading' => 'lazy']); ?>
                                 <?php else: ?>
-                                    <img src="https://via.placeholder.com/200" alt="Placeholder Image" loading="lazy" />
+                                    <img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/placeholder.webp' ) ); ?>" alt="No thumbnail" loading="lazy" />
                                 <?php endif; ?>
                             </div>
                             <div class="post-content">

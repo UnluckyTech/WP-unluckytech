@@ -3,6 +3,15 @@
 function wp_unluckytech_scripts() {
     $v = '1.2.0';
 
+    // Montserrat (Google Fonts) — used site-wide. Loaded as a real stylesheet
+    // rather than a render-blocking @import.
+    wp_enqueue_style(
+        'unluckytech-montserrat',
+        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap',
+        [],
+        null
+    );
+
     // Global CSS (loaded on every page)
     wp_enqueue_style('wp-unluckytech-style', get_stylesheet_uri(), [], $v);
     wp_enqueue_style('wp-unluckytech-global', get_template_directory_uri() . '/assets/css/global.css', [], $v);

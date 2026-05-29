@@ -1,97 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Unlucky Tech offers guides, projects, and troubleshooting solutions for tech enthusiasts and IT professionals. From hardware fixes to software optimization, we help you solve complex issues and get the most out of your tech.">
-    <title>UnluckyTECH</title>
-</head>
-<body>
-    <!-- Header content -->
-    <header class="header">
-        <div class="header-wrapper">
-            <!-- Particle animation HTML -->
-            <div class="particle-network-animation">
-                <div class="glow glow-1"></div>
-                <div class="glow glow-2"></div>
-                <div class="glow glow-3"></div>
-                <canvas id="particle-canvas"></canvas>
-            </div>
+<!-- Header content -->
+<div class="header">
+    <div class="header-wrapper">
+        <!-- Particle animation HTML -->
+        <div class="particle-network-animation">
+            <div class="glow glow-1"></div>
+            <div class="glow glow-2"></div>
+            <div class="glow glow-3"></div>
+            <canvas id="particle-canvas"></canvas>
+        </div>
 
-            <!-- Navigation wrapper -->
-            <div class="navigation-wrapper" id="navWrapper">
-                <!-- New container for logo, nav, and right icons -->
-                <div class="nav-container">
-                    <!-- Logo -->
-                    <div class="logo">
-                        <a href="https://unluckytech.com/">
-                            <img src="/wp-content/themes/wp-unluckytech/assets/images/BizTitleLite.webp" alt="UnluckyTECH" />
-                        </a>
-                    </div>
+        <!-- Navigation wrapper -->
+        <div class="navigation-wrapper" id="navWrapper">
+            <!-- New container for logo, nav, and right icons -->
+            <div class="nav-container">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="https://unluckytech.com/">
+                        <img src="/wp-content/themes/wp-unluckytech/assets/images/BizTitleLite.webp" alt="UnluckyTECH" />
+                    </a>
+                </div>
 
-                    <!-- Centered Navigation -->
-                    <div class="nav-center" id="navCenter">
-                        <!-- Navigation -->
-                        <div class="wp-block-navigation" id="navMenu">
-                            <a href="/about">About</a>
-                            <a href="/docs">Docs</a>
-                            <a href="https://forums.unluckytech.com/" target="_blank">Forum</a>
-                            <a href="https://store.unluckytech.com/" target="_blank">Store</a>
-                            <a href="/services">Services</a>
-                        </div>
-                    </div>
-
-                    <!-- Right Icons -->
-                    <div class="right-icons">
-                        <!-- Search Icon -->
-                        <div class="search-icon" onclick="toggleSearchBar()">
-                            <i class="fas fa-search"></i>
-                        </div>
-
-                        <!-- User Login Icon -->
-                        <div class="user-login" onclick="toggleUserLogin()">
-                            <i class="fas fa-user"></i>
-                        </div>
-
-                        <!-- User Login Form -->
-                        <!-- wp:pattern {"slug":"unluckytech/login"} /-->
-                        <!-- Search Bar -->
-                        <!-- wp:pattern {"slug":"unluckytech/nav"} /-->
-                    </div>
-                </div> <!-- End of nav-container -->
-                <!-- Off-Screen Menu -->
-                <div class="off-screen-menu">
-                    <div class="off-screen-container">
-                        <div class="off-screen-content">
-                            <a href="/about">About</a>
-                            <div class="mobile-divider"></div>
-                            <a href="/docs">Docs</a>
-                            <div class="mobile-divider"></div>
-                            <a href="https://forums.unluckytech.com/" target="_blank">Forum</a>
-                            <div class="mobile-divider"></div>
-                            <a href="https://store.unluckytech.com/" target="_blank">Store</a>
-                            <div class="mobile-divider"></div>
-                            <a href="/services">Services</a>
-                            <div class="mobile-divider"></div>
-                        </div>
-                        <!-- Unique Search Bar -->
-                        <!-- wp:pattern {"slug":"unluckytech/mobilesearch"} /-->
-                        <!-- Account -->
-                        <!-- wp:pattern {"slug":"unluckytech/mobilenav"} /-->
+                <!-- Centered Navigation -->
+                <div class="nav-center" id="navCenter">
+                    <!-- Navigation -->
+                    <div class="wp-block-navigation" id="navMenu">
+                        <a href="/about">About</a>
+                        <a href="/docs">Docs</a>
+                        <a href="https://forums.unluckytech.com/" target="_blank">Forum</a>
+                        <a href="https://store.unluckytech.com/" target="_blank">Store</a>
+                        <a href="/services">Services</a>
                     </div>
                 </div>
 
-                <!-- Hamburger Menu -->
-                <nav>
-                    <div class="ham-menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                <!-- Right Icons -->
+                <div class="right-icons">
+                    <!-- Search Icon -->
+                    <div class="search-icon" onclick="toggleSearchBar()">
+                        <i class="fas fa-search"></i>
                     </div>
-                </nav>
-            </div>
-        </div>
-    </header>
 
-</body>
-</html>
+                    <!-- User Login Icon -->
+                    <div class="user-login" onclick="toggleUserLogin()">
+                        <i class="fas fa-user"></i>
+                    </div>
+
+                    <!-- User Login Form -->
+                    <!-- wp:pattern {"slug":"unluckytech/login"} /-->
+                    <!-- Search Bar -->
+                    <!-- wp:pattern {"slug":"unluckytech/nav"} /-->
+                </div>
+            </div> <!-- End of nav-container -->
+            <!-- Off-Screen Menu -->
+            <div class="off-screen-menu">
+                <div class="off-screen-container">
+                    <div class="off-screen-content">
+                        <a href="/about">About</a>
+                        <div class="mobile-divider"></div>
+                        <a href="/docs">Docs</a>
+                        <div class="mobile-divider"></div>
+                        <a href="https://forums.unluckytech.com/" target="_blank">Forum</a>
+                        <div class="mobile-divider"></div>
+                        <a href="https://store.unluckytech.com/" target="_blank">Store</a>
+                        <div class="mobile-divider"></div>
+                        <a href="/services">Services</a>
+                        <div class="mobile-divider"></div>
+                    </div>
+                    <!-- Unique Search Bar -->
+                    <!-- wp:pattern {"slug":"unluckytech/mobilesearch"} /-->
+                    <!-- Account -->
+                    <!-- wp:pattern {"slug":"unluckytech/mobilenav"} /-->
+                </div>
+            </div>
+
+            <!-- Hamburger Menu -->
+            <nav>
+                <div class="ham-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
