@@ -7,81 +7,72 @@
  */
 
 if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+    exit;
 }
 
-// Get the current logged-in WordPress user
+require_once get_template_directory() . '/inc/invoiceninja.php';
+
 $current_user = wp_get_current_user();
 
-// Check if the user is logged in
 if ($current_user->ID == 0) {
-    echo '<p>Error: You must be logged in to view your quotes.</p>';
+    echo '<p>You must be logged in to view your quotes.</p>';
     return;
 }
 
-// Include the necessary Invoice Ninja API class
-use InvoiceNinja\Api\ClientApi;
+if (!ut_invoiceninja_available()) {
+    echo '<p>Quotes are temporarily unavailable. Please check back later.</p>';
+    return;
+}
 
-// Check if the ClientApi class exists
-if (class_exists('InvoiceNinja\Api\ClientApi')) {
-    
-    // Find the client in Invoice Ninja using the current user's email
-    $client = ClientApi::find($current_user->user_email);
+$client = ut_invoiceninja_find_client($current_user->user_email);
 
-    // Check if the client was found
-    if ($client === null) {
-        echo '<p>Error: No client found for the current user in Invoice Ninja.</p>';
-        return;
-    }
+if ($client === null) {
+    echo '<p>No quotes are associated with your account yet.</p>';
+    return;
+}
 
-    // Fetch quotes for the client using their ID
-    $client_id = $client->id;
-    $quotes_response = ClientApi::sendRequest("quotes?client_id=$client_id");
+$quotes = ut_invoiceninja_get_documents('quotes', $client->id);
 
-    if (!$quotes_response) {
-        echo '<p>Error: Unable to fetch quotes for this client.</p>';
-        return;
-    }
+if ($quotes === null) {
+    echo '<p>We couldn\'t load your quotes right now. Please try again later.</p>';
+    return;
+}
 
-    $quotes = json_decode($quotes_response)->data;
-
-    // Check if there are any quotes
-    if (empty($quotes)) {
-        echo '<p>No quotes found for this user.</p>';
-    } else {
-        // Display the quotes in a table format
-        echo '<h2 class="acc-title">Quotes</h2>';
-        ?>
-        <div class="quote-container">
-            <div class="table-container">
-                <table class="quote-table">
-                    <thead>
-                        <tr>
-                            <th>Quote #</th>
-                            <th>Amount</th>
-                            <th>Due Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($quotes as $quote): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($quote->number); ?></td>
-                                <td><?php echo htmlspecialchars(number_format($quote->amount, 2)); ?></td>
-                                <td><?php echo htmlspecialchars($quote->due_date); ?></td>
-                                <td>
-                                    <a href="https://invoice.unluckytech.com/client/quote/<?php echo htmlspecialchars($quote->invitations[0]->key); ?>" target="_blank" class="view-button">View</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <?php
-    }
-} else {
-    echo '<p>Error: Invoice Ninja API is not available.</p>';
+if (empty($quotes)) {
+    echo '<p>No quotes found for your account.</p>';
+    return;
 }
 ?>
+
+<h2 class="acc-title">Quotes</h2>
+<div class="quote-container">
+    <div class="table-container">
+        <table class="quote-table">
+            <thead>
+                <tr>
+                    <th>Quote #</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($quotes as $quote): ?>
+                    <tr>
+                        <td><?php echo esc_html($quote->number); ?></td>
+                        <td><?php echo esc_html(number_format((float) $quote->amount, 2)); ?></td>
+                        <td><?php echo esc_html($quote->due_date); ?></td>
+                        <td>
+                            <?php $link = ut_invoiceninja_document_link('quote', $quote); ?>
+                            <?php if ($link): ?>
+                                <a href="<?php echo esc_url($link); ?>" target="_blank" rel="noopener" class="view-button">View</a>
+                            <?php else: ?>
+                                N/A
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

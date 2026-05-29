@@ -27,12 +27,15 @@ class PostApi
 
     public function init()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            if (!headers_sent()) {
-                @session_start();
-            } else {
-                error_log('InvoiceNinja: Cannot start session, headers already sent.');
-            }
+        // Don't start a PHP session during REST / AJAX / admin requests — emitting
+        // session_start() warnings to stdout corrupts JSON responses (e.g. WC blocks checkout).
+        $is_async = ( defined( 'REST_REQUEST' ) && REST_REQUEST )
+                 || ( defined( 'DOING_AJAX' ) && DOING_AJAX )
+                 || ( defined( 'DOING_CRON' ) && DOING_CRON )
+                 || is_admin();
+
+        if ( ! $is_async && session_status() === PHP_SESSION_NONE && ! headers_sent() ) {
+            @session_start();
         }
 
         foreach ($this->post_types as $type)
@@ -117,9 +120,9 @@ class PostApi
             $cart = $_SESSION['invoiceninja_cart'];
             $color = '#0000EE';
 
-            if ($profile->settings->primary_color) {
+            if ( ! empty( $profile->settings->primary_color ) ) {
                 $color = $profile->settings->primary_color;
-            }    
+            }
 
             $str = '<div class="invoiceninja-cart">
                     <div class="cart-header" style="background-color: ' . $color . ';">';
@@ -183,7 +186,7 @@ class PostApi
                     if ($max_quantity > 0) {
                         $max = min( $max, $max_quantity );
                     }
-                    if ($profile->track_inventory) {
+                    if ( ! empty( $profile->track_inventory ) ) {
                         $max = min( $max, $in_stock_quantity );
                     }
                     for ($i=1; $i<=$max; $i++) {
@@ -213,35 +216,37 @@ class PostApi
     {
         global $post;
 
-        // Check if $post is set and not null
-        if ($post && $post->post_type == 'invoiceninja_product') {
-            wp_enqueue_style('product-styles', plugins_url('/../../assets/css/product.css', __FILE__), [], time());
-            
-            $custom_css = esc_attr(get_option('invoiceninja_product_css'));
-            wp_add_inline_style('product-styles', $custom_css);
+        if ( $post && $post->post_type === 'invoiceninja_product' ) {
+            wp_enqueue_style( 'product-styles', plugins_url( '/../../assets/css/product.css', __FILE__ ), [], time() );
+
+            $custom_css = esc_attr( get_option( 'invoiceninja_product_css' ) );
+
+            wp_add_inline_style( 'product-styles', $custom_css );
         }
-    
-        if ($post && get_the_ID() == get_option('invoiceninja_product_page_id')) {
-            wp_enqueue_style('products-styles', plugins_url('/../../assets/css/products.css', __FILE__), [], time());
-    
+
+        $product_page_id = (int) get_option( 'invoiceninja_product_page_id' );
+        if ( $product_page_id && get_the_ID() === $product_page_id ) {
+            wp_enqueue_style( 'products-styles', plugins_url( '/../../assets/css/products.css', __FILE__ ), [], time() );
+
             $color = '#0000EE';
-            $profile = json_decode(get_option('invoiceninja_profile'));
-            if ($profile->settings->primary_color) {
+            $profile = json_decode( get_option( 'invoiceninja_profile' ) );
+            if ( ! empty( $profile->settings->primary_color ) ) {
                 $color = $profile->settings->primary_color;
             }
     
-            $custom_css = esc_attr(get_option('invoiceninja_products_css')) . '
+            $custom_css = esc_attr( get_option( 'invoiceninja_products_css' ) ) . '
                 a:hover div.divider {
-                    border-color: ' . esc_attr($color) . ';
+                    border-color: ' . esc_attr( $color ) . ';
                 }
             ';
     
-            wp_add_inline_style('products-styles', $custom_css);
+            wp_add_inline_style( 'products-styles', $custom_css );
         }
-    
-        if (!is_admin()) {
-            wp_enqueue_style('frontend-styles', plugins_url('/../../assets/css/frontend.css', __FILE__), [], time());
-            wp_enqueue_script('frontend-scripts', plugins_url('/../../assets/js/frontend.js', __FILE__), [], time(), false);
+
+        if ( ! is_admin() ) {
+            wp_enqueue_style( 'frontend-styles', plugins_url( '/../../assets/css/frontend.css', __FILE__ ), [], time() );
+
+            wp_enqueue_script( 'frontend-scripts', plugins_url( '/../../assets/js/frontend.js', __FILE__ ), [], time(), false );
         }
     }
 
@@ -264,7 +269,7 @@ class PostApi
 
         $in_stock = true;
 
-        if ( $profile->track_inventory ) {
+        if ( ! empty( $profile->track_inventory ) ) {
             $args = [
                 'post_type' => 'invoiceninja_product',
                 'meta_query' => [
@@ -308,7 +313,7 @@ class PostApi
                             if ($max_quantity > 0) {
                                 $max = min( $max, $max_quantity );
                             }
-                            if ($profile->track_inventory) {
+                            if ( ! empty( $profile->track_inventory ) ) {
                                 $max = min( $max, $in_stock_quantity );
                             }
                             $_SESSION['invoiceninja_cart'][$product_id] = min( $max, sanitize_text_field( $_SESSION['invoiceninja_cart'][$product_id] ) );

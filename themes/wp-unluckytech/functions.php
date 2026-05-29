@@ -29,6 +29,7 @@ endif;
 add_action( 'after_setup_theme', 'unlucky_theme_support' );
 
 require get_template_directory() . '/inc/scripts.php';
+require get_template_directory() . '/inc/invoiceninja.php';
 
 add_action('wp_authenticate', 'include_login_file_before_login');
 
