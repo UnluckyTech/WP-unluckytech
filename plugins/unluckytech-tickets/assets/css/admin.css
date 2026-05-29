@@ -125,6 +125,39 @@
     min-width: 200px;
 }
 
+/* Status + priority side by side */
+.ut-form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.ut-form-row .ut-form-group {
+    flex: 1;
+    min-width: 180px;
+}
+.ut-optional {
+    font-weight: 400;
+    font-size: 12px;
+    color: #8c8f94;
+}
+
+/* Admin list search bar */
+.ut-search-form {
+    display: flex;
+    gap: 6px;
+    margin: 12px 0 0;
+    align-items: center;
+}
+.ut-search-input {
+    min-width: 280px;
+    padding: 6px 10px;
+}
+.ut-search-result-note {
+    margin: 10px 0 0;
+    color: #50575e;
+    font-size: 13px;
+}
+
 /* Info sidebar */
 .ut-info-list {
     display: grid;

@@ -41,6 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ut_ticket_reply'])) {
                             . '<p><a href="' . esc_url(admin_url('admin.php?page=ut-tickets&ticket=' . $found->id)) . '">View in admin</a></p>';
                 wp_mail(get_option('admin_email'), '[' . $site . '] User reply on Ticket #' . $found->ticket_number, $admin_body, ['Content-Type: text/html; charset=UTF-8']);
 
+                // Confirmation receipt to user
+                $user_body = '<p>Hello ' . esc_html($found->name) . ',</p>'
+                           . '<p>We\'ve received your reply on ticket <strong>#' . esc_html($found->ticket_number) . '</strong>:</p>'
+                           . '<blockquote style="border-left:3px solid #ccc;margin:0;padding:0 1em;">' . nl2br(esc_html($r_message)) . '</blockquote>'
+                           . '<p>We\'ll get back to you as soon as possible.</p>'
+                           . '<p>— ' . esc_html($site) . '</p>';
+                wp_mail($found->email, '[' . $site . '] Reply received on Ticket #' . $found->ticket_number, $user_body, ['Content-Type: text/html; charset=UTF-8']);
+
                 $reply_message = 'success:Your reply has been sent!';
                 // Reload ticket for updated thread
                 $ticket_info    = $handler->get_ticket_by_id($found->id);

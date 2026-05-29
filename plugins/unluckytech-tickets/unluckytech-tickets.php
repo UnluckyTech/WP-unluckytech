@@ -2,13 +2,13 @@
 /*
 Plugin Name: UnluckyTech Support Tickets
 Description: Custom ticketing system — replaces Znuny/OTRS integration.
-Version: 1.0.0
+Version: 1.1.0
 Author: UnluckyTech
 */
 
 if (!defined('ABSPATH')) exit;
 
-define('UT_TICKETS_VERSION', '1.0.0');
+define('UT_TICKETS_VERSION', '1.1.0');
 define('UT_TICKETS_PATH', plugin_dir_path(__FILE__));
 define('UT_TICKETS_URL', plugin_dir_url(__FILE__));
 
@@ -83,7 +83,7 @@ function ut_tickets_admin_styles($hook) {
 }
 
 // ──────────────────────────────────────────────
-// Admin reply handler
+// Admin reply / update handler
 // ──────────────────────────────────────────────
 
 add_action('admin_post_ut_admin_reply', 'ut_handle_admin_reply');
@@ -91,38 +91,77 @@ function ut_handle_admin_reply() {
     if (!current_user_can('manage_options')) wp_die('Unauthorized.');
     if (!wp_verify_nonce($_POST['_wpnonce'] ?? '', 'ut_admin_reply')) wp_die('Security check failed.');
 
-    $ticket_id  = intval($_POST['ticket_id'] ?? 0);
-    $message    = sanitize_textarea_field($_POST['reply_message'] ?? '');
-    $new_status = sanitize_text_field($_POST['ticket_status'] ?? '');
+    $ticket_id    = intval($_POST['ticket_id'] ?? 0);
+    $message      = sanitize_textarea_field($_POST['reply_message'] ?? '');
+    $new_status   = sanitize_text_field($_POST['ticket_status'] ?? '');
+    $new_priority = sanitize_text_field($_POST['ticket_priority'] ?? '');
 
-    if (!$ticket_id || !$message) {
-        wp_redirect(admin_url('admin.php?page=ut-tickets&ticket=' . $ticket_id . '&error=1'));
+    if (!$ticket_id) {
+        wp_redirect(admin_url('admin.php?page=ut-tickets'));
         exit;
     }
 
-    $handler = new UT_Ticket_Handler();
-    $handler->add_reply($ticket_id, 'admin', get_current_user_id(), $message);
+    $handler    = new UT_Ticket_Handler();
+    $ticket     = $handler->get_ticket_by_id($ticket_id);
+    $old_status = $ticket ? $ticket->status : '';
 
-    if ($new_status) {
+    // Add reply if message provided
+    if ($message) {
+        $handler->add_reply($ticket_id, 'admin', get_current_user_id(), $message);
+    }
+
+    // Update status if changed
+    $status_changed = $new_status && $new_status !== $old_status;
+    if ($status_changed) {
         $handler->update_status($ticket_id, $new_status);
     }
 
-    $ticket = $handler->get_ticket_by_id($ticket_id);
-    if ($ticket) {
-        $site  = get_bloginfo('name');
-        $body  = '<p>Hello ' . esc_html($ticket->name) . ',</p>';
-        $body .= '<p>Your ticket <strong>#' . esc_html($ticket->ticket_number) . '</strong> has a new reply:</p>';
-        $body .= '<blockquote style="border-left:3px solid #ccc;margin:0;padding:0 1em;">' . nl2br(esc_html($message)) . '</blockquote>';
-        $body .= '<p>— ' . esc_html($site) . '</p>';
-        wp_mail(
-            $ticket->email,
-            '[' . $site . '] Reply on Ticket #' . $ticket->ticket_number,
-            $body,
-            ['Content-Type: text/html; charset=UTF-8']
-        );
+    // Update priority if provided
+    if ($new_priority) {
+        $handler->update_priority($ticket_id, $new_priority);
     }
 
-    wp_redirect(admin_url('admin.php?page=ut-tickets&ticket=' . $ticket_id . '&replied=1'));
+    // Email notifications
+    if ($ticket) {
+        $site   = get_bloginfo('name');
+        $labels = ['open' => 'Open', 'pending' => 'Pending', 'closed' => 'Closed'];
+
+        // Reply notification
+        if ($message) {
+            $body  = '<p>Hello ' . esc_html($ticket->name) . ',</p>';
+            $body .= '<p>Your ticket <strong>#' . esc_html($ticket->ticket_number) . '</strong> has a new reply:</p>';
+            $body .= '<blockquote style="border-left:3px solid #ccc;margin:0;padding:0 1em;">' . nl2br(esc_html($message)) . '</blockquote>';
+            if ($status_changed) {
+                $body .= '<p>Ticket status updated to: <strong>' . esc_html($labels[$new_status] ?? ucfirst($new_status)) . '</strong>.</p>';
+            }
+            $body .= '<p>— ' . esc_html($site) . '</p>';
+            wp_mail(
+                $ticket->email,
+                '[' . $site . '] Reply on Ticket #' . $ticket->ticket_number,
+                $body,
+                ['Content-Type: text/html; charset=UTF-8']
+            );
+
+        } elseif ($status_changed) {
+            // Status-only notification (no reply message written)
+            $label = $labels[$new_status] ?? ucfirst($new_status);
+            $body  = '<p>Hello ' . esc_html($ticket->name) . ',</p>';
+            $body .= '<p>Your ticket <strong>#' . esc_html($ticket->ticket_number) . '</strong> has been updated to <strong>' . esc_html($label) . '</strong>.</p>';
+            if ($new_status === 'closed') {
+                $body .= '<p>This ticket is now closed. If you need further help, please submit a new inquiry.</p>';
+            }
+            $body .= '<p>— ' . esc_html($site) . '</p>';
+            wp_mail(
+                $ticket->email,
+                '[' . $site . '] Ticket #' . $ticket->ticket_number . ' — Status Updated',
+                $body,
+                ['Content-Type: text/html; charset=UTF-8']
+            );
+        }
+    }
+
+    $param = $message ? '&replied=1' : '&updated=1';
+    wp_redirect(admin_url('admin.php?page=ut-tickets&ticket=' . $ticket_id . $param));
     exit;
 }
 
@@ -133,7 +172,7 @@ function ut_handle_admin_reply() {
 function ut_tickets_admin_page() {
     $handler = new UT_Ticket_Handler();
 
-    // ── Single ticket view ──
+    // ── Single ticket view ──────────────────────────────────────────────────
     if (isset($_GET['ticket'])) {
         $ticket_id = intval($_GET['ticket']);
         $ticket    = $handler->get_ticket_by_id($ticket_id);
@@ -152,8 +191,10 @@ function ut_tickets_admin_page() {
 
             <?php if (isset($_GET['replied'])): ?>
                 <div class="notice notice-success is-dismissible"><p>Reply sent.</p></div>
+            <?php elseif (isset($_GET['updated'])): ?>
+                <div class="notice notice-success is-dismissible"><p>Ticket updated.</p></div>
             <?php elseif (isset($_GET['error'])): ?>
-                <div class="notice notice-error is-dismissible"><p>Reply was empty — not sent.</p></div>
+                <div class="notice notice-error is-dismissible"><p>Nothing to save — provide a reply or change the status/priority.</p></div>
             <?php endif; ?>
 
             <div class="ut-ticket-layout">
@@ -200,28 +241,45 @@ function ut_tickets_admin_page() {
                     </div>
                     <?php endforeach; ?>
 
-                    <!-- Reply form -->
+                    <!-- Reply / update form -->
                     <div class="ut-ticket-card">
-                        <h3>Send Reply</h3>
+                        <h3>Reply &amp; Update</h3>
                         <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
                             <input type="hidden" name="action" value="ut_admin_reply">
                             <input type="hidden" name="ticket_id" value="<?php echo $ticket_id; ?>">
                             <?php wp_nonce_field('ut_admin_reply'); ?>
-                            <div class="ut-form-group">
-                                <label for="ticket_status">Update Status</label>
-                                <select id="ticket_status" name="ticket_status">
-                                    <option value="">— No change —</option>
-                                    <option value="open"    <?php selected($ticket->status, 'open'); ?>>Open</option>
-                                    <option value="pending" <?php selected($ticket->status, 'pending'); ?>>Pending</option>
-                                    <option value="closed"  <?php selected($ticket->status, 'closed'); ?>>Closed</option>
-                                </select>
+
+                            <div class="ut-form-row">
+                                <div class="ut-form-group">
+                                    <label for="ticket_status">Status</label>
+                                    <select id="ticket_status" name="ticket_status">
+                                        <option value="">— No change —</option>
+                                        <option value="open"    <?php selected($ticket->status, 'open'); ?>>Open</option>
+                                        <option value="pending" <?php selected($ticket->status, 'pending'); ?>>Pending</option>
+                                        <option value="closed"  <?php selected($ticket->status, 'closed'); ?>>Closed</option>
+                                    </select>
+                                </div>
+                                <div class="ut-form-group">
+                                    <label for="ticket_priority">Priority</label>
+                                    <select id="ticket_priority" name="ticket_priority">
+                                        <option value="">— No change —</option>
+                                        <option value="low"    <?php selected($ticket->priority, 'low'); ?>>Low</option>
+                                        <option value="normal" <?php selected($ticket->priority, 'normal'); ?>>Normal</option>
+                                        <option value="high"   <?php selected($ticket->priority, 'high'); ?>>High</option>
+                                    </select>
+                                </div>
                             </div>
+
                             <div class="ut-form-group">
-                                <label for="reply_message">Message</label>
-                                <textarea id="reply_message" name="reply_message" rows="6" required
-                                    placeholder="Type your reply…"></textarea>
+                                <label for="reply_message">
+                                    Reply Message
+                                    <span class="ut-optional">(optional — leave blank to only update status/priority)</span>
+                                </label>
+                                <textarea id="reply_message" name="reply_message" rows="6"
+                                    placeholder="Type your reply… (leave empty to just update status or priority)"></textarea>
                             </div>
-                            <button type="submit" class="button button-primary">Send Reply</button>
+
+                            <button type="submit" class="button button-primary">Save</button>
                         </form>
                     </div>
                 </div>
@@ -259,11 +317,17 @@ function ut_tickets_admin_page() {
         return;
     }
 
-    // ── Ticket list ──
+    // ── Ticket list ─────────────────────────────────────────────────────────
     $status_filter = sanitize_text_field($_GET['status'] ?? '');
-    $tickets       = $handler->get_all_tickets($status_filter);
-    $counts        = $handler->get_status_counts();
-    $total         = array_sum($counts);
+    $search        = sanitize_text_field($_GET['search'] ?? '');
+    $current_page  = max(1, intval($_GET['paged'] ?? 1));
+    $per_page      = 20;
+
+    $tickets     = $handler->get_all_tickets($status_filter, $search, $current_page, $per_page);
+    $total       = $handler->count_tickets($status_filter, $search);
+    $total_pages = (int) ceil($total / $per_page);
+    $counts      = $handler->get_status_counts();
+    $grand_total = array_sum($counts);
     ?>
     <div class="wrap ut-ticket-wrap">
         <h1>Support Tickets</h1>
@@ -272,7 +336,7 @@ function ut_tickets_admin_page() {
             <li>
                 <a href="<?php echo esc_url(admin_url('admin.php?page=ut-tickets')); ?>"
                    <?php if (!$status_filter) echo 'class="current"'; ?>>
-                    All <span class="count">(<?php echo $total; ?>)</span>
+                    All <span class="count">(<?php echo $grand_total; ?>)</span>
                 </a> |
             </li>
             <li>
@@ -295,7 +359,29 @@ function ut_tickets_admin_page() {
             </li>
         </ul>
 
-        <table class="wp-list-table widefat fixed striped" style="margin-top:12px;">
+        <!-- Search bar -->
+        <form method="get" class="ut-search-form">
+            <input type="hidden" name="page" value="ut-tickets">
+            <?php if ($status_filter): ?>
+                <input type="hidden" name="status" value="<?php echo esc_attr($status_filter); ?>">
+            <?php endif; ?>
+            <input type="search" name="search" value="<?php echo esc_attr($search); ?>"
+                   placeholder="Search by name, email, or ticket #…" class="ut-search-input">
+            <button type="submit" class="button">Search</button>
+            <?php if ($search): ?>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=ut-tickets' . ($status_filter ? '&status=' . $status_filter : ''))); ?>"
+                   class="button">Clear</a>
+            <?php endif; ?>
+        </form>
+
+        <?php if ($search): ?>
+            <p class="ut-search-result-note">
+                Showing <?php echo $total; ?> result<?php echo $total !== 1 ? 's' : ''; ?> for
+                &ldquo;<?php echo esc_html($search); ?>&rdquo;
+            </p>
+        <?php endif; ?>
+
+        <table class="wp-list-table widefat fixed striped" style="margin-top:8px;">
             <thead>
                 <tr>
                     <th style="width:110px;">Ticket #</th>
@@ -309,7 +395,11 @@ function ut_tickets_admin_page() {
             </thead>
             <tbody>
                 <?php if (empty($tickets)): ?>
-                <tr><td colspan="7" style="padding:20px;text-align:center;color:#666;">No tickets found.</td></tr>
+                <tr>
+                    <td colspan="7" style="padding:20px;text-align:center;color:#666;">
+                        <?php echo $search ? 'No tickets match your search.' : 'No tickets found.'; ?>
+                    </td>
+                </tr>
                 <?php else: ?>
                 <?php foreach ($tickets as $t): ?>
                 <tr>
@@ -336,6 +426,32 @@ function ut_tickets_admin_page() {
                 <?php endif; ?>
             </tbody>
         </table>
+
+        <?php if ($total_pages > 1): ?>
+        <div class="tablenav bottom">
+            <div class="tablenav-pages">
+                <span class="displaying-num"><?php echo $total; ?> item<?php echo $total !== 1 ? 's' : ''; ?></span>
+                <span class="pagination-links">
+                    <?php
+                    $base_url = admin_url('admin.php?page=ut-tickets'
+                        . ($status_filter ? '&status=' . $status_filter : '')
+                        . ($search ? '&search=' . urlencode($search) : ''));
+
+                    if ($current_page > 1):
+                        echo '<a class="prev-page button" href="' . esc_url($base_url . '&paged=' . ($current_page - 1)) . '">&laquo;</a> ';
+                    endif;
+
+                    echo '<span class="paging-input">' . $current_page . ' of ' . $total_pages . '</span>';
+
+                    if ($current_page < $total_pages):
+                        echo ' <a class="next-page button" href="' . esc_url($base_url . '&paged=' . ($current_page + 1)) . '">&raquo;</a>';
+                    endif;
+                    ?>
+                </span>
+            </div>
+        </div>
+        <?php endif; ?>
+
     </div>
     <?php
 }

@@ -46,10 +46,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['account_ticket_reply']
         if ($r_ticket && (int)$r_ticket->user_id === get_current_user_id()) {
             if ($r_handler->add_reply($r_ticket_id, 'user', get_current_user_id(), $r_message)) {
                 $site  = get_bloginfo('name');
+
+                // Notify admin
                 $abody = '<p>User replied on ticket <strong>#' . esc_html($r_ticket->ticket_number) . '</strong>:</p>'
                        . '<blockquote style="border-left:3px solid #ccc;padding:0 1em;">' . nl2br(esc_html($r_message)) . '</blockquote>'
                        . '<p><a href="' . esc_url(admin_url('admin.php?page=ut-tickets&ticket=' . $r_ticket_id)) . '">View in admin</a></p>';
                 wp_mail(get_option('admin_email'), '[' . $site . '] User reply on Ticket #' . $r_ticket->ticket_number, $abody, ['Content-Type: text/html; charset=UTF-8']);
+
+                // Confirmation receipt to user
+                $ubody = '<p>Hello ' . esc_html($r_ticket->name) . ',</p>'
+                       . '<p>We\'ve received your reply on ticket <strong>#' . esc_html($r_ticket->ticket_number) . '</strong>:</p>'
+                       . '<blockquote style="border-left:3px solid #ccc;padding:0 1em;">' . nl2br(esc_html($r_message)) . '</blockquote>'
+                       . '<p>We\'ll get back to you as soon as possible.</p>'
+                       . '<p>— ' . esc_html($site) . '</p>';
+                wp_mail($r_ticket->email, '[' . $site . '] Reply received on Ticket #' . $r_ticket->ticket_number, $ubody, ['Content-Type: text/html; charset=UTF-8']);
+
                 echo json_encode(['success' => true, 'message' => 'Reply sent!']);
             } else {
                 echo json_encode(['success' => false, 'message' => 'Failed to send reply.']);

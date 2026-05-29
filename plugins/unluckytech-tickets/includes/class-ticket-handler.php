@@ -75,26 +75,60 @@ class UT_Ticket_Handler {
         ));
     }
 
-    public function get_all_tickets($status = '') {
+    public function get_all_tickets($status = '', $search = '', $page = 1, $per_page = 20) {
         global $wpdb;
 
+        $where  = [];
+        $values = [];
+
         if ($status) {
-            return $wpdb->get_results($wpdb->prepare(
-                "SELECT * FROM {$this->tickets_table} WHERE status = %s ORDER BY updated_at DESC",
-                $status
-            ));
+            $where[]  = 'status = %s';
+            $values[] = $status;
         }
 
-        return $wpdb->get_results(
-            "SELECT * FROM {$this->tickets_table} ORDER BY updated_at DESC"
-        );
+        if ($search) {
+            $like     = '%' . $wpdb->esc_like($search) . '%';
+            $where[]  = '(ticket_number LIKE %s OR name LIKE %s OR email LIKE %s OR subject LIKE %s)';
+            $values   = array_merge($values, [$like, $like, $like, $like]);
+        }
+
+        $where_sql = $where ? 'WHERE ' . implode(' AND ', $where) : '';
+        $offset    = max(0, ($page - 1)) * $per_page;
+
+        $values[] = $per_page;
+        $values[] = $offset;
+
+        $sql = "SELECT * FROM {$this->tickets_table} {$where_sql} ORDER BY updated_at DESC LIMIT %d OFFSET %d";
+
+        return $wpdb->get_results($wpdb->prepare($sql, ...$values));
+    }
+
+    public function count_tickets($status = '', $search = '') {
+        global $wpdb;
+
+        $where  = [];
+        $values = [];
+
+        if ($status) {
+            $where[]  = 'status = %s';
+            $values[] = $status;
+        }
+
+        if ($search) {
+            $like    = '%' . $wpdb->esc_like($search) . '%';
+            $where[] = '(ticket_number LIKE %s OR name LIKE %s OR email LIKE %s OR subject LIKE %s)';
+            $values  = array_merge($values, [$like, $like, $like, $like]);
+        }
+
+        $where_sql = $where ? 'WHERE ' . implode(' AND ', $where) : '';
+        $sql       = "SELECT COUNT(*) FROM {$this->tickets_table} {$where_sql}";
+
+        return intval($values ? $wpdb->get_var($wpdb->prepare($sql, ...$values)) : $wpdb->get_var($sql));
     }
 
     public function get_status_counts() {
         global $wpdb;
-        $rows = $wpdb->get_results(
-            "SELECT status, COUNT(*) as cnt FROM {$this->tickets_table} GROUP BY status"
-        );
+        $rows   = $wpdb->get_results("SELECT status, COUNT(*) as cnt FROM {$this->tickets_table} GROUP BY status");
         $counts = [];
         foreach ($rows as $row) {
             $counts[$row->status] = intval($row->cnt);
@@ -149,15 +183,25 @@ class UT_Ticket_Handler {
         );
     }
 
+    public function update_priority($ticket_id, $priority) {
+        global $wpdb;
+        return $wpdb->update(
+            $this->tickets_table,
+            ['priority' => $priority, 'updated_at' => current_time('mysql')],
+            ['id' => $ticket_id],
+            ['%s','%s'],
+            ['%d']
+        );
+    }
+
     private function generate_ticket_number() {
         global $wpdb;
-        do {
-            $number = 'UT-' . strtoupper(wp_generate_password(6, false, false));
-            $exists = $wpdb->get_var($wpdb->prepare(
-                "SELECT id FROM {$this->tickets_table} WHERE ticket_number = %s",
-                $number
-            ));
-        } while ($exists);
-        return $number;
+        $last = $wpdb->get_var("SELECT ticket_number FROM {$this->tickets_table} ORDER BY id DESC LIMIT 1");
+        if ($last && preg_match('/^UT-(\d+)$/', $last, $m)) {
+            $next = intval($m[1]) + 1;
+        } else {
+            $next = 1;
+        }
+        return 'UT-' . str_pad($next, 4, '0', STR_PAD_LEFT);
     }
 }
