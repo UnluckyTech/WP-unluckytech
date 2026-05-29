@@ -87,7 +87,7 @@
             <div class="faq-item">
                 <button class="faq-question">How long have you been in the IT industry?</button>
                 <div class="faq-answer">
-                    <p>I have over 5 years of experience in the IT industry, working across various technical domains and tackling numerous challenges.</p>
+                    <p>I have over a decade of experience in the IT industry, working across various technical domains and tackling numerous challenges.</p>
                 </div>
             </div>
             <div class="faq-item">

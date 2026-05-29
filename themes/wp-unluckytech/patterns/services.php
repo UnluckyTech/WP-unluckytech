@@ -27,7 +27,7 @@
             <!-- Right Container: Description -->
             <div class="summary-right">
                 <p class="summary-description">
-                    We offer a wide range of services including Web Development, Server Management, IT Support, Technical Consultation, Cloud Solutions, and much more. Whether you're looking to enhance your business infrastructure or require a simple upgrade, we've got you covered.
+                    We offer a wide range of services including Web Development, Server Management, IT Support, Technical Consultation, Custom PC Builds, and much more. Whether you're looking to enhance your business infrastructure or require a simple upgrade, we've got you covered.
                 </p>
             </div>
         </div>
@@ -59,7 +59,7 @@
                     <p class="service-description">Book a consultation, and we'll guide you in the right direction. We'll help you navigate through any technical challenges and recommend the best solutions tailored to your needs.</p>
                 </a>
                 <a href="custom-pc" class="service-card">
-                    <i class="service-icon fas fa-cloud"></i>
+                    <i class="service-icon fas fa-desktop"></i>
                     <h3 class="service-title">Custom PC Builds</h3>
                     <p class="service-description">Looking to build your perfect PC? We’ll help you choose the right parts at the best price and assemble your custom-built system to meet your exact needs.</p>
                 </a>
@@ -83,7 +83,7 @@
             <p>If you’re unsure where your request fits, just reach out. We're here to assist you!</p>
         </div>
         <div class="resources-buttons">
-            <a href="https://support.unluckytech.com" class="button">Help Desk</a>
+            <a href="/contact" class="button">Help Desk</a>
             <a href="https://www.helpwire.app/" class="button">Remote Desktop</a>
             <a href="/contact" class="button">Contact Us</a>
         </div>
