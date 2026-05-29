@@ -1,7 +1,7 @@
 <?php
 
 function wp_unluckytech_scripts() {
-    $v = '1.2.0';
+    $v = '1.3.0';
 
     // Montserrat (Google Fonts) — used site-wide. Loaded as a real stylesheet
     // rather than a render-blocking @import.
@@ -29,9 +29,9 @@ function wp_unluckytech_scripts() {
 
     // Page-specific CSS/JS (conditionally loaded)
     if (is_front_page() || is_home()) {
-        wp_enqueue_style('wp-unluckytech-home-welcome', get_template_directory_uri() . '/assets/css/home/welcome.css');
-        wp_enqueue_style('wp-unluckytech-home-posts', get_template_directory_uri() . '/assets/css/home/posts.css');
-        wp_enqueue_style('wp-unluckytech-home-serv-part', get_template_directory_uri() . '/assets/css/home/serv-part.css');
+        wp_enqueue_style('wp-unluckytech-home-welcome', get_template_directory_uri() . '/assets/css/home/welcome.css', [], $v);
+        wp_enqueue_style('wp-unluckytech-home-posts', get_template_directory_uri() . '/assets/css/home/posts.css', [], $v);
+        wp_enqueue_style('wp-unluckytech-home-serv-part', get_template_directory_uri() . '/assets/css/home/serv-part.css', [], $v);
         wp_enqueue_script('slideshow-js', get_template_directory_uri() . '/assets/js/modules/slideshow.js', array(), null, true);
     }
 

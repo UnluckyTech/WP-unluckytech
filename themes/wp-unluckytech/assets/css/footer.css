@@ -97,8 +97,14 @@
 }
 
 @media (max-width: 768px) {
-    .footer-connect, .footer-social-icons, .footer-bottom {
+    /* Hide the redundant "Connect with Us" column on mobile — its social links
+       are surfaced via .footer-unluckytech-icons below. Keep the copyright bar. */
+    .footer-connect, .footer-social-icons {
         display: none;
+    }
+
+    .footer-bottom {
+        font-size: 13px;
     }
 
     .footer-common-title {

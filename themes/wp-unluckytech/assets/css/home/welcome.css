@@ -43,9 +43,8 @@
 }
 
 .welcome-heading {
-    font-size: 2.5em; 
+    font-size: 2.5em;
     margin-bottom: 20px;
-    font-family: Arial, sans-serif; 
 }
 
 .welcome-divider {
@@ -64,17 +63,14 @@
         flex-direction: column;
     }
 
-    .video-wrapper,
-    .text-wrapper {
-        max-width: 100%;
-    }
-
-    .video-wrapper img {
+    /* No video/image yet — hide the empty column instead of leaving a gap.
+       Add real media here later and remove this rule to show it on mobile. */
+    .video-wrapper {
         display: none;
     }
 
-    .video-wrapper {
-        order: -1; 
+    .text-wrapper {
+        max-width: 100%;
     }
 
     .welcome-heading {
